@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\assessment;
 use Illuminate\Http\Request;
 
-class AssessmentController extends Controller
-{
+class AssessmentController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -22,8 +21,7 @@ class AssessmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +31,7 @@ class AssessmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +41,7 @@ class AssessmentController extends Controller
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function show(assessment $assessment)
-    {
+    public function show(assessment $assessment) {
         //
     }
 
@@ -55,8 +51,7 @@ class AssessmentController extends Controller
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function edit(assessment $assessment)
-    {
+    public function edit(assessment $assessment) {
         //
     }
 
@@ -67,8 +62,7 @@ class AssessmentController extends Controller
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, assessment $assessment)
-    {
+    public function update(Request $request, assessment $assessment) {
         //
     }
 
@@ -78,8 +72,8 @@ class AssessmentController extends Controller
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(assessment $assessment)
-    {
+    public function destroy(assessment $assessment) {
         //
     }
+
 }
