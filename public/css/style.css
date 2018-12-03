@@ -1,0 +1,92 @@
+#page, #assessments{
+    border-top:solid 1px;
+    background: #d6d4ce;
+    padding:10px;
+    font-size:14px
+}
+#content{
+    background:white;
+    padding:35px;
+    max-width:840px;
+    margin:auto;
+}
+
+#footer {
+    text-align: center
+}
+
+#footer img{
+    height: 50px;
+    margin: 0 25px
+}
+
+#footer .south-seeds-logo{
+    padding:25px;
+    height: 155px;
+}
+
+#nav-bar{
+    margin: 10px 40px 0;
+}
+
+#nav-bar .logo{
+    height: 30px;           
+}
+
+#nav-bar a{
+    float: right;
+    margin-right: 30px;
+    color:black;
+}
+
+#nav-bar .menu-text{
+    display:inline-block;
+    margin-left: 25px
+}
+
+h1, h2, h3{
+    color:#ff2712;
+}
+
+h1{
+    font-size:30px;
+}
+h2{
+    font-size:25px;
+    margin-top: 35px;
+}
+
+#content table td{
+    padding:0 25px 15px;
+    vertical-align:top;
+}
+
+#content table input[type=number]{
+    width:75px;
+    margin-top:5px;
+}
+
+#report{
+    text-align:center
+}
+#report div{
+    text-align:left;
+    display:inline-block;
+    border: solid 1px lightgrey;
+    padding:25px;
+    margin:10px;
+    width:350px;
+}
+hr{
+    border-color: #ff2712
+}
+
+#assessments #content{
+    max-width:840px;
+    font-size:14px
+}
+
+
+#assessments #content td{
+    padding-left:12px;
+}
