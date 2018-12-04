@@ -13,7 +13,8 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('list');
+        $assessments = Assessment::all();
+        return view('assessments.list', compact('assessments'));
     }
 
     /**
