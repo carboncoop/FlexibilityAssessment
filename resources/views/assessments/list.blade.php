@@ -5,18 +5,24 @@
 @section('content')
 <div id='list'>
     <h1>Assessments</h1>
-    <table>
+    <table class="table">
         <th>Name</th><th>Description</th><th>Author</th><th>Modified</th><th></th>
-        @foreach($assessments as $assessment)
-        <tr>
-            <td>{{$assessment->name}}</td>
-            <td>{{$assessment->description}}</td>
+        <tr v-for="assessment in assessments">
+            <td v-text="assessment.name"></td>
+            <td v-text="assessment.description"></td>
             <td></td>
-            <td>{{$assessment->updated_at}}</td>
+            <td v-text="assessment.updated_at"></td>
             <td></td>
         </tr>
-        @endforeach
     </table>
 </div>
 
+<script>
+    let app = new Vue({
+            el: '#list',
+            data:{
+            assessments: {!! $assessments !!}
+            }
+        });
+</script>
 @endsection
