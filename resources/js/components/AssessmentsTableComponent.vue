@@ -16,7 +16,7 @@
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
                 <tr><td>Name</td><td><input type="text" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
-                <tr><td>Description</td><td><input type="text" v-bind:value="newAssessment.description" placeholder="Description"></td></tr>
+                <tr><td>Description</td><td><input type="text" v-model="newAssessment.description" placeholder="Description"></td></tr>
             </table>
         </b-modal>
 
@@ -54,6 +54,7 @@
             }
         },
         mounted: function () {
+            console.log(this.assessments);
         }
     }
 </script>
