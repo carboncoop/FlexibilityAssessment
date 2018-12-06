@@ -33,7 +33,16 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:assessments|max:255',
+            'desription' => 'max:1000'
+        ]);
+
+        $assessment = new Assessment;
+        $assessment->name = $request->name;
+        $assessment->description = $request->description;
+        $assessment->save();
+        return response($assessment, 200);
     }
 
     /**

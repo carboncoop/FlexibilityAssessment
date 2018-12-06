@@ -9,6 +9,7 @@
 
 window.Vue = require('vue');
 
+window.axios = require('axios');
 
 // BoostrapVue
 import BootstrapVue from 'bootstrap-vue';
