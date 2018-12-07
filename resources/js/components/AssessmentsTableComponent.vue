@@ -8,16 +8,26 @@
                 <td v-text="assessment.description"></td>
                 <td></td>
                 <td v-text="assessment.updated_at"></td>
-                <td></td>
+                <td><button v-b-modal.delete-assessment-modal v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button></td>
             </tr>
         </table>
 
-        <b-modal id="new-assessment-modal" ref="newAssessmentModal" title="New assessment" v-on:ok="createAssessment">
+        <b-modal id="new-assessment-modal" ref="newAssessmentModal" title="New assessment" 
+                 v-on:ok="createAssessment" 
+                 v-on:show="error=false" 
+                 v-on:hidden="newAssessment.name=''; newAssessment.description=''">
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
                 <tr><td>Name</td><td><input type="text" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
                 <tr><td>Description</td><td><input type="text" v-model="newAssessment.description" placeholder="Description"></td></tr>
             </table>
+        </b-modal>
+
+        <b-modal id="delete-assessment-modal" ref ="deleteAssessmentModal" title="Are you sure you want to delete the assessment?" 
+                 v-on:ok="deleteAssessment" 
+                 v-on:show="error=false">
+            <p style="color:red" v-if="error">{{error}}</p>
+            <p>This action cannot be undone</p>
         </b-modal>
 
     </div>
@@ -30,7 +40,8 @@
             return {
                 newAssessment: {name: '', description: ''},
                 error: false,
-                assessmentsList: this.assessments
+                assessmentsList: this.assessments,
+                assessmentToDelete: 0
             };
         },
         methods: {
@@ -48,10 +59,30 @@
                                 this.$refs.newAssessmentModal.hide();
                             })
                             .catch((error) => {
-                                this.error = 'Error - ' + error.response.data.message;
+                                this.error = 'Error - ' + (error.response.data.message || error);
                             })
                 }
+            },
+            setAssessmentToDelete: function (id) {
+                this.assessmentToDelete = id;
+            },
+            deleteAssessment: function (evt) {
+                evt.preventDefault(); // Prevent modal from closing
+                this.error = false;
+                axios.delete("api/assessment/" + this.assessmentToDelete)
+                        .then((response) => {
+                            let assessmentToDelete = this.assessmentToDelete;
+                            let indexOfAssessment = this.assessmentsList.findIndex(function (assessment) {
+                                return assessment.id == assessmentToDelete;
+                            });
+                            this.assessmentsList.splice(indexOfAssessment, 1);
+                            this.$refs.deleteAssessmentModal.hide();
+                        })
+                        .catch((error) => {
+                            this.error = 'Error - ' + (error.response.data.message || error);
+                        })
             }
+
         },
         mounted: function () {
             console.log(this.assessments);

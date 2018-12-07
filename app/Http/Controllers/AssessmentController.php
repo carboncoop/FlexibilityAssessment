@@ -51,7 +51,7 @@ class AssessmentController extends Controller {
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function show(assessment $assessment) {
+    public function show($id) {
         //
     }
 
@@ -61,7 +61,7 @@ class AssessmentController extends Controller {
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function edit(assessment $assessment) {
+    public function edit($id) {
         //
     }
 
@@ -72,7 +72,7 @@ class AssessmentController extends Controller {
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, assessment $assessment) {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -82,8 +82,10 @@ class AssessmentController extends Controller {
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(assessment $assessment) {
-        //
+    public function destroy($id) {
+        Assessment::destroy($id);
+        
+        return response(null, 200);
     }
 
 }
