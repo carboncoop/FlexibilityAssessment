@@ -13,8 +13,9 @@ window.axios = require('axios');
 // FontAwesome icons - only the ones use
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faTrash)
+library.add(faTrash, faEdit)
 
 // BoostrapVue
 import BootstrapVue from 'bootstrap-vue';
@@ -31,8 +32,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
  */
 
 Vue.component('assessments-table', require('./components/AssessmentsTableComponent.vue'));
+Vue.component('assessment', require('./components/AssessmentComponent.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
+ 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 

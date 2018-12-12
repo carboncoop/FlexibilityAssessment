@@ -16,7 +16,7 @@ class CreateAssessmentsTable extends Migration {
             $table->increments('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->text('data')->nullable();
+            $table->json('data');
             $table->timestamps();
         });
     }

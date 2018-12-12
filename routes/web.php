@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('assessment', 'AssessmentController')->only(['index']);
+Route::resource('assessment', 'AssessmentController')->only(['index','edit']);

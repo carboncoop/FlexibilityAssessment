@@ -14,8 +14,10 @@ class AssessmentsTableSeeder extends Seeder {
         for ($i = 0; $i < 10; $i++) {
             DB::table('assessments')->insert([
                 'name' => "Assessment " . $i,
-                'description' => 'No desc'
+                'description' => 'No desc',
+                'data' => '{}'
             ]);
         }
     }
+
 }

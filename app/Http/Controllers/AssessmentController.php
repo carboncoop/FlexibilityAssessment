@@ -62,7 +62,7 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        return view('assessments.assessment', ['assessment' => assessment::find($id)]);
     }
 
     /**
@@ -73,7 +73,12 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $assessment = assessment::findOrFail($id);
+        $assessment->name = $request->name;
+        $assessment->description = $request->description;
+        $assessment->data = $request->data;
+        $assessment->save();
+        return response(null, 200);
     }
 
     /**
@@ -84,7 +89,7 @@ class AssessmentController extends Controller {
      */
     public function destroy($id) {
         Assessment::destroy($id);
-        
+
         return response(null, 200);
     }
 
