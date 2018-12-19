@@ -38773,6 +38773,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { 'initialAssessment': Object },
+    data: function data() {
+        return {
+            assessment: JSON.parse(JSON.stringify(this.initialAssessment)) // Deep cloning to ensure one way data flow (only from parent component to child)  
+        };
+    },
     components: {
         AssessmentForm: __WEBPACK_IMPORTED_MODULE_0__AssessmentFormComponent___default.a,
         AssessmentSideMenu: __WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent___default.a
@@ -38782,7 +38787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var myself = this;
             axios.put('/api/assessment/' + this.initialAssessment.id, updatedAssessment).then(function (response) {
                 thenCallback(response);
-                myself.initialAssessment = updatedAssessment;
+                myself.assessment = updatedAssessment;
             }).catch(function (error) {
                 catchCallback(error);
             });
@@ -39731,12 +39736,12 @@ var render = function() {
     "div",
     [
       _c("assessment-side-menu", {
-        attrs: { "initial-assessment": _vm.initialAssessment },
+        attrs: { "initial-assessment": _vm.assessment },
         on: { assessmentChange: _vm.updateAssessment }
       }),
       _vm._v(" "),
       _c("assessment-form", {
-        attrs: { "initial-assessment": _vm.initialAssessment },
+        attrs: { "initial-assessment": _vm.assessment },
         on: { assessmentChange: _vm.updateAssessment }
       })
     ],
