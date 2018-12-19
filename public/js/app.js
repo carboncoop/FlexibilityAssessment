@@ -39576,7 +39576,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveMetadata: function saveMetadata() {
             var toSave = JSON.parse(JSON.stringify(this.assessment));
             toSave.name = this.newName;
-            toSave.description = this.description;
+            toSave.description = this.newDescription;
             var myself = this;
             this.$emit('assessmentChange', toSave, function (response) {
                 console.log(response);

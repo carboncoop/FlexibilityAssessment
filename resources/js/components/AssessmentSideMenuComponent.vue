@@ -53,7 +53,7 @@
             saveMetadata: function () {
                 let toSave = JSON.parse(JSON.stringify(this.assessment));
                 toSave.name = this.newName;
-                toSave.description = this.description;
+                toSave.description = this.newDescription;
                 let myself = this;
                 this.$emit('assessmentChange', toSave,
                         function (response) {
