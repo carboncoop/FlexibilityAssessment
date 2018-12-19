@@ -1,15 +1,14 @@
 <template>
     <div id="assessment-side-menu">
-        <p> <strong>Name: {{name}}</strong> <font-awesome-icon icon="edit" title="Edit" style="cursor:pointer" 
-                                                               v-b-modal.edit-metadata-modal size="xs" 
-                                                               v-on:click="iniMetadataModal"
-                                                               v-on:ok="saveMetadata" />
+        <p> <strong>Name: {{assessment.name}}</strong> <font-awesome-icon icon="edit" title="Edit" style="cursor:pointer" 
+                                                                          v-b-modal.edit-metadata-modal size="xs" 
+                                                                          v-on:click="iniMetadataModal" />
         </p>
-        <p>Description: {{description}}</p>
+        <p>Description: {{assessment.description}}</p>
 
         <b-modal id="edit-metadata-modal" ref="editMetadataModal" title="Edit assessment name and description" 
-                 v-on:ok="saveMetadata" 
-                 v-on:show="error=false">
+                 v-on:show="error=false"
+                 v-on:ok.prevent="saveMetadata" >
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
                 <tr><td>Name</td><td><input type="text" v-model="newName"></td></tr>
@@ -32,33 +31,41 @@
         props: {initialAssessment: Object},
         data: function () {
             return{
-                name: this.initialAssessment.name,
-                description: this.initialAssessment.description,
-                author: this.initialAssessment.author,
-                error: false,
                 newName: '',
-                newDescription: ''
+                newDescription: '',
+                assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)
+                error: false
+            };
+        },
+        watch: {
+            initialAssessment: {
+                deep: true,
+                handler: function () {
+                    this.assessment = this.initialAssessment;
+                }
             }
         },
         methods: {
             iniMetadataModal: function () {
-                this.newName = this.name;
-                this.newDescription = this.description;
+                this.newName = this.assessment.name;
+                this.newDescription = this.assessment.description;
             },
             saveMetadata: function () {
-                let toSave = this.initialAssessment;
+                let toSave = JSON.parse(JSON.stringify(this.assessment));
                 toSave.name = this.newName;
                 toSave.description = this.description;
-                axios.put('/api/assessment/' + this.initialAssessment.id, toSave)
-                        .then((response) => {
+                let myself = this;
+                this.$emit('assessmentChange', toSave,
+                        function (response) {
                             console.log(response);
-                            this.name = this.newName;
-                            this.description = this.newDescription;
-                            this.$refs.editMetadataModal.hide();
-                        })
-                        .catch((error) => {
-                            this.error = 'Error - ' + (error.response.data.message || error);
-                        });
+                            //this.name = this.newName;
+                            //this.description = this.newDescription;
+                            myself.$refs.editMetadataModal.hide();
+                        },
+                        function (error) {
+                            myself.error = 'Error - ' + (error.response.data.message || error);
+                        }
+                );
             }
         }
     }

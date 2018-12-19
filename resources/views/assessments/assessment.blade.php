@@ -4,6 +4,6 @@
 
 @section('content')
 <div id='app'>
-    <assessment v-bind:assessment='{{$assessment}}'></assessment>
+    <assessment v-bind:initial-assessment='{{$assessment}}'></assessment>
 </div>
 @endsection

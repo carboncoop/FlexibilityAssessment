@@ -1,7 +1,7 @@
 <template>
     <div>
-        <assessment-side-menu v-bind:initialAssessment='assessment'></assessment-side-menu>
-        <assessment-form v-bind:initialAssessment='assessment'></assessment-form>
+        <assessment-side-menu v-bind:initial-assessment='initialAssessment' v-on:assessmentChange='updateAssessment'></assessment-side-menu>
+        <assessment-form v-bind:initial-assessment='initialAssessment' v-on:assessmentChange='updateAssessment'></assessment-form>
     </div>
 </template>
 
@@ -19,11 +19,25 @@
     import AssessmentForm  from './AssessmentFormComponent';
     import AssessmentSideMenu from './AssessmentSideMenuComponent';
     export default{
-        props: {'assessment': Object},
+        props: {'initialAssessment': Object},
         components: {
             AssessmentForm,
             AssessmentSideMenu
         },
-        mounted:function(){console.log(this.assessment);}
+        methods: {
+            updateAssessment: function (updatedAssessment, thenCallback, catchCallback) {
+                let myself = this;
+                axios.put('/api/assessment/' + this.initialAssessment.id, updatedAssessment)
+                        .then((response) => {
+                            thenCallback(response);
+                            myself.initialAssessment = updatedAssessment;
+                        })
+                        .catch((error) => {
+                            catchCallback(error);
+                        });
+            }
+        },
+        mounted: function () {
+        }
     }
 </script>

@@ -38772,14 +38772,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { 'assessment': Object },
+    props: { 'initialAssessment': Object },
     components: {
         AssessmentForm: __WEBPACK_IMPORTED_MODULE_0__AssessmentFormComponent___default.a,
         AssessmentSideMenu: __WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent___default.a
     },
-    mounted: function mounted() {
-        console.log(this.assessment);
-    }
+    methods: {
+        updateAssessment: function updateAssessment(updatedAssessment, thenCallback, catchCallback) {
+            var myself = this;
+            axios.put('/api/assessment/' + this.initialAssessment.id, updatedAssessment).then(function (response) {
+                thenCallback(response);
+                myself.initialAssessment = updatedAssessment;
+            }).catch(function (error) {
+                catchCallback(error);
+            });
+        }
+    },
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -38934,34 +38943,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: { initialAssessment: Object },
     data: function data() {
         return {
-            name: this.initialAssessment.name,
-            description: this.initialAssessment.description,
-            author: this.initialAssessment.author,
-            data: this.initialAssessment.data
-            //data: JSON.parse(this.initialAssessment.data)
+            assessment: JSON.parse(JSON.stringify(this.initialAssessment)) // Deep cloning to ensure one way data flow (only from parent component to child)
         };
     },
     watch: {
-        data: {
+        assessment: {
             deep: true,
-            handler: function handler(newData) {
-                this.debouncedSaveData();
+            handler: function handler() {
+                this.debouncedOnAssessmentChange();
+            }
+        },
+        initialAssessment: {
+            deep: true,
+            handler: function handler() {
+                this.assessment = this.initialAssessment;
             }
         }
     },
     created: function created() {
-        this.debouncedSaveData = this.debounce(this.saveData, 1500);
-    },
-    mounted: function mounted() {
-        console.log(this.initialAssessment);
+        this.debouncedOnAssessmentChange = this.debounce(this.onAssessmentChange, 1500);
     },
     methods: {
-        saveData: function saveData(newData) {
-            var toSave = this.initialAssessment;
-            toSave.data = this.data;
-            axios.put('/api/assessment/' + this.initialAssessment.id, toSave).then(function () {
+        onAssessmentChange: function onAssessmentChange() {
+            this.$emit('assessmentChange', this.assessment, function () {
                 console.log('data saved');
-            }).catch(function (error) {
+            }, function (error) {
                 window.alert('Error saving the data - ' + (error.response.data.message || error));
             });
         },
@@ -38977,23 +38983,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
         }
     }
-
-    // Returns a function, that, as long as it continues to be invoked, will not
-    // be triggered. The function will be called after it stops being called for
-    // N milliseconds. If `immediate` is passed, trigger the function on the
-    // leading edge, instead of the trailing.
-    // from https://davidwalsh.name/javascript-debounce-function
-});function debounce(func, delay) {
-    var inDebounce = void 0;
-    return function () {
-        var context = this;
-        var args = arguments;
-        clearTimeout(inDebounce);
-        inDebounce = setTimeout(function () {
-            return func.apply(context, args);
-        }, delay);
-    };
-}
+});
 
 /***/ }),
 /* 229 */
@@ -39023,19 +39013,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.address1,
-                expression: "data.address1"
+                value: _vm.assessment.data.address1,
+                expression: "assessment.data.address1"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.data.address1 },
+            domProps: { value: _vm.assessment.data.address1 },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "address1", $event.target.value)
+                _vm.$set(_vm.assessment.data, "address1", $event.target.value)
               }
             }
           })
@@ -39050,19 +39040,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.address2,
-                expression: "data.address2"
+                value: _vm.assessment.data.address2,
+                expression: "assessment.data.address2"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.data.address2 },
+            domProps: { value: _vm.assessment.data.address2 },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "address2", $event.target.value)
+                _vm.$set(_vm.assessment.data, "address2", $event.target.value)
               }
             }
           })
@@ -39077,19 +39067,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.town,
-                expression: "data.town"
+                value: _vm.assessment.data.town,
+                expression: "assessment.data.town"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.data.town },
+            domProps: { value: _vm.assessment.data.town },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "town", $event.target.value)
+                _vm.$set(_vm.assessment.data, "town", $event.target.value)
               }
             }
           })
@@ -39104,19 +39094,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.postcode,
-                expression: "data.postcode"
+                value: _vm.assessment.data.postcode,
+                expression: "assessment.data.postcode"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.data.postcode },
+            domProps: { value: _vm.assessment.data.postcode },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "postcode", $event.target.value)
+                _vm.$set(_vm.assessment.data, "postcode", $event.target.value)
               }
             }
           })
@@ -39136,15 +39126,17 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.immersionHeaters,
-                expression: "data.immersionHeaters"
+                value: _vm.assessment.data.immersionHeaters,
+                expression: "assessment.data.immersionHeaters"
               }
             ],
             attrs: { type: "radio", name: "immersion-heater", value: "Yes" },
-            domProps: { checked: _vm._q(_vm.data.immersionHeaters, "Yes") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.immersionHeaters, "Yes")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "immersionHeaters", "Yes")
+                _vm.$set(_vm.assessment.data, "immersionHeaters", "Yes")
               }
             }
           }),
@@ -39154,8 +39146,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.inmersionHeaters,
-                expression: "data.inmersionHeaters"
+                value: _vm.assessment.data.inmersionHeaters,
+                expression: "assessment.data.inmersionHeaters"
               }
             ],
             attrs: {
@@ -39164,10 +39156,12 @@ var render = function() {
               value: "No",
               checked: ""
             },
-            domProps: { checked: _vm._q(_vm.data.inmersionHeaters, "No") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.inmersionHeaters, "No")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "inmersionHeaters", "No")
+                _vm.$set(_vm.assessment.data, "inmersionHeaters", "No")
               }
             }
           }),
@@ -39185,8 +39179,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.data.immersionHeatersNumber,
-                    expression: "data.immersionHeatersNumber"
+                    value: _vm.assessment.data.immersionHeatersNumber,
+                    expression: "assessment.data.immersionHeatersNumber"
                   }
                 ],
                 attrs: {
@@ -39194,14 +39188,14 @@ var render = function() {
                   id: "immersion-heater-rating",
                   min: "0"
                 },
-                domProps: { value: _vm.data.immersionHeatersNumber },
+                domProps: { value: _vm.assessment.data.immersionHeatersNumber },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
                     _vm.$set(
-                      _vm.data,
+                      _vm.assessment.data,
                       "immersionHeatersNumber",
                       $event.target.value
                     )
@@ -39223,15 +39217,17 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.storageHeaters,
-                expression: "data.storageHeaters"
+                value: _vm.assessment.data.storageHeaters,
+                expression: "assessment.data.storageHeaters"
               }
             ],
             attrs: { type: "radio", name: "storage-heaters", value: "Yes" },
-            domProps: { checked: _vm._q(_vm.data.storageHeaters, "Yes") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.storageHeaters, "Yes")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "storageHeaters", "Yes")
+                _vm.$set(_vm.assessment.data, "storageHeaters", "Yes")
               }
             }
           }),
@@ -39241,8 +39237,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.storageHeaters,
-                expression: "data.storageHeaters"
+                value: _vm.assessment.data.storageHeaters,
+                expression: "assessment.data.storageHeaters"
               }
             ],
             attrs: {
@@ -39251,10 +39247,12 @@ var render = function() {
               value: "No",
               checked: ""
             },
-            domProps: { checked: _vm._q(_vm.data.storageHeaters, "No") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.storageHeaters, "No")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "storageHeaters", "No")
+                _vm.$set(_vm.assessment.data, "storageHeaters", "No")
               }
             }
           }),
@@ -39273,8 +39271,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.storageHeatersNumber,
-                      expression: "data.storageHeatersNumber"
+                      value: _vm.assessment.data.storageHeatersNumber,
+                      expression: "assessment.data.storageHeatersNumber"
                     }
                   ],
                   attrs: {
@@ -39282,14 +39280,14 @@ var render = function() {
                     id: "storage-heaters-quantity",
                     min: "0"
                   },
-                  domProps: { value: _vm.data.storageHeatersNumber },
+                  domProps: { value: _vm.assessment.data.storageHeatersNumber },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(
-                        _vm.data,
+                        _vm.assessment.data,
                         "storageHeatersNumber",
                         $event.target.value
                       )
@@ -39305,8 +39303,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.storageHeatersRating,
-                      expression: "data.storageHeatersRating"
+                      value: _vm.assessment.data.storageHeatersRating,
+                      expression: "assessment.data.storageHeatersRating"
                     }
                   ],
                   attrs: {
@@ -39314,14 +39312,14 @@ var render = function() {
                     id: "storage-heaters-rating",
                     min: "0"
                   },
-                  domProps: { value: _vm.data.storageHeatersRating },
+                  domProps: { value: _vm.assessment.data.storageHeatersRating },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(
-                        _vm.data,
+                        _vm.assessment.data,
                         "storageHeatersRating",
                         $event.target.value
                       )
@@ -39344,15 +39342,17 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.electricVehicle,
-                expression: "data.electricVehicle"
+                value: _vm.assessment.data.electricVehicle,
+                expression: "assessment.data.electricVehicle"
               }
             ],
             attrs: { type: "radio", name: "EV", value: "Yes" },
-            domProps: { checked: _vm._q(_vm.data.electricVehicle, "Yes") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.electricVehicle, "Yes")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "electricVehicle", "Yes")
+                _vm.$set(_vm.assessment.data, "electricVehicle", "Yes")
               }
             }
           }),
@@ -39362,15 +39362,17 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.electricVehicle,
-                expression: "data.electricVehicle"
+                value: _vm.assessment.data.electricVehicle,
+                expression: "assessment.data.electricVehicle"
               }
             ],
             attrs: { type: "radio", name: "EV", value: "No", checked: "" },
-            domProps: { checked: _vm._q(_vm.data.electricVehicle, "No") },
+            domProps: {
+              checked: _vm._q(_vm.assessment.data.electricVehicle, "No")
+            },
             on: {
               change: function($event) {
-                _vm.$set(_vm.data, "electricVehicle", "No")
+                _vm.$set(_vm.assessment.data, "electricVehicle", "No")
               }
             }
           }),
@@ -39385,19 +39387,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.data.electricVehicleBattery,
-                    expression: "data.electricVehicleBattery"
+                    value: _vm.assessment.data.electricVehicleBattery,
+                    expression: "assessment.data.electricVehicleBattery"
                   }
                 ],
                 attrs: { type: "number", id: "EV-battery", min: "0" },
-                domProps: { value: _vm.data.electricVehicleBattery },
+                domProps: { value: _vm.assessment.data.electricVehicleBattery },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
                     _vm.$set(
-                      _vm.data,
+                      _vm.assessment.data,
                       "electricVehicleBattery",
                       $event.target.value
                     )
@@ -39547,38 +39549,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { initialAssessment: Object },
     data: function data() {
         return {
-            name: this.initialAssessment.name,
-            description: this.initialAssessment.description,
-            author: this.initialAssessment.author,
-            error: false,
             newName: '',
-            newDescription: ''
+            newDescription: '',
+            assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)
+            error: false
         };
+    },
+    watch: {
+        initialAssessment: {
+            deep: true,
+            handler: function handler() {
+                this.assessment = this.initialAssessment;
+            }
+        }
     },
     methods: {
         iniMetadataModal: function iniMetadataModal() {
-            this.newName = this.name;
-            this.newDescription = this.description;
+            this.newName = this.assessment.name;
+            this.newDescription = this.assessment.description;
         },
         saveMetadata: function saveMetadata() {
-            var _this = this;
-
-            var toSave = this.initialAssessment;
+            var toSave = JSON.parse(JSON.stringify(this.assessment));
             toSave.name = this.newName;
             toSave.description = this.description;
-            axios.put('/api/assessment/' + this.initialAssessment.id, toSave).then(function (response) {
+            var myself = this;
+            this.$emit('assessmentChange', toSave, function (response) {
                 console.log(response);
-                _this.name = _this.newName;
-                _this.description = _this.newDescription;
-                _this.$refs.editMetadataModal.hide();
-            }).catch(function (error) {
-                _this.error = 'Error - ' + (error.response.data.message || error);
+                //this.name = this.newName;
+                //this.description = this.newDescription;
+                myself.$refs.editMetadataModal.hide();
+            }, function (error) {
+                myself.error = 'Error - ' + (error.response.data.message || error);
             });
         }
     }
@@ -39599,7 +39605,7 @@ var render = function() {
       _c(
         "p",
         [
-          _c("strong", [_vm._v("Name: " + _vm._s(_vm.name))]),
+          _c("strong", [_vm._v("Name: " + _vm._s(_vm.assessment.name))]),
           _vm._v(" "),
           _c("font-awesome-icon", {
             directives: [
@@ -39611,13 +39617,13 @@ var render = function() {
             ],
             staticStyle: { cursor: "pointer" },
             attrs: { icon: "edit", title: "Edit", size: "xs" },
-            on: { click: _vm.iniMetadataModal, ok: _vm.saveMetadata }
+            on: { click: _vm.iniMetadataModal }
           })
         ],
         1
       ),
       _vm._v(" "),
-      _c("p", [_vm._v("Description: " + _vm._s(_vm.description))]),
+      _c("p", [_vm._v("Description: " + _vm._s(_vm.assessment.description))]),
       _vm._v(" "),
       _c(
         "b-modal",
@@ -39628,9 +39634,12 @@ var render = function() {
             title: "Edit assessment name and description"
           },
           on: {
-            ok: _vm.saveMetadata,
             show: function($event) {
               _vm.error = false
+            },
+            ok: function($event) {
+              $event.preventDefault()
+              return _vm.saveMetadata($event)
             }
           }
         },
@@ -39722,10 +39731,14 @@ var render = function() {
     "div",
     [
       _c("assessment-side-menu", {
-        attrs: { initialAssessment: _vm.assessment }
+        attrs: { "initial-assessment": _vm.initialAssessment },
+        on: { assessmentChange: _vm.updateAssessment }
       }),
       _vm._v(" "),
-      _c("assessment-form", { attrs: { initialAssessment: _vm.assessment } })
+      _c("assessment-form", {
+        attrs: { "initial-assessment": _vm.initialAssessment },
+        on: { assessmentChange: _vm.updateAssessment }
+      })
     ],
     1
   )
