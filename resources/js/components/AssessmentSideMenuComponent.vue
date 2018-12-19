@@ -41,7 +41,7 @@
             initialAssessment: {
                 deep: true,
                 handler: function () {
-                    this.assessment = this.initialAssessment;
+                    this.assessment = JSON.parse(JSON.stringify(this.initialAssessment));
                 }
             }
         },
