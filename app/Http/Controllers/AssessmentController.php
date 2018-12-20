@@ -74,6 +74,11 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $validatedData = $request->validate([
+            'name' => 'required|unique:assessments|max:255',
+            'desription' => 'max:1000'
+        ]);
+        
         $assessment = assessment::findOrFail($id);
         $assessment->name = $request->name;
         $assessment->description = $request->description;
