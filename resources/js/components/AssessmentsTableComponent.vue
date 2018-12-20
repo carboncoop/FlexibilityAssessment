@@ -2,7 +2,7 @@
     <div>
 
         <table class="table">
-            <th>Name</th><th>Description</th><th>Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal>New</button></th>
+            <th>Name</th><th>Description</th><th>Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
             <tr v-for="assessment in assessmentsList">
                 <td v-text="assessment.name"></td>
                 <td v-text="assessment.description"></td>
@@ -18,8 +18,8 @@
                  v-on:hidden="newAssessment.name=''; newAssessment.description=''">
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
-                <tr><td>Name</td><td><input type="text" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
-                <tr><td>Description</td><td><input type="text" v-model="newAssessment.description" placeholder="Description"></td></tr>
+                <tr><td>Name</td><td><input type="text" name="name" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
+                <tr><td>Description</td><td><input type="text" name="description" v-model="newAssessment.description" placeholder="Description"></td></tr>
             </table>
         </b-modal>
 
@@ -38,7 +38,7 @@
         props: {'assessments': Array},
         data: function () {
             return {
-                newAssessment: {name: '', description: ''},
+                newAssessment: {name: '', description: '', data:'{}'},
                 error: false,
                 assessmentsList: this.assessments,
                 assessmentToDelete: 0
@@ -53,7 +53,7 @@
                     this.error = 'Please enter your name';
                 }
                 else {
-                    axios.post('api/assessment', this.newAssessment)
+                    axios.post('/api/assessment', this.newAssessment)
                             .then((response) => {
                                 this.assessmentsList.push(response.data);
                                 this.$refs.newAssessmentModal.hide();

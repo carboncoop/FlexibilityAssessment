@@ -41,6 +41,7 @@ class AssessmentController extends Controller {
         $assessment = new Assessment;
         $assessment->name = $request->name;
         $assessment->description = $request->description;
+        $assessment->data = $request->data;
         $assessment->save();
         return response($assessment, 200);
     }
