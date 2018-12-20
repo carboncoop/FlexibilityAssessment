@@ -8,7 +8,7 @@
                 <td v-text="assessment.description"></td>
                 <td></td>
                 <td v-text="assessment.updated_at"></td>
-                <td><button v-b-modal.delete-assessment-modal v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button></td>
+                <td><button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="assessment.name" v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button></td>
             </tr>
         </table>
 
@@ -38,7 +38,7 @@
         props: {'assessments': Array},
         data: function () {
             return {
-                newAssessment: {name: '', description: '', data:'{}'},
+                newAssessment: {name: '', description: '', data:{}},
                 error: false,
                 assessmentsList: this.assessments,
                 assessmentToDelete: 0
@@ -69,7 +69,7 @@
             deleteAssessment: function (evt) {
                 evt.preventDefault(); // Prevent modal from closing
                 this.error = false;
-                axios.delete("api/assessment/" + this.assessmentToDelete)
+                axios.delete("/api/assessment/" + this.assessmentToDelete)
                         .then((response) => {
                             let assessmentToDelete = this.assessmentToDelete;
                             let indexOfAssessment = this.assessmentsList.findIndex(function (assessment) {
