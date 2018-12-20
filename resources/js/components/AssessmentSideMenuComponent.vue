@@ -5,6 +5,13 @@
                                                                           v-on:click="iniMetadataModal" />
         </p>
         <p>Description: {{assessment.description}}</p>
+        
+        <div id='assessment-navigation'>
+            <li>
+                <ul v-on:click="$emit('updateView', 'assessment-form')">Assessment</ul>
+                <ul v-on:click="$emit('updateView', 'assessment-report')">Report</ul>
+            </li>
+        </div>
 
         <b-modal id="edit-metadata-modal" ref="editMetadataModal" title="Edit assessment name and description" 
                  v-on:show="error=false"
@@ -23,6 +30,10 @@
     #assessment-side-menu{
         max-width:300px;
         position:fixed;
+    }
+    #assessment-navigation ul{
+        cursor: pointer;
+        margin: 0px;
     }
 </style>
 
