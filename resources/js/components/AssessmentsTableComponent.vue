@@ -8,7 +8,10 @@
                 <td v-text="assessment.description"></td>
                 <td></td>
                 <td v-text="assessment.updated_at"></td>
-                <td><button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="assessment.name" v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button></td>
+                <td class='assessment-actions'>
+                    <button><a v-bind:href="assessment.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
+                    <button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="assessment.name" v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
+                </td>
             </tr>
         </table>
 
@@ -32,6 +35,13 @@
 
     </div>
 </template>
+
+<style scoped>
+    .assessment-actions{
+        min-width:125px;
+        padding-left: 12px
+    }
+</style>
 
 <script>
     export default {
