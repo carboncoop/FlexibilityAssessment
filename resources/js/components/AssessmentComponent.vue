@@ -1,7 +1,7 @@
 <template>
     <div>
-        <assessment-side-menu v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment' v-on:updateView='updateView'></assessment-side-menu>
-        <assessment-form v-if="view == 'assessment-form'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-form>
+        <assessment-side-menu dusk="assessment-side-menu-component" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment' v-on:updateView='updateView'></assessment-side-menu>
+        <assessment-form dusk="assessment-form-component" v-if="view == 'assessment-form'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-form>
         <assessment-report v-if="view == 'assessment-report'" v-bind:initial-assessment='assessment'></assessment-report>
     </div>
 </template>

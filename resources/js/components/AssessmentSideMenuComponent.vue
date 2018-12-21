@@ -1,6 +1,6 @@
 <template>
     <div id="assessment-side-menu">
-        <p> <strong>Name: {{assessment.name}}</strong> <font-awesome-icon icon="edit" title="Edit" style="cursor:pointer" 
+        <p> <strong>Name: {{assessment.name}}</strong> <font-awesome-icon dusk="edit-name-description" icon="edit" title="Edit" style="cursor:pointer" 
                                                                           v-b-modal.edit-metadata-modal size="xs" 
                                                                           v-on:click="iniMetadataModal" />
         </p>
@@ -18,8 +18,8 @@
                  v-on:ok.prevent="saveMetadata" >
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
-                <tr><td>Name</td><td><input type="text" v-model="newName"></td></tr>
-                <tr><td>Description</td><td><input type="text" v-model="newDescription"></td></tr>
+                <tr><td>Name</td><td><input type="text" v-model="newName" name="name"></td></tr>
+                <tr><td>Description</td><td><input type="text" v-model="newDescription" name="description"></td></tr>
             </table>
         </b-modal>
     </div>
