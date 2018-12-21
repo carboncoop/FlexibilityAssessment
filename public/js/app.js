@@ -38450,7 +38450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: { 'assessments': Array },
     data: function data() {
         return {
-            newAssessment: { name: '', description: '', data: {} },
+            newAssessment: { name: '', description: '', data: { address1: '' } },
             error: false,
             assessmentsList: this.assessments,
             assessmentToDelete: 0
@@ -39061,7 +39061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
-        this.debouncedOnAssessmentChange = this.debounce(this.onAssessmentChange, 1500);
+        this.debouncedOnAssessmentChange = this.debounce(this.onAssessmentChange, 1000);
     },
     methods: {
         onAssessmentChange: function onAssessmentChange() {
@@ -39118,7 +39118,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text" },
+            attrs: { name: "address1", type: "text" },
             domProps: { value: _vm.assessment.data.address1 },
             on: {
               input: function($event) {

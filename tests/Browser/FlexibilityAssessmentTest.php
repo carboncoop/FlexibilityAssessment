@@ -15,7 +15,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
      *
      * @return void
      */
-    public function testAssessmentManagement() {
+   /* public function testAssessmentManagement() {
         $this->browse(function (Browser $browser) {
             $name = 'test assessment name ' . rand();
             $browser->visit(new AssessmentsList)
@@ -24,7 +24,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
                     ->deleteAssessment($name)
                     ->assertDontSee($name);
         });
-    }
+    }*/
 
     /**
      * Test assessment data flows through the different Vue components
@@ -45,7 +45,11 @@ class FlexibilityAssessmentTest extends DuskTestCase {
                     ->assertVue('assessment.name', $newName, '@assessment-side-menu-component')
                     ->assertVue('assessment.description', $newDescription, '@assessment-side-menu-component')
                     ->assertVue('assessment.name', $newName, '@assessment-form-component')
-                    ->assertVue('assessment.description', $newDescription, '@assessment-form-component');
+                    ->assertVue('assessment.description', $newDescription, '@assessment-form-component')
+                    ->changeAddress1('New address')
+                    ->pause(1000)
+                    ->assertVue('assessment.data.address1', 'New address', '@assessment-form-component')
+                    ->assertVue('assessment.data.address1', 'New address', '@assessment-side-menu-component');
 
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($newName);
@@ -57,7 +61,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
      *
      * @return void
      */
-    public function testNavigation() {
+  /*  public function testNavigation() {
         $this->browse(function (Browser $browser) {
             $name = 'test assessment name ' . rand();
             $browser->visit(new AssessmentsList)
@@ -81,6 +85,6 @@ class FlexibilityAssessmentTest extends DuskTestCase {
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($name);
         });
-    }
+    }*/
 
 }

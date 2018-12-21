@@ -64,4 +64,16 @@ class Assessment extends Page {
                 ->waitUntilMissing('#edit-metadata-modal___BV_modal_outer_');
     }
 
+    /**
+     * Change name and description 
+     *
+     * @param  Browser $browser
+     * @param string $name
+     * @param string $description
+     */
+    public function changeAddress1(Browser $browser, $address) {
+        $browser->type('address1', $address)
+                ->pause(1000);
+    }
+
 }

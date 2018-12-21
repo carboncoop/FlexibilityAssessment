@@ -47,7 +47,7 @@
         props: {'assessments': Array},
         data: function () {
             return {
-                newAssessment: {name: '', description: '', data:{}},
+                newAssessment: {name: '', description: '', data: {address1:''}},
                 error: false,
                 assessmentsList: this.assessments,
                 assessmentToDelete: 0

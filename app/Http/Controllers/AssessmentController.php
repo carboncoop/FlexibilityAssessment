@@ -35,7 +35,7 @@ class AssessmentController extends Controller {
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|unique:assessments|max:255',
-            'desription' => 'max:1000'
+            'description' => 'max:1000'
         ]);
 
         $assessment = new Assessment;
@@ -73,13 +73,21 @@ class AssessmentController extends Controller {
      * @param  \App\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id) {         
         $validatedData = $request->validate([
-            'name' => 'required|unique:assessments|max:255',
-            'desription' => 'max:1000'
+            'name' => 'required|max:255',
+            'description' => 'max:1000'
         ]);
         
-        $assessment = assessment::findOrFail($id);
+        // Check if we are changing the name and already exist
+        $assessment = Assessment::where('name', $request->name)->get()->first();
+        if (is_null($assessment) == false) {
+            if ($assessment->id != $request->id) {
+                return response('Name already exists', 409);
+            }
+        }
+        dump($request->data);
+        $assessment = Assessment::findOrFail($id);
         $assessment->name = $request->name;
         $assessment->description = $request->description;
         $assessment->data = $request->data;
