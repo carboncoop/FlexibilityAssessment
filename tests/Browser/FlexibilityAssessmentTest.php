@@ -15,7 +15,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
      *
      * @return void
      */
-   /* public function testAssessmentManagement() {
+    public function testAssessmentManagement() {
         $this->browse(function (Browser $browser) {
             $name = 'test assessment name ' . rand();
             $browser->visit(new AssessmentsList)
@@ -24,7 +24,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
                     ->deleteAssessment($name)
                     ->assertDontSee($name);
         });
-    }*/
+    }
 
     /**
      * Test assessment data flows through the different Vue components
@@ -61,7 +61,7 @@ class FlexibilityAssessmentTest extends DuskTestCase {
      *
      * @return void
      */
-  /*  public function testNavigation() {
+    public function testNavigation() {
         $this->browse(function (Browser $browser) {
             $name = 'test assessment name ' . rand();
             $browser->visit(new AssessmentsList)
@@ -85,6 +85,6 @@ class FlexibilityAssessmentTest extends DuskTestCase {
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($name);
         });
-    }*/
+    }
 
 }

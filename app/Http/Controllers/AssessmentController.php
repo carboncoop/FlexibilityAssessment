@@ -86,7 +86,6 @@ class AssessmentController extends Controller {
                 return response('Name already exists', 409);
             }
         }
-        dump($request->data);
         $assessment = Assessment::findOrFail($id);
         $assessment->name = $request->name;
         $assessment->description = $request->description;
