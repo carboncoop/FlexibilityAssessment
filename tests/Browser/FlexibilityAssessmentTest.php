@@ -9,21 +9,22 @@ use Tests\Browser\Pages\AssessmentsList;
 use Tests\Browser\Pages\Assessment;
 
 class FlexibilityAssessmentTest extends DuskTestCase {
+
     /**
      * Test creation and deletion of assessments
      *
      * @return void
      */
-    /* public function testAssessmentManagement() {
-      $this->browse(function (Browser $browser) {
-      $name = 'test assessment name ' . rand();
-      $browser->visit(new AssessmentsList)
-      ->createAssessment($name, "A description")
-      ->assertSee($name)
-      ->deleteAssessment($name)
-      ->assertDontSee($name);
-      });
-      } */
+    public function testAssessmentManagement() {
+        $this->browse(function (Browser $browser) {
+            $name = 'test assessment name ' . rand();
+            $browser->visit(new AssessmentsList)
+                    ->createAssessment($name, "A description")
+                    ->assertSee($name)
+                    ->deleteAssessment($name)
+                    ->assertDontSee($name);
+        });
+    }
 
     /**
      * Test assessment data flows through the different Vue components
@@ -48,6 +49,37 @@ class FlexibilityAssessmentTest extends DuskTestCase {
 
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($newName);
+        });
+    }
+
+    /**
+     * Test the user can browse all the pages and views
+     *
+     * @return void
+     */
+    public function testNavigation() {
+        $this->browse(function (Browser $browser) {
+            $name = 'test assessment name ' . rand();
+            $browser->visit(new AssessmentsList)
+                    ->createAssessment($name, "A description");
+            $assessment = \App\assessment::where('name', $name)->firstOrFail();
+
+            $browser->click('.open-assessment[assessment-id="' . $assessment->id . '"]')
+                    ->waitUntilMissing('#assessment-table-component')
+                    ->waitFor('#assessment')
+                    ->assertPathIs('/assessment/' . $assessment->id . '/edit')
+                    ->assertVisible('#assessment-form')
+                    ->assertMissing('#assessment-report')
+                    ->click('@show-report')
+                    ->assertVisible('#assessment-report')
+                    ->click('@show-form')
+                    ->assertVisible('#assessment-form')
+                    ->clickLink('Assessments')
+                    ->assertPathIs('/assessment')
+                    ->assertTitle('Flexibility assessment - List');
+
+            $browser->visit(new AssessmentsList)
+                    ->deleteAssessment($name);
         });
     }
 

@@ -38445,7 +38445,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { 'assessments': Array },
@@ -38511,6 +38510,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { attrs: { id: "assessment-table-component" } },
     [
       _c(
         "table",
@@ -38555,7 +38555,13 @@ var render = function() {
                 _c("button", [
                   _c(
                     "a",
-                    { attrs: { href: assessment.id + "/edit" } },
+                    {
+                      staticClass: "open-assessment",
+                      attrs: {
+                        "assessment-id": assessment.id,
+                        href: "/assessment/" + assessment.id + "/edit"
+                      }
+                    },
                     [
                       _c("font-awesome-icon", {
                         staticStyle: { cursor: "pointer" },
@@ -39740,6 +39746,7 @@ var render = function() {
           _c(
             "ul",
             {
+              attrs: { dusk: "show-form" },
               on: {
                 click: function($event) {
                   _vm.$emit("updateView", "assessment-form")
@@ -39752,6 +39759,7 @@ var render = function() {
           _c(
             "ul",
             {
+              attrs: { dusk: "show-report" },
               on: {
                 click: function($event) {
                   _vm.$emit("updateView", "assessment-report")
@@ -40012,6 +40020,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { attrs: { id: "assessment" } },
     [
       _c("assessment-side-menu", {
         attrs: {

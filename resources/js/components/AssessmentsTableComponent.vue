@@ -1,6 +1,5 @@
 <template>
-    <div>
-
+    <div id='assessment-table-component'>
         <table class="table">
             <th>Name</th><th>Description</th><th>Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
             <tr v-for="assessment in assessmentsList">
@@ -9,7 +8,7 @@
                 <td></td>
                 <td v-text="assessment.updated_at"></td>
                 <td class='assessment-actions'>
-                    <button><a v-bind:href="assessment.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
+                    <button><a class="open-assessment" v-bind:assessment-id="assessment.id" v-bind:href="'/assessment/' + assessment.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
                     <button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="assessment.name" v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
                 </td>
             </tr>
