@@ -25,9 +25,9 @@
             </div>
         </div>
         <div id="footer">
-            <img class="carboncoop" src="{{asset('img/carboncoop-logo.png')}}" />
-            <img class="community-energy-scotland" src="{{asset('img/community-energy-scotland-logo.png')}}" />
-            <img class="south-seeds-logo" src="{{asset('img/south-seeds-logo.png')}}" />
+            <a href="https://carbon.coop/" target="blank"><img class="carboncoop" src="{{asset('img/carboncoop-logo.png')}}" /></a>
+            <a href="http://www.communityenergyscotland.org.uk/" target="blank"><img class="community-energy-scotland" src="{{asset('img/community-energy-scotland-logo.png')}}" /></a>
+            <a href="http://southseeds.org/" target="blank"><img class="south-seeds-logo" src="{{asset('img/south-seeds-logo.png')}}" /></a>
         </div>
 
     </body>

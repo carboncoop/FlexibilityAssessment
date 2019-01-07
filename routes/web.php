@@ -12,7 +12,15 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/how-could-I-benefit-from-flexibility', function () {
+    return view('how-could-I-benefit-from-flexibility');
+});
+
+Route::get('/how-could-my-organisation-benefit-from-flexibility', function () {
+    return view('how-could-my-organisation-benefit-from-flexibility');
 });
 
 Route::resource('assessment', 'AssessmentController')->only(['index','edit']);

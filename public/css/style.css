@@ -16,14 +16,13 @@
     text-align: center
 }
 
-#footer img{
+#footer img, #who-is-involved img{
     height: 50px;
     margin: 0 25px
 }
 
-#footer .south-seeds-logo{
-    padding:25px;
-    height: 155px;
+#footer .south-seeds-logo, #who-is-involved .south-seeds-logo{
+    height: 125px;
 }
 
 #nav-bar{
@@ -54,7 +53,7 @@ h1{
 }
 h2{
     font-size:25px;
-    margin-top: 35px;
+    margin-top: px;
 }
 
 
