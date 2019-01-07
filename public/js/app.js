@@ -38988,6 +38988,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(248);
 //
 //
 //
@@ -39039,50 +39040,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { initialAssessment: Object },
-    data: function data() {
-        return {
-            assessment: JSON.parse(JSON.stringify(this.initialAssessment)) // Deep cloning to ensure one way data flow (only from parent component to child)
-        };
-    },
-    watch: {
-        assessment: {
-            deep: true,
-            handler: function handler() {
-                this.debouncedOnAssessmentChange();
-            }
-        },
-        initialAssessment: {
-            deep: true,
-            handler: function handler() {
-                this.assessment = JSON.parse(JSON.stringify(this.initialAssessment));
-            }
-        }
-    },
-    created: function created() {
-        this.debouncedOnAssessmentChange = this.debounce(this.onAssessmentChange, 1000);
-    },
-    methods: {
-        onAssessmentChange: function onAssessmentChange() {
-            this.$emit('assessmentChange', this.assessment, function () {
-                console.log('data saved');
-            }, function (error) {
-                window.alert('Error saving the data - ' + (error.response.data.message || error));
-            });
-        },
-        debounce: function debounce(func, delay) {
-            var inDebounce = void 0;
-            return function () {
-                var context = this;
-                var args = arguments;
-                clearTimeout(inDebounce);
-                inDebounce = setTimeout(function () {
-                    return func.apply(context, args);
-                }, delay);
-            };
-        }
-    }
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]]
 });
 
 /***/ }),
@@ -40067,6 +40029,62 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssessmentInput; });
+var AssessmentInput = {
+    props: { initialAssessment: Object },
+    data: function data() {
+        return {
+            assessment: JSON.parse(JSON.stringify(this.initialAssessment)) // Deep cloning to ensure one way data flow (only from parent component to child)
+        };
+    },
+    watch: {
+        assessment: {
+            deep: true,
+            handler: function handler() {
+                this.debouncedOnAssessmentChange();
+            }
+        },
+        initialAssessment: {
+            deep: true,
+            handler: function handler() {
+                this.assessment = JSON.parse(JSON.stringify(this.initialAssessment));
+            }
+        }
+    },
+    created: function created() {
+        this.debouncedOnAssessmentChange = this.debounce(this.onAssessmentChange, 1000);
+    },
+    methods: {
+        onAssessmentChange: function onAssessmentChange() {
+            this.$emit('assessmentChange', this.assessment, function () {
+                console.log('data saved');
+            }, function (error) {
+                window.alert('Error saving the data - ' + (error.response.data.message || error));
+            });
+        },
+        debounce: function debounce(func, delay) {
+            var inDebounce = void 0;
+            return function () {
+                var context = this;
+                var args = arguments;
+                clearTimeout(inDebounce);
+                inDebounce = setTimeout(function () {
+                    return func.apply(context, args);
+                }, delay);
+            };
+        }
+    }
+};
 
 /***/ })
 /******/ ]);
