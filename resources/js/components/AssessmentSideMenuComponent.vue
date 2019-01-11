@@ -10,6 +10,7 @@
             <li>
                 <ul dusk="show-form" v-on:click="$emit('updateView', 'assessment-form')">Assessment</ul>
                 <ul dusk="show-report" v-on:click="$emit('updateView', 'assessment-report')">Report</ul>
+                <ul dusk="show-questionnaire" v-on:click="$emit('updateView', 'assessment-questionnaire')">Questionnaire</ul>
             </li>
         </div>
 

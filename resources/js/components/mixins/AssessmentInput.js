@@ -24,6 +24,7 @@ export const AssessmentInput = {
     },
     methods: {
         onAssessmentChange: function () {
+            console.log(this.assessment.data);
             this.$emit('assessmentChange', this.assessment,
                     function () {
                         console.log('data saved');

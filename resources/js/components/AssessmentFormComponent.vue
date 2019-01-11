@@ -11,7 +11,7 @@
         </table>
         <h2>Energy assets</h2>
         <table id="energy-assets" class="table">
-            <tr>
+            <tr> 
                 <td>Have you got an Immersion Heater</td>
                 <td>
                     <input type="radio" name="immersion-heater" value="Yes" v-model="assessment.data.immersionHeaters"  /> Yes <input type="radio" name="immersion-heater" value="No" v-model="assessment.data.inmersionHeaters" checked /> No

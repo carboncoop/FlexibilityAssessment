@@ -38821,7 +38821,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n#assessment-side-menu[data-v-7ee538c0]{\n    width: 200px;\n}\n#assessment-form[data-v-7ee538c0], #assessment-report[data-v-7ee538c0]{\n    margin-left:200px\n}\n", ""]);
+exports.push([module.i, "\n#assessment-side-menu[data-v-7ee538c0]{\n    width: 200px;\n}\n#assessment-form[data-v-7ee538c0], #assessment-report[data-v-7ee538c0], #assessment-questionnaire[data-v-7ee538c0]{\n    margin-left:200px\n}\n", ""]);
 
 // exports
 
@@ -38838,6 +38838,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent__);
 //
 //
 //
@@ -38856,6 +38858,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -38866,13 +38870,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)  
-            view: 'assessment-form'
+            view: 'assessment-questionnaire'
         };
     },
     components: {
         AssessmentForm: __WEBPACK_IMPORTED_MODULE_0__AssessmentFormComponent___default.a,
         AssessmentSideMenu: __WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent___default.a,
-        AssessmentReport: __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent___default.a
+        AssessmentReport: __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent___default.a,
+        AssessmentQuestionnaire: __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default.a
     },
     methods: {
         updateAssessment: function updateAssessment(updatedAssessment, thenCallback, catchCallback) {
@@ -39079,6 +39084,7 @@ var AssessmentInput = {
     },
     methods: {
         onAssessmentChange: function onAssessmentChange() {
+            console.log(this.assessment.data);
             this.$emit('assessmentChange', this.assessment, function () {
                 console.log('data saved');
             }, function (error) {
@@ -39674,6 +39680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { initialAssessment: Object },
@@ -39781,6 +39788,19 @@ var render = function() {
               }
             },
             [_vm._v("Report")]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              attrs: { dusk: "show-questionnaire" },
+              on: {
+                click: function($event) {
+                  _vm.$emit("updateView", "assessment-questionnaire")
+                }
+              }
+            },
+            [_vm._v("Questionnaire")]
           )
         ])
       ]),
@@ -40061,6 +40081,13 @@ var render = function() {
         ? _c("assessment-report", {
             attrs: { "initial-assessment": _vm.assessment }
           })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.view == "assessment-questionnaire"
+        ? _c("assessment-questionnaire", {
+            attrs: { "initial-assessment": _vm.assessment },
+            on: { assessmentChange: _vm.updateAssessment }
+          })
         : _vm._e()
     ],
     1
@@ -40081,6 +40108,1404 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 245 */,
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(247)
+}
+var normalizeComponent = __webpack_require__(21)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(251)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-9e3ceb32"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/AssessmentQuestionnaireComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e3ceb32", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e3ceb32", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(248);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(20)("077e0fe3", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e3ceb32\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentQuestionnaireComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e3ceb32\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentQuestionnaireComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.red[data-v-9e3ceb32]{\n    color:red;\n}\nselect[data-v-9e3ceb32]{\n    max-width:350px\n}\nselect[data-v-9e3ceb32], ol[data-v-9e3ceb32],textarea[data-v-9e3ceb32]{\n    margin:5px 0 35px;\n}\nli[data-v-9e3ceb32]{\n    cursor:pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_draggable__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_draggable__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
+    data: function data() {
+        return {
+            sectionsInIntro: ['[Intro] What are the coming changes in the energy system?', "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?", 'Flexibility Agreements with customers', 'Aggregation', 'What is the Energy Community Aggregation Service (ECAS)?', "The changes in the grid, are beginning to be felt in people's homes'", "Can I sign up for offering flexibility now?", "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?", "What about taking part in this research 'demonstration' project?", "How can I sign up to take part in this research project", "What would I get for taking part?"],
+            sortableLIstOptions: {
+                dropzoneSelector: 'ol',
+                draggableSelector: 'li',
+                excludeOlderBrowsers: true,
+                multipleDropzonesItemsDraggingEnabled: true,
+                showDropzoneAreas: true,
+                onDrop: function onDrop(event) {
+                    //console.log(this.assessment.data.signupPriorities)
+                },
+                onDragstart: function onDragstart(event) {},
+                onDragend: function onDragend(event) {}
+            }
+        };
+    },
+    created: function created() {
+
+        if (this.assessment.data.signupPriorities == undefined) this.assessment.data.signupPriorities = ['The rewards offered (£)', 'A Community / Not for Profit provider ', 'The reduction in my carbon footprint ', 'The opportunity to learn more about my energy system', 'Being part of a group working with sustainable technology?'];
+
+        if (this.assessment.data.puttingMeOffRating == undefined) this.assessment.data.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
+    }
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("VueDraggable", [], factory);
+	else if(typeof exports === 'object')
+		exports["VueDraggable"] = factory();
+	else
+		root["VueDraggable"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: VueDraggableDirective, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueDraggableDirective", function() { return VueDraggableDirective; });
+/* harmony import */ var _vue_draggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue-draggable */ "./src/vue-draggable.js");
+
+var VueDraggableDirective = {
+  bind: function bind(el, options) {
+    // override default options
+    Object.assign(_vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"].defaultOptions, options.value);
+    _vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"].registerListeners(el);
+    _vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"].initiate(el);
+  },
+  componentUpdated: function componentUpdated(el) {
+    setTimeout(function () {
+      _vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"].initiate(el);
+    });
+  }
+};
+
+_vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"].install = function (Vue) {
+  Vue.directive('drag-and-drop', VueDraggableDirective);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_vue_draggable__WEBPACK_IMPORTED_MODULE_0__["VueDraggable"]);
+
+/***/ }),
+
+/***/ "./src/vue-draggable-methods.js":
+/*!**************************************!*\
+  !*** ./src/vue-draggable-methods.js ***!
+  \**************************************/
+/*! exports provided: VueDraggableMethods */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueDraggableMethods", function() { return VueDraggableMethods; });
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var VueDraggableMethods = {
+  stopDragAndDrop: function stopDragAndDrop() {
+    // throw exception and catch this to stop further d&d
+    throw new Error('Requested D&D stop...');
+  },
+  isOldBrowser: function isOldBrowser() {
+    return !document.querySelectorAll || !('draggable' in document.createElement('span')) || window.opera;
+  },
+  addSelection: function addSelection(item) {
+    // if the owner reference is still null, set it to this item's parent
+    // so that further selection is only allowed within the same container
+    if (!this.selections.owner) {
+      this.selections.owner = item.parentNode;
+    } // or if that's already happened then compare it with this item's parent
+    // and if they're not the same container, return to prevent selection
+
+
+    if (!this.defaultOptions.multipleDropzonesItemsDraggingEnabled && this.selections.owner !== item.parentNode) {
+      return;
+    } // set this item's grabbed state
+
+
+    item.setAttribute('aria-grabbed', 'true'); // add it to the items array
+
+    this.selections.items = _toConsumableArray(this.selections.items).concat([item]);
+  },
+  removeSelection: function removeSelection(item) {
+    // reset this item's grabbed state
+    item.setAttribute('aria-grabbed', 'false'); // then find and remove this item from the existing items array
+
+    for (var i = 0; i < this.selections.items.length; i++) {
+      if (this.selections.items[i] === item) {
+        this.selections.items.splice(i, 1);
+        break;
+      }
+    }
+  },
+  clearSelections: function clearSelections() {
+    // if we have any selected items
+    if (this.selections.items.length) {
+      // reset the owner reference
+      this.selections.owner = null; // reset the grabbed state on every selected item
+
+      for (var i = 0; i < this.selections.items.length; i++) {
+        this.selections.items[i].setAttribute('aria-grabbed', 'false');
+      } // then reset the items array
+
+
+      this.selections.items = [];
+    }
+  },
+  hasModifier: function hasModifier(e) {
+    return e.ctrlKey || e.metaKey || e.shiftKey;
+  },
+  addDropeffects: function addDropeffects() {
+    // apply aria-dropeffect and tabindex to all targets apart from the owner
+    for (var len = this.targets.length, i = 0; i < len; i++) {
+      if (this.targets[i] !== this.selections.owner && this.targets[i].getAttribute('aria-dropeffect') === 'none') {
+        this.targets[i].setAttribute('aria-dropeffect', 'move');
+        this.targets[i].setAttribute('tabindex', '0');
+      }
+    } // remove aria-grabbed and tabindex from all items inside those containers
+
+
+    for (var _len = this.items.length, _i = 0; _i < _len; _i++) {
+      if (this.items[_i].parentNode !== this.selections.owner && this.items[_i].getAttribute('aria-grabbed')) {
+        this.items[_i].removeAttribute('aria-grabbed');
+
+        this.items[_i].removeAttribute('tabindex');
+      }
+    }
+  },
+  clearDropeffects: function clearDropeffects() {
+    // if we have any selected items
+    if (this.selections.items.length) {
+      // reset aria-dropeffect and remove tabindex from all targets
+      for (var i = 0; i < this.targets.length; i++) {
+        if (this.targets[i].getAttribute('aria-dropeffect') !== 'none') {
+          this.targets[i].setAttribute('aria-dropeffect', 'none');
+          this.targets[i].removeAttribute('tabindex');
+        }
+      } // restore aria-grabbed and tabindex to all selectable items
+      // without changing the grabbed value of any existing selected items
+
+
+      for (var _i2 = 0; _i2 < this.items.length; _i2++) {
+        if (!this.items[_i2].getAttribute('aria-grabbed')) {
+          this.items[_i2].setAttribute('aria-grabbed', 'false');
+
+          this.items[_i2].setAttribute('tabindex', '0');
+        } else if (this.items[_i2].getAttribute('aria-grabbed') === 'true') {
+          this.items[_i2].setAttribute('tabindex', '0');
+        }
+      }
+    }
+  },
+  getContainer: function getContainer(element) {
+    var containerElement = element;
+
+    do {
+      if (containerElement && containerElement.nodeType === 1 && containerElement.getAttribute('aria-dropeffect')) {
+        return containerElement;
+      }
+    } while (containerElement = containerElement ? containerElement.parentNode : null);
+
+    return null;
+  },
+  removeOldDropzoneAreaElements: function removeOldDropzoneAreaElements() {
+    var oldItemDropzoneElements = document.querySelectorAll('.item-dropzone-area');
+
+    for (var i = 0; i < oldItemDropzoneElements.length; i++) {
+      oldItemDropzoneElements[i].remove();
+    }
+  },
+  registerListeners: function registerListeners(el) {
+    var _this = this;
+
+    if (this.defaultOptions.excludeOlderBrowsers && this.isOldBrowser()) {
+      return;
+    }
+
+    el.addEventListener('mousedown', function (e) {
+      var elem = e.target.closest(_this.defaultOptions.draggableSelector); // if the element is a draggable item
+
+      if (elem && elem.getAttribute('draggable')) {
+        // clear dropeffect from the target containers
+        _this.clearDropeffects(); // if the multiple selection modifier is not pressed
+        // and the item's grabbed state is currently false
+
+
+        if (!_this.hasModifier(e) && elem.getAttribute('aria-grabbed') === 'false') {
+          // clear all existing selections
+          _this.clearSelections(); // then add this new selection
+
+
+          _this.addSelection(elem);
+        }
+      } else if (!_this.hasModifier(e)) {
+        // else [if the element is anything else]
+        // and the selection modifier is not pressed
+        // clear dropeffect from the target containers
+        _this.clearDropeffects(); // clear all existing selections
+
+
+        _this.clearSelections();
+      } else {
+        // else [if the element is anything else and the modifier is pressed]
+        // clear dropeffect from the target containers
+        _this.clearDropeffects();
+      }
+    }, false); // mouseup event to implement multiple selection
+
+    el.addEventListener('mouseup', function (e) {
+      var elem = e.target.closest(_this.defaultOptions.draggableSelector); // if the element is a draggable item
+      // and the multipler selection modifier is pressed
+
+      if (elem && elem.getAttribute('draggable') && _this.hasModifier(e)) {
+        // if the item's grabbed state is currently true
+        if (elem.getAttribute('aria-grabbed') === 'true') {
+          // unselect this item
+          _this.removeSelection(elem); // if that was the only selected item
+          // then reset the owner container reference
+
+
+          if (!_this.selections.items.length) {
+            _this.selections.owner = null;
+          }
+        } else {
+          // else [if the item's grabbed state is false]
+          // add this additional selection
+          _this.addSelection(elem);
+        }
+      }
+    }, false); // dragstart event to initiate mouse dragging
+
+    el.addEventListener('dragstart', function (e) {
+      var elem = e.target.closest(_this.defaultOptions.draggableSelector); // if the element's parent is not the owner, then block this event
+
+      if (!_this.defaultOptions.multipleDropzonesItemsDraggingEnabled && elem && _this.selections.owner !== elem.parentNode) {
+        e.preventDefault();
+        return;
+      }
+
+      if (typeof _this.defaultOptions.onDragstart === 'function') {
+        try {
+          _this.defaultOptions.onDragstart(_objectSpread({
+            nativeEvent: e,
+            stop: _this.stopDragAndDrop
+          }, _this.selections));
+        } catch (error) {
+          e.preventDefault();
+
+          _this.removeOldDropzoneAreaElements();
+
+          return;
+        }
+      } // [else] if the multiple selection modifier is pressed
+      // and the item's grabbed state is currently false
+
+
+      if (_this.hasModifier(e) && elem.getAttribute('aria-grabbed') === 'false') {
+        // add this additional selection
+        _this.addSelection(elem);
+      } // we don't need the transfer data, but we have to define something
+      // otherwise the drop action won't work at all in firefox
+      // most browsers support the proper mime-type syntax, eg. "text/plain"
+      // but we have to use this incorrect syntax for the benefit of IE10+
+
+
+      e.dataTransfer.setData('text', ''); // apply dropeffect to the target containers
+
+      _this.addDropeffects();
+    }, false); // keydown event to implement selection and abort
+
+    el.addEventListener('keydown', function (e) {
+      // if the element is a grabbable item
+      if (e.target.getAttribute('aria-grabbed')) {
+        // Space is the selection or unselection keystroke
+        if (e.keyCode === 32) {
+          // if the multiple selection modifier is pressed
+          if (_this.hasModifier(e)) {
+            // if the item's grabbed state is currently true
+            if (e.target.getAttribute('aria-grabbed') === 'true') {
+              // if this is the only selected item, clear dropeffect
+              // from the target containers, which we must do first
+              // in case subsequent unselection sets owner to null
+              if (_this.selections.items.length === 1) {
+                _this.clearDropeffects();
+              } // unselect this item
+
+
+              _this.removeSelection(e.target); // if we have any selections
+              // apply dropeffect to the target containers,
+              // in case earlier selections were made by mouse
+
+
+              if (_this.selections.items.length) {
+                _this.addDropeffects();
+              } // if that was the only selected item
+              // then reset the owner container reference
+
+
+              if (!_this.selections.items.length) {
+                _this.selections.owner = null;
+              }
+            } else {
+              // else [if its grabbed state is currently false]
+              // add this additional selection
+              _this.addSelection(e.target); // apply dropeffect to the target containers
+
+
+              _this.addDropeffects();
+            }
+          } else if (e.target.getAttribute('aria-grabbed') === 'false') {
+            // else [if the multiple selection modifier is not pressed]
+            // and the item's grabbed state is currently false
+            // clear dropeffect from the target containers
+            _this.clearDropeffects(); // clear all existing selections
+
+
+            _this.clearSelections(); // add this new selection
+
+
+            _this.addSelection(e.target); // apply dropeffect to the target containers
+
+
+            _this.addDropeffects();
+          } else {
+            // else [if modifier is not pressed and grabbed is already true]
+            // apply dropeffect to the target containers
+            _this.addDropeffects();
+          } // then prevent default to avoid any conflict with native actions
+
+
+          e.preventDefault();
+        } // Modifier + M is the end-of-selection keystroke
+
+
+        if (e.keyCode === 77 && _this.hasModifier(e)) {
+          // if we have any selected items
+          if (_this.selections.items.length) {
+            // apply dropeffect to the target containers
+            // in case earlier selections were made by mouse
+            _this.addDropeffects(); // if the owner container is the last one, focus the first one
+
+
+            if (_this.selections.owner === _this.targets[_this.targets.length - 1]) {
+              _this.targets[0].focus();
+            } else {
+              // else [if it's not the last one], find and focus the next one
+              for (var i = 0; i < _this.targets.length; i++) {
+                if (_this.selections.owner === _this.targets[i]) {
+                  _this.targets[i + 1].focus();
+
+                  break;
+                }
+              }
+            }
+          } // then prevent default to avoid any conflict with native actions
+
+
+          e.preventDefault();
+        }
+      } // Escape is the abort keystroke (for any target element)
+
+
+      if (e.keyCode === 27) {
+        // if we have any selected items
+        if (_this.selections.items.length) {
+          // clear dropeffect from the target containers
+          _this.clearDropeffects(); // then set focus back on the last item that was selected, which is
+          // necessary because we've removed tabindex from the current focus
+
+
+          _this.selections.items[_this.selections.items.length - 1].focus(); // clear all existing selections
+
+
+          _this.clearSelections(); // but don't prevent default so that native actions can still occur
+
+        }
+      }
+    }, false); // dragenter event to set that variable
+
+    el.addEventListener('dragenter', function (e) {
+      _this.related = e.target;
+    }, false); // dragleave event to maintain target highlighting using that variable
+
+    el.addEventListener('dragleave', function () {
+      // get a drop target reference from the relatedTarget
+      var droptarget = _this.getContainer(_this.related); // if the drop target is different from the last stored reference
+      // (or we have one of those references but not the other one)
+
+
+      if (droptarget !== _this.selections.droptarget) {
+        // if we have a saved reference, clear its existing dragover class
+        if (_this.selections.droptarget) {
+          _this.selections.droptarget.className = _this.selections.droptarget.className.replace(/ dragover/g, '');
+        } // apply the dragover class to the new drop target reference
+
+
+        if (droptarget) {
+          droptarget.className += ' dragover';
+        } // then save that reference for next time
+
+
+        _this.selections.droptarget = droptarget;
+      }
+    }, false); // dragover event to allow the drag by preventing its default
+
+    el.addEventListener('dragover', function (e) {
+      // if we have any selected items, allow them to be dragged
+      if (_this.selections.items.length) {
+        e.preventDefault();
+      }
+    }, false); // dragend event to implement items being validly dropped into targets,
+    // or invalidly dropped elsewhere, and to clean-up the interface either way
+
+    el.addEventListener('dragend', function (e) {
+      if (typeof _this.defaultOptions.onDragend === 'function') {
+        try {
+          _this.defaultOptions.onDragend(_objectSpread({
+            nativeEvent: e,
+            stop: _this.stopDragAndDrop
+          }, _this.selections));
+        } catch (error) {
+          _this.removeOldDropzoneAreaElements();
+
+          return;
+        }
+      } // if we have a valid drop target reference
+      // (which implies that we have some selected items)
+
+
+      if (_this.selections.droptarget) {
+        // append the selected items to the end of the target container
+        for (var i = 0; i < _this.selections.items.length; i++) {
+          if (_this.nextItemElement) {
+            _this.selections.droptarget.insertBefore(_this.selections.items[i], _this.nextItemElement);
+
+            continue;
+          }
+
+          _this.selections.droptarget.appendChild(_this.selections.items[i]);
+        }
+
+        if (typeof _this.defaultOptions.onDrop === 'function') {
+          _this.defaultOptions.onDrop(_objectSpread({
+            nativeEvent: e,
+            stop: function stop() {
+              throw new Error("Stop method is available only for callbacks\n                'onDragstart' and 'onDragend'. For more info look at\n                https://github.com/Vivify-Ideas/vue-draggable/blob/master/README.md\n              ");
+            }
+          }, _this.selections));
+        } // prevent default to allow the action
+
+
+        e.preventDefault();
+      } // if we have any selected items
+
+
+      if (_this.selections.items.length) {
+        // clear dropeffect from the target containers
+        _this.clearDropeffects(); // if we have a valid drop target reference
+
+
+        if (_this.selections.droptarget) {
+          // reset the selections array
+          _this.clearSelections(); // reset the target's dragover class
+
+
+          _this.selections.droptarget.className = _this.selections.droptarget.className.replace(/ dragover/g, ''); // reset the target reference
+
+          _this.selections.droptarget = null;
+        }
+      } // dropzone area elements
+
+
+      _this.removeOldDropzoneAreaElements();
+    }, false); // keydown event to implement items being dropped into targets
+
+    el.addEventListener('keydown', function (e) {
+      // if the element is a drop target container
+      if (e.target.getAttribute('aria-dropeffect')) {
+        // Enter or Modifier + M is the drop keystroke
+        if (e.keyCode === 13 || e.keyCode === 77 && _this.hasModifier(e)) {
+          // append the selected items to the end of the target container
+          for (var i = 0; i < _this.selections.items.length; i++) {
+            e.target.appendChild(_this.selections.items[i]);
+          } // clear dropeffect from the target containers
+
+
+          _this.clearDropeffects(); // then set focus back on the last item that was selected, which is
+          // necessary because we've removed tabindex from the current focus
+
+
+          _this.selections.items[_this.selections.items.length - 1].focus(); // reset the selections array
+
+
+          _this.clearSelections(); // prevent default to to avoid any conflict with native actions
+
+
+          e.preventDefault();
+        }
+      }
+    }, false);
+
+    if (!this.defaultOptions.showDropzoneAreas) {
+      return;
+    }
+
+    var previousTarget = null;
+    var dragoverCalls = 0;
+    document.addEventListener('dragover', function (e) {
+      if (dragoverCalls % 10 !== 0 && e.target === previousTarget || !e.target || e.target.className === 'item-dropzone-area') return;
+      dragoverCalls++;
+      previousTarget = e.target;
+      _this.nextItemElement = e.target.closest(_this.defaultOptions.draggableSelector);
+      _this.selections.droptarget = e.target.closest(_this.defaultOptions.dropzoneSelector);
+      var itemDropzoneElement = document.createElement('div');
+      itemDropzoneElement.className = 'item-dropzone-area';
+
+      _this.removeOldDropzoneAreaElements();
+
+      if (_this.selections.droptarget && _this.nextItemElement) {
+        _this.selections.droptarget.insertBefore(itemDropzoneElement, previousTarget.closest(_this.defaultOptions.draggableSelector));
+      }
+
+      if (_this.selections.droptarget && !_this.nextItemElement) {
+        _this.selections.droptarget.appendChild(itemDropzoneElement);
+      }
+    });
+  },
+  initiate: function initiate(el) {
+    if (this.defaultOptions.excludeOlderBrowsers && this.isOldBrowser()) {
+      return;
+    }
+
+    this.targets = el.querySelectorAll(this.defaultOptions.dropzoneSelector);
+    this.items = el.querySelectorAll(this.defaultOptions.draggableSelector);
+
+    for (var i = 0; i < this.targets.length; i++) {
+      this.targets[i].setAttribute('aria-dropeffect', 'none');
+    }
+
+    for (var _i3 = 0; _i3 < this.items.length; _i3++) {
+      this.items[_i3].setAttribute('draggable', 'true');
+
+      this.items[_i3].setAttribute('aria-grabbed', 'false');
+
+      this.items[_i3].setAttribute('tabindex', '0');
+    }
+  }
+};
+
+
+/***/ }),
+
+/***/ "./src/vue-draggable-options.js":
+/*!**************************************!*\
+  !*** ./src/vue-draggable-options.js ***!
+  \**************************************/
+/*! exports provided: VueDraggableOptions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueDraggableOptions", function() { return VueDraggableOptions; });
+var VueDraggableOptions = {
+  defaultOptions: {
+    dropzoneSelector: 'ul',
+    draggableSelector: 'li',
+    excludeOlderBrowsers: true,
+    multipleDropzonesItemsDraggingEnabled: true,
+    showDropzoneAreas: true,
+    onDrop: function onDrop() {},
+    onDragstart: function onDragstart() {},
+    onDragend: function onDragend() {}
+  },
+  targets: null,
+  items: null,
+  nextItemElement: null,
+  // related variable is needed to maintain a reference to the
+  // dragleave's relatedTarget, since it doesn't have e.relatedTarget
+  related: null,
+  selections: {
+    items: [],
+    owner: null,
+    droptarget: null
+  }
+};
+
+
+/***/ }),
+
+/***/ "./src/vue-draggable.js":
+/*!******************************!*\
+  !*** ./src/vue-draggable.js ***!
+  \******************************/
+/*! exports provided: VueDraggable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VueDraggable", function() { return VueDraggable; });
+/* harmony import */ var _vue_draggable_options__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue-draggable-options */ "./src/vue-draggable-options.js");
+/* harmony import */ var _vue_draggable_methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue-draggable-methods */ "./src/vue-draggable-methods.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var VueDraggable = _objectSpread({}, _vue_draggable_options__WEBPACK_IMPORTED_MODULE_0__["VueDraggableOptions"], _vue_draggable_methods__WEBPACK_IMPORTED_MODULE_1__["VueDraggableMethods"]);
+
+
+
+/***/ })
+
+/******/ });
+});
+//# sourceMappingURL=vue-draggable.js.map
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "assessment-questionnaire" } }, [
+    _c("h1", [_vm._v("Flexibility assessment questionnaire")]),
+    _vm._v(" "),
+    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Platform feedback")]),
+    _vm._v(" "),
+    _c("p", { staticClass: "question" }, [
+      _vm._v(
+        "What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system? \n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.mostUsefulInformation,
+              expression: "assessment.data.mostUsefulInformation"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "mostUsefulInformation",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _vm._l(_vm.sectionsInIntro, function(section) {
+            return _c("option", { attrs: { value: "section" } }, [
+              _vm._v(_vm._s(section))
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { staticStyle: { color: "red" } }, [
+            _vm._v(
+              "[From Carlos] I have copied and pasted all the sections, needs feedback"
+            )
+          ])
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "question" }, [
+      _vm._v("What was the least useful information? \n        "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.leastUsefulInformation,
+              expression: "assessment.data.leastUsefulInformation"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "leastUsefulInformation",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _vm._l(_vm.sectionsInIntro, function(section) {
+            return _c(
+              "option",
+              { domProps: { value: { sectionaaaaaaa: "sdasdsection" } } },
+              [_vm._v(_vm._s(section))]
+            )
+          }),
+          _vm._v(" "),
+          _c("option", { staticStyle: { color: "red" } }, [
+            _vm._v(
+              "[From Carlos] I have copied and pasted all the sections, needs feedback"
+            )
+          ])
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "question" }, [
+      _vm._v(
+        "Do you feel you have enough information to help you decide about whether you would sign up for a flexibility agreement?\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.enoughInformationToDecide,
+              expression: "assessment.data.enoughInformationToDecide"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "enoughInformationToDecide",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1- Not at all" } }, [
+            _vm._v("1- Not at all")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2- Not enough" } }, [
+            _vm._v("2- Not enough")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3- Nearly enough" } }, [
+            _vm._v("3- Nearly enough")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4- Yes" } }, [_vm._v("4- Yes")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Signup priorities & finances")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important) "
+      ),
+      _c("span", { staticClass: "red" }, [
+        _vm._v("Data doesn't get saved. Needs fixing")
+      ]),
+      _vm._v(" "),
+      _c(
+        "ol",
+        {
+          directives: [
+            {
+              name: "drag-and-drop",
+              rawName: "v-drag-and-drop:options",
+              value: _vm.sortableLIstOptions,
+              expression: "sortableLIstOptions",
+              arg: "options"
+            }
+          ]
+        },
+        [
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.signupPriorities[0])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.signupPriorities[1])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.signupPriorities[2])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.signupPriorities[3])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.signupPriorities[4])
+            }
+          })
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "How much money would you need from a Flexibility Agreement before you felt that it was worth signing up?\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.howMuchMoneyToSignUp,
+              expression: "assessment.data.howMuchMoneyToSignUp"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "howMuchMoneyToSignUp",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "More than £200 per year" } }, [
+            _vm._v("More than £200 per year")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "£200 per year" } }, [
+            _vm._v("£200 per year")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "£100 per year" } }, [
+            _vm._v("£100 per year")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "£50 per year" } }, [
+            _vm._v("£50 per year")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "£0 / not important to me" } }, [
+            _vm._v("£0 / not important to me")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply - "
+      ),
+      _c("span", { staticClass: "red" }, [_vm._v("link to tenure??")]),
+      _vm._v(" - "),
+      _c("span", { staticClass: "red" }, [
+        _vm._v(
+          "Also in the spreadsheet this questions was shaded, was there a reason for that?"
+        )
+      ]),
+      _vm._v(")\n        "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.preparedToPayUpfront,
+              expression: "assessment.data.preparedToPayUpfront"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "preparedToPayUpfront",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c(
+            "option",
+            { attrs: { value: "No - I wouldn't pay anything upfront" } },
+            [_vm._v("No - I wouldn't pay anything upfront")]
+          ),
+          _vm._v(" "),
+          _c(
+            "option",
+            {
+              attrs: {
+                value:
+                  "Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
+              }
+            },
+            [
+              _vm._v(
+                "Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "option",
+            {
+              attrs: {
+                value:
+                  "Yes - I would consider upgrading to new smart heaters so I could join"
+              }
+            },
+            [
+              _vm._v(
+                "Yes - I would consider upgrading to new smart heaters so I could join"
+              )
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important) "
+      ),
+      _c("span", { staticClass: "red" }, [
+        _vm._v("Data doesn't get saved. Needs fixing")
+      ]),
+      _vm._v(" "),
+      _c(
+        "ol",
+        {
+          directives: [
+            {
+              name: "drag-and-drop",
+              rawName: "v-drag-and-drop:options",
+              value: _vm.sortableLIstOptions,
+              expression: "sortableLIstOptions",
+              arg: "options"
+            }
+          ]
+        },
+        [
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[0])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[1])
+            }
+          }),
+          _vm._v(" "),
+          _c("li", {
+            domProps: {
+              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[2])
+            }
+          })
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Other feedback")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("Is there anything else you want to share\n        "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.anythingElseToShare,
+            expression: "assessment.data.anythingElseToShare"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: { value: _vm.assessment.data.anythingElseToShare },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data,
+              "anythingElseToShare",
+              $event.target.value
+            )
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9e3ceb32", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
