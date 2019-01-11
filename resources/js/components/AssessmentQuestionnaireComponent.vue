@@ -70,7 +70,7 @@
 
         <h2>Other feedback</h2>
         <p>Is there anything else you want to share
-            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.anythingElseToShare" />
+            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.anythingElseToShareQuestionnaire" />
         </p>
     </div>
 </template>

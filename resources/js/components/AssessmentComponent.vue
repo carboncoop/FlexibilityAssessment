@@ -4,6 +4,7 @@
         <assessment-form dusk="assessment-form-component" v-if="view == 'assessment-form'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-form>
         <assessment-report v-if="view == 'assessment-report'" v-bind:initial-assessment='assessment'></assessment-report>
         <assessment-questionnaire v-if="view == 'assessment-questionnaire'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-questionnaire>
+        <assessment-report-feedback v-if="view == 'assessment-report-feedback'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-report-feedback>
     </div>
 </template>
 
@@ -22,6 +23,7 @@
     import AssessmentSideMenu from './AssessmentSideMenuComponent';
     import AssessmentReport from './AssessmentReportComponent';
     import AssessmentQuestionnaire from './AssessmentQuestionnaireComponent';
+    import AssessmentReportFeedback from './AssessmentReportFeedbackComponent';
 
     export default{
         props: {'initialAssessment': Object},
@@ -35,7 +37,8 @@
             AssessmentForm,
             AssessmentSideMenu,
             AssessmentReport,
-            AssessmentQuestionnaire
+            AssessmentQuestionnaire,
+            AssessmentReportFeedback
         },
         methods: {
             updateAssessment: function (updatedAssessment, thenCallback, catchCallback) {

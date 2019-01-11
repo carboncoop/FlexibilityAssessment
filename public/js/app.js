@@ -38840,6 +38840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent__);
 //
 //
 //
@@ -38859,6 +38861,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -38877,7 +38881,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         AssessmentForm: __WEBPACK_IMPORTED_MODULE_0__AssessmentFormComponent___default.a,
         AssessmentSideMenu: __WEBPACK_IMPORTED_MODULE_1__AssessmentSideMenuComponent___default.a,
         AssessmentReport: __WEBPACK_IMPORTED_MODULE_2__AssessmentReportComponent___default.a,
-        AssessmentQuestionnaire: __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default.a
+        AssessmentQuestionnaire: __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default.a,
+        AssessmentReportFeedback: __WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent___default.a
     },
     methods: {
         updateAssessment: function updateAssessment(updatedAssessment, thenCallback, catchCallback) {
@@ -38982,7 +38987,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.red[data-v-615f2648]{\n    color:red;\n}\nselect[data-v-615f2648]{\n    max-width:350px\n}\nselect[data-v-615f2648], ol[data-v-615f2648],textarea[data-v-615f2648]{\n    margin:5px 0 35px;\n}\nli[data-v-615f2648]{\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -38994,6 +38999,30 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(231);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39116,11 +39145,7 @@ var render = function() {
   return _c("div", { attrs: { id: "assessment-form" } }, [
     _c("h1", [_vm._v("Flexibility assessment")]),
     _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-      )
-    ]),
+    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
     _vm._v(" "),
     _c("h2", [_vm._v("Household data")]),
     _vm._v(" "),
@@ -39230,6 +39255,65 @@ var render = function() {
               }
             }
           })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Type of property")]),
+        _vm._v(" "),
+        _c("td", [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.assessment.data.typeOfProperty,
+                  expression: "assessment.data.typeOfProperty"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.assessment.data,
+                    "typeOfProperty",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "More than £200 per year" } }, [
+                _vm._v("More than £200 per year")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "£200 per year" } }, [
+                _vm._v("£200 per year")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "£100 per year" } }, [
+                _vm._v("£100 per year")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "£50 per year" } }, [
+                _vm._v("£50 per year")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "£0 / not important to me" } }, [
+                _vm._v("£0 / not important to me")
+              ])
+            ]
+          )
         ])
       ])
     ]),
@@ -39681,6 +39765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { initialAssessment: Object },
@@ -39801,6 +39886,19 @@ var render = function() {
               }
             },
             [_vm._v("Questionnaire")]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              attrs: { dusk: "show-report-feeback" },
+              on: {
+                click: function($event) {
+                  _vm.$emit("updateView", "assessment-report-feedback")
+                }
+              }
+            },
+            [_vm._v("Report feedback")]
           )
         ])
       ]),
@@ -40085,6 +40183,13 @@ var render = function() {
       _vm._v(" "),
       _vm.view == "assessment-questionnaire"
         ? _c("assessment-questionnaire", {
+            attrs: { "initial-assessment": _vm.assessment },
+            on: { assessmentChange: _vm.updateAssessment }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.view == "assessment-report-feedback"
+        ? _c("assessment-report-feedback", {
             attrs: { "initial-assessment": _vm.assessment },
             on: { assessmentChange: _vm.updateAssessment }
           })
@@ -41073,8 +41178,12 @@ var render = function() {
     _vm._v(" "),
     _c("p", { staticClass: "question" }, [
       _vm._v(
-        "What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system? \n        "
+        "What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?  "
       ),
+      _c("span", { staticClass: "red" }, [
+        _vm._v("Data doesn't get saved. Needs fixing")
+      ]),
+      _vm._v(" "),
       _c(
         "select",
         {
@@ -41123,7 +41232,11 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", { staticClass: "question" }, [
-      _vm._v("What was the least useful information? \n        "),
+      _vm._v("What was the least useful information?  "),
+      _c("span", { staticClass: "red" }, [
+        _vm._v("Data doesn't get saved. Needs fixing")
+      ]),
+      _vm._v(" "),
       _c(
         "select",
         {
@@ -41156,11 +41269,9 @@ var render = function() {
         },
         [
           _vm._l(_vm.sectionsInIntro, function(section) {
-            return _c(
-              "option",
-              { domProps: { value: { sectionaaaaaaa: "sdasdsection" } } },
-              [_vm._v(_vm._s(section))]
-            )
+            return _c("option", { domProps: { value: section } }, [
+              _vm._v(_vm._s(section))
+            ])
           }),
           _vm._v(" "),
           _c("option", { staticStyle: { color: "red" } }, [
@@ -41474,13 +41585,15 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.anythingElseToShare,
-            expression: "assessment.data.anythingElseToShare"
+            value: _vm.assessment.data.anythingElseToShareQuestionnaire,
+            expression: "assessment.data.anythingElseToShareQuestionnaire"
           }
         ],
         staticStyle: { display: "block" },
         attrs: { rows: "4", cols: "75" },
-        domProps: { value: _vm.assessment.data.anythingElseToShare },
+        domProps: {
+          value: _vm.assessment.data.anythingElseToShareQuestionnaire
+        },
         on: {
           input: function($event) {
             if ($event.target.composing) {
@@ -41488,7 +41601,7 @@ var render = function() {
             }
             _vm.$set(
               _vm.assessment.data,
-              "anythingElseToShare",
+              "anythingElseToShareQuestionnaire",
               $event.target.value
             )
           }
@@ -41504,6 +41617,442 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-9e3ceb32", module.exports)
+  }
+}
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(253)
+}
+var normalizeComponent = __webpack_require__(21)
+/* script */
+var __vue_script__ = __webpack_require__(255)
+/* template */
+var __vue_template__ = __webpack_require__(256)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-68a5d927"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/AssessmentReportFeedbackComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68a5d927", Component.options)
+  } else {
+    hotAPI.reload("data-v-68a5d927", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(254);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(20)("7c0e0e41", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68a5d927\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentReportFeedbackComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68a5d927\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentReportFeedbackComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.red[data-v-68a5d927]{\n    color:red;\n}\nselect[data-v-68a5d927]{\n    max-width:350px\n}\nselect[data-v-68a5d927], ol[data-v-68a5d927],textarea[data-v-68a5d927]{\n    margin:5px 0 35px;\n}\nli[data-v-68a5d927]{\n    cursor:pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 255 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(231);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]]
+});
+
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "assessment-form" } }, [
+    _c("h1", [_vm._v("Flexibility assessment - Report feedback")]),
+    _vm._v(" "),
+    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Which of the flexibility offers would you choose, and why?\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.flexibilityOfferChosen,
+              expression: "assessment.data.flexibilityOfferChosen"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "flexibilityOfferChosen",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { staticStyle: { color: "red" } }, [
+            _vm._v("Update when we know the possible schemes")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "What do you think of the report? - what was good, and what needs improving?\n        "
+      ),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.whatDoYouThinkOfReport,
+            expression: "assessment.data.whatDoYouThinkOfReport"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: { value: _vm.assessment.data.whatDoYouThinkOfReport },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data,
+              "whatDoYouThinkOfReport",
+              $event.target.value
+            )
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Is the report language too simple or complicated?           \n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.reportLanguage,
+              expression: "assessment.data.reportLanguage"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "reportLanguage",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1- Too simple" } }, [
+            _vm._v("1- Too simple")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3- just right" } }, [
+            _vm._v("3- just right")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5- too complicated" } }, [
+            _vm._v("5- too complicated")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Is there too much or too little information given in the report?       \n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.howMuchInformationInReport,
+              expression: "assessment.data.howMuchInformationInReport"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data,
+                "howMuchInformationInReport",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1- Too little" } }, [
+            _vm._v("1- Too little")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3- Just right" } }, [
+            _vm._v("3- Just right")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5- Too much" } }, [
+            _vm._v("5- Too much")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("How could we improve the report? "),
+      _c("span", { staticClass: "red" }, [
+        _vm._v("Isn't this the same question than the second")
+      ]),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.howToImproveTheReport,
+            expression: "assessment.data.howToImproveTheReport"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: { value: _vm.assessment.data.howToImproveTheReport },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data,
+              "howToImproveTheReport",
+              $event.target.value
+            )
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("Anything else you want to share?\n        "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.anythingElseToShareReportFeedback,
+            expression: "assessment.data.anythingElseToShareReportFeedback"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: {
+          value: _vm.assessment.data.anythingElseToShareReportFeedback
+        },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data,
+              "anythingElseToShareReportFeedback",
+              $event.target.value
+            )
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68a5d927", module.exports)
   }
 }
 

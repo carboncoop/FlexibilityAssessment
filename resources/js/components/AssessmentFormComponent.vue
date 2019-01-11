@@ -1,13 +1,26 @@
 <template>
     <div id="assessment-form">
         <h1>Flexibility assessment</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p class="red">Do we want an intro here?</p>
+
         <h2>Household data</h2>
         <table>
             <tr><td>Address 1</td><td><input name="address1" class="form-control" type="text" v-model="assessment.data.address1" /></td></tr>
             <tr><td>Address 2</td><td><input class="form-control" type="text" v-model="assessment.data.address2" /></td></tr>
             <tr><td>Town</td><td><input class="form-control" type="text" v-model="assessment.data.town" /></td></tr>
             <tr><td>Postcode</td><td><input class="form-control" type="text" v-model="assessment.data.postcode" /></td></tr>
+            <tr>
+                <td>Type of property</td>
+                <td>
+                    <select class="form-control" v-model="assessment.data.typeOfProperty">
+                        <option value="More than £200 per year">More than £200 per year</option>
+                        <option value="£200 per year">£200 per year</option>
+                        <option value="£100 per year">£100 per year</option>
+                        <option value="£50 per year">£50 per year</option>
+                        <option value="£0 / not important to me">£0 / not important to me</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <h2>Energy assets</h2>
         <table id="energy-assets" class="table">
@@ -45,7 +58,18 @@
 </template>
 
 <style scoped>
-
+    .red{
+        color:red;
+    }
+    select{
+        max-width:350px 
+    }
+    select, ol,textarea{
+        margin:5px 0 35px;
+    }
+    li{
+        cursor:pointer;
+    }
 </style>
 
 <script>
