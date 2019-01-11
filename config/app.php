@@ -3,7 +3,7 @@
 return [
     /*
       |--------------------------------------------------------------------------
-      | Application Name
+      | Map box credentials
       |--------------------------------------------------------------------------
       |
       | This value is the name of your application. This value is used when the
@@ -12,6 +12,33 @@ return [
       |
      */
 
+    'mapbox_username' => env('MAPBOX_USERNAME', ''),
+    'mapbox_accesstoken' => env('MAPBOX_ACCESS_TOKEN', ''),
+    /*
+      |--------------------------------------------------------------------------
+      |Hide environment variables from debug pages
+      |--------------------------------------------------------------------------
+     */
+    'debug_blacklist' => [
+        '_ENV' => [
+            'MAPBOX_USERNAME',
+            'MAPBOX_ACCESS_TOKEN',
+        ],
+        '_SERVER' => [
+            'MAPBOX_USERNAME',
+            'MAPBOX_ACCESS_TOKEN',
+        ]
+    ],
+    /*
+      |--------------------------------------------------------------------------
+      | Application Name
+      |--------------------------------------------------------------------------
+      |
+      | This value is the name of your application. This value is used when the
+      | framework needs to place the application's name in a notification or
+      | any other location as required by the application or its packages.
+      |
+     */
     'name' => env('APP_NAME', 'Flexibility Assessment tool'),
     /*
       |--------------------------------------------------------------------------

@@ -23,4 +23,8 @@ Route::get('/how-could-my-organisation-benefit-from-flexibility', function () {
     return view('how-could-my-organisation-benefit-from-flexibility');
 });
 
+Route::get('/scotland-potential-flexibility-map', function () {
+    return view('scotland-potential-flexibility-map');
+});
+
 Route::resource('assessment', 'AssessmentController')->only(['index','edit']);

@@ -69,9 +69,10 @@
         <p>You would get a payment in total of £100 for taking part (paid in several instalments depending on completing the various steps above). You would also get the chance to learn more about the changes and how flexibility will work in practice.</p>
         <p>South Seeds would really value this chance to get feedback on this idea from local people, which will help South Seeds think about how such a project might work in the future.  </p>
         <p>If you are interested in being a participant – please contact South Seeds <span style="color:red">(hyperlink to an email to SS?)</span> to sign up. If you want more information before signing up please ring <span style="color:red">xxxxx </span></p>
-        <p><a href="how-could-my-organisation-benefit-from-flexibility">How could my organisation benefit from 'flexibility'? </p>
+        <p><a href="how-could-my-organisation-benefit-from-flexibility">How could my organisation benefit from 'flexibility'?</a> </p>
         
-        
+        <h2>Scotland potential flexibility map</h2>
+        <p>As part of this tool we have developed <a href="/scotland-potential-flexibility-map"> this interactive map</a> to show the potential flexibility in Scotland by postcode</p>
     </div>
 </div>
 @endsection
