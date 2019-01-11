@@ -6,16 +6,16 @@
 
         <h2>Platform feedback</h2>
 
-        <p class="question">What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system? 
+        <p class="question">What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?  <span class="red">Data doesn't get saved. Needs fixing</span>
             <select class="form-control" v-model="assessment.data.mostUsefulInformation">
                 <option v-for="section in sectionsInIntro" value="section">{{section}}</option>
                 <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
 
-        <p class="question">What was the least useful information? 
+        <p class="question">What was the least useful information?  <span class="red">Data doesn't get saved. Needs fixing</span>
             <select class="form-control" v-model="assessment.data.leastUsefulInformation">
-                <option v-for="section in sectionsInIntro" v-bind:value="{sectionaaaaaaa:'sdasdsection'}">{{section}}</option>
+                <option v-for="section in sectionsInIntro" v-bind:value="section">{{section}}</option>
                 <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
