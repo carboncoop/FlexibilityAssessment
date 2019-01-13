@@ -43153,12 +43153,8 @@ var render = function() {
     _vm._v(" "),
     _c("p", { staticClass: "question" }, [
       _vm._v(
-        "What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?  "
+        "What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?\n        "
       ),
-      _c("span", { staticClass: "red" }, [
-        _vm._v("Data doesn't get saved. Needs fixing")
-      ]),
-      _vm._v(" "),
       _c(
         "select",
         {
@@ -43190,8 +43186,8 @@ var render = function() {
           }
         },
         [
-          _vm._l(_vm.sectionsInIntro, function(section) {
-            return _c("option", { attrs: { value: "section" } }, [
+          _vm._l(_vm.sectionsInIntro, function(section, index) {
+            return _c("option", { domProps: { value: section } }, [
               _vm._v(_vm._s(section))
             ])
           }),
@@ -43207,11 +43203,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", { staticClass: "question" }, [
-      _vm._v("What was the least useful information?  "),
-      _c("span", { staticClass: "red" }, [
-        _vm._v("Data doesn't get saved. Needs fixing")
-      ]),
-      _vm._v(" "),
+      _vm._v("What was the least useful information?\n        "),
       _c(
         "select",
         {
@@ -43243,7 +43235,7 @@ var render = function() {
           }
         },
         [
-          _vm._l(_vm.sectionsInIntro, function(section) {
+          _vm._l(_vm.sectionsInIntro, function(section, index) {
             return _c("option", { domProps: { value: section } }, [
               _vm._v(_vm._s(section))
             ])
