@@ -30,7 +30,7 @@
         data: function () {
             return {
                 assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)  
-                view: 'assessment-questionnaire'
+                view: 'assessment-form'
             };
         },
         components: {
