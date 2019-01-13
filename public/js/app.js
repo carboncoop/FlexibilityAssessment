@@ -41738,7 +41738,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n#assessment-side-menu[data-v-a1cf73ec]{\n    max-width:300px;\n    position:fixed;\n}\n#assessment-navigation ul[data-v-a1cf73ec]{\n    cursor: pointer;\n    margin: 0px;\n}\n", ""]);
+exports.push([module.i, "\n#assessment-side-menu[data-v-a1cf73ec]{\n    max-width:300px;\n    position:fixed;\n    padding-right: 30px;\n}\n#assessment-navigation p[data-v-a1cf73ec]{\n    margin-bottom: 0;\n}\n#assessment-navigation ul[data-v-a1cf73ec]{\n    padding-left: 20px;\n}\n#assessment-navigation li[data-v-a1cf73ec]{\n    list-style-type: none;\n    cursor: pointer;\n    margin: 0px;\n}\n", ""]);
 
 // exports
 
@@ -41749,6 +41749,20 @@ exports.push([module.i, "\n#assessment-side-menu[data-v-a1cf73ec]{\n    max-widt
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41871,36 +41885,14 @@ var render = function() {
       _vm._v(" "),
       _c("p", [_vm._v("Description: " + _vm._s(_vm.assessment.description))]),
       _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
       _c("div", { attrs: { id: "assessment-navigation" } }, [
-        _c("li", [
+        _c("p", [_vm._v("Project input:")]),
+        _vm._v(" "),
+        _c("ul", [
           _c(
-            "ul",
-            {
-              attrs: { dusk: "show-form" },
-              on: {
-                click: function($event) {
-                  _vm.$emit("updateView", "assessment-form")
-                }
-              }
-            },
-            [_vm._v("Assessment")]
-          ),
-          _vm._v(" "),
-          _c(
-            "ul",
-            {
-              attrs: { dusk: "show-report" },
-              on: {
-                click: function($event) {
-                  _vm.$emit("updateView", "assessment-report")
-                }
-              }
-            },
-            [_vm._v("Report")]
-          ),
-          _vm._v(" "),
-          _c(
-            "ul",
+            "li",
             {
               attrs: { dusk: "show-questionnaire" },
               on: {
@@ -41913,7 +41905,20 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "ul",
+            "li",
+            {
+              attrs: { dusk: "show-form" },
+              on: {
+                click: function($event) {
+                  _vm.$emit("updateView", "assessment-form")
+                }
+              }
+            },
+            [_vm._v("Assessment")]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
             {
               attrs: { dusk: "show-report-feeback" },
               on: {
@@ -41923,6 +41928,23 @@ var render = function() {
               }
             },
             [_vm._v("Report feedback")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Other:")]),
+        _vm._v(" "),
+        _c("ul", [
+          _c(
+            "li",
+            {
+              attrs: { dusk: "show-report" },
+              on: {
+                click: function($event) {
+                  _vm.$emit("updateView", "assessment-report")
+                }
+              }
+            },
+            [_vm._v("Report")]
           )
         ])
       ]),

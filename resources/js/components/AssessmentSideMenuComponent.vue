@@ -5,14 +5,20 @@
                                                                           v-on:click="iniMetadataModal" />
         </p>
         <p>Description: {{assessment.description}}</p>
-        
+
+        <hr />
+
         <div id='assessment-navigation'>
-            <li>
-                <ul dusk="show-form" v-on:click="$emit('updateView', 'assessment-form')">Assessment</ul>
-                <ul dusk="show-report" v-on:click="$emit('updateView', 'assessment-report')">Report</ul>
-                <ul dusk="show-questionnaire" v-on:click="$emit('updateView', 'assessment-questionnaire')">Questionnaire</ul>
-                <ul dusk="show-report-feeback" v-on:click="$emit('updateView', 'assessment-report-feedback')">Report feedback</ul>
-            </li>
+            <p>Project input:</p>
+            <ul>
+                <li dusk="show-questionnaire" v-on:click="$emit('updateView', 'assessment-questionnaire')">Questionnaire</li>
+                <li dusk="show-form" v-on:click="$emit('updateView', 'assessment-form')">Assessment</li>
+                <li dusk="show-report-feeback" v-on:click="$emit('updateView', 'assessment-report-feedback')">Report feedback</li>
+            </ul>
+            <p>Other:</p>
+            <ul>
+                <li dusk="show-report" v-on:click="$emit('updateView', 'assessment-report')">Report</li>
+            </ul>
         </div>
 
         <b-modal id="edit-metadata-modal" ref="editMetadataModal" title="Edit assessment name and description" 
@@ -32,8 +38,16 @@
     #assessment-side-menu{
         max-width:300px;
         position:fixed;
+        padding-right: 30px;
+    }
+    #assessment-navigation p{
+        margin-bottom: 0;
     }
     #assessment-navigation ul{
+        padding-left: 20px;
+    }
+    #assessment-navigation li{
+        list-style-type: none;
         cursor: pointer;
         margin: 0px;
     }
