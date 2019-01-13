@@ -39040,7 +39040,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-615f2648]{\n    color:red;\n}\nselect[data-v-615f2648]{\n    max-width:350px\n}\nselect[data-v-615f2648], ol[data-v-615f2648],textarea[data-v-615f2648]{\n    margin:0;\n}\nli[data-v-615f2648]{\n    cursor:pointer;\n}\ntable[data-v-615f2648]{\n    margin-bottom: 16px;\n}\ntd[data-v-615f2648]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-615f2648], table#household-data[data-v-615f2648]{\n    width: 100%;\n    max-width: 700px;\n}\n#energy-assets td[data-v-615f2648]:first-child, #household-data td[data-v-615f2648]:first-child{\n    width:280px\n}\ntable.heaters[data-v-615f2648]{\n    width:350px;\n}\ntable.heaters td[data-v-615f2648]{\n    border:none;\n    width:300px;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ntable.heaters td[data-v-615f2648]:first-child{\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-615f2648]{\n    color:red;\n}\nselect[data-v-615f2648]{\n    max-width:350px\n}\nselect[data-v-615f2648], ol[data-v-615f2648],textarea[data-v-615f2648]{\n    margin:0;\n}\nli[data-v-615f2648]{\n    cursor:pointer;\n}\ntable[data-v-615f2648]{\n    margin-bottom: 16px;\n}\ntd[data-v-615f2648]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-615f2648], table#household-data[data-v-615f2648]{\n    width: 100%;\n    max-width: 700px;\n}\n#energy-assets td[data-v-615f2648]:first-child, #household-data td[data-v-615f2648]:first-child{\n    width:280px\n}\ntable.heaters[data-v-615f2648]{\n    width:350px;\n}\ntable.heaters td[data-v-615f2648]{\n    border:none;\n    width:300px;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-615f2648]{\n    width:100px;\n    display:inline-block;\n}\n", ""]);
 
 // exports
 
@@ -39052,6 +39052,8 @@ exports.push([module.i, "\n.red[data-v-615f2648]{\n    color:red;\n}\nselect[dat
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(38);
+//
+//
 //
 //
 //

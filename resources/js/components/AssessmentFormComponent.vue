@@ -197,8 +197,8 @@
         </tr>
 
         <tr><td>Have you got a smart meter?</td><td><input type="radio" name="smartMeter" value="Yes" v-model="assessment.data.smartMeter"  /> Yes <input type="radio" name="smartMeter" value="No" v-model="assessment.data.smartMeter" checked /> No</td></tr></tr>
-        
-        
+
+
         </table>
     </div>
 </template>
@@ -240,8 +240,10 @@
         padding-bottom:0;
         padding-left:0;
         height:15px
-    }
-    table.heaters td:first-child{
+    }    
+    input[type=number]{
+        width:100px;
+        display:inline-block;
     }
 </style>
 

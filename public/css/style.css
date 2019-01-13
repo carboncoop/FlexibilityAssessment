@@ -41,7 +41,7 @@
 
 #nav-bar .menu-text{
     display:inline-block;
-    margin-left: 25px
+    margin-left: 25px;
 }
 
 h1, h2, h3{
@@ -57,32 +57,9 @@ h2{
 }
 
 
-#content table input[type=number]{
-    width:75px;
-    margin-top:5px;
-}
 
-#report{
-    text-align:center
-}
-#report div{
-    text-align:left;
-    display:inline-block;
-    border: solid 1px lightgrey;
-    padding:25px;
-    margin:10px;
-    width:350px;
-}
+
 hr{
     border-color: #ff2712
 }
 
-#assessments #content{
-    max-width:840px;
-    font-size:14px
-}
-
-
-#assessments #content td{
-    padding-left:12px;
-}
