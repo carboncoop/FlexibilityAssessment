@@ -38874,7 +38874,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n#assessment-side-menu[data-v-7ee538c0]{\n    width: 200px;\n}\n#assessment-form[data-v-7ee538c0], #assessment-report[data-v-7ee538c0], #assessment-questionnaire[data-v-7ee538c0]{\n    margin-left:200px\n}\n", ""]);
+exports.push([module.i, "\n#assessment[data-v-7ee538c0]{\n    min-height:300px\n}\n#assessment-side-menu[data-v-7ee538c0]{\n    width: 200px;\n}\n#assessment-form[data-v-7ee538c0], #assessment-report[data-v-7ee538c0], #assessment-questionnaire[data-v-7ee538c0]{\n    margin-left:200px\n}\n", ""]);
 
 // exports
 
@@ -38895,6 +38895,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AssessmentQuestionnaireComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__AssessmentReportFeedbackComponent__);
+//
+//
+//
 //
 //
 //
@@ -42155,15 +42158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: { initialAssessment: Object }
-  /* watch: {
-   initialAssessment: {
-   deep: true,
-   handler: function () {
-   this.assessment = this.initialAssessment;
-   }
-   }
-   }*/
+    props: { initialAssessment: Object }
 });
 
 /***/ }),
@@ -42174,13 +42169,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "assessment-report" } }, [
-    _c("h1", [_vm._v("Flexibility assessment report")]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.initialAssessment.name))])
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "assessment-report" } }, [
+      _c("h1", [_vm._v("Flexibility assessment report")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

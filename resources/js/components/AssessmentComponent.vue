@@ -9,6 +9,9 @@
 </template>
 
 <style scoped>    
+    #assessment{
+        min-height:300px
+    }
     #assessment-side-menu{
         width: 200px;
     }
