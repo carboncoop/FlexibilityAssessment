@@ -20,6 +20,7 @@ Install javascript dependencies `npm install --production`
 
 Configure your environment variables by copying .env.example into .env (follow the content)
 
+Generate the application key `php artisan key:generate`
 
 
 ##Installation - Development
@@ -33,3 +34,5 @@ Install laravel dependencies: `composer install`
 Install javascript dependencies `npm install`
 
 Configure your environment variables by copying .env.example into .env (follow the content)
+
+Generate the application key `php artisan key:generate`
