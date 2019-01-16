@@ -9,6 +9,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 ##Installation - Production
 
 Clone this repository `git clone https://github.com/carboncoop/FlexibilityAssessment.git installation_directory`
@@ -17,5 +18,18 @@ Install laravel dependencies: `composer install --no-dev`
 
 Install javascript dependencies `npm install --production`
 
-Configure you environment variables
+Configure your environment variables by copying .env.example into .env (follow the content)
 
+
+
+##Installation - Development
+
+Comes with Telescope for debugging and Dusk for tests.
+
+Clone this repository `git clone https://github.com/carboncoop/FlexibilityAssessment.git installation_directory`
+
+Install laravel dependencies: `composer install`
+
+Install javascript dependencies `npm install`
+
+Configure your environment variables by copying .env.example into .env (follow the content)
