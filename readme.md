@@ -22,6 +22,9 @@ Configure your environment variables by copying .env.example into .env (follow t
 
 Generate the application key `php artisan key:generate`
 
+Migrate database `php artisan migrate`
+
+
 
 ##Installation - Development
 
@@ -36,3 +39,5 @@ Install javascript dependencies `npm install`
 Configure your environment variables by copying .env.example into .env (follow the content)
 
 Generate the application key `php artisan key:generate`
+
+Migrate database `php artisan migrate`
