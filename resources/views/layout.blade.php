@@ -16,8 +16,8 @@
     <body>
         <div id="nav-bar">
             <img class="logo" src="{{asset('img/carboncoop-logo.png')}}" />
-            <p class="menu-text">Flexibility Home Assessment</p>
-            <a href="/assessment">Assessments</a>          
+            <p class="menu-text"><a href="/">Flexibility Home Assessment</a></p>
+            <p class="menu-navigation"><a href="/assessment">Assessments</a></p>          
         </div>
         <div id="page">
             <div id="content" class='container'>
