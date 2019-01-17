@@ -52,9 +52,11 @@
 <!-- HTML -->
 <div>
     <div id='how-could-I-benefit-from-flexibility'>
+        
         <h1>Scotland Flexibility Potential Map</h1>
-        <p><span class="red">Intro text??</span></p>
-
+        
+        <p>As part of this tool we have developed <a href="/"> this interactive map</a> to show the potential flexibility in Scotland by postcode.</p>
+        
         <div id="mapid" style="height: 800px;width: 800px;"></div>
 
     </div>

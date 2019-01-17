@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/more-about-the-project', function () {
+    return view('more-about-the-project');
+});
+
 Route::get('/how-could-I-benefit-from-flexibility', function () {
     return view('how-could-I-benefit-from-flexibility');
 });
