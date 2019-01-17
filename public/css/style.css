@@ -53,6 +53,10 @@
     margin-left: 25px;
 }
 
+#nav-bar{
+    z-index:2
+}
+
 h1, h2, h3{
     color:#ff2712;
 }

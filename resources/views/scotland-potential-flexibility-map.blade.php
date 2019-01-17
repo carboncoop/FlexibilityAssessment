@@ -1,4 +1,4 @@
-ls @extends('layout')
+@extends('layout')
 
 @section('title', "Scotland Flexibility Potential Map" )
 
@@ -30,6 +30,9 @@ ls @extends('layout')
     }
     .red{
         color: red;
+    }
+    #mapid{
+        z-index:1
     }
 </style>
 
@@ -76,7 +79,7 @@ ls @extends('layout')
             /*******
              * Add info box (top right)
              *********/
-            
+
             var info = L.control();
 
             info.onAdd = function (map) {
@@ -124,7 +127,7 @@ ls @extends('layout')
             /*******
              * Add map layers
              *********/
-             
+
             mymap.createPane('labels');
             mymap.getPane('labels').style.zIndex = 650;
             mymap.getPane('labels').style.pointerEvents = 'none';
@@ -146,7 +149,7 @@ ls @extends('layout')
             /*******
              * Fill up map
              *********/
-             
+
             geojson = L.geoJSON(data, {style: style, onEachFeature: onEachFeature}).addTo(mymap);
 
 
