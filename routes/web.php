@@ -33,6 +33,11 @@ Route::get('/scotland-potential-flexibility-map', function () {
 
 Route::resource('assessment', 'AssessmentController')->only(['index','edit']);
 
-Auth::routes();
+if(config('app.registration_enabled') == false){
+    Auth::routes(['register' => false]);
+}
+else{
+    Auth::routes();
+}
 
 Route::get('/home', 'HomeController@index')->name('home');
