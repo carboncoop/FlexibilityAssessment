@@ -1,8 +1,7 @@
 @extends('layout')
 
-@section('title', 'Home' )
-
 @section('content')
+
 <style>
 
     #home #navigation-buttons{
@@ -26,10 +25,10 @@
     #home button a:hover{    
         text-decoration:none
     }
-    
+
 </style>
 
-<div id="app">
+
     <div id='home'>
 
         <h1>Energy Community Aggregation Service (ECAS) research project</h1>
@@ -51,5 +50,5 @@
         </div>
 
     </div>
-</div>
+
 @endsection

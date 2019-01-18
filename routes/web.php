@@ -32,3 +32,7 @@ Route::get('/scotland-potential-flexibility-map', function () {
 });
 
 Route::resource('assessment', 'AssessmentController')->only(['index','edit']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
