@@ -39,5 +39,3 @@ if(config('app.registration_enabled') == false){
 else{
     Auth::routes();
 }
-
-Route::get('/home', 'HomeController@index')->name('home');
