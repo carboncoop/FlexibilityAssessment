@@ -10013,7 +10013,7 @@ var autoReplace = function autoReplace() {
 /* unused harmony export faPuzzlePiece */
 /* unused harmony export faQrcode */
 /* unused harmony export faQuestion */
-/* unused harmony export faQuestionCircle */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faQuestionCircle; });
 /* unused harmony export faQuidditch */
 /* unused harmony export faQuoteLeft */
 /* unused harmony export faQuoteRight */
@@ -10194,7 +10194,7 @@ var autoReplace = function autoReplace() {
 /* unused harmony export faTrain */
 /* unused harmony export faTransgender */
 /* unused harmony export faTransgenderAlt */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return faTrash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return faTrash; });
 /* unused harmony export faTrashAlt */
 /* unused harmony export faTree */
 /* unused harmony export faTrophy */
@@ -14771,12 +14771,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 window.Vue = __webpack_require__(79);
 window.axios = __webpack_require__(82);
 
-// FontAwesome icons - only the ones use
+// FontAwesome icons - only the ones used. Find all here: https://fontawesome.com/cheatsheet
 
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__["c" /* library */].add(__WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__["b" /* faTrash */], __WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__["a" /* faEdit */]);
+
+__WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__["c" /* library */].add(__WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__["c" /* faTrash */], __WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__["a" /* faEdit */], __WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__["b" /* faQuestionCircle */]);
 
 // BoostrapVue
 

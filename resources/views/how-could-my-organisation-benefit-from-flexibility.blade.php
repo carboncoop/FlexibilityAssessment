@@ -44,8 +44,12 @@
 
         <h2>Do you want to sign up to be a local test 'aggregator' organisation? </h2>
         <p>As for individual households, community groups cannot actually sign up to be a local aggregator organisation for real yet, but we are looking for community groups willing to test a potential future system as part of this project. </p>
-        <p>Register here: <span style="color:red"> hyperlink to data capture function for the community group (i.e. link to the platform database for the community aggregator role – securing info on name of community group; main contact person, their contact details; postcode zone(s) they cover as an organisation, etc) </span></p>
-        <p>If you want more information than is available below, before signing up, please contact <b><a href="mailto:Gillian.wilson@communityenergyscotland.org.uk"> Community Energy Scotland</a></b></p>
+        @if (Route::has('register'))
+        <p><a href="{{ route('register') }}">Register your organisation here</a> and get access to the platform</p>
+        <p>If you want more information than is available below, before signing up, please contact <a href="mailto:Gillian.wilson@communityenergyscotland.org.uk"> Community Energy Scotland</a></p>
+        @else
+        <p>Registration for new organisations is closed but if you want to show your interest, please get in contact with <a href="mailto:Gillian.wilson@communityenergyscotland.org.uk"> Community Energy Scotland</a></p>
+        @endif
 
         <h2>DEMONSTRATION PROJECT RESOURCES for Community organisations</h2>
         <p style="color:red">(links to key project documents including the flyer for households –to be written by South Seeds)</p>
