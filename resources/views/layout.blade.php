@@ -32,7 +32,7 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" id="login-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
                             @if (Route::has('register'))
@@ -60,7 +60,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" title="remove when dropdown on the user's name works" href="{{ route('logout') }}"
+                            <a class="nav-link" id="logout-link" title="remove when dropdown on the user's name works" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

@@ -1,4 +1,6 @@
 @extends('layout')
+@section('title', "Login" )
+
 
 @section('content')
 <div class="container">
@@ -8,7 +10,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" id="login-form" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">

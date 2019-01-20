@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', "Register" )
+
 @section('content')
 <div id="app">
     <div class="container">
@@ -9,7 +11,7 @@
                     <div class="card-header">{{ __('Register a new Community Group') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" id="registration-form" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -91,7 +93,7 @@
                             </div>     
 
                             <div class="form-group row">
-                                <label for="postcode" class="col-md-4 col-form-label text-md-right">{{ __('Postcode zone(s)*') }}</label>
+                                <label for="postcode" class="col-md-4 col-form-label text-md-right">{{ __('Postcode*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="postcode" type="text" class="form-control{{ $errors->has('postcode') ? ' is-invalid' : '' }}" name="postcode" value="{{ old('postcode') }}" required>
