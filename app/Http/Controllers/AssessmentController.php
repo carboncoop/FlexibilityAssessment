@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\assessment;
+use App\Assessment;
 use Illuminate\Http\Request;
 
 class AssessmentController extends Controller {
@@ -59,7 +59,7 @@ class AssessmentController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  \App\assessment  $assessment
+     * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
@@ -69,7 +69,7 @@ class AssessmentController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\assessment  $assessment
+     * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
@@ -80,7 +80,7 @@ class AssessmentController extends Controller {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\assessment  $assessment
+     * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {         
@@ -107,7 +107,7 @@ class AssessmentController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\assessment  $assessment
+     * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
