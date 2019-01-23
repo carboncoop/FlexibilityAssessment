@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Assessment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,9 +14,8 @@ class AssessmentController extends Controller {
      *
      * @return void
      */
-    public function __construct()
-    {
-
+    public function __construct() {
+        
     }
 
     /**
@@ -24,8 +24,8 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $assessments = Assessment::all();
-        return view('assessments.list', compact('assessments'));
+        $assessments = Auth::user()->assessments;
+       return view('assessments.list', compact('assessments'));
     }
 
     /**
@@ -48,14 +48,14 @@ class AssessmentController extends Controller {
             'name' => 'required|unique:assessments|max:255',
             'description' => 'max:1000'
         ]);
-        
+
         $assessment = new Assessment;
         $assessment->name = $request->name;
         $assessment->description = $request->description;
         $assessment->data = $request->data;
         $assessment['owner_id'] = Auth::user()->id;
         $assessment->save();
-        
+
         return response($assessment, 200);
     }
 
@@ -76,7 +76,11 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return view('assessments.assessment', ['assessment' => assessment::find($id)]);
+        $assessment = Assessment::findOrFail($id);
+        if ($assessment->owner_id == Auth::user()->id)
+            return view('assessments.assessment', ['assessment' => assessment::find($id)]);
+        else
+            abort(401, "You are not allowed to edit this assessment");
     }
 
     /**
@@ -87,6 +91,11 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+
+        $assessment = Assessment::findOrFail($id);
+        if ($assessment->owner_id != Auth::user()->id)
+            abort(401, "You are not allowed to edit this assessment");
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'max:1000'
@@ -114,6 +123,11 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+
+        $assessment = Assessment::findOrFail($id);
+        if ($assessment->owner_id != Auth::user()->id)
+            abort(401, "You are not allowed to edit this assessment");
+
         Assessment::destroy($id);
 
         return response(null, 200);

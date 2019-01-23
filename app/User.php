@@ -34,7 +34,7 @@ class User extends Authenticatable {
      * Get the assessments associated with the user.
      */
     public function assessments() {
-        return $this->hasMany('App\Assessment');
+        return $this->hasMany('App\Assessment', 'owner_id');
     }
 
     /**
