@@ -17,7 +17,10 @@ class CreateAssessmentsTable extends Migration {
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->mediumText('data');
+            $table->integer('owner_id')->unsigned();
             $table->timestamps();
+            
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

@@ -18,11 +18,6 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faTrash, faEdit, faQuestionCircle);
 
-// BoostrapVue
-import BootstrapVue from 'bootstrap-vue';
-Vue.use(BootstrapVue);
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-
 
 /**
  * Register components

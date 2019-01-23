@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Assessment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssessmentController extends Controller {
-    
+
     /**
      * Create a new controller instance.
      *
@@ -47,12 +48,14 @@ class AssessmentController extends Controller {
             'name' => 'required|unique:assessments|max:255',
             'description' => 'max:1000'
         ]);
-
+        
         $assessment = new Assessment;
         $assessment->name = $request->name;
         $assessment->description = $request->description;
         $assessment->data = $request->data;
-        dump($assessment->save());
+        $assessment['owner_id'] = Auth::user()->id;
+        $assessment->save();
+        
         return response($assessment, 200);
     }
 
@@ -83,12 +86,12 @@ class AssessmentController extends Controller {
      * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {         
+    public function update(Request $request, $id) {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'max:1000'
         ]);
-        
+
         // Check if we are changing the name and already exist
         $assessment = Assessment::where('name', $request->name)->get()->first();
         if (is_null($assessment) == false) {

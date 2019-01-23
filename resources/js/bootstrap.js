@@ -1,17 +1,28 @@
-window._ = require('lodash');
+/**************
+/* Because we are using bootstrap-vue we don't need to lodash
+ * 
+ */
+//window._ = require('lodash');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
+ * 
  */
 
-try {
-    window.Popper = require('popper.js').default;
+// We use bootstrap-vue instead of bootstrap
+/*try {
+   window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) {}*/
+    
+    import BootstrapVue from 'bootstrap-vue';
+    Vue.use(BootstrapVue);
+    import 'bootstrap-vue/dist/bootstrap-vue.css';
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -20,7 +31,6 @@ try {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
