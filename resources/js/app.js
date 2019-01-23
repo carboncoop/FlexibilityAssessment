@@ -8,35 +8,25 @@
 //require('./bootstrap');
 
 window.Vue = require('vue');
-window.axios = require('axios');
+require('./bootstrap');
 
-// FontAwesome icons - only the ones use
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faTrash, faEdit);
+// FontAwesome icons - only the ones used. Find all here: https://fontawesome.com/cheatsheet
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faTrash, faEdit, faQuestionCircle);
 
-// BoostrapVue
-import BootstrapVue from 'bootstrap-vue';
-Vue.use(BootstrapVue);
-//import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Register components
  */
 
 Vue.component('assessments-table', require('./components/AssessmentsTableComponent.vue'));
 Vue.component('assessment', require('./components/AssessmentComponent.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
- 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

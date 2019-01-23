@@ -11,11 +11,20 @@ class AssessmentsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             DB::table('assessments')->insert([
                 'name' => "Assessment " . $i,
                 'description' => 'No desc',
-                'data' => '{}'
+                'data' => '{}',
+                'owner_id'=> 1
+            ]);
+        }
+        for ($i = 1; $i < 5; $i++) {
+            DB::table('assessments')->insert([
+                'name' => "Assessment " . $i,
+                'description' => 'No desc',
+                'data' => '{}',
+                'owner_id'=> 2
             ]);
         }
     }

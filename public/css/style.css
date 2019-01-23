@@ -9,7 +9,6 @@
     padding:35px;
     width:90%;
     max-width:1180px;
-    margin-top: 60px;
 }
 
 #footer {
@@ -25,35 +24,14 @@
     height: 125px;
 }
 
-#nav-bar{
-    margin: 0px 0px 0;
-    position:fixed;
-    width:100%;
-    background: white;
-    top: 0;
-    padding: 10px 50px;
-}
-
-#nav-bar .logo{
+.navbar .logo{
     height: 30px;           
+    margin-right:25px;
 }
 
-#nav-bar .menu-navigation{
-    float: right;
-    margin-right: 30px;
-    color:black;
-}
 
-#nav-bar a{
-    color:black;
-}
 
-#nav-bar .menu-text{
-    display:inline-block;
-    margin-left: 25px;
-}
-
-#nav-bar{
+.navbar{
     z-index:2
 }
 
