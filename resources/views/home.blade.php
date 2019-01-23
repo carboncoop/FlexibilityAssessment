@@ -29,7 +29,6 @@
 
 </style>
 
-
     <div id='home'>
 
         <h1>Energy Community Aggregation Service (ECAS) research project</h1>

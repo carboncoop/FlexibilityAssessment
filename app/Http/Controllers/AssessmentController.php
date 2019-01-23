@@ -14,7 +14,7 @@ class AssessmentController extends Controller {
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -52,7 +52,7 @@ class AssessmentController extends Controller {
         $assessment->name = $request->name;
         $assessment->description = $request->description;
         $assessment->data = $request->data;
-        $assessment->save();
+        dump($assessment->save());
         return response($assessment, 200);
     }
 
