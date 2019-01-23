@@ -18,11 +18,12 @@ class CreateOrganisationsTable extends Migration
             $table->timestamps();
             $table->string('name')->unique();
             $table->string('email')->unique();
+            $table->string('postcode_zones');
             $table->string('telephone');
             $table->string('address1');
             $table->string('address2')->nullable();
-            $table->string('postcode_zones');
             $table->string('city_town');
+            $table->string('postcode');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateAssessmentsTable extends Migration {
     public function up() {
         Schema::create('assessments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->text('description')->nullable();
             $table->mediumText('data');
             $table->integer('owner_id')->unsigned();
