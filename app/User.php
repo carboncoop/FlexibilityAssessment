@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
 
-    use HasApiTokens, Notifiable;
+    use HasApiTokens,
+        Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,5 +29,19 @@ class User extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the assessments associated with the user.
+     */
+    public function assessments() {
+        return $this->hasMany('App\Assessment');
+    }
+
+    /**
+     * Get the organisation the user belongs to
+     */
+    public function organisation() {
+        return $this->belongsTo('App\Organisation');
+    }
 
 }

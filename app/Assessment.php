@@ -10,4 +10,11 @@ class Assessment extends Model {
         'data' => 'object'
     ];
 
+     /**
+     * Get the user that owns the assessment.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

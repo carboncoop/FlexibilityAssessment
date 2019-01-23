@@ -15,4 +15,12 @@ class Organisation extends Model
         'name', 'email', 'telephone', 'address1','address2','postcode_zones', 'postcode', 'city_town', 'organisation_id'
     ];
     
+     /**
+     * Get the users associated with the organisation.
+     */
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
+    
 }
