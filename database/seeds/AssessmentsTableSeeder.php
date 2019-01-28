@@ -14,7 +14,7 @@ class AssessmentsTableSeeder extends Seeder {
         for ($i = 1; $i < 5; $i++) {
             DB::table('assessments')->insert([
                 'name' => "Assessment " . $i,
-                'description' => 'No desc',
+                'description' => 'Owner = 1',
                 'data' => '{}',
                 'owner_id'=> 1
             ]);
@@ -22,7 +22,7 @@ class AssessmentsTableSeeder extends Seeder {
         for ($i = 1; $i < 5; $i++) {
             DB::table('assessments')->insert([
                 'name' => "Assessment " . $i,
-                'description' => 'No desc',
+                'description' => 'Owner = 2',
                 'data' => '{}',
                 'owner_id'=> 2
             ]);

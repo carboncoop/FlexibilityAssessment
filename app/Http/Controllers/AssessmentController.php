@@ -25,7 +25,7 @@ class AssessmentController extends Controller {
      */
     public function index() {
         $assessments = Auth::user()->assessments;
-       return view('assessments.list', compact('assessments'));
+        return view('assessments.list', compact('assessments'));
     }
 
     /**
@@ -77,10 +77,9 @@ class AssessmentController extends Controller {
      */
     public function edit($id) {
         $assessment = Assessment::findOrFail($id);
-        if ($assessment->owner_id == Auth::user()->id)
-            return view('assessments.assessment', ['assessment' => assessment::find($id)]);
-        else
-            abort(401, "You are not allowed to edit this assessment");
+
+        if ($this->authorize('view', $assessment))
+            return view('assessments.assessment', ['assessment' => $assessment]);
     }
 
     /**
@@ -93,7 +92,7 @@ class AssessmentController extends Controller {
     public function update(Request $request, $id) {
 
         $assessment = Assessment::findOrFail($id);
-        if ($assessment->owner_id != Auth::user()->id)
+        if (!$this->authorize('update', $assessment))
             abort(401, "You are not allowed to edit this assessment");
 
         $validatedData = $request->validate([
@@ -125,8 +124,8 @@ class AssessmentController extends Controller {
     public function destroy($id) {
 
         $assessment = Assessment::findOrFail($id);
-        if ($assessment->owner_id != Auth::user()->id)
-            abort(401, "You are not allowed to edit this assessment");
+        if (!$this->authorize('delete', $assessment))
+            abort(401, "You are not allowed to delete this assessment");
 
         Assessment::destroy($id);
 

@@ -1,10 +1,18 @@
 <?php
 
+/****************
+ * 
+ * This test relay on the existance on the organisations, users and assessments defeined in the Seeders (AssessmentsTableSeeders, OrganisationsTableSeeders and UsersTableSeeders) 
+ * 
+ */
+
+
 namespace Tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\Browser\Pages\AssessmentsList;
 use Tests\Browser\Pages\Assessment;
@@ -13,6 +21,7 @@ use Tests\Browser\Pages\Login;
 
 class FlexibilityAssessmentTest extends DuskTestCase {
     
+    use RefreshDatabase;
     
     /**
      * Register an organisation and user
