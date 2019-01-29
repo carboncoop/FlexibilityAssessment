@@ -24,7 +24,16 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $assessments = Auth::user()->assessments;
+        if (Auth::user()->role !== "administrator")
+            $assessments = Auth::user()->assessments;
+        else {
+            $assessments = collect();
+            foreach (Auth::user()->organisation->users as $user) {
+                $assessments = $assessments->concat($user->assessments);
+            }
+        }
+
+
         return view('assessments.list', compact('assessments'));
     }
 
