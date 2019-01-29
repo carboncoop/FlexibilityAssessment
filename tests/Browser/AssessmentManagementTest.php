@@ -1,12 +1,5 @@
 <?php
 
-/****************
- * 
- * This test relay on the existance on the organisations, users and assessments defeined in the Seeders (AssessmentsTableSeeders, OrganisationsTableSeeders and UsersTableSeeders) 
- * 
- */
-
-
 namespace Tests\Browser;
 
 use Tests\DuskTestCase;
@@ -19,44 +12,16 @@ use Tests\Browser\Pages\Assessment;
 use Tests\Browser\Pages\Register;
 use Tests\Browser\Pages\Login;
 
-class FlexibilityAssessmentTest extends DuskTestCase {
+class AssessmentManagementTest extends DuskTestCase {
     
     use RefreshDatabase;
-    
-    /**
-     * Register an organisation and user
-     *
-     * @return void
-     */
-    public function testOrganisationRegistration() {
-        $this->browse(function (Browser $browser) {
-            $name = 'test organization name ' . rand();
-            $email = 'test_org_email' . rand() . '@flexibility.org';
-            $contactPerson = 'test contact person ' . rand();
-            $contactPersonEmail = 'contact_person_email' . rand() . '@flexibility.org';
-            $password = rand();
-
-            $browser->visit(new Register)
-                    ->registerOrganisation($name, $email, "07777777777", "postcode zones", "address 1", "address 2", "postcode", "town_city", $contactPerson, $contactPersonEmail, $password)
-                    ->assertPathIs('/assessment')
-                    ->click('#logout-link');
-
-            $browser->click('#login-link')
-                    ->on(new Login)
-                    ->logUserIn($contactPersonEmail, $password)
-                    ->assertPathIs('/assessment')
-                    ->click('#logout-link');
-        });
-    }    
-
-    
     
     /**
      * Test creation and deletion of assessments
      *
      * @return void
      */
-    public function testAssessmentManagement() {
+    public function testAssessmentCreationDeletionOfAssessment() {
         $this->browse(function (Browser $browser) {
             $name = 'test assessment name ' . rand();
             $browser->visit(new AssessmentsList)
