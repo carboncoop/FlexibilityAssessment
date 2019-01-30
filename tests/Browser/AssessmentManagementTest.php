@@ -4,8 +4,6 @@ namespace Tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\Browser\Pages\AssessmentsList;
 use Tests\Browser\Pages\Assessment;
@@ -13,9 +11,7 @@ use Tests\Browser\Pages\Register;
 use Tests\Browser\Pages\Login;
 
 class AssessmentManagementTest extends DuskTestCase {
-    
-    use RefreshDatabase;
-    
+        
     /**
      * Test creation and deletion of assessments
      *

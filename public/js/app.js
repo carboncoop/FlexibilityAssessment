@@ -39378,6 +39378,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
+
         if (this.assessment.data.household == undefined) {
             Vue.set(this.assessment.data, 'household', {});
         }
@@ -39471,7 +39472,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text" },
+            attrs: { type: "text", name: "address1" },
             domProps: { value: _vm.assessment.data.household.address1 },
             on: {
               input: function($event) {
