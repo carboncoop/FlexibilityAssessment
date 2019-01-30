@@ -16,10 +16,6 @@ use Tests\Browser\Pages\Register;
 use Tests\Browser\Pages\Login;
 use App\Assessment as AssessmentModel;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Laravel\Passport\Passport;
 
 class AuthorisationTest extends DuskTestCase {
 
