@@ -75,6 +75,7 @@ use RegistersUsers;
                     'postcode_zones' => $data['postcode_zones'],
                     'address1' => $data['address1'],
                     'address2' => $data['address2'],
+                    'postcode' => $data['postcode'],
                     'city_town' => $data['city_town']
         ]);
 
