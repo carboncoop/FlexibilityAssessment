@@ -7,21 +7,21 @@
         <h2>Platform feedback</h2>
 
         <p class="question">What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?
-            <select class="form-control" v-model="assessment.data.mostUsefulInformation">
+            <select class="form-control" v-model="assessment.data.questionnaire.mostUsefulInformation">
                 <option v-for="(section, index) in sectionsInIntro" v-bind:value="section">{{section}}</option>
                 <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
 
         <p class="question">What was the least useful information?
-            <select class="form-control" v-model="assessment.data.leastUsefulInformation">
+            <select class="form-control" v-model="assessment.data.questionnaire.leastUsefulInformation">
                 <option v-for="(section, index) in sectionsInIntro" v-bind:value="section">{{section}}</option>
                 <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
 
         <p class="question">Do you feel you have enough information to help you decide about whether you would sign up for a flexibility agreement?
-            <select class="form-control" v-model="assessment.data.enoughInformationToDecide">
+            <select class="form-control" v-model="assessment.data.questionnaire.enoughInformationToDecide">
                 <option value="1- Not at all">1- Not at all</option>
                 <option value="2- Not enough">2- Not enough</option>
                 <option value="3- Nearly enough">3- Nearly enough</option>
@@ -34,16 +34,16 @@
 
         <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important) <span class="red">Data doesn't get saved. Needs fixing</span>
         <ol v-drag-and-drop:options="sortableLIstOptions">
-            <li v-text="assessment.data.signupPriorities[0]"></li>
-            <li v-text="assessment.data.signupPriorities[1]"></li>
-            <li v-text="assessment.data.signupPriorities[2]"></li>
-            <li v-text="assessment.data.signupPriorities[3]"></li>
-            <li v-text="assessment.data.signupPriorities[4]"></li>
+            <li v-text="assessment.data.questionnaire.signupPriorities[0]"></li>
+            <li v-text="assessment.data.questionnaire.signupPriorities[1]"></li>
+            <li v-text="assessment.data.questionnaire.signupPriorities[2]"></li>
+            <li v-text="assessment.data.questionnaire.signupPriorities[3]"></li>
+            <li v-text="assessment.data.questionnaire.signupPriorities[4]"></li>
         </ol>
         </p>
 
         <p>How much money would you need from a Flexibility Agreement before you felt that it was worth signing up?
-            <select class="form-control" v-model="assessment.data.howMuchMoneyToSignUp">
+            <select class="form-control" v-model="assessment.data.questionnaire.howMuchMoneyToSignUp">
                 <option value="More than £200 per year">More than £200 per year</option>
                 <option value="£200 per year">£200 per year</option>
                 <option value="£100 per year">£100 per year</option>
@@ -53,7 +53,7 @@
         </p>
 
         <p>Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply - <span class="red">link to tenure??</span> - <span class="red">Also in the spreadsheet this questions was shaded, was there a reason for that?</span>)
-            <select class="form-control" v-model="assessment.data.preparedToPayUpfront">
+            <select class="form-control" v-model="assessment.data.questionnaire.preparedToPayUpfront">
                 <option value="No - I wouldn't pay anything upfront">No - I wouldn't pay anything upfront</option>
                 <option value="Yes - I would consider paying upfront to join, if it meant I got more back from the scheme">Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</option>
                 <option value="Yes - I would consider upgrading to new smart heaters so I could join">Yes - I would consider upgrading to new smart heaters so I could join</option>
@@ -62,15 +62,15 @@
 
         <p>How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important) <span class="red">Data doesn't get saved. Needs fixing</span>
         <ol v-drag-and-drop:options="sortableLIstOptions">
-            <li v-text="assessment.data.puttingMeOffRating[0]"></li>
-            <li v-text="assessment.data.puttingMeOffRating[1]"></li>
-            <li v-text="assessment.data.puttingMeOffRating[2]"></li>
+            <li v-text="assessment.data.questionnaire.puttingMeOffRating[0]"></li>
+            <li v-text="assessment.data.questionnaire.puttingMeOffRating[1]"></li>
+            <li v-text="assessment.data.questionnaire.puttingMeOffRating[2]"></li>
         </ol>
         </p>
 
         <h2>Other feedback</h2>
         <p>Is there anything else you want to share
-            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.anythingElseToShareQuestionnaire" />
+            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.questionnaire.anythingElseToShareQuestionnaire" />
         </p>
     </div>
 </template>
@@ -128,23 +128,25 @@
                 }
             };
         },
-        created: function () {
-
-            if (this.assessment.data.signupPriorities == undefined)
-                this.assessment.data.signupPriorities = [
+        created: function () {            
+            
+            if (this.assessment.data.questionnaire == undefined) {
+                Vue.set(this.assessment.data, 'questionnaire', {});
+                
+                 this.assessment.data.questionnaire.signupPriorities = [
                     'The rewards offered (£)',
                     'A Community / Not for Profit provider ',
                     'The reduction in my carbon footprint ',
                     'The opportunity to learn more about my energy system',
                     'Being part of a group working with sustainable technology?'
                 ];
-
-            if (this.assessment.data.puttingMeOffRating == undefined)
-                this.assessment.data.puttingMeOffRating = [
+                
+                  this.assessment.data.questionnaire.puttingMeOffRating = [
                     'If I had to change how I control my heaters',
                     'If I had to buy new heaters',
                     'If I needed my landlord\'s permission'
                 ];
+            }
 
         }
     }

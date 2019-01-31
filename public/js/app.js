@@ -42476,9 +42476,13 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
     },
     created: function created() {
 
-        if (this.assessment.data.signupPriorities == undefined) this.assessment.data.signupPriorities = ['The rewards offered (£)', 'A Community / Not for Profit provider ', 'The reduction in my carbon footprint ', 'The opportunity to learn more about my energy system', 'Being part of a group working with sustainable technology?'];
+        if (this.assessment.data.questionnaire == undefined) {
+            Vue.set(this.assessment.data, 'questionnaire', {});
 
-        if (this.assessment.data.puttingMeOffRating == undefined) this.assessment.data.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
+            this.assessment.data.questionnaire.signupPriorities = ['The rewards offered (£)', 'A Community / Not for Profit provider ', 'The reduction in my carbon footprint ', 'The opportunity to learn more about my energy system', 'Being part of a group working with sustainable technology?'];
+
+            this.assessment.data.questionnaire.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
+        }
     }
 });
 
@@ -43228,8 +43232,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.mostUsefulInformation,
-              expression: "assessment.data.mostUsefulInformation"
+              value: _vm.assessment.data.questionnaire.mostUsefulInformation,
+              expression: "assessment.data.questionnaire.mostUsefulInformation"
             }
           ],
           staticClass: "form-control",
@@ -43244,7 +43248,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.questionnaire,
                 "mostUsefulInformation",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43277,8 +43281,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.leastUsefulInformation,
-              expression: "assessment.data.leastUsefulInformation"
+              value: _vm.assessment.data.questionnaire.leastUsefulInformation,
+              expression: "assessment.data.questionnaire.leastUsefulInformation"
             }
           ],
           staticClass: "form-control",
@@ -43293,7 +43297,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.questionnaire,
                 "leastUsefulInformation",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43328,8 +43332,10 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.enoughInformationToDecide,
-              expression: "assessment.data.enoughInformationToDecide"
+              value:
+                _vm.assessment.data.questionnaire.enoughInformationToDecide,
+              expression:
+                "assessment.data.questionnaire.enoughInformationToDecide"
             }
           ],
           staticClass: "form-control",
@@ -43344,7 +43350,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.questionnaire,
                 "enoughInformationToDecide",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43395,31 +43401,41 @@ var render = function() {
         [
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.signupPriorities[0])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.signupPriorities[0]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.signupPriorities[1])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.signupPriorities[1]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.signupPriorities[2])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.signupPriorities[2]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.signupPriorities[3])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.signupPriorities[3]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.signupPriorities[4])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.signupPriorities[4]
+              )
             }
           })
         ]
@@ -43437,8 +43453,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.howMuchMoneyToSignUp,
-              expression: "assessment.data.howMuchMoneyToSignUp"
+              value: _vm.assessment.data.questionnaire.howMuchMoneyToSignUp,
+              expression: "assessment.data.questionnaire.howMuchMoneyToSignUp"
             }
           ],
           staticClass: "form-control",
@@ -43453,7 +43469,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.questionnaire,
                 "howMuchMoneyToSignUp",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43503,8 +43519,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.preparedToPayUpfront,
-              expression: "assessment.data.preparedToPayUpfront"
+              value: _vm.assessment.data.questionnaire.preparedToPayUpfront,
+              expression: "assessment.data.questionnaire.preparedToPayUpfront"
             }
           ],
           staticClass: "form-control",
@@ -43519,7 +43535,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.questionnaire,
                 "preparedToPayUpfront",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43590,19 +43606,25 @@ var render = function() {
         [
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[0])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.puttingMeOffRating[0]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[1])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.puttingMeOffRating[1]
+              )
             }
           }),
           _vm._v(" "),
           _c("li", {
             domProps: {
-              textContent: _vm._s(_vm.assessment.data.puttingMeOffRating[2])
+              textContent: _vm._s(
+                _vm.assessment.data.questionnaire.puttingMeOffRating[2]
+              )
             }
           })
         ]
@@ -43618,14 +43640,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.anythingElseToShareQuestionnaire,
-            expression: "assessment.data.anythingElseToShareQuestionnaire"
+            value:
+              _vm.assessment.data.questionnaire
+                .anythingElseToShareQuestionnaire,
+            expression:
+              "assessment.data.questionnaire.anythingElseToShareQuestionnaire"
           }
         ],
         staticStyle: { display: "block" },
         attrs: { rows: "4", cols: "75" },
         domProps: {
-          value: _vm.assessment.data.anythingElseToShareQuestionnaire
+          value:
+            _vm.assessment.data.questionnaire.anythingElseToShareQuestionnaire
         },
         on: {
           input: function($event) {
@@ -43633,7 +43659,7 @@ var render = function() {
               return
             }
             _vm.$set(
-              _vm.assessment.data,
+              _vm.assessment.data.questionnaire,
               "anythingElseToShareQuestionnaire",
               $event.target.value
             )
@@ -43817,7 +43843,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]]
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
+    created: function created() {
+        if (this.assessment.data.reportFeedback == undefined) {
+            Vue.set(this.assessment.data, 'reportFeedback', {});
+        }
+    }
 });
 
 /***/ }),
@@ -43844,8 +43875,9 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.flexibilityOfferChosen,
-              expression: "assessment.data.flexibilityOfferChosen"
+              value: _vm.assessment.data.reportFeedback.flexibilityOfferChosen,
+              expression:
+                "assessment.data.reportFeedback.flexibilityOfferChosen"
             }
           ],
           staticClass: "form-control",
@@ -43860,7 +43892,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.reportFeedback,
                 "flexibilityOfferChosen",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43884,20 +43916,22 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.whatDoYouThinkOfReport,
-            expression: "assessment.data.whatDoYouThinkOfReport"
+            value: _vm.assessment.data.reportFeedback.whatDoYouThinkOfReport,
+            expression: "assessment.data.reportFeedback.whatDoYouThinkOfReport"
           }
         ],
         staticStyle: { display: "block" },
         attrs: { rows: "4", cols: "75" },
-        domProps: { value: _vm.assessment.data.whatDoYouThinkOfReport },
+        domProps: {
+          value: _vm.assessment.data.reportFeedback.whatDoYouThinkOfReport
+        },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
             _vm.$set(
-              _vm.assessment.data,
+              _vm.assessment.data.reportFeedback,
               "whatDoYouThinkOfReport",
               $event.target.value
             )
@@ -43917,8 +43951,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.reportLanguage,
-              expression: "assessment.data.reportLanguage"
+              value: _vm.assessment.data.reportFeedback.reportLanguage,
+              expression: "assessment.data.reportFeedback.reportLanguage"
             }
           ],
           staticClass: "form-control",
@@ -43933,7 +43967,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.reportFeedback,
                 "reportLanguage",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -43971,8 +44005,10 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.assessment.data.howMuchInformationInReport,
-              expression: "assessment.data.howMuchInformationInReport"
+              value:
+                _vm.assessment.data.reportFeedback.howMuchInformationInReport,
+              expression:
+                "assessment.data.reportFeedback.howMuchInformationInReport"
             }
           ],
           staticClass: "form-control",
@@ -43987,7 +44023,7 @@ var render = function() {
                   return val
                 })
               _vm.$set(
-                _vm.assessment.data,
+                _vm.assessment.data.reportFeedback,
                 "howMuchInformationInReport",
                 $event.target.multiple ? $$selectedVal : $$selectedVal[0]
               )
@@ -44025,20 +44061,22 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.howToImproveTheReport,
-            expression: "assessment.data.howToImproveTheReport"
+            value: _vm.assessment.data.reportFeedback.howToImproveTheReport,
+            expression: "assessment.data.reportFeedback.howToImproveTheReport"
           }
         ],
         staticStyle: { display: "block" },
         attrs: { rows: "4", cols: "75" },
-        domProps: { value: _vm.assessment.data.howToImproveTheReport },
+        domProps: {
+          value: _vm.assessment.data.reportFeedback.howToImproveTheReport
+        },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
             _vm.$set(
-              _vm.assessment.data,
+              _vm.assessment.data.reportFeedback,
               "howToImproveTheReport",
               $event.target.value
             )
@@ -44054,14 +44092,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.anythingElseToShareReportFeedback,
-            expression: "assessment.data.anythingElseToShareReportFeedback"
+            value:
+              _vm.assessment.data.reportFeedback
+                .anythingElseToShareReportFeedback,
+            expression:
+              "assessment.data.reportFeedback.anythingElseToShareReportFeedback"
           }
         ],
         staticStyle: { display: "block" },
         attrs: { rows: "4", cols: "75" },
         domProps: {
-          value: _vm.assessment.data.anythingElseToShareReportFeedback
+          value:
+            _vm.assessment.data.reportFeedback.anythingElseToShareReportFeedback
         },
         on: {
           input: function($event) {
@@ -44069,7 +44111,7 @@ var render = function() {
               return
             }
             _vm.$set(
-              _vm.assessment.data,
+              _vm.assessment.data.reportFeedback,
               "anythingElseToShareReportFeedback",
               $event.target.value
             )
