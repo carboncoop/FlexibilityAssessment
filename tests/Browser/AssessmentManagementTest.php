@@ -1,30 +1,43 @@
 <?php
 
+/* * ***********************************
+ * These test expects specific users and assessments in the database
+ * 
+ * Ensure that the database has been seeded
+ * *************************** */
+
 namespace Tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-
 use Tests\Browser\Pages\AssessmentsList;
 use Tests\Browser\Pages\Assessment;
 use Tests\Browser\Pages\Register;
 use Tests\Browser\Pages\Login;
+use \App\Assessment as AssessmentModel;
 
 class AssessmentManagementTest extends DuskTestCase {
-        
-    /**
+
+     /**
      * Test creation and deletion of assessments
      *
      * @return void
      */
     public function testAssessmentCreationDeletionOfAssessment() {
         $this->browse(function (Browser $browser) {
+            
             $name = 'test assessment name ' . rand();
+            
+            $browser->visit(new Login)
+                    ->logUserIn("assessor@org1.com", "password");
+                    
             $browser->visit(new AssessmentsList)
                     ->createAssessment($name, "A description")
                     ->assertSee($name)
                     ->deleteAssessment($name)
                     ->assertDontSee($name);
+            
+            $browser->logout();
         });
     }
 
@@ -35,10 +48,15 @@ class AssessmentManagementTest extends DuskTestCase {
      */
     public function testAssessmentDataFlow() {
         $this->browse(function (Browser $browser) {
+            
             $name = 'test assessment name ' . rand();
+            
+            $browser->visit(new Login)
+                    ->logUserIn("assessor@org1.com", "password");
+                    
             $browser->visit(new AssessmentsList)
                     ->createAssessment($name, "A description");
-            $assessment = \App\assessment::where('name', $name)->firstOrFail();
+            $assessment = AssessmentModel::where('name', $name)->firstOrFail();
 
             $newName = 'test assessment new name ' . rand();
             $newDescription = 'New description';
@@ -50,11 +68,13 @@ class AssessmentManagementTest extends DuskTestCase {
                     ->assertVue('assessment.description', $newDescription, '@assessment-form-component')
                     ->changeAddress1('New address')
                     ->pause(1000)
-                    ->assertVue('assessment.data.address1', 'New address', '@assessment-form-component')
-                    ->assertVue('assessment.data.address1', 'New address', '@assessment-side-menu-component');
+                    ->assertVue('assessment.data.household.address1', 'New address', '@assessment-form-component')
+                    ->assertVue('assessment.data.household.address1', 'New address', '@assessment-side-menu-component');
 
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($newName);
+            
+            $browser->logout();
         });
     }
 
@@ -65,7 +85,12 @@ class AssessmentManagementTest extends DuskTestCase {
      */
     public function testNavigation() {
         $this->browse(function (Browser $browser) {
+            
             $name = 'test assessment name ' . rand();
+            
+            $browser->visit(new Login)
+                    ->logUserIn("assessor@org1.com", "password");
+                    
             $browser->visit(new AssessmentsList)
                     ->createAssessment($name, "A description");
             $assessment = \App\assessment::where('name', $name)->firstOrFail();
@@ -86,6 +111,8 @@ class AssessmentManagementTest extends DuskTestCase {
 
             $browser->visit(new AssessmentsList)
                     ->deleteAssessment($name);
+            
+            $browser->logout();
         });
     }
 

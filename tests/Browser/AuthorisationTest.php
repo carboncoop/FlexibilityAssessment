@@ -18,7 +18,7 @@ use App\Assessment as AssessmentModel;
 use App\User;
 
 class AuthorisationTest extends DuskTestCase {
-
+     
     /**
      * Test that an administrator can see all the assessment of it's organisation but not of others
      *

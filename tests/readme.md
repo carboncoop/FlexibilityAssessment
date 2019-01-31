@@ -8,4 +8,4 @@ We do it this way because seeding the database during the tests  makes them very
 # To run the tests
 To run all the tests, in the command line `php artisan dusk`
 To run a specific test file: `php artisan dusk tests/Browser/TheTestFile.php`
-To run a specific test in a test file: `php artisan dusk--filter theTest`
+To run a specific test in a test file: `php artisan dusk --filter theTest`

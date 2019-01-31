@@ -60,6 +60,7 @@ class Assessment extends Page {
                 ->waitFor('#edit-metadata-modal___BV_modal_outer_')
                 ->type('name', $name)
                 ->type('description', $description)
+                ->pause(500)
                 ->press('OK')
                 ->waitUntilMissing('#edit-metadata-modal___BV_modal_outer_');
     }
