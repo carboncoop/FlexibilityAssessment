@@ -61,7 +61,7 @@ class AssessmentController extends Controller {
         $assessment = new Assessment;
         $assessment->name = $request->name;
         $assessment->description = $request->description;
-        $assessment->data = $request->data;
+        $assessment->data = new class{};
         $assessment['owner_id'] = Auth::user()->id;
         $assessment->save();
 
