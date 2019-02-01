@@ -29,7 +29,7 @@ class OrganisationAdministratorTest extends DuskTestCase {
             $browser->visit('/')
                     ->click('#login-link')
                     ->on(new Login)
-                    ->logUserIn('guest@org1.com', 'password')
+                    ->logUserIn('invited@org1.com', 'password')
                     ->visit('/organisation-administrator-dashboard')
                     ->assertTitle("Forbidden")
                     ->visit('/')

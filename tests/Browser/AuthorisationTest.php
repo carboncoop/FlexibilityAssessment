@@ -34,14 +34,14 @@ class AuthorisationTest extends DuskTestCase {
                     ->visit('assessment')
                     ->assertSee('Belongs to administrator')
                     ->assertSee('Belongs to assessor')
-                    ->assertSee('Belongs to guest')
+                    ->assertSee('Belongs to invited')
                     ->click('#user-name')
                     ->click('#logout-link');
         });
     }
 
     /**
-     * Test that an assessor and guest users can only see their own assessments
+     * Test that an assessor and invited users can only see their own assessments
      *
      * @return void
      */
@@ -54,18 +54,18 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertPathIs('/assessment')
                     ->assertDontSee('Belongs to administrator')
                     ->assertSee('Belongs to assessor')
-                    ->assertDontSee('Belongs to guest')
+                    ->assertDontSee('Belongs to invited')
                     ->click('#user-name')
                     ->click('#logout-link');
 
             $browser->visit('/')
                     ->click('#login-link')
                     ->on(new Login)
-                    ->logUserIn("guest@org1.com", "password")
+                    ->logUserIn("invited@org1.com", "password")
                     ->assertPathIs('/assessment')
                     ->assertDontSee('Belongs to administrator')
                     ->assertDontSee('Belongs to assessor')
-                    ->assertSee('Belongs to guest')
+                    ->assertSee('Belongs to invited')
                     ->click('#user-name')
                     ->click('#logout-link');
         });
@@ -81,11 +81,11 @@ class AuthorisationTest extends DuskTestCase {
         $this->browse(function (Browser $browser) {
             $admin_user = User::where('email', '=', "administrator@org1.com")->first();
             $assessor_user = User::where('email', '=', "assessor@org1.com")->first();
-            $guest_user = User::where('email', '=', "guest@org1.com")->first();
+            $invited_user = User::where('email', '=', "invited@org1.com")->first();
 
             $admin_assessment = AssessmentModel::where('owner_id', '=', $admin_user->id)->first();
             $assessor_assessment = AssessmentModel::where('owner_id', '=', $assessor_user->id)->first();
-            $guest_assessment = AssessmentModel::where('owner_id', '=', $guest_user->id)->first();
+            $invited_assessment = AssessmentModel::where('owner_id', '=', $invited_user->id)->first();
 
             $browser->visit('/')
                     ->click('#login-link')
@@ -95,8 +95,8 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertTitle("Flexibility assessment - " . $admin_assessment->name)
                     ->visit(new Assessment($assessor_assessment))
                     ->assertTitle("Flexibility assessment - " . $assessor_assessment->name)
-                    ->visit(new Assessment($guest_assessment))
-                    ->assertTitle("Flexibility assessment - " . $guest_assessment->name)
+                    ->visit(new Assessment($invited_assessment))
+                    ->assertTitle("Flexibility assessment - " . $invited_assessment->name)
                     ->click('#user-name')
                     ->click('#logout-link');
         });
@@ -112,11 +112,11 @@ class AuthorisationTest extends DuskTestCase {
         $this->browse(function (Browser $browser) {
             $admin_user = User::where('email', '=', "administrator@org1.com")->first();
             $assessor_user = User::where('email', '=', "assessor@org1.com")->first();
-            $guest_user = User::where('email', '=', "guest@org1.com")->first();
+            $invited_user = User::where('email', '=', "invited@org1.com")->first();
 
             $admin_assessment = AssessmentModel::where('owner_id', '=', $admin_user->id)->first();
             $assessor_assessment = AssessmentModel::where('owner_id', '=', $assessor_user->id)->first();
-            $guest_assessment = AssessmentModel::where('owner_id', '=', $guest_user->id)->first();
+            $invited_assessment = AssessmentModel::where('owner_id', '=', $invited_user->id)->first();
 
             $browser->visit('/')
                     ->click('#login-link')
@@ -126,7 +126,7 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertTitle("Forbidden")
                     ->visit("assessment/" . $assessor_assessment->id . "/edit")
                     ->assertTitle("Flexibility assessment - " . $assessor_assessment->name)
-                    ->visit("assessment/" . $guest_assessment->id . "/edit")
+                    ->visit("assessment/" . $invited_assessment->id . "/edit")
                     ->assertTitle("Forbidden")
                     ->visit('/')
                     ->click('#user-name')
@@ -135,7 +135,7 @@ class AuthorisationTest extends DuskTestCase {
     }
 
     /**
-     * Test that guests can only edit their own assessments
+     * Test that inviteds can only edit their own assessments
      *
      * @return void
      */
@@ -144,21 +144,21 @@ class AuthorisationTest extends DuskTestCase {
         $this->browse(function (Browser $browser) {
             $admin_user = User::where('email', '=', "administrator@org1.com")->first();
             $assessor_user = User::where('email', '=', "assessor@org1.com")->first();
-            $guest_user = User::where('email', '=', "guest@org1.com")->first();
+            $invited_user = User::where('email', '=', "invited@org1.com")->first();
 
             $admin_assessment = AssessmentModel::where('owner_id', '=', $admin_user->id)->first();
             $assessor_assessment = AssessmentModel::where('owner_id', '=', $assessor_user->id)->first();
-            $guest_assessment = AssessmentModel::where('owner_id', '=', $guest_user->id)->first();
+            $invited_assessment = AssessmentModel::where('owner_id', '=', $invited_user->id)->first();
 
             $browser->visit('/')
                     ->click('#login-link')
                     ->on(new Login)
-                    ->logUserIn("guest@org1.com", "password")
+                    ->logUserIn("invited@org1.com", "password")
                     ->visit("assessment/" . $admin_assessment->id . "/edit")
                     ->assertTitle("Forbidden")
                     ->visit("assessment/" . $assessor_assessment->id . "/edit")
                     ->assertTitle("Forbidden")
-                    ->visit("assessment/" . $guest_assessment->id . "/edit")
+                    ->visit("assessment/" . $invited_assessment->id . "/edit")
                     ->assertTitle("Flexibility assessment - " . $assessor_assessment->name)
                     ->click('#user-name')
                     ->click('#logout-link');

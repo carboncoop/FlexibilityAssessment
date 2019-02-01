@@ -29,7 +29,7 @@ class TestsSeeder extends Seeder {
 
 
         // Insert users
-        $roles = ["administrator", "assessor", "guest"];
+        $roles = ["administrator", "assessor", "invited"];
         $users_ids = [];
         foreach ($orgs_ids as $org_index => $org_id) {
             for ($i = 1; $i <= 3; $i++) {
@@ -45,7 +45,7 @@ class TestsSeeder extends Seeder {
 
 
         // Insert assessments
-        $roles = ['administrator', 'assessor', 'guest', 'administrator', 'assessor', 'guest'];
+        $roles = ['administrator', 'assessor', 'invited', 'administrator', 'assessor', 'invited'];
         for ($index = 0; $index < count($users_ids); $index++) {
             for ($i = 1; $i < 5; $i++) {
                 DB::table('assessments')->insert([
