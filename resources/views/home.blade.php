@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('style')
 
 <style>
 
@@ -28,6 +28,12 @@
     }
 
 </style>
+
+@endsection
+
+
+
+@section('content')
 
     <div id='home'>
 

@@ -2,7 +2,7 @@
 
 @section('title', "How could I benefit from 'flexibility?'" )
 
-@section('content')
+@section('style')
 
 <style>
 
@@ -25,8 +25,12 @@
 
 </style>
 
+@endsection
 
-<div id='app'>
+
+
+@section('content')
+
     <div id='how-could-I-benefit-from-flexibility'>
         <h1>How could I benefit from 'flexibility'?</h1>
         <p><b>The changes in the grid, are beginning to be felt in people's homes:</b></p>
@@ -108,5 +112,4 @@
         </div>
 
     </div>
-</div>
 @endsection

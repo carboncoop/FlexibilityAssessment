@@ -3,7 +3,6 @@
 @section('title', "How could my organisation benefit from 'flexibility'?" )
 
 @section('content')
-<div id='app'>
     <h1>How could my organisation benefit from 'flexibility'?</h1>
 
     <h2>ECAS: Our Community Aggregator</h2>
@@ -97,5 +96,4 @@
 
     </div>
 
-</div>
 @endsection

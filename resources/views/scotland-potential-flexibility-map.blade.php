@@ -2,8 +2,8 @@
 
 @section('title', "Scotland Flexibility Potential Map" )
 
-@section('content')
 
+@section('style')
 <style>
     .info {
         padding: 6px 8px;
@@ -40,6 +40,15 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
       integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin=""/>
+
+@endsection
+
+
+
+
+
+
+@section('script-above')
 <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
         integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin="">
@@ -49,20 +58,32 @@
 <script src="{{asset('js/flexibility_model/data.js')}}"></script>
 <script src="{{asset('js/flexibility_model/flex_model.js')}}"></script>
 
+@endsection
+
+
+
+
 <!-- HTML -->
+@section('content')
 <div>
     <div id='how-could-I-benefit-from-flexibility'>
-        
+
         <h1>Scotland Flexibility Potential Map</h1>
-        
+
         <p>As part of this tool we have developed this interactive map to show the potential flexibility in Scotland by postcode.</p>
-        
+
         <div id="mapid" style="height: 800px;width: 800px;"></div>
 
     </div>
 </div>
+@endsection
+
+
+
+
 
 <!-- Draw map -->
+@section('script-below')
 <script>
             var geojson;
             grades = [0, 4, 8, 16, 32, 64, 128, 256]; // Flexibility ranges, used for coloring the postcodes in the map

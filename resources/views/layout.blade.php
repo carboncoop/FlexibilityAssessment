@@ -11,6 +11,10 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+        @yield('style') 
+
+        @yield('script-above')
+
     </head>
     <body>
 
@@ -63,7 +67,7 @@
         </div>
 
     </body>
-
     <script src="{{asset('js/app.js')}}"></script>
+    @yield('script-below')
 
 </html>
