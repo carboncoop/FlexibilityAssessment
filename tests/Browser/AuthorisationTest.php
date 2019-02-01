@@ -18,7 +18,7 @@ use App\Assessment as AssessmentModel;
 use App\User;
 
 class AuthorisationTest extends DuskTestCase {
-     
+
     /**
      * Test that an administrator can see all the assessment of it's organisation but not of others
      *
@@ -30,10 +30,12 @@ class AuthorisationTest extends DuskTestCase {
                     ->click('#login-link')
                     ->on(new Login)
                     ->logUserIn("administrator@org1.com", "password")
-                    ->assertPathIs('/assessment')
+                    ->assertPathIs('/organisation-administrator-dashboard')
+                    ->visit('assessment')
                     ->assertSee('Belongs to administrator')
                     ->assertSee('Belongs to assessor')
                     ->assertSee('Belongs to guest')
+                    ->click('#user-name')
                     ->click('#logout-link');
         });
     }
@@ -53,6 +55,7 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertDontSee('Belongs to administrator')
                     ->assertSee('Belongs to assessor')
                     ->assertDontSee('Belongs to guest')
+                    ->click('#user-name')
                     ->click('#logout-link');
 
             $browser->visit('/')
@@ -63,6 +66,7 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertDontSee('Belongs to administrator')
                     ->assertDontSee('Belongs to assessor')
                     ->assertSee('Belongs to guest')
+                    ->click('#user-name')
                     ->click('#logout-link');
         });
     }
@@ -93,6 +97,7 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertTitle("Flexibility assessment - " . $assessor_assessment->name)
                     ->visit(new Assessment($guest_assessment))
                     ->assertTitle("Flexibility assessment - " . $guest_assessment->name)
+                    ->click('#user-name')
                     ->click('#logout-link');
         });
     }
@@ -124,6 +129,7 @@ class AuthorisationTest extends DuskTestCase {
                     ->visit("assessment/" . $guest_assessment->id . "/edit")
                     ->assertTitle("Forbidden")
                     ->visit('/')
+                    ->click('#user-name')
                     ->click('#logout-link');
         });
     }
@@ -154,10 +160,9 @@ class AuthorisationTest extends DuskTestCase {
                     ->assertTitle("Forbidden")
                     ->visit("assessment/" . $guest_assessment->id . "/edit")
                     ->assertTitle("Flexibility assessment - " . $assessor_assessment->name)
-                    ->visit('/')
+                    ->click('#user-name')
                     ->click('#logout-link');
         });
     }
 
 }
-
