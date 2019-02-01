@@ -33,7 +33,7 @@ class OrganisationRegistrationTest extends DuskTestCase {
             $browser->click('#login-link')
                     ->on(new Login)
                     ->logUserIn($contactPersonEmail, $password)
-                    ->assertPathIs('/assessment')
+                    ->assertPathIs('/organisation-administrator-dashboard')
                     ->click('#logout-link');
         });
     }      

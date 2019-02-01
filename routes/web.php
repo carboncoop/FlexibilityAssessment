@@ -11,6 +11,11 @@
   |
  */
 
+
+/* * ********************
+ * Public routes
+ * ******************* */
+
 Route::get('/', function () {
     return view('home');
 });
@@ -31,11 +36,22 @@ Route::get('/scotland-potential-flexibility-map', function () {
     return view('scotland-potential-flexibility-map');
 });
 
-Route::resource('assessment', 'AssessmentController')->only(['index','edit'])->middleware('auth');
-
-if(config('app.registration_enabled') == false){
+if (config('app.registration_enabled') == false) {
     Auth::routes(['register' => false]);
 }
-else{
+else {
     Auth::routes();
 }
+
+
+/* * *********************************
+ * Routes for authenticated users
+ * ********************************* */
+
+Route::middleware(['auth'])->group(function() {
+
+    Route::resource('assessment', 'AssessmentController')->only(['index', 'edit']);
+    Route::middleware(['isOrganisationAdministrator'])->get('organisation-administrator-dashboard', 'OrganisationAdministratorController@dashboard');
+    
+});
+

@@ -28,7 +28,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/assessment';
+    protected $redirectTo = '/organisation-administrator-dashboard';
 
     /**
      * Create a new controller instance.

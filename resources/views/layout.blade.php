@@ -40,8 +40,8 @@
                         <b-navbar-nav>
                             <b-nav-item href="/assessment">{{ __('Assessments') }}</b-nav-item>
                         </b-navbar-nav>
-                        <b-nav-item-dropdown text="{{ Auth::user()->name }}" right>
-                            <b-dropdown-item href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                        <b-nav-item-dropdown id="user-name" text="{{ Auth::user()->name }}" right>
+                            <b-dropdown-item href="{{ route('logout') }}" id="logout-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                             </b-dropdown-item>
                         </b-nav-item-dropdown>
