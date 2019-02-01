@@ -49,3 +49,6 @@ h2{
     font-size:25px;
     margin-top: px;
 }
+[v-cloak] {
+  display: none;
+}
