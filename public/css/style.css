@@ -30,13 +30,16 @@
 }
 
 
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: black;
+}
+
 
 .navbar{
     z-index:2
-}
-
-h1, h2, h3{
-    color:#ff2712;
 }
 
 h1{
@@ -46,11 +49,3 @@ h2{
     font-size:25px;
     margin-top: px;
 }
-
-
-
-
-hr{
-    border-color: #ff2712
-}
-
