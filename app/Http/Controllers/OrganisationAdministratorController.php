@@ -23,7 +23,18 @@ class OrganisationAdministratorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function dashboard() {
-        return view('organisationAdministrator.dashboard');
+
+        $assessments = collect();
+        foreach (Auth::user()->organisation->users as $user) {
+            $assessments = $assessments->concat($user->assessments);
+        }
+
+        foreach ($assessments as $assessment){
+            $assessment->owner_name = $assessment->user->name;
+        }
+        
+        return view('organisationAdministrator.dashboard', compact('assessments'));
     }
 
 }
+

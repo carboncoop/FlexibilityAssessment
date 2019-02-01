@@ -5,7 +5,6 @@
 
 <style scoped>
 
-   
 </style>
 
 @endsection
@@ -13,24 +12,30 @@
 
 @section('content')
 
-    <div id='organisation-home'>
+<div id='organisation-dashboard'>
 
-        <h1>Your organisation's dashboard</h1>
+    <h1>Your organisation's dashboard</h1>
 
-        <p>From here you can manage your organisation users, access assessments, reports, statistics, etc.</p>
+    <p>From here you can manage your organisation users, access assessments, reports, statistics, etc.</p>
 
-        
-        <div id="navigation-buttons">
-            <a href="#"><button>Edit organisation details (ToDo)</button></a>
+    <b-card>
+        <b-tabs>
+            <b-tab title="Assessments" active>
+                <br />
+                <assessments-table v-bind:assessments="{{ $assessments }}" v-bind:administrator-view="true"></assessments-table>
+            </b-tab>
+            <b-tab title="Users" >
+                <br>I'm the second tab content
+            </b-tab>
+            <b-tab title="Aggregation">
+                <br>Disabled tab!
+            </b-tab>
+            <b-tab title="Org. Details">
+                <br>Disabled tab!
+            </b-tab>
+        </b-tabs>
+    </b-card>
 
-            <a href="organisation-administrator/users"><button>Manage users</button></a>
-
-            <a href="assessment"><button>Assessments</button></a> 
-
-            <a href=""><button>Aggregation (ToDo)</button></a> 
-
-        </div>
-
-    </div>
+</div>
 
 @endsection

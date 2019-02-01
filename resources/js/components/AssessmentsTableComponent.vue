@@ -1,11 +1,11 @@
 <template>
     <div id='assessment-table-component'>
         <table class="table">
-            <th>Name</th><th>Description</th><th>Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
+            <th>Name</th><th>Description</th><th v-if="administratorView === true">Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
             <tr v-for="assessment in assessmentsList">
                 <td v-text="assessment.name"></td>
                 <td v-text="assessment.description"></td>
-                <td></td>
+                <td v-text="assessment.owner_name"  v-if="administratorView === true"></td>
                 <td v-text="assessment.updated_at"></td>
                 <td class='assessment-actions'>
                     <button><a class="open-assessment" v-bind:assessment-id="assessment.id" v-bind:href="'/assessment/' + assessment.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
@@ -44,7 +44,10 @@
 
 <script>
     export default {
-        props: {'assessments': Array},
+        props: {
+            'assessments': Array,
+            'administratorView':Boolean
+        },
         data: function () {
             return {
                 newAssessment: {name: '', description: ''},

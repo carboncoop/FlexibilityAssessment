@@ -38559,7 +38559,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { 'assessments': Array },
+    props: {
+        'assessments': Array,
+        'administratorView': Boolean
+    },
     data: function data() {
         return {
             newAssessment: { name: '', description: '' },
@@ -38630,7 +38633,9 @@ var render = function() {
         [
           _c("th", [_vm._v("Name")]),
           _c("th", [_vm._v("Description")]),
-          _c("th", [_vm._v("Author")]),
+          _vm.administratorView === true
+            ? _c("th", [_vm._v("Author")])
+            : _vm._e(),
           _c("th", [_vm._v("Modified")]),
           _c("th", [
             _c(
@@ -38657,7 +38662,11 @@ var render = function() {
                 domProps: { textContent: _vm._s(assessment.description) }
               }),
               _vm._v(" "),
-              _c("td"),
+              _vm.administratorView === true
+                ? _c("td", {
+                    domProps: { textContent: _vm._s(assessment.owner_name) }
+                  })
+                : _vm._e(),
               _vm._v(" "),
               _c("td", {
                 domProps: { textContent: _vm._s(assessment.updated_at) }
