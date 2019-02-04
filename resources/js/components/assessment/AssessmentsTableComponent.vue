@@ -1,5 +1,6 @@
 <template>
     <div id='assessment-table-component'>
+        <button v-b-modal.new-assessment-modal dusk="new-button" style='float:right; margin: 0 25px 10px; cursor: pointer'>New</button>
         <b-table striped hover responsive fixed :items="assessmentsForTable" :fields="tableColumns" :outlined="true">
                  <template slot="actions" slot-scope="data">
                 <button><a class="open-assessment" v-bind:assessment-id="data.item.id" v-bind:href="'/assessment/' + data.item.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
@@ -10,7 +11,7 @@
         <b-modal id="new-assessment-modal" ref="newAssessmentModal" title="New assessment" 
                  v-on:ok="createAssessment" 
                  v-on:show="error=false" 
-                 v-on:hidden="newAssessment.name=''; newAssessment.description=''">
+                 v-on:hidden="newAssessment.name=''; newAssessment.description=''; newAssessment.address1=''; newAssessment.address2=''; newAssessment.town=''; newAssessment.postcode=''; newAssessment.email=''">
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
                 <tr><td>Name*</td><td><input type="text" name="name" class="form-control" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
@@ -65,7 +66,7 @@
                 else {
                     axios.post('/api/assessment', this.newAssessment)
                             .then((response) => {
-                                this.assessmentsList.push(response.data);
+                                this.assessmentsForTable.push(response.data);
                                 this.$refs.newAssessmentModal.hide();
                             })
                             .catch((error) => {
@@ -82,10 +83,10 @@
                 axios.delete("/api/assessment/" + this.assessmentToDelete)
                         .then((response) => {
                             let assessmentToDelete = this.assessmentToDelete;
-                            let indexOfAssessment = this.assessmentsList.findIndex(function (assessment) {
+                            let indexOfAssessment = this.assessmentsForTable.findIndex(function (assessment) {
                                 return assessment.id == assessmentToDelete;
                             });
-                            this.assessmentsList.splice(indexOfAssessment, 1);
+                            this.assessmentsForTable.splice(indexOfAssessment, 1);
                             this.$refs.deleteAssessmentModal.hide();
                         })
                         .catch((error) => {
