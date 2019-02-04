@@ -1,19 +1,11 @@
 <template>
     <div id='assessment-table-component'>
-        <table class="table">
-            <th>Name</th><th>Description</th><th>Postcode</th><th v-if="administratorView === true">Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
-            <tr v-for="assessment in assessmentsList">
-                <td v-text="assessment.name"></td>
-                <td v-text="assessment.description"></td>
-                <td v-text="assessment.postcode"></td>
-                <td v-text="assessment.owner_name"  v-if="administratorView === true"></td>
-                <td v-text="assessment.updated_at"></td>
-                <td class='assessment-actions'>
-                    <button><a class="open-assessment" v-bind:assessment-id="assessment.id" v-bind:href="'/assessment/' + assessment.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
-                    <button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="assessment.name" v-on:click="setAssessmentToDelete(assessment.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
-                </td>
-            </tr>
-        </table>
+        <b-table striped hover responsive fixed :items="assessmentsForTable" :fields="tableColumns" :outlined="true">
+                 <template slot="actions" slot-scope="data">
+                <button><a class="open-assessment" v-bind:assessment-id="data.item.id" v-bind:href="'/assessment/' + data.item.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
+                <button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="data.item.name" v-on:click="setAssessmentToDelete(data.item.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
+            </template>
+        </b-table>
 
         <b-modal id="new-assessment-modal" ref="newAssessmentModal" title="New assessment" 
                  v-on:ok="createAssessment" 
@@ -42,24 +34,21 @@
 </template>
 
 <style scoped>
-    .assessment-actions{
-        min-width:125px;
-        padding-left: 12px
-    }
 </style>
 
 <script>
     export default {
         props: {
             'assessments': Array,
-            'administratorView':Boolean
+            'administratorView': Boolean
         },
         data: function () {
             return {
                 newAssessment: {name: '', description: ''},
                 error: false,
-                assessmentsList: this.assessments,
-                assessmentToDelete: 0
+                assessmentsForTable: this.assessments,
+                assessmentToDelete: 0,
+                tableColumns: this.administratorView === true ? {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'owner_name': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}} : {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}}
             };
         },
         methods: {
@@ -70,7 +59,7 @@
                 if (!this.newAssessment.name) {
                     this.error = 'Please enter a name';
                 }
-                else if(!this.newAssessment.postcode) {
+                else if (!this.newAssessment.postcode) {
                     this.error = 'Please enter a postcode';
                 }
                 else {

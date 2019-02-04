@@ -38469,7 +38469,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.assessment-actions[data-v-3daf0576]{\n    min-width:125px;\n    padding-left: 12px\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38551,18 +38551,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -38573,8 +38561,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             newAssessment: { name: '', description: '' },
             error: false,
-            assessmentsList: this.assessments,
-            assessmentToDelete: 0
+            assessmentsForTable: this.assessments,
+            assessmentToDelete: 0,
+            tableColumns: this.administratorView === true ? { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } } : { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } }
         };
     },
     methods: {
@@ -38635,65 +38624,29 @@ var render = function() {
     "div",
     { attrs: { id: "assessment-table-component" } },
     [
-      _c(
-        "table",
-        { staticClass: "table" },
-        [
-          _c("th", [_vm._v("Name")]),
-          _c("th", [_vm._v("Description")]),
-          _c("th", [_vm._v("Postcode")]),
-          _vm.administratorView === true
-            ? _c("th", [_vm._v("Author")])
-            : _vm._e(),
-          _c("th", [_vm._v("Modified")]),
-          _c("th", [
-            _c(
-              "button",
-              {
-                directives: [
-                  {
-                    name: "b-modal",
-                    rawName: "v-b-modal.new-assessment-modal",
-                    modifiers: { "new-assessment-modal": true }
-                  }
-                ],
-                attrs: { dusk: "new-button" }
-              },
-              [_vm._v("New")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.assessmentsList, function(assessment) {
-            return _c("tr", [
-              _c("td", { domProps: { textContent: _vm._s(assessment.name) } }),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { textContent: _vm._s(assessment.description) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { textContent: _vm._s(assessment.postcode) }
-              }),
-              _vm._v(" "),
-              _vm.administratorView === true
-                ? _c("td", {
-                    domProps: { textContent: _vm._s(assessment.owner_name) }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { textContent: _vm._s(assessment.updated_at) }
-              }),
-              _vm._v(" "),
-              _c("td", { staticClass: "assessment-actions" }, [
+      _c("b-table", {
+        attrs: {
+          striped: "",
+          hover: "",
+          responsive: "",
+          fixed: "",
+          items: _vm.assessmentsForTable,
+          fields: _vm.tableColumns,
+          outlined: true
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(data) {
+              return [
                 _c("button", [
                   _c(
                     "a",
                     {
                       staticClass: "open-assessment",
                       attrs: {
-                        "assessment-id": assessment.id,
-                        href: "/assessment/" + assessment.id + "/edit"
+                        "assessment-id": data.item.id,
+                        href: "/assessment/" + data.item.id + "/edit"
                       }
                     },
                     [
@@ -38717,10 +38670,10 @@ var render = function() {
                       }
                     ],
                     staticClass: "delete-button",
-                    attrs: { "assessment-name": assessment.name },
+                    attrs: { "assessment-name": data.item.name },
                     on: {
                       click: function($event) {
-                        _vm.setAssessmentToDelete(assessment.id)
+                        _vm.setAssessmentToDelete(data.item.id)
                       }
                     }
                   },
@@ -38732,12 +38685,11 @@ var render = function() {
                   ],
                   1
                 )
-              ])
-            ])
-          })
-        ],
-        2
-      ),
+              ]
+            }
+          }
+        ])
+      }),
       _vm._v(" "),
       _c(
         "b-modal",

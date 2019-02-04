@@ -37,6 +37,7 @@
                             @endif
                         </b-navbar-nav>
                         @else
+                        <!--- This if and following else are one level to the right -->
                         @if(Auth::user()->role != "administrator" )
                         <b-navbar-nav>
                             <b-nav-item href="/assessment">{{ __('Assessments') }}</b-nav-item>
@@ -46,6 +47,7 @@
                             <b-nav-item href="/organisation-administrator-dashboard">{{ __('Dashboard') }}</b-nav-item>
                         </b-navbar-nav>
                         @endif
+                        <!-- End of the if-else -->
                         <b-nav-item-dropdown id="user-name" text="{{ Auth::user()->name }}" right>
                             <b-dropdown-item href="{{ route('logout') }}" id="logout-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
