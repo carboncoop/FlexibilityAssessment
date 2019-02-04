@@ -20,7 +20,7 @@
 
         <div id="app" v-cloak>
 
-            <b-navbar toggleable="md" type="dark" variant="primary">
+            <b-navbar toggleable="md" type="dark" variant="primary" class="navbar-custom">
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
                 <b-navbar-brand href="#"><img class="logo" src="{{asset('img/carboncoop-logo.png')}}" /></b-navbar-brand>
                 <b-collapse is-nav id="nav_collapse">

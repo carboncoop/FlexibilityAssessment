@@ -56,3 +56,7 @@ h2{
 #assessment-table-component table td{
     font-size:16px
 }
+
+.navbar-custom {
+    background-color: white !important;
+}
