@@ -1,10 +1,11 @@
 <template>
     <div id='assessment-table-component'>
         <table class="table">
-            <th>Name</th><th>Description</th><th v-if="administratorView === true">Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
+            <th>Name</th><th>Description</th><th>Postcode</th><th v-if="administratorView === true">Author</th><th>Modified</th><th><button v-b-modal.new-assessment-modal dusk="new-button">New</button></th>
             <tr v-for="assessment in assessmentsList">
                 <td v-text="assessment.name"></td>
                 <td v-text="assessment.description"></td>
+                <td v-text="assessment.postcode"></td>
                 <td v-text="assessment.owner_name"  v-if="administratorView === true"></td>
                 <td v-text="assessment.updated_at"></td>
                 <td class='assessment-actions'>
@@ -20,8 +21,13 @@
                  v-on:hidden="newAssessment.name=''; newAssessment.description=''">
             <p style="color:red" v-if="error">{{error}}</p>
             <table>
-                <tr><td>Name</td><td><input type="text" name="name" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
-                <tr><td>Description</td><td><input type="text" name="description" v-model="newAssessment.description" placeholder="Description"></td></tr>
+                <tr><td>Name*</td><td><input type="text" name="name" class="form-control" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
+                <tr><td>Description</td><td><input type="text" name="description" class="form-control" v-model="newAssessment.description" placeholder="Description"></td></tr>
+                <tr><td>Address 1</td><td><input type="text" name="address1" class="form-control" v-model="newAssessment.address1" placeholder="Address 1"></td></tr>
+                <tr><td>Address 2</td><td><input type="text" name="address2" class="form-control" v-model="newAssessment.address2" placeholder="Address 2"></td></tr>
+                <tr><td>Town</td><td><input type="text" name="town" class="form-control" v-model="newAssessment.town" placeholder="Glasgow"></td></tr>
+                <tr><td>Postcode*</td><td><input type="text" name="postcode" class="form-control" v-model="newAssessment.postcode" placeholder="G41..."></td></tr>
+                <tr><td>Contact email*</td><td><input type="email" name="email" class="form-control" v-model="newAssessment.email" placeholder="myemail@domain.com"></td></tr>
             </table>
         </b-modal>
 
@@ -62,7 +68,10 @@
                 evt.preventDefault(); // Prevent modal from closing
 
                 if (!this.newAssessment.name) {
-                    this.error = 'Please enter your name';
+                    this.error = 'Please enter a name';
+                }
+                else if(!this.newAssessment.postcode) {
+                    this.error = 'Please enter a postcode';
                 }
                 else {
                     axios.post('/api/assessment', this.newAssessment)

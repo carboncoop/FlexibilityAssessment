@@ -51,6 +51,11 @@ class TestsSeeder extends Seeder {
                 DB::table('assessments')->insert([
                     'name' => "Assessment " . $i,
                     'description' => 'Belongs to ' . $roles[$index],
+                    'address1' => "Address " . $i,
+                    'address2' => "",
+                    'town' => 'Pekin ' . $i,
+                    'postcode' => "G45 " . $i,
+                    'email' => "email@email.com",
                     'data' => '{}',
                     'owner_id' => $users_ids[$index]
                 ]);

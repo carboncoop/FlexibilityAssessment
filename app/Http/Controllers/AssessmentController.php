@@ -61,6 +61,11 @@ class AssessmentController extends Controller {
         $assessment = new Assessment;
         $assessment->name = $request->name;
         $assessment->description = $request->description;
+        $assessment->address1 = $request->address1;
+        $assessment->address2 = $request->address2;
+        $assessment->town = $request->town;
+        $assessment->postcode = $request->postcode;
+        $assessment->email = $request->email;
         $assessment->data = new class{};
         $assessment['owner_id'] = Auth::user()->id;
         $assessment->save();
@@ -119,6 +124,11 @@ class AssessmentController extends Controller {
         $assessment = Assessment::findOrFail($id);
         $assessment->name = $request->name;
         $assessment->description = $request->description;
+        $assessment->address1 = $request->address1;
+        $assessment->address2 = $request->address2;
+        $assessment->town = $request->town;
+        $assessment->postcode = $request->postcode;
+        $assessment->email = $request->email;
         $assessment->data = $request->data;
         $assessment->save();
         return response(null, 200);

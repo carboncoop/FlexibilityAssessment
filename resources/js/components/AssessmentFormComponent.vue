@@ -5,10 +5,6 @@
 
         <h2>Household data</h2>
         <table id='household-data'>
-            <tr><td>Address 1</td><td><input class="form-control" type="text" name="address1" v-model="assessment.data.household.address1" /></td></tr>
-            <tr><td>Address 2</td><td><input class="form-control" type="text" v-model="assessment.data.household.address2" /></td></tr>
-            <tr><td>Town</td><td><input class="form-control" type="text" v-model="assessment.data.household.town" /></td></tr>
-            <tr><td>Postcode</td><td><input class="form-control" type="text" v-model="assessment.data.household.postcode" /></td></tr>
             <tr>
                 <td>Type of property</td>
                 <td>
@@ -262,7 +258,7 @@
             }
         },
         created: function () {
-                   
+
             if (this.assessment.data.household == undefined) {
                 Vue.set(this.assessment.data, 'household', {});
             }

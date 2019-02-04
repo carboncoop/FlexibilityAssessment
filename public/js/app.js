@@ -38557,6 +38557,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -38579,7 +38585,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             evt.preventDefault(); // Prevent modal from closing
 
             if (!this.newAssessment.name) {
-                this.error = 'Please enter your name';
+                this.error = 'Please enter a name';
+            } else if (!this.newAssessment.postcode) {
+                this.error = 'Please enter a postcode';
             } else {
                 axios.post('/api/assessment', this.newAssessment).then(function (response) {
                     _this.assessmentsList.push(response.data);
@@ -38633,6 +38641,7 @@ var render = function() {
         [
           _c("th", [_vm._v("Name")]),
           _c("th", [_vm._v("Description")]),
+          _c("th", [_vm._v("Postcode")]),
           _vm.administratorView === true
             ? _c("th", [_vm._v("Author")])
             : _vm._e(),
@@ -38660,6 +38669,10 @@ var render = function() {
               _vm._v(" "),
               _c("td", {
                 domProps: { textContent: _vm._s(assessment.description) }
+              }),
+              _vm._v(" "),
+              _c("td", {
+                domProps: { textContent: _vm._s(assessment.postcode) }
               }),
               _vm._v(" "),
               _vm.administratorView === true
@@ -38751,7 +38764,7 @@ var render = function() {
           _vm._v(" "),
           _c("table", [
             _c("tr", [
-              _c("td", [_vm._v("Name")]),
+              _c("td", [_vm._v("Name*")]),
               _c("td", [
                 _c("input", {
                   directives: [
@@ -38762,6 +38775,7 @@ var render = function() {
                       expression: "newAssessment.name"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "name",
@@ -38792,6 +38806,7 @@ var render = function() {
                       expression: "newAssessment.description"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "description",
@@ -38808,6 +38823,169 @@ var render = function() {
                         "description",
                         $event.target.value
                       )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Address 1")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAssessment.address1,
+                      expression: "newAssessment.address1"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "address1",
+                    placeholder: "Address 1"
+                  },
+                  domProps: { value: _vm.newAssessment.address1 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.newAssessment,
+                        "address1",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Address 2")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAssessment.address2,
+                      expression: "newAssessment.address2"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "address2",
+                    placeholder: "Address 2"
+                  },
+                  domProps: { value: _vm.newAssessment.address2 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.newAssessment,
+                        "address2",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Town")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAssessment.town,
+                      expression: "newAssessment.town"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "town", placeholder: "Glasgow" },
+                  domProps: { value: _vm.newAssessment.town },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.newAssessment, "town", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Postcode*")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAssessment.postcode,
+                      expression: "newAssessment.postcode"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "postcode",
+                    placeholder: "G41..."
+                  },
+                  domProps: { value: _vm.newAssessment.postcode },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.newAssessment,
+                        "postcode",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Contact email*")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAssessment.email,
+                      expression: "newAssessment.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "email",
+                    name: "email",
+                    placeholder: "myemail@domain.com"
+                  },
+                  domProps: { value: _vm.newAssessment.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.newAssessment, "email", $event.target.value)
                     }
                   }
                 })
@@ -39368,10 +39546,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -39468,130 +39642,6 @@ var render = function() {
     _c("h2", [_vm._v("Household data")]),
     _vm._v(" "),
     _c("table", { attrs: { id: "household-data" } }, [
-      _c("tr", [
-        _c("td", [_vm._v("Address 1")]),
-        _c("td", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.assessment.data.household.address1,
-                expression: "assessment.data.household.address1"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text", name: "address1" },
-            domProps: { value: _vm.assessment.data.household.address1 },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.assessment.data.household,
-                  "address1",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", [_vm._v("Address 2")]),
-        _c("td", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.assessment.data.household.address2,
-                expression: "assessment.data.household.address2"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.assessment.data.household.address2 },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.assessment.data.household,
-                  "address2",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", [_vm._v("Town")]),
-        _c("td", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.assessment.data.household.town,
-                expression: "assessment.data.household.town"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.assessment.data.household.town },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.assessment.data.household,
-                  "town",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", [_vm._v("Postcode")]),
-        _c("td", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.assessment.data.household.postcode,
-                expression: "assessment.data.household.postcode"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.assessment.data.household.postcode },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.assessment.data.household,
-                  "postcode",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
       _c("tr", [
         _c("td", [_vm._v("Type of property")]),
         _vm._v(" "),
@@ -41812,7 +41862,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n#assessment-side-menu[data-v-a1cf73ec]{\n    max-width:300px;\n    position:fixed;\n    padding-right: 30px;\n}\n#assessment-navigation p[data-v-a1cf73ec]{\n    margin-bottom: 0;\n}\n#assessment-navigation ul[data-v-a1cf73ec]{\n    padding-left: 20px;\n}\n#assessment-navigation li[data-v-a1cf73ec]{\n    list-style-type: none;\n    cursor: pointer;\n    margin: 0px;\n}\n", ""]);
+exports.push([module.i, "\n#assessment-side-menu[data-v-a1cf73ec]{\n    max-width:300px;\n    position:fixed;\n    padding-right: 30px;\n    font-size:15px\n}\n#assessment-navigation p[data-v-a1cf73ec]{\n    margin-bottom: 0;\n}\n#assessment-navigation ul[data-v-a1cf73ec]{\n    padding-left: 20px;\n}\n#assessment-navigation li[data-v-a1cf73ec]{\n    list-style-type: none;\n    cursor: pointer;\n    margin: 0px;\n}\n", ""]);
 
 // exports
 
@@ -41878,6 +41928,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { initialAssessment: Object },
@@ -41885,6 +41943,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             newName: '',
             newDescription: '',
+            newAddress1: '',
+            newAddress2: '',
+            newTown: '',
+            newPostcode: '',
+            newEmail: '',
             assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)
             error: false
         };
@@ -41901,16 +41964,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         iniMetadataModal: function iniMetadataModal() {
             this.newName = this.assessment.name;
             this.newDescription = this.assessment.description;
+            this.newAddress1 = this.assessment.address1;
+            this.newAddress2 = this.assessment.address2;
+            this.newTown = this.assessment.town;
+            this.newPostcode = this.assessment.postcode;
+            this.newEmail = this.assessment.email;
         },
         saveMetadata: function saveMetadata() {
             var toSave = JSON.parse(JSON.stringify(this.assessment));
             toSave.name = this.newName;
             toSave.description = this.newDescription;
+            toSave.address1 = this.newAddress1;
+            toSave.address2 = this.newAddress2;
+            toSave.town = this.newTown;
+            toSave.postcode = this.newPostcode;
+            toSave.email = this.newEmail;
             var myself = this;
             this.$emit('assessmentChange', toSave, function (response) {
-                console.log(response);
-                //this.name = this.newName;
-                //this.description = this.newDescription;
                 myself.$refs.editMetadataModal.hide();
             }, function (error) {
                 myself.error = 'Error - ' + (error.response.data.message || error);
@@ -41957,7 +42027,21 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("p", [_vm._v("Description: " + _vm._s(_vm.assessment.description))]),
+      _c("p", [_vm._v(_vm._s(_vm.assessment.description))]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          _vm._s(_vm.assessment.address1) +
+            "  " +
+            _vm._s(_vm.assessment.address2) +
+            " " +
+            _vm._s(_vm.assessment.town) +
+            " " +
+            _vm._s(_vm.assessment.postcode)
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.assessment.email))]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -42095,6 +42179,136 @@ var render = function() {
                         return
                       }
                       _vm.newDescription = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Address 1")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAddress1,
+                      expression: "newAddress1"
+                    }
+                  ],
+                  attrs: { type: "text", name: "address1" },
+                  domProps: { value: _vm.newAddress1 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newAddress1 = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Address 2")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAddress2,
+                      expression: "newAddress2"
+                    }
+                  ],
+                  attrs: { type: "text", name: "address2" },
+                  domProps: { value: _vm.newAddress2 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newAddress2 = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Town")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newTown,
+                      expression: "newTown"
+                    }
+                  ],
+                  attrs: { type: "text", name: "town" },
+                  domProps: { value: _vm.newTown },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newTown = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Postcode")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newPostcode,
+                      expression: "newPostcode"
+                    }
+                  ],
+                  attrs: { type: "text", name: "postcode" },
+                  domProps: { value: _vm.newPostcode },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newPostcode = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Contact email")]),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newEmail,
+                      expression: "newEmail"
+                    }
+                  ],
+                  attrs: { type: "email", name: "email" },
+                  domProps: { value: _vm.newEmail },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newEmail = $event.target.value
                     }
                   }
                 })

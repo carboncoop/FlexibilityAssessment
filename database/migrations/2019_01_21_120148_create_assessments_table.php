@@ -16,6 +16,11 @@ class CreateAssessmentsTable extends Migration {
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
+            $table->string('town')->nullable();
+            $table->string('postcode');
+            $table->string('email');
             $table->mediumText('data');
             $table->integer('owner_id')->unsigned();
             $table->timestamps();
@@ -23,7 +28,7 @@ class CreateAssessmentsTable extends Migration {
             $table->foreign('owner_id')->references('id')->on('users');
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
