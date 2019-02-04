@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
             $table->timestamps();
             $table->integer('organisation_id')->unsigned();
             $table->string('role');
+            $table->timestamp('last_login')->nullable();
         
             $table->foreign('organisation_id')->references('id')->on('organisations');
         });
