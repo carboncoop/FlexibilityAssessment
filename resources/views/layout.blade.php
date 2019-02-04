@@ -37,9 +37,15 @@
                             @endif
                         </b-navbar-nav>
                         @else
+                        @if(Auth::user()->role != "administrator" )
                         <b-navbar-nav>
                             <b-nav-item href="/assessment">{{ __('Assessments') }}</b-nav-item>
                         </b-navbar-nav>
+                        @else
+                        <b-navbar-nav>
+                            <b-nav-item href="/organisation-administrator-dashboard">{{ __('Dashboard') }}</b-nav-item>
+                        </b-navbar-nav>
+                        @endif
                         <b-nav-item-dropdown id="user-name" text="{{ Auth::user()->name }}" right>
                             <b-dropdown-item href="{{ route('logout') }}" id="logout-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
