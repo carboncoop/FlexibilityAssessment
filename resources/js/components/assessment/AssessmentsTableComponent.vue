@@ -12,7 +12,7 @@
                  v-on:ok="createAssessment" 
                  v-on:show="error=false" 
                  v-on:hidden="newAssessment.name=''; newAssessment.description=''; newAssessment.address1=''; newAssessment.address2=''; newAssessment.town=''; newAssessment.postcode=''; newAssessment.email=''">
-            <p style="color:red" v-if="error">{{error}}</p>
+            <p style="color:red" v-if="error" v-html="error"></p>
             <table>
                 <tr><td>Name*</td><td><input type="text" name="name" class="form-control" v-model="newAssessment.name" placeholder="My asessment"></td></tr>
                 <tr><td>Description</td><td><input type="text" name="description" class="form-control" v-model="newAssessment.description" placeholder="Description"></td></tr>
@@ -27,7 +27,7 @@
         <b-modal id="delete-assessment-modal" ref ="deleteAssessmentModal" title="Are you sure you want to delete the assessment?" 
                  v-on:ok="deleteAssessment" 
                  v-on:show="error=false">
-            <p style="color:red" v-if="error">{{error}}</p>
+            <p style="color:red" v-if="error" v-html="error"></p>
             <p>This action cannot be undone</p>
         </b-modal>
 
@@ -70,7 +70,7 @@
                                 this.$refs.newAssessmentModal.hide();
                             })
                             .catch((error) => {
-                                this.error = 'Error - ' + (error.response.data.message || error);
+                                this.errorCallback(error);
                             })
                 }
             },
@@ -90,8 +90,21 @@
                             this.$refs.deleteAssessmentModal.hide();
                         })
                         .catch((error) => {
-                            this.error = 'Error - ' + (error.response.data.message || error);
+                            this.errorCallback(error);
                         })
+            },
+            errorCallback: function (error) {
+                this.error = 'Error ';
+                if (error.response.data.errors) {
+                    for (let errorKey in error.response.data.errors) {
+                        this.error += "<br /> " + error.response.data.errors[errorKey];
+                    }
+                    ;
+                }
+                else if (error.response.data.message)
+                    this.error += '- ' + error.response.data.message;
+                else
+                    this.error += '- ' + error;
             }
 
         },
