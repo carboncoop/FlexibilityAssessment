@@ -30,7 +30,7 @@ class AssessmentPolicy
      */
     public function create(User $user)
     {
-        // Every authenticated user can create an assessment
+        return true;
     }
 
     /**

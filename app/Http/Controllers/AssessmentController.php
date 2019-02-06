@@ -53,6 +53,8 @@ class AssessmentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        $this->authorize('create', Assessment::class);
+        
         $validatedData = $request->validate([
             'name' => 'required|unique:assessments|max:255',
             'description' => 'max:1000'
