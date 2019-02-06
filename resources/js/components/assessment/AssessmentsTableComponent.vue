@@ -91,7 +91,7 @@
                         })
                         .catch((error) => {
                             this.errorCallback(error);
-                        })
+                        });
             },
             errorCallback: function (error) {
                 this.error = 'Error ';

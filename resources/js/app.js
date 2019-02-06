@@ -23,9 +23,10 @@ library.add(faTrash, faEdit, faQuestionCircle);
  * Register components
  */
 
-Vue.component('assessments-table', require('./components/AssessmentsTableComponent.vue'));
-Vue.component('assessment', require('./components/AssessmentComponent.vue'));
+Vue.component('assessments-table', require('./components/assessment/AssessmentsTableComponent.vue'));
+Vue.component('assessment', require('./components/assessment/AssessmentComponent.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('organisation-users',require('./components/organisation/OrganisationUsersComponent.vue'))
 
 
 /**

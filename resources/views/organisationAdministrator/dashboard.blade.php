@@ -25,7 +25,8 @@
                 <assessments-table v-bind:assessments="{{ $assessments }}" v-bind:administrator-view="true"></assessments-table>
             </b-tab>
             <b-tab title="Users" >
-                <br>I'm the second tab content
+                <br />
+                <organisation-users v-bind:users="{{ $users }}"></organisation-users>
             </b-tab>
             <b-tab title="Aggregation">
                 <br>Disabled tab!
