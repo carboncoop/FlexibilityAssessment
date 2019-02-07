@@ -1,6 +1,7 @@
 <template>
     <div id='assessment-table-component'>
         <button v-b-modal.new-assessment-modal dusk="new-button" style='float:right; margin: 0 25px 10px; cursor: pointer'>New</button>
+        <p>Filter assessments <input v-model='filter' type='text' class='form-control filter'></p>
         <b-table striped hover responsive fixed :items="assessmentsForTable" :fields="tableColumns" :outlined="true">
                  <template slot="actions" slot-scope="data">
                 <button><a class="open-assessment" v-bind:assessment-id="data.item.id" v-bind:href="'/assessment/' + data.item.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
@@ -35,6 +36,10 @@
 </template>
 
 <style scoped>
+    .filter{
+        max-width:250px;
+        display:inline-block;
+    }
 </style>
 
 <script>
@@ -49,8 +54,26 @@
                 error: false,
                 assessmentsForTable: this.assessments,
                 assessmentToDelete: 0,
-                tableColumns: this.administratorView === true ? {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'owner_name': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}} : {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}}
+                tableColumns: this.administratorView === true ? {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'owner_name': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}} : {'name': {sortable: true}, 'description': {}, 'postcode': {sortable: true}, 'updated_at': {sortable: true}, actions: {label: ''}},
+                filter: ""
             };
+        },
+        watch: {
+            filter: function () {
+                if (this.filter.length < 3)
+                    this.assessmentsForTable = this.assessments;
+                else {
+                    this.assessmentsForTable = [];
+                    this.assessments.forEach(function (assessment) {
+                        let filterLC = this.filter.toLowerCase();
+                        if (assessment.name.toLowerCase().indexOf(filterLC) != -1
+                                || assessment.description != undefined && assessment.description.toLowerCase().indexOf(filterLC) != -1
+                                || assessment.postcode.toLowerCase().indexOf(filterLC) != -1
+                                || assessment.owner_name.toLowerCase().indexOf(filterLC) != -1)
+                            this.assessmentsForTable.push(assessment);
+                    }, this);
+                }
+            }
         },
         methods: {
             createAssessment: function (evt) {

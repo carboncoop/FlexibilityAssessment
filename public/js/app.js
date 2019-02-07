@@ -38470,7 +38470,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.filter[data-v-2b490584]{\n    max-width:250px;\n    display:inline-block;\n}\n", ""]);
 
 // exports
 
@@ -38553,6 +38553,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -38565,8 +38570,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             error: false,
             assessmentsForTable: this.assessments,
             assessmentToDelete: 0,
-            tableColumns: this.administratorView === true ? { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } } : { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } }
+            tableColumns: this.administratorView === true ? { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } } : { 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'updated_at': { sortable: true }, actions: { label: '' } },
+            filter: ""
         };
+    },
+    watch: {
+        filter: function filter() {
+            if (this.filter.length < 3) this.assessmentsForTable = this.assessments;else {
+                this.assessmentsForTable = [];
+                this.assessments.forEach(function (assessment) {
+                    var filterLC = this.filter.toLowerCase();
+                    if (assessment.name.toLowerCase().indexOf(filterLC) != -1 || assessment.description != undefined && assessment.description.toLowerCase().indexOf(filterLC) != -1 || assessment.postcode.toLowerCase().indexOf(filterLC) != -1 || assessment.owner_name.toLowerCase().indexOf(filterLC) != -1) this.assessmentsForTable.push(assessment);
+                }, this);
+            }
+        }
     },
     methods: {
         createAssessment: function createAssessment(evt) {
@@ -38654,6 +38671,31 @@ var render = function() {
         },
         [_vm._v("New")]
       ),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("Filter assessments "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.filter,
+              expression: "filter"
+            }
+          ],
+          staticClass: "form-control filter",
+          attrs: { type: "text" },
+          domProps: { value: _vm.filter },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.filter = $event.target.value
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
       _c("b-table", {
         attrs: {
