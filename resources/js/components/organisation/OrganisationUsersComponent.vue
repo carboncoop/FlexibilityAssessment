@@ -14,7 +14,7 @@
                  v-on:hidden="newUser.name=''; newUser.email=''; newUserRole=''; newUser.password=''; newUser.confirmPassword='';">
             <p style="color:red" v-if="error" v-html="error"></p>
             <table>
-                <tr><td>Name</td><td><input type="text" name="name" dusk="input-name" class="form-control" v-model="newUser.name" placeholder="My asessment"></td></tr>
+                <tr><td>Name</td><td><input type="text" name="name" dusk="input-name" class="form-control" v-model="newUser.name" placeholder="My name"></td></tr>
                 <tr><td>Email</td><td><input type="text" name="email" dusk="input-email"  class="form-control" v-model="newUser.email" placeholder="email@email.com"></td></tr>
                 <tr><td>Role</td><td><select class="form-control" dusk="select-role" v-model="newUser.role"><option value="administrator">Administrator</option><option value="assessor">Energy Officer</option><option value="invited">Invited user</option></select></td></tr>
                 <tr><td>Password</td><td><input type="password" name="password" class="form-control" v-model="newUser.password" placeholder="****"></td></tr>
