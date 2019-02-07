@@ -44597,7 +44597,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             evt.preventDefault(); // Prevent modal from closing
             this.error = false;
-            axios.delete("/api/organisation-user/" + this.userToDelete).then(function (response) {}).catch(function (error) {
+            axios.delete("/api/organisation-user/" + this.userToDelete).then(function (response) {
+                var userToDelete = _this2.userToDelete;
+                var indexOfUser = _this2.usersForTable.findIndex(function (user) {
+                    return user.id == userToDelete;
+                });
+                _this2.usersForTable.splice(indexOfUser, 1);
+                _this2.$refs.deleteUserModal.hide();
+            }).catch(function (error) {
                 _this2.errorCallback(error);
             });
         },
@@ -44692,8 +44699,7 @@ var render = function() {
                         modifiers: { "edit-user-modal": true }
                       }
                     ],
-                    staticClass: "edit-button",
-                    attrs: { "user-name": data.item.name },
+                    attrs: { dusk: "edit-user-" + data.item.name },
                     on: {
                       click: function($event) {
                         _vm.newUser.name = data.item.name
@@ -44732,8 +44738,7 @@ var render = function() {
                         modifiers: { "delete-user-modal": true }
                       }
                     ],
-                    staticClass: "delete-button",
-                    attrs: { "user-name": data.item.name },
+                    attrs: { dusk: "delete-user-" + data.item.name },
                     on: {
                       click: function($event) {
                         _vm.setUserToDelete(data.item.id)
@@ -44798,6 +44803,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     name: "name",
+                    dusk: "input-name",
                     placeholder: "My asessment"
                   },
                   domProps: { value: _vm.newUser.name },
@@ -44829,6 +44835,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     name: "email",
+                    dusk: "input-email",
                     placeholder: "email@email.com"
                   },
                   domProps: { value: _vm.newUser.email },
@@ -44859,6 +44866,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    attrs: { dusk: "select-role" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -45036,6 +45044,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     name: "name",
+                    dusk: "edit-name",
                     placeholder: "My asessment"
                   },
                   domProps: { value: _vm.newUser.name },
@@ -45067,6 +45076,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     name: "email",
+                    dusk: "edit-email",
                     placeholder: "email@email.com"
                   },
                   domProps: { value: _vm.newUser.email },
@@ -45097,6 +45107,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    attrs: { dusk: "edit-role" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter

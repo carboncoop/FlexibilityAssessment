@@ -44,11 +44,15 @@ class Login extends Page {
      * @param string $email
      * @param string $password
      */
-    public function logUserIn(Browser $browser, $email, $password) {
+    public function logUserIn(Browser $browser, $email, $password, $successfulLoginExpected = true) {
+        
         $browser->type('email', $email)
                 ->type('password', $password)
-                ->press('Login')
-                ->waitUntilMissing('#login-form');
+                ->press('Login');
+        
+        if ($successfulLoginExpected)
+            $browser->waitUntilMissing('#login-form');
+        
     }
 
 }

@@ -1,5 +1,6 @@
 @extends('layout')
 
+@section('title','Organisation Administrator dashboard')
 
 @section('style')
 
