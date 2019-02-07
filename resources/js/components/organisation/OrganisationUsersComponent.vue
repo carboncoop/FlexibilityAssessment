@@ -3,8 +3,8 @@
         <button v-b-modal.new-user-modal dusk="new-button" style='float:right; margin: 0 25px 10px; cursor: pointer'>New</button>
         <b-table striped hover responsive fixed :items="usersForTable" :fields="tableColumns" :outlined="true">
                  <template slot="actions" slot-scope="data">
-                <button v-b-modal.edit-user-modal class="edit-button" v-bind:user-name="data.item.name" v-on:click="newUser.name=data.item.name; newUser.email=data.item.email; newUser.role=data.item.role; newUser.id=data.item.id"><a class="edit-user" ><font-awesome-icon icon="edit" size="xs" title="Edit user" style="cursor:pointer" /></a></button>
-                <button v-b-modal.delete-user-modal class="delete-button" v-bind:user-name="data.item.name" v-on:click="setUserToDelete(data.item.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
+                <button v-b-modal.edit-user-modal dusk="edit-button" v-bind:user-name="data.item.name" v-on:click="newUser.name=data.item.name; newUser.email=data.item.email; newUser.role=data.item.role; newUser.id=data.item.id"><a class="edit-user" ><font-awesome-icon icon="edit" size="xs" title="Edit user" style="cursor:pointer" /></a></button>
+                <button v-b-modal.delete-user-modal v-bind:dusk="'delete-user-' + data.item.name" v-on:click="setUserToDelete(data.item.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
             </template>
         </b-table>
 
@@ -14,9 +14,9 @@
                  v-on:hidden="newUser.name=''; newUser.email=''; newUserRole=''; newUser.password=''; newUser.confirmPassword='';">
             <p style="color:red" v-if="error" v-html="error"></p>
             <table>
-                <tr><td>Name</td><td><input type="text" name="name" class="form-control" v-model="newUser.name" placeholder="My asessment"></td></tr>
-                <tr><td>Email</td><td><input type="text" name="email" class="form-control" v-model="newUser.email" placeholder="email@email.com"></td></tr>
-                <tr><td>Role</td><td><select class="form-control" v-model="newUser.role"><option value="administrator">Administrator</option><option value="assessor">Energy Officer</option><option value="invited">Invited user</option></select></td></tr>
+                <tr><td>Name</td><td><input type="text" name="name" dusk="input-name" class="form-control" v-model="newUser.name" placeholder="My asessment"></td></tr>
+                <tr><td>Email</td><td><input type="text" name="email" dusk="input-email"  class="form-control" v-model="newUser.email" placeholder="email@email.com"></td></tr>
+                <tr><td>Role</td><td><select class="form-control" dusk="select-role" v-model="newUser.role"><option value="administrator">Administrator</option><option value="assessor">Energy Officer</option><option value="invited">Invited user</option></select></td></tr>
                 <tr><td>Password</td><td><input type="password" name="password" class="form-control" v-model="newUser.password" placeholder="****"></td></tr>
                 <tr><td>Confirm password</td><td><input type="password" name="confirm-password" class="form-control" v-model="newUser.confirmPassword" placeholder="****"></td></tr>
             </table>
@@ -98,7 +98,12 @@
                 this.error = false;
                 axios.delete("/api/organisation-user/" + this.userToDelete)
                         .then((response) => {
-
+                            let userToDelete = this.userToDelete;
+                            let indexOfUser = this.usersForTable.findIndex(function (user) {
+                                return user.id == userToDelete;
+                            });
+                            this.usersForTable.splice(indexOfUser, 1);
+                            this.$refs.deleteUserModal.hide();
                         })
                         .catch((error) => {
                             this.errorCallback(error);
@@ -107,7 +112,7 @@
             editUser: function (evt) {
                 evt.preventDefault(); // Prevent modal from closing
                 this.error = false;
-                axios.put("/api/organisation-user/" + this.newUser.id,  this.newUser)
+                axios.put("/api/organisation-user/" + this.newUser.id, this.newUser)
                         .then((response) => {
                             let newUser = this.newUser;
                             let indexOfUser = this.usersForTable.findIndex(function (user) {
