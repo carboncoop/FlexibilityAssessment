@@ -50,8 +50,12 @@
 <style scoped>
 </style>
 
-<script>
+<script>    
+    
+    import {AxiosErrorCallback} from './mixins/AxiosErrorCallback.js';
+
     export default {
+        mixins: [AxiosErrorCallback],
         props: {
             'users': Array
         },
@@ -86,7 +90,7 @@
                                 this.$refs.newUserModal.hide();
                             })
                             .catch((error) => {
-                                this.errorCallback(error);
+                                this.axiosErrorCallback(error);
                             });
                 }
             },
@@ -106,7 +110,7 @@
                             this.$refs.deleteUserModal.hide();
                         })
                         .catch((error) => {
-                            this.errorCallback(error);
+                            this.axiosErrorCallback(error);
                         })
             },
             editUser: function (evt) {
@@ -124,22 +128,8 @@
                             this.$refs.editUserModal.hide();
                         })
                         .catch((error) => {
-                            this.errorCallback(error);
-                        })
-            },
-            errorCallback: function (error) {
-                console.log(error);
-                this.error = 'Error ';
-                if (error.response.data.errors) {
-                    for (let errorKey in error.response.data.errors) {
-                        this.error += "<br /> " + error.response.data.errors[errorKey];
-                    }
-                    ;
-                }
-                else if (error.response.data.message)
-                    this.error += '- ' + error.response.data.message;
-                else
-                    this.error += '- ' + error;
+                            this.axiosErrorCallback(error);
+                        });
             }
         },
         mounted: function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +28,8 @@ class OrganisationAdministratorController extends Controller {
      */
     public function dashboard() {
 
+        $organisation = Auth::user()->organisation;
+
         $users = Auth::user()->organisation->users;
 
         $assessments = collect();
@@ -38,7 +41,7 @@ class OrganisationAdministratorController extends Controller {
             $assessment->owner_name = $assessment->user->name;
         }
 
-        return view('organisationAdministrator.dashboard', compact('assessments', 'users'));
+        return view('organisationAdministrator.dashboard', compact('assessments', 'organisation'));
     }
 
     /**
@@ -103,7 +106,7 @@ class OrganisationAdministratorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function updateUser(Request $request, $id) {
-        
+
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
 
@@ -111,22 +114,74 @@ class OrganisationAdministratorController extends Controller {
         $user = User::where('name', $request->name)->get()->first();
         if (is_null($user) == false) {
             if ($user->id != $request->id) {
-                return response('Name already exists', 409);
+                $errorMessage = ["message" => "The given data was invalid.", "errors" => ["name" => ["The name already exist."]]];
+                return response($errorMessage, 422);
             }
         }
         // Check if we are changing the name and already exist
         $user = User::where('email', $request->email)->get()->first();
         if (is_null($user) == false) {
             if ($user->id != $request->id) {
-                return response('Name already exists', 409);
+                $errorMessage = ["message" => "The given data was invalid.", "errors" => ["email" => ["The email already exist."]]];
+                return response($errorMessage, 422);
             }
-        }        
-        
+        }
+
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
         $user->save();
+        return response(null, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Integer  $$id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+        
+        $organisation = Organisation::findOrFail($id);
+        $this->authorize('update', $organisation);
+
+        $organisation = Organisation::where('name', $request->name)->get()->first();
+        if (is_null($organisation) == false) {
+            if ($organisation->id != $request->id) {
+                $errorMessage = ["message" => "The given data was invalid.", "errors" => ["name" => ["The name already exist."]]];
+                return response($errorMessage, 422);
+            }
+        }
+
+        $organisation = Organisation::where('email', $request->email)->get()->first();
+        if (is_null($organisation) == false) {
+            if ($organisation->id != $request->id) {
+                $errorMessage = ["message" => "The given data was invalid.", "errors" => ["email" => ["The email already exist."]]];
+                return response($errorMessage, 422);
+            }
+        }
+
+        $validatedData = $request->validate([
+            'telephone' => ['required', 'string'],
+            'postcode_zones' => ['required', 'string'],
+            'address1' => ['required', 'string'],
+            'address2' => ['string', 'nullable'],
+            'postcode' => ['required', 'string'],
+            'city_town' => ['required', 'string']
+        ]);
+
+
+        $organisation->name = $request->name;
+        $organisation->email = $request->email;
+        $organisation->telephone = $request->telephone;
+        $organisation->postcode_zones = $request->postcode_zones;
+        $organisation->address1 = $request->address1;
+        $organisation->address2 = $request->address2;
+        $organisation->postcode = $request->postcode;
+        $organisation->city_town = $request->city_town;
+        $organisation->save();
         return response(null, 200);
     }
 

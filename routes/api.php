@@ -22,3 +22,5 @@ Route::resource('assessment', 'AssessmentController')->except(['index', 'edit'])
 Route::post('/organisation-user', 'OrganisationAdministratorController@createAddUser')->middleware('auth:api');
 Route::delete('/organisation-user/{userId}', 'OrganisationAdministratorController@deleteUser')->middleware('auth:api');
 Route::put('/organisation-user/{userId}', 'OrganisationAdministratorController@updateUser')->middleware('auth:api');
+
+Route::put('/organisation/{organisationId}', 'OrganisationAdministratorController@update')->middleware('auth:api');

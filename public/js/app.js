@@ -14784,6 +14784,7 @@ Vue.component('assessments-table', __webpack_require__(219));
 Vue.component('assessment', __webpack_require__(225));
 Vue.component('font-awesome-icon', __WEBPACK_IMPORTED_MODULE_2__fortawesome_vue_fontawesome__["a" /* FontAwesomeIcon */]);
 Vue.component('organisation-users', __webpack_require__(256));
+Vue.component('organisation-details', __webpack_require__(263));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -44549,6 +44550,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AxiosErrorCallback_js__ = __webpack_require__(268);
 //
 //
 //
@@ -44602,7 +44604,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AxiosErrorCallback_js__["a" /* AxiosErrorCallback */]],
     props: {
         'users': Array
     },
@@ -44627,7 +44633,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.usersForTable.push(response.data);
                     _this.$refs.newUserModal.hide();
                 }).catch(function (error) {
-                    _this.errorCallback(error);
+                    _this.axiosErrorCallback(error);
                 });
             }
         },
@@ -44647,7 +44653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.usersForTable.splice(indexOfUser, 1);
                 _this2.$refs.deleteUserModal.hide();
             }).catch(function (error) {
-                _this2.errorCallback(error);
+                _this2.axiosErrorCallback(error);
             });
         },
         editUser: function editUser(evt) {
@@ -44665,18 +44671,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.usersForTable[indexOfUser].role = _this3.newUser.role;
                 _this3.$refs.editUserModal.hide();
             }).catch(function (error) {
-                _this3.errorCallback(error);
+                _this3.axiosErrorCallback(error);
             });
-        },
-        errorCallback: function errorCallback(error) {
-            console.log(error);
-            this.error = 'Error ';
-            if (error.response.data.errors) {
-                for (var errorKey in error.response.data.errors) {
-                    this.error += "<br /> " + error.response.data.errors[errorKey];
-                }
-                ;
-            } else if (error.response.data.message) this.error += '- ' + error.response.data.message;else this.error += '- ' + error;
         }
     },
     mounted: function mounted() {
@@ -44846,7 +44842,7 @@ var render = function() {
                     type: "text",
                     name: "name",
                     dusk: "input-name",
-                    placeholder: "My asessment"
+                    placeholder: "My name"
                   },
                   domProps: { value: _vm.newUser.name },
                   on: {
@@ -45206,6 +45202,584 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 262 */,
+/* 263 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(264)
+}
+var normalizeComponent = __webpack_require__(13)
+/* script */
+var __vue_script__ = __webpack_require__(266)
+/* template */
+var __vue_template__ = __webpack_require__(267)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1dd4244f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/organisation/OrganisationDetailsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1dd4244f", Component.options)
+  } else {
+    hotAPI.reload("data-v-1dd4244f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 264 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(265);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("4fa95682", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1dd4244f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrganisationDetailsComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1dd4244f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrganisationDetailsComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 265 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable[data-v-1dd4244f]{\n    margin-left: 50px;\n}\ntd[data-v-1dd4244f]{\n    padding: 10px 15px;\n    height: 58px;\n}\ninput[data-v-1dd4244f]{\n    display:inline-block;\n    max-width: 300px;\n    padding:0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 266 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AxiosErrorCallback_js__ = __webpack_require__(268);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AxiosErrorCallback_js__["a" /* AxiosErrorCallback */]],
+    props: {
+        'organisation': Object
+    },
+    data: function data() {
+        return {
+            dOrganisation: JSON.parse(JSON.stringify(this.organisation)),
+            editMode: false,
+            error: false
+        };
+    },
+    methods: {
+        saveOrganisationDetails: function saveOrganisationDetails() {
+            var _this = this;
+
+            axios.put('/api/organisation/' + this.organisation.id, this.dOrganisation).then(function (response) {
+                _this.error = false;
+                _this.editMode = false;
+            }).catch(function (error) {
+                _this.axiosErrorCallback(error);
+            });
+        }
+    },
+    mounted: function mounted() {
+        console.log(this.organisation);
+    }
+});
+
+/***/ }),
+/* 267 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("b-card", { attrs: { id: "organisation-details-component" } }, [
+    _c("table", [
+      _c("tr", [
+        _c("td", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.name) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.name,
+                    expression: "dOrganisation.name"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.dOrganisation, "name", $event.target.value)
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.email) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.email,
+                    expression: "dOrganisation.email"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.dOrganisation, "email", $event.target.value)
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Telephone")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.telephone) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.telephone,
+                    expression: "dOrganisation.telephone"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.telephone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.dOrganisation,
+                      "telephone",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Address 1")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.address1) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.address1,
+                    expression: "dOrganisation.address1"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.address1 },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.dOrganisation, "address1", $event.target.value)
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Address 2")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.address2) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.address2,
+                    expression: "dOrganisation.address2"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.address2 },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.dOrganisation, "address2", $event.target.value)
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("City/town")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.city_town) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.city_town,
+                    expression: "dOrganisation.city_town"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.city_town },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.dOrganisation,
+                      "city_town",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Postcode")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: { textContent: _vm._s(_vm.dOrganisation.postcode) }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.postcode,
+                    expression: "dOrganisation.postcode"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.postcode },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.dOrganisation, "postcode", $event.target.value)
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Postcode Zones")]),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c("span", {
+                domProps: {
+                  textContent: _vm._s(_vm.dOrganisation.postcode_zones)
+                }
+              })
+            : _vm._e(),
+          _vm.editMode == true
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dOrganisation.postcode_zones,
+                    expression: "dOrganisation.postcode_zones"
+                  }
+                ],
+                staticClass: "form-control",
+                domProps: { value: _vm.dOrganisation.postcode_zones },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.dOrganisation,
+                      "postcode_zones",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td"),
+        _vm._v(" "),
+        _c("td", [
+          _vm.editMode == false
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  on: {
+                    click: function($event) {
+                      _vm.editMode = true
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.editMode == true
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  on: {
+                    click: function($event) {
+                      _vm.editMode = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.editMode == true
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  on: { click: _vm.saveOrganisationDetails }
+                },
+                [_vm._v("Save")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.error
+            ? _c("p", {
+                staticStyle: { color: "red" },
+                domProps: { innerHTML: _vm._s(_vm.error) }
+              })
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1dd4244f", module.exports)
+  }
+}
+
+/***/ }),
+/* 268 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AxiosErrorCallback; });
+var AxiosErrorCallback = {
+    methods: {
+        axiosErrorCallback: function axiosErrorCallback(error) {
+            console.log(error);
+            this.error = 'Error ';
+            if (error.response.data.errors) {
+                for (var errorKey in error.response.data.errors) {
+                    this.error += "<br /> " + error.response.data.errors[errorKey];
+                }
+                ;
+            } else if (error.response.data.message) this.error += '- ' + error.response.data.message;else this.error += '- ' + error;
+        }
+    }
+};
 
 /***/ })
 /******/ ]);

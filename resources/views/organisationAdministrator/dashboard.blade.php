@@ -27,13 +27,14 @@
             </b-tab>
             <b-tab title="Users" >
                 <br />
-                <organisation-users v-bind:users="{{ $users }}"></organisation-users>
+                <organisation-users v-bind:users="{{ $organisation->users }}"></organisation-users>
             </b-tab>
             <b-tab title="Aggregation">
                 <br>Disabled tab!
             </b-tab>
             <b-tab title="Org. Details">
-                <br>Disabled tab!
+                <br>
+                <organisation-details v-bind:organisation="{{ $organisation }}"></organisation-details>
             </b-tab>
         </b-tabs>
     </b-card>
