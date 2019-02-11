@@ -93,4 +93,29 @@ class AdministratorDashboard extends Page {
                 ->waitUntilMissing('#edit-user-modal___BV_modal_outer_');
     }
     
+         /**
+     * Edit organisation details.
+     *
+     * @param  \Laravel\Dusk\Browser  $browser
+     * @param  string  $name
+     * @param  string  $email
+     * @param  string  $role Should be a valid role
+     * @return void
+     */
+    public function editOrganisationDetails(Browser $browser, $name, $email, $telephone, $address1, $address2,$city_town, $postcode, $postcode_zones) {
+        $browser->clickLink('Org. Details')
+                ->press('Edit')
+                ->waitFor('@organisation-name-input')
+                ->type("@organisation-name-input",$name)
+                ->type("@organisation-email-input",$email)
+                ->type("@organisation-telephone-input",$telephone)
+                ->type("@organisation-address1-input",$address1)
+                ->type("@organisation-address2-input",$address2)
+                ->type("@organisation-city_town-input",$city_town)
+                ->type("@organisation-postcode-input",$postcode)
+                ->type("@organisation-postcode_zones-input",$postcode_zones)
+                ->press('Save')
+                ->waitFor('@organisation-name-text');
+    }
+    
 }
