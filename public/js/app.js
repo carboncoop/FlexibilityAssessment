@@ -39226,7 +39226,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { 'initialAssessment': Object },
+    props: {
+        'initialAssessment': Object,
+        'reportUrl': String
+    },
     data: function data() {
         return {
             assessment: JSON.parse(JSON.stringify(this.initialAssessment)), // Deep cloning to ensure one way data flow (only from parent component to child)  
@@ -42471,7 +42474,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -42493,9 +42496,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { initialAssessment: Object }
+    props: {
+        initialAssessment: Object,
+        reportUrl: String
+    },
+    mounted: function mounted() {
+        console.log(this.reportUrl);
+    }
 });
 
 /***/ }),
@@ -42506,24 +42516,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "assessment-report" } }, [
-      _c("h1", [_vm._v("Flexibility assessment report")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
-        )
+  return _c("div", { attrs: { id: "assessment-report" } }, [
+    _c("h1", [_vm._v("Flexibility assessment report")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("You can download this report in pdf format "),
+      _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
+        _vm._v("here")
       ])
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -44443,7 +44453,10 @@ var render = function() {
       _vm._v(" "),
       _vm.view == "assessment-report"
         ? _c("assessment-report", {
-            attrs: { "initial-assessment": _vm.assessment }
+            attrs: {
+              "initial-assessment": _vm.assessment,
+              "report-url": _vm.reportUrl
+            }
           })
         : _vm._e(),
       _vm._v(" "),

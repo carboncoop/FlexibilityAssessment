@@ -6,6 +6,7 @@ use App\Assessment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class AssessmentController extends Controller {
 
@@ -54,7 +55,7 @@ class AssessmentController extends Controller {
      */
     public function store(Request $request) {
         $this->authorize('create', Assessment::class);
-        
+
         $validatedData = $request->validate([
             'name' => 'required|unique:assessments|max:255',
             'description' => 'max:1000'
@@ -68,7 +69,9 @@ class AssessmentController extends Controller {
         $assessment->town = $request->town;
         $assessment->postcode = $request->postcode;
         $assessment->email = $request->email;
-        $assessment->data = new class{};
+        $assessment->data = new class {
+            
+        };
         $assessment['owner_id'] = Auth::user()->id;
         $assessment->save();
 
@@ -93,9 +96,10 @@ class AssessmentController extends Controller {
      */
     public function edit($id) {
         $assessment = Assessment::findOrFail($id);
+        $reportURL = URL::signedRoute('assessmentReport', ['assessment' => $assessment->id]);
 
-        if ($this->authorize('view', $assessment))
-            return view('assessments.assessment', ['assessment' => $assessment]);
+        $this->authorize('view', $assessment);
+        return view('assessments.assessment', ['assessment' => $assessment, 'reportURL' => $reportURL]);
     }
 
     /**
@@ -149,6 +153,18 @@ class AssessmentController extends Controller {
             abort(401, "You are not allowed to delete this assessment");
 
         Assessment::destroy($id);
+
+        return response(null, 200);
+    }
+
+    /**
+     * Retrieve the pdf version of a report
+     *
+     * @param  integer  $assessmentId
+     * @return \Illuminate\Http\Response
+     */
+    public function report($assessmentId) {
+        dump($assessmentId);
 
         return response(null, 200);
     }

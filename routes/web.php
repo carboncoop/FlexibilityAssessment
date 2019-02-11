@@ -11,6 +11,7 @@
   |
  */
 
+use Illuminate\Http\Request;
 
 /* * ********************
  * Public routes
@@ -43,6 +44,16 @@ else {
     Auth::routes();
 }
 
+Route::get('/assessment/{assessmentId}/report', function (Request $request) {
+    
+    if (!$request->hasValidSignature()) {
+        abort(401);
+    }
+
+    return App::call('App\Http\Controllers\AssessmentController@report', [Route::current()->assessmentId]);
+    
+})->name('assessmentReport');
+
 
 /* * *********************************
  * Routes for authenticated users
@@ -52,6 +63,5 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('assessment', 'AssessmentController')->only(['index', 'edit']);
     Route::middleware(['isOrganisationAdministrator'])->get('organisation-administrator-dashboard', 'OrganisationAdministratorController@dashboard');
-    
 });
 
