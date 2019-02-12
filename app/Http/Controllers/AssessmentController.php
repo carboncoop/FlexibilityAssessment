@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use PDF;
 
 class AssessmentController extends Controller {
 
@@ -158,15 +159,14 @@ class AssessmentController extends Controller {
     }
 
     /**
-     * Retrieve the pdf version of a report
+     * Retrieve just the report
      *
      * @param  integer  $assessmentId
      * @return \Illuminate\Http\Response
      */
     public function report($assessmentId) {
-        dump($assessmentId);
-
-        return response(null, 200);
+        $assessment = Assessment::findOrFail($assessmentId);
+        return view('assessments.report', compact('assessment'));
     }
 
 }

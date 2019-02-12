@@ -25,6 +25,7 @@ library.add(faTrash, faEdit, faQuestionCircle);
 
 Vue.component('assessments-table', require('./components/assessment/AssessmentsTableComponent.vue'));
 Vue.component('assessment', require('./components/assessment/AssessmentComponent.vue'));
+Vue.component('assessment-report', require('./components/assessment/AssessmentReportComponent.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('organisation-users',require('./components/organisation/OrganisationUsersComponent.vue'));
 Vue.component('organisation-details',require('./components/organisation/OrganisationDetailsComponent.vue'));
