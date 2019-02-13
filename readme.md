@@ -24,6 +24,7 @@ Generate the application key `php artisan key:generate`
 
 Migrate database `php artisan migrate`
 
+Create passport keys `php artisan passport:install`
 
 
 ##Installation - Development
@@ -41,3 +42,5 @@ Configure your environment variables by copying .env.example into .env (follow t
 Generate the application key `php artisan key:generate`
 
 Migrate database `php artisan migrate`
+
+Create passport keys `php artisan passport:install`
