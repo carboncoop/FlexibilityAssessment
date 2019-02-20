@@ -57,7 +57,7 @@
                         <tr><td>Number</td><td>Rating</td></tr>
                         <tr>
                             <td>
-                                <input class="form-control" type="number" min="0" v-model="assessment.data.immersionHeater.number" style='margin-bottom:10px' />
+                                <input class="form-control" type="number" min="0" v-model="assessment.data.immersionHeater.number" style='margin-bottom:10px' /> <br />
                                 <input type='checkbox' v-model='assessment.data.immersionHeater.thermostat' /> Thermostat  <br />
                                 <input type='checkbox' v-model='assessment.data.immersionHeater.programmer' /> Programmer  <br />
                                 <input type='checkbox' v-model='assessment.data.immersionHeater.advancedControls' /> Advanced controls  <br />
@@ -81,7 +81,7 @@
                         <tr><td>Number</td><td>Rating</td></tr>
                         <tr>
                             <td>
-                                <input class="form-control" type="number" min="0" v-model="assessment.data.storageHeaters.number" style='margin-bottom:10px' />
+                                <input class="form-control" type="number" min="0" v-model="assessment.data.storageHeaters.number" style='margin-bottom:10px' /> <br />
                                 <input type='checkbox' v-model='assessment.data.storageHeaters.timer' /> Timer <br />
                                 <input type='checkbox' v-model='assessment.data.storageHeaters.advancedControls' /> Advanced controls  <br />
                             </td>
