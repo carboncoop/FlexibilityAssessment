@@ -268,7 +268,7 @@
         mixins: [AssessmentInput],
         data: function () {
             return {
-                model: new flexibilityModel()
+                flexibilityModel: new flexibilityModel()
             };
         },
         methods: {
@@ -284,7 +284,10 @@
                 deep: true,
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
-                    console.log(this.model.run(dataForModel).flexibleLoad);
+                    this.flexibilityModel.run(dataForModel);
+                    if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
+                        this.assessment.data = dataForModel;
+                    }
                 }
             }
         },
