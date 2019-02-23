@@ -18,7 +18,19 @@
                     </select>
                 </td>
             </tr>
-            <tr><td>Is the household single occupancy?</td><td><input type="radio" name="singleOccupancy" value="Yes" v-model="assessment.data.household.singleOccupancy"  /> Yes <input type="radio" name="singleOccupancy" value="No" v-model="assessment.data.household.singleOccupancy" checked /> No</td></tr>
+            <tr>
+                <td>Do you know the EPC rating?</td>
+                <td>
+                    <input type="radio" name="EPC-rating-known" v-model="assessment.data.household.knownEPC" value="Yes"> Yes <input type="radio" name="EPC-rating-known" v-model="assessment.data.household.knownEPC" value="No" v-on:click="assessment.data.household.EPC = 55"> No <br />
+                    <div v-if="assessment.data.household.knownEPC == 'Yes'">
+                        Rating <input type='number' class="form-control" style="margin-left:25px" v-model='assessment.data.household.EPC' min='0' max='100'>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>How many people live in the household? <span title="Including children"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
+                <td><input type="number" class="form-control" min="1" v-model="assessment.data.household.occupancy"  /> </td>
+            </tr>
             <tr>
                 <td>Age of the house</td>
                 <td>
@@ -53,21 +65,22 @@
                 <td>Have you got an immersion heater</td>
                 <td>
                     <input type="radio" name="immersionHeater" value="Yes" v-model="assessment.data.immersionHeater.present"  /> Yes <input type="radio" name="immersionHeater" value="No" v-model="assessment.data.immersionHeater.present" checked /> No
-                    <table class='heaters' v-if="assessment.data.immersionHeater.present =='Yes'">
-                        <tr><td>Number</td><td>Rating</td></tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" type="number" min="0" v-model="assessment.data.immersionHeater.number" style='margin-bottom:10px' /> <br />
-                                <input type='checkbox' v-model='assessment.data.immersionHeater.thermostat' /> Thermostat  <br />
-                                <input type='checkbox' v-model='assessment.data.immersionHeater.programmer' /> Programmer  <br />
-                                <input type='checkbox' v-model='assessment.data.immersionHeater.advancedControls' /> Advanced controls  <br />
-                            </td>
-                            <td>
-                                <input class="form-control" type="number" min="0" v-model="assessment.data.immersionHeater.rating" style='display:inline-block' /> kW
-
-                            </td>
-                        </tr>
-                    </table>
+                    <div class='heaters' v-if="assessment.data.immersionHeater.present =='Yes'">
+                        <table class='heaters'>
+                            <tr><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.immersionHeater.rating" style='display:inline-block' /> kW</td></tr>
+                            <tr>
+                                <td>Controls</td>
+                                <td>
+                                    <select class="form-control" v-model="assessment.data.immersionHeater.controlType">
+                                        <option value="None">None</option>
+                                        <option value="Thermostat">Thermostat</option>
+                                        <option value="Programmer">Programmer</option>
+                                        <option value="Advanced controls">Advanced controls</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </td>
             </tr>
 
@@ -78,14 +91,17 @@
                     <table class='heaters' v-if="assessment.data.storageHeaters.present =='Yes'">
                         <tr><td>Manufacturer</td><td><input type='text' class="form-control" v-model='assessment.data.storageHeaters.manufacturer' /></td></tr>
                         <tr><td>Model/make</td><td><input type='text' class="form-control" v-model='assessment.data.storageHeaters.modelMake' /></td></tr>
-                        <tr><td>Number</td><td>Rating</td></tr>
+                        <tr><td>How many?</td><td><input class="form-control" type="number" min="0" step="1" v-model="assessment.data.storageHeaters.number" style='display:inline-block' /></td></tr>
+                        <tr><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.storageHeaters.rating" style='display:inline-block' /> kW</td></tr>
                         <tr>
+                            <td>Controls</td>
                             <td>
-                                <input class="form-control" type="number" min="0" v-model="assessment.data.storageHeaters.number" style='margin-bottom:10px' /> <br />
-                                <input type='checkbox' v-model='assessment.data.storageHeaters.timer' /> Timer <br />
-                                <input type='checkbox' v-model='assessment.data.storageHeaters.advancedControls' /> Advanced controls  <br />
+                                <select class="form-control" v-model="assessment.data.storageHeaters.controlType">
+                                    <option value="Input/output">Input/output</option>
+                                    <option value="Timer">Timer</option>
+                                    <option value="Advanced controls">Advanced controls</option>
+                                </select>
                             </td>
-                            <td><input class="form-control" type="number" min="0" v-model="assessment.data.storageHeaters.rating" style='display:inline-block' /> kW</td>
                         </tr>
                     </table>
                 </td>
@@ -246,9 +262,15 @@
 <script>
 
     import {AssessmentInput} from './mixins/AssessmentInput.js';
+    import {flexibilityModel} from '../../../../public/js/flexibility_model/flex_model.js';
 
     export default{
         mixins: [AssessmentInput],
+        data: function () {
+            return {
+                model: new flexibilityModel()
+            };
+        },
         methods: {
             addDevice: function (type) {
                 this.assessment.data[type].list.push({type: "", manufacturer: "", modelMake: ""});
@@ -257,20 +279,31 @@
                 this.assessment.data[type].list.splice(index, 1);
             }
         },
+        watch: {
+            assessment: {
+                deep: true,
+                handler: function () {
+                    let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
+                    console.log(this.model.run(dataForModel).flexibleLoad);
+                }
+            }
+        },
         created: function () {
 
+            // Initialize required data to run the model
+
             if (this.assessment.data.household == undefined) {
-                Vue.set(this.assessment.data, 'household', {});
+                Vue.set(this.assessment.data, 'household', {EPC: 55, knownEPC: "No"}); // default value to use (lowest rate of band D if user doesn't know the real one
             }
 
             if (this.assessment.data.immersionHeater == undefined) {
                 Vue.set(this.assessment.data, 'immersionHeater', {});
-                this.assessment.data.immersionHeater = {"present": 'No'};
+                this.assessment.data.immersionHeater = {"present": 'No', rating: 1, controlType: "None"};
             }
 
             if (this.assessment.data.storageHeaters == undefined) {
                 Vue.set(this.assessment.data, 'storageHeaters', {});
-                this.assessment.data.storageHeaters = {"present": 'No'};
+                this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 1};
             }
 
             if (this.assessment.data.otherElectricHeaters == undefined) {
@@ -320,8 +353,6 @@
             if (this.assessment.data.smartMeter == undefined) {
                 Vue.set(this.assessment.data, 'smartMeter', '');
             }
-
-
         }
     }
 
