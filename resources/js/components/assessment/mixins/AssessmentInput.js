@@ -15,7 +15,8 @@ export const AssessmentInput = {
         initialAssessment: {
             deep: true,
             handler: function () {
-                this.assessment = JSON.parse(JSON.stringify(this.initialAssessment));
+                if (JSON.stringify(this.initialAssessment) != JSON.stringify(this.assessment))
+                    this.assessment = JSON.parse(JSON.stringify(this.initialAssessment));
             }
         }
     },
