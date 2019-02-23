@@ -287,6 +287,10 @@
                     this.flexibilityModel.run(dataForModel);
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                         this.assessment.data = dataForModel;
+                        console.log("Flexible power " + JSON.stringify(dataForModel.flexiblePower));
+                        console.log("Flexible load " + JSON.stringify(dataForModel.flexibleLoad));
+                        console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                        console.log("Income year total = " + dataForModel.incomeYearTotal);
                     }
                 }
             }

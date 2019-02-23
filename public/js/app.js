@@ -39681,7 +39681,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
     data: function data() {
         return {
-            model: new __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */]()
+            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */]()
         };
     },
     methods: {
@@ -39697,7 +39697,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deep: true,
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
-                console.log(this.model.run(dataForModel).flexibleLoad);
+                this.flexibilityModel.run(dataForModel);
+                if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
+                    this.assessment.data = dataForModel;
+                    console.log("Flexible power " + JSON.stringify(dataForModel.flexiblePower));
+                    console.log("Flexible load " + JSON.stringify(dataForModel.flexibleLoad));
+                    console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                    console.log("Income year total = " + dataForModel.incomeYearTotal);
+                }
             }
         }
     },
@@ -39838,13 +39845,19 @@ var flexibilityModel = function () {
         key: "run",
         value: function run(data) {
 
-            data.flexiblePower = [];
-            data.flexibleLoad = [];
-            data.incomeYear = [];
+            data.flexiblePower = {};
+            data.flexibleLoad = {};
+            data.incomeYear = {};
+            data.incomeYearTotal = 0;
 
             this.iniFees(data);
             this.storageHeatersFlexibility(data);
             this.immersionHeaterFlexibility(data);
+
+            for (var source in data.incomeYear) {
+                data.incomeYearTotal += data.incomeYear[source];
+            }
+
             return data;
         }
 
@@ -39933,6 +39946,7 @@ var flexibilityModel = function () {
          *      - data.household.occupancy      integer
          *      - data.immersionHeater.present   boolean/String  (Yes/No)
          *      - data.immersionHeater.rating    integer kW
+         *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
          *      
          *  Global outputs:
          *      - data.flexiblePower.immersionHeater     kW
@@ -39955,9 +39969,10 @@ var flexibilityModel = function () {
                 var flexibleLoadFactor = 1;
                 data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
 
-                var immersionHeatingSystem = { // this is a typical hot immersion heater system that we can pass as an input to openBEM
+                var immersionHeatingSystem = { // this is a immersion heater system that we can pass as an input to openBEM
                     gains_W: {},
                     energy_requirements: {},
+                    occupancy: data.household.occupancy,
                     water_heating: {
                         override_annual_energy_content: false,
                         low_water_use_design: false,
@@ -39978,16 +39993,25 @@ var flexibilityModel = function () {
                         },
                         solar_water_heating: false,
                         hot_water_store_in_dwelling: 1
-                    }
+                    },
+                    heating_systems: [{
+                        combi_loss: 0,
+                        efficiency: 1,
+                        fraction_water_heating: 1,
+                        instantaneous_water_heating: false,
+                        name: "Electric Immersion System",
+                        primary_circuit_loss: "No",
+                        provides: "water"
+                    }]
                 };
+
                 if (data.immersionHeater.controlType === "Programmer" || data.immersionHeater.controlType === "Advanced controls") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";else if (data.immersionHeater.controlType === "Thermostat") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
 
                 var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
-                //annualWaterHeatingDemand = annualWaterHeatingDemand.annual_waterheating_demand;
                 var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
                 flexiblePower = flexiblePowerFactor * data.immersionHeater.rating;
                 flexibleLoad = flexibleLoadFactor * flexiblePower * timeOfUseYear;
-                var _incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoad, timeOfUseYear);
+                incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoad, timeOfUseYear);
             }
 
             data.flexiblePower.immersionHeater = flexiblePower;

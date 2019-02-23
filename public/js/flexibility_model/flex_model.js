@@ -53,13 +53,19 @@ class flexibilityModel {
 
     run(data) {
 
-        data.flexiblePower = [];
-        data.flexibleLoad = [];
-        data.incomeYear = [];
+        data.flexiblePower = {};
+        data.flexibleLoad = {};
+        data.incomeYear = {};
+        data.incomeYearTotal = 0;
 
         this.iniFees(data);
         this.storageHeatersFlexibility(data);
         this.immersionHeaterFlexibility(data);
+
+        for (let source in data.incomeYear) {
+            data.incomeYearTotal += data.incomeYear[source];
+        }
+
         return data;
 
     }
@@ -149,6 +155,7 @@ class flexibilityModel {
      *      - data.household.occupancy      integer
      *      - data.immersionHeater.present   boolean/String  (Yes/No)
      *      - data.immersionHeater.rating    integer kW
+     *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
      *      
      *  Global outputs:
      *      - data.flexiblePower.immersionHeater     kW
@@ -169,9 +176,10 @@ class flexibilityModel {
             let flexibleLoadFactor = 1;
             data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
 
-            let immersionHeatingSystem = {// this is a typical hot immersion heater system that we can pass as an input to openBEM
+            let immersionHeatingSystem = {// this is a immersion heater system that we can pass as an input to openBEM
                 gains_W: {},
                 energy_requirements: {},
+                occupancy: data.household.occupancy,
                 water_heating: {
                     override_annual_energy_content: false,
                     low_water_use_design: false,
@@ -192,19 +200,28 @@ class flexibilityModel {
                     },
                     solar_water_heating: false,
                     hot_water_store_in_dwelling: 1
-                }
+                },
+                heating_systems: [{
+                        combi_loss: 0,
+                        efficiency: 1,
+                        fraction_water_heating: 1,
+                        instantaneous_water_heating: false,
+                        name: "Electric Immersion System",
+                        primary_circuit_loss: "No",
+                        provides: "water",
+                    }]
             };
+
             if (data.immersionHeater.controlType === "Programmer" || data.immersionHeater.controlType === "Advanced controls")
                 immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";
             else if (data.immersionHeater.controlType === "Thermostat")
                 immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
 
             let annualWaterHeatingDemand = openBEM.calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
-            //annualWaterHeatingDemand = annualWaterHeatingDemand.annual_waterheating_demand;
             let timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
             flexiblePower = flexiblePowerFactor * data.immersionHeater.rating;
             flexibleLoad = flexibleLoadFactor * flexiblePower * timeOfUseYear;
-            let incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoad, timeOfUseYear);
+            incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoad, timeOfUseYear);
         }
 
         data.flexiblePower.immersionHeater = flexiblePower;
