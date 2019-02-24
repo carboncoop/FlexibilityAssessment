@@ -289,9 +289,9 @@
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                     this.flexibilityModel.run(dataForModel);
-                    console.log("Flexible power available: " + JSON.stringify(dataForModel.flexiblePowerAvailable));
-                    console.log("Flexible power scheduled: " + JSON.stringify(dataForModel.flexiblePowerScheduled));
-                    console.log("Flexible load utilised: " + JSON.stringify(dataForModel.flexibleLoadYearUtilised));
+                    console.log("Flexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
+                    console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
+                    console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                     console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
                     console.log("Income year total = " + dataForModel.incomeYearTotal);
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {

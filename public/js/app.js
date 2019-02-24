@@ -39702,9 +39702,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                 this.flexibilityModel.run(dataForModel);
-                console.log("Flexible power available: " + JSON.stringify(dataForModel.flexiblePowerAvailable));
-                console.log("Flexible power scheduled: " + JSON.stringify(dataForModel.flexiblePowerScheduled));
-                console.log("Flexible load utilised: " + JSON.stringify(dataForModel.flexibleLoadYearUtilised));
+                console.log("Flexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
+                console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
+                console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                 console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
                 console.log("Income year total = " + dataForModel.incomeYearTotal);
                 if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
@@ -39822,14 +39822,11 @@ function flex_model(flex_im_count, flex_im_score, flex_sh_count, flex_sh_score) 
  * The model assumes that the load is shifted: the energy is not used at the time when 
  * it would normally be used but it is used at another time of the day. 
  * 
- * The total income calculation is calculated as the income from flexibility minus 
- * the cost of the energy at a different time of the day (high rate in case of 
- * differential tariffs), for example: the storage heaters will be charged at the 
- * high rate when they normally charge at the low rate. This will still generate 
- * an income for the househod because the fees of the Flexibility scheme will be 
- * higher than the extra expense.
+ * The total income is calculated as the income from flexibility minus 
+ * the cost of the energy use at a different time of the day. For simplicity only 
+ * one elctrical tariff rate is used (for differential tariffs the high rate ahould be used).
  * 
- * The model is quite verbose with the aim of facilitating its interpretation
+ * The model is quite verbose with the aim of facilitating its interpretation.
  * 
  */
 
@@ -39853,9 +39850,9 @@ var flexibilityModel = function () {
         key: "run",
         value: function run(data) {
 
-            data.flexiblePowerAvailable = {};
-            data.flexiblePowerScheduled = {};
-            data.flexibleLoadYearUtilised = {};
+            data.powerAvailable = {};
+            data.flexibilityHoursScheduled = {};
+            data.loadUtilisedYear = {};
             data.incomeYear = {};
             data.incomeYearTotal = 0;
 
@@ -39923,9 +39920,9 @@ var flexibilityModel = function () {
          *      - data.storageHeaters.heatingOffSummer  boolean or String (Yes/No) - defaults to true
          *      
          *  Global outputs:
-         *      - data.flexiblePowerAvailable.storageHeaters         kW
-         *      - data.flexiblePowerScheduled.storageHeaters         kW
-         *      - data.flexibleLoadYearUtilised.storageHeaters      kWh/year
+         *      - data.powerAvailable.storageHeaters         kW
+         *      - data.flexibilityHoursScheduled.storageHeaters         kW
+         *      - data.loadUtilisedYear.storageHeaters      kWh/year
          *      - data.flexibilityIncomeYear.storageHeaters     £
          *      
          *********************************************/
@@ -39934,9 +39931,9 @@ var flexibilityModel = function () {
         key: "storageHeatersFlexibility",
         value: function storageHeatersFlexibility(data) {
 
-            var flexiblePowerAvailable = 0;
-            var flexiblePowerScheduled = 0;
-            var flexibleLoadYearUtilised = 0;
+            var powerAvailable = 0;
+            var flexibilityHoursScheduled = 0;
+            var loadUtilisedYear = 0;
             var incomeYear = 0;
 
             if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
@@ -39952,18 +39949,18 @@ var flexibilityModel = function () {
 
                 if (data.storageHeaters.chargingTime != undefined) chargingTimeDay = data.storageHeaters.chargingTime;
 
-                flexiblePowerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
-                flexiblePowerScheduled = this.scheduledAvailabilityFactor * flexiblePowerAvailable;
+                powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
+                flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
 
-                var flexibleLoadYearAvailable = flexiblePowerScheduled * daysOfHeating * chargingTimeDay;
-                flexibleLoadYearUtilised = this.utilisedLoadFactor * flexibleLoadYearAvailable;
+                var flexibleLoadYearAvailable = powerAvailable * flexibilityHoursScheduled;
+                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadYearAvailable;
 
-                incomeYear = this.incomeFromFlexibility(flexiblePowerScheduled, flexibleLoadYearUtilised, daysOfHeating * chargingTimeDay);
+                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
             }
 
-            data.flexiblePowerAvailable.storageHeaters = flexiblePowerAvailable;
-            data.flexiblePowerScheduled.storageHeaters = flexiblePowerScheduled;
-            data.flexibleLoadYearUtilised.storageHeaters = flexibleLoadYearUtilised;
+            data.powerAvailable.storageHeaters = powerAvailable;
+            data.flexibilityHoursScheduled.storageHeaters = flexibilityHoursScheduled;
+            data.loadUtilisedYear.storageHeaters = loadUtilisedYear;
             data.incomeYear.storageHeaters = incomeYear;
             return data;
         }
@@ -39981,9 +39978,9 @@ var flexibilityModel = function () {
          *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
          *      
          *  Global outputs:
-         *      - data.flexiblePowerAvailable.immersionHeater     kW
-         *      - data.flexiblePowerScheduled.immersionHeater     kW
-         *      - data.flexibleLoadYearUtilised.immersionHeater      kWh/year
+         *      - data.powerAvailable.immersionHeater     kW
+         *      - data.flexibilityHoursScheduled.immersionHeater     kW
+         *      - data.loadUtilisedYear.immersionHeater      kWh/year
          *      - data.flexibilityIncomeYear.immersionHeater     £
          *      
          *********************************************/
@@ -39992,9 +39989,9 @@ var flexibilityModel = function () {
         key: "immersionHeaterFlexibility",
         value: function immersionHeaterFlexibility(data) {
 
-            var flexiblePowerAvailable = 0;
-            var flexiblePowerScheduled = 0;
-            var flexibleLoadYearUtilised = 0;
+            var powerAvailable = 0;
+            var flexibilityHoursScheduled = 0;
+            var loadUtilisedYear = 0;
             var incomeYear = 0;
 
             if (data.immersionHeater != undefined && (data.immersionHeater.present === true || data.immersionHeater.present == "Yes")) {
@@ -40007,18 +40004,18 @@ var flexibilityModel = function () {
                 var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
                 var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
 
-                flexiblePowerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
-                flexiblePowerScheduled = this.scheduledAvailabilityFactor * flexiblePowerAvailable;
+                powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
+                flexibilityHoursScheduled = this.scheduledAvailabilityFactor * timeOfUseYear;
 
-                var flexibleLoadAvailable = flexiblePowerScheduled * timeOfUseYear;
-                flexibleLoadYearUtilised = this.utilisedLoadFactor * flexibleLoadAvailable;
+                var flexibleLoadAvailable = powerAvailable * flexibilityHoursScheduled;
+                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadAvailable;
 
-                incomeYear = this.incomeFromFlexibility(flexiblePowerScheduled, flexibleLoadYearUtilised, timeOfUseYear);
+                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
             }
 
-            data.flexiblePowerAvailable.immersionHeater = flexiblePowerAvailable;
-            data.flexiblePowerScheduled.immersionHeater = flexiblePowerScheduled;
-            data.flexibleLoadYearUtilised.immersionHeater = flexibleLoadYearUtilised;
+            data.powerAvailable.immersionHeater = powerAvailable;
+            data.flexibilityHoursScheduled.immersionHeater = flexibilityHoursScheduled;
+            data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
             data.incomeYear.immersionHeater = incomeYear;
 
             return data;
