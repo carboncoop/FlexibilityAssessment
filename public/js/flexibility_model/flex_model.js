@@ -50,6 +50,9 @@ class flexibilityModel {
         this.scheduledAvailabilityFactor = 1; // Fraction of the amount of availablity declared by the household that the Scheme secures and therefor pays for
         this.utilisedLoadFactor = 1; // Fraction of the available load that the scheme utilises and therefor pays for
 
+        // Electric tariff rate at which the shifted load will be paid
+        this.electricalTariffRate = 0.17;     // £/kWh
+
     }
 
     run(data) {
@@ -75,8 +78,10 @@ class flexibilityModel {
     /****************************************************
      *  ini     
      *  
-     *  If specified by the user, change the default fees and fractions of 
-     *  flexibility scheduleds and utilised by the scheme
+     *  If specified by the user, we change the 
+     *  - default fees
+     *  - fractions of flexibility scheduleds and utilised by the scheme
+     *  - electric tariff rate at which the shifted load will be paid
      *  
      *  
      *  User inputs:
@@ -100,6 +105,9 @@ class flexibilityModel {
             if (data.flexibilityAwardedFactors.utilisedLoad != undefined)
                 this.utilisedLoadFactor = data.flexibilityAwardedFactors.utilisedLoad;
         }
+
+        if (data.tariff != undefined && data.tariff.rate != undefined)
+            this.electricalTariffRate = data.tariff.rate;
     }
 
     /********************************************
@@ -233,7 +241,7 @@ class flexibilityModel {
      * @returns income generated in a day in £
      */
     incomeFromFlexibility(scheduledPower, utilisedLoad, availability) {
-        return scheduledPower * availability * this.availabilityFee + utilisedLoad * this.utilisationFee;
+        return scheduledPower * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
     }
 
     /************************************
@@ -282,7 +290,7 @@ class flexibilityModel {
             immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";
         else if (controlType === "Thermostat")
             immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
-        
+
         return immersionHeatingSystem;
     }
 

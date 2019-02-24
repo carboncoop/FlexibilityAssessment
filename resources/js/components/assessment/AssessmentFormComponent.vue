@@ -174,12 +174,16 @@
         <tr>
             <td>Tariff type</td>
             <td>
-                <select class="form-control" v-model="assessment.data.tariffType">
+                <select class="form-control" v-model="assessment.data.tariff.type">
                     <option value="E7">E7</option>    
                     <option value="E10/Comfort+">E10/Comfort+</option>    
                     <option value="Flat rate">Flat rate</option>     
-                    <option value="Smart">Smart</option>    
+                    <option value="Smart" disabled>Smart</option>    
                 </select> 
+                <div style="margin: 5px 0">
+                    <span v-if="assessment.data.tariff.type != 'Flat rate'">High rate</span><span v-if="assessment.data.tariff.type == 'Flat rate'">Rate</span> 
+                    <input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh
+                </div>
             </td>
         </tr>
 
@@ -285,12 +289,13 @@
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                     this.flexibilityModel.run(dataForModel);
+                    console.log("Flexible power available: " + JSON.stringify(dataForModel.flexiblePowerAvailable));
+                    console.log("Flexible power scheduled: " + JSON.stringify(dataForModel.flexiblePowerScheduled));
+                    console.log("Flexible load utilised: " + JSON.stringify(dataForModel.flexibleLoadYearUtilised));
+                    console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                    console.log("Income year total = " + dataForModel.incomeYearTotal);
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                         this.assessment.data = dataForModel;
-                        console.log("Flexible power " + JSON.stringify(dataForModel.flexiblePower));
-                        console.log("Flexible load " + JSON.stringify(dataForModel.flexibleLoad));
-                        console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
-                        console.log("Income year total = " + dataForModel.incomeYearTotal);
                     }
                 }
             }
@@ -337,8 +342,8 @@
                 Vue.set(this.assessment.data, 'energySupplier', "");
             }
 
-            if (this.assessment.data.tariffType == undefined) {
-                Vue.set(this.assessment.data, 'tariffType', "");
+            if (this.assessment.data.tariff == undefined) {
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", LowRate: 0.15, HighRate: 0.15, FlatRate: 0.15});
             }
 
             if (this.assessment.data.energyUse == undefined) {

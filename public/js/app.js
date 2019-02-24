@@ -39672,6 +39672,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -39698,12 +39702,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                 this.flexibilityModel.run(dataForModel);
+                console.log("Flexible power available: " + JSON.stringify(dataForModel.flexiblePowerAvailable));
+                console.log("Flexible power scheduled: " + JSON.stringify(dataForModel.flexiblePowerScheduled));
+                console.log("Flexible load utilised: " + JSON.stringify(dataForModel.flexibleLoadYearUtilised));
+                console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                console.log("Income year total = " + dataForModel.incomeYearTotal);
                 if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                     this.assessment.data = dataForModel;
-                    console.log("Flexible power " + JSON.stringify(dataForModel.flexiblePower));
-                    console.log("Flexible load " + JSON.stringify(dataForModel.flexibleLoad));
-                    console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
-                    console.log("Income year total = " + dataForModel.incomeYearTotal);
                 }
             }
         }
@@ -39750,8 +39755,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Vue.set(this.assessment.data, 'energySupplier', "");
         }
 
-        if (this.assessment.data.tariffType == undefined) {
-            Vue.set(this.assessment.data, 'tariffType', "");
+        if (this.assessment.data.tariff == undefined) {
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", LowRate: 0.15, HighRate: 0.15, FlatRate: 0.15 });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -39815,42 +39820,46 @@ function flex_model(flex_im_count, flex_im_score, flex_sh_count, flex_sh_score) 
  * in a household and the potential income this can generate.
  * 
  * The model assumes that the load is shifted: the energy is not used at the time when 
- * it would normally be used but it is used at another time of the day.
+ * it would normally be used but it is used at another time of the day. 
  * 
- * The model assumes a flat tariff: the cost for the user is the same independently 
- * of when the energy is used. This way the income is calculated exclusively as 
- * revenue from the Flexibilty scheme.
- * 
- * For households with a differential tariff (like economy 7) the model overestimates 
- * the potential income. For example, the storage heaters will be charged at the 
- * high rate when they normally charge at the low rate. This would still generate 
+ * The total income calculation is calculated as the income from flexibility minus 
+ * the cost of the energy at a different time of the day (high rate in case of 
+ * differential tariffs), for example: the storage heaters will be charged at the 
+ * high rate when they normally charge at the low rate. This will still generate 
  * an income for the househod because the fees of the Flexibility scheme will be 
- * higher than the extra expense. A more accurate calculation could be done if we 
- * knew the cost of the energy on each period of the differential tariff.
+ * higher than the extra expense.
+ * 
+ * The model is quite verbose with the aim of facilitating its interpretation
  * 
  */
 
 var flexibilityModel = function () {
-
-    // Default fees 
-    // https://flexiblepower.wpdserv.net/flexibility-services
     function flexibilityModel() {
         _classCallCheck(this, flexibilityModel);
 
+        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services
         this.availabilityFee = 0.125; // £/kW/h
         this.utilisationFee = 0.175; // £/kWh
+
+        // Flexibility awarded factors
+        this.scheduledAvailabilityFactor = 1; // Fraction of the amount of availablity declared by the household that the Scheme secures and therefor pays for
+        this.utilisedLoadFactor = 1; // Fraction of the available load that the scheme utilises and therefor pays for
+
+        // Electric tariff rate at which the shifted load will be paid
+        this.electricalTariffRate = 0.17; // £/kWh
     }
 
     _createClass(flexibilityModel, [{
         key: "run",
         value: function run(data) {
 
-            data.flexiblePower = {};
-            data.flexibleLoad = {};
+            data.flexiblePowerAvailable = {};
+            data.flexiblePowerScheduled = {};
+            data.flexibleLoadYearUtilised = {};
             data.incomeYear = {};
             data.incomeYearTotal = 0;
 
-            this.iniFees(data);
+            this.ini(data);
             this.storageHeatersFlexibility(data);
             this.immersionHeaterFlexibility(data);
 
@@ -39862,17 +39871,36 @@ var flexibilityModel = function () {
         }
 
         /****************************************************
-         *  iniFees      
-         *  Change the default fees if specified by the user
+         *  ini     
+         *  
+         *  If specified by the user, we change the 
+         *  - default fees
+         *  - fractions of flexibility scheduleds and utilised by the scheme
+         *  - electric tariff rate at which the shifted load will be paid
+         *  
+         *  
+         *  User inputs:
+         *      - data.fees.availability    £/kW/h (Optional)
+         *      - data.fees.utilisation     £/kWh (Optional)
+         *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
+         *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
+         *      
          ****************************************************/
 
     }, {
-        key: "iniFees",
-        value: function iniFees(data) {
+        key: "ini",
+        value: function ini(data) {
             if (data.fees != undefined) {
                 if (data.fees.availability != undefined) this.availabilityFee = data.fees.availability;
                 if (data.fees.utilisation != undefined) this.utilisationFee = data.fees.utilisation;
             }
+
+            if (data.flexibilityAwardedFactors != undefined) {
+                if (data.flexibilityAwardedFactors.scheduledAvailability != undefined) this.scheduledAvailabilityFactor = data.flexibilityAwardedFactors.scheduledAvailability;
+                if (data.flexibilityAwardedFactors.utilisedLoad != undefined) this.utilisedLoadFactor = data.flexibilityAwardedFactors.utilisedLoad;
+            }
+
+            if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRate = data.tariff.rate;
         }
 
         /********************************************
@@ -39880,13 +39908,11 @@ var flexibilityModel = function () {
          * 
          * The EPC rating is used as the factor by which the amount of the charging 
          * time can be reduced during the normal charging period (night). The aim of 
-         * using the EPC is to minimize the impact to the occupants thermal comfort.
+         * using the EPC is to minimize the impact to the occupants' thermal comfort.
          * 
          * We assume that houses with higher EPCs have better insulation and higher 
          * thermal capacity. In these cases a bigger load can be shifted and the house 
          * will still be at an acceptable temperature.
-         * 
-         * The income is calculated assuming all the available load is shifted (flexibleLoadFactor = 1)
          * 
          *  Inputs from user:
          *      - data.household.EPC      Integer - defaults to 55 (lowest rate in band D)
@@ -39897,8 +39923,9 @@ var flexibilityModel = function () {
          *      - data.storageHeaters.heatingOffSummer  boolean or String (Yes/No) - defaults to true
          *      
          *  Global outputs:
-         *      - data.flexiblePower.storageHeaters         kW
-         *      - data.flexibleLoadYear.storageHeaters      kWh/year
+         *      - data.flexiblePowerAvailable.storageHeaters         kW
+         *      - data.flexiblePowerScheduled.storageHeaters         kW
+         *      - data.flexibleLoadYearUtilised.storageHeaters      kWh/year
          *      - data.flexibilityIncomeYear.storageHeaters     £
          *      
          *********************************************/
@@ -39907,15 +39934,16 @@ var flexibilityModel = function () {
         key: "storageHeatersFlexibility",
         value: function storageHeatersFlexibility(data) {
 
-            var flexiblePower = 0;
-            var flexibleLoadYear = 0;
+            var flexiblePowerAvailable = 0;
+            var flexiblePowerScheduled = 0;
+            var flexibleLoadYearUtilised = 0;
             var incomeYear = 0;
 
             if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
 
                 var chargingTimeDay = 7;
                 var flexiblePowerFactor = data.household.EPC / 100;
-                var flexibleLoadFactor = 1;
+
                 data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
                 data.storageHeaters.rating = data.storageHeaters.rating == undefined ? 0 : 1.0 * data.storageHeaters.rating;
 
@@ -39924,13 +39952,18 @@ var flexibilityModel = function () {
 
                 if (data.storageHeaters.chargingTime != undefined) chargingTimeDay = data.storageHeaters.chargingTime;
 
-                flexiblePower = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
-                flexibleLoadYear = flexibleLoadFactor * flexiblePower * daysOfHeating * chargingTimeDay;
-                incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoadYear, daysOfHeating * chargingTimeDay);
+                flexiblePowerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
+                flexiblePowerScheduled = this.scheduledAvailabilityFactor * flexiblePowerAvailable;
+
+                var flexibleLoadYearAvailable = flexiblePowerScheduled * daysOfHeating * chargingTimeDay;
+                flexibleLoadYearUtilised = this.utilisedLoadFactor * flexibleLoadYearAvailable;
+
+                incomeYear = this.incomeFromFlexibility(flexiblePowerScheduled, flexibleLoadYearUtilised, daysOfHeating * chargingTimeDay);
             }
 
-            data.flexiblePower.storageHeaters = flexiblePower;
-            data.flexibleLoad.storageHeaters = flexibleLoadYear;
+            data.flexiblePowerAvailable.storageHeaters = flexiblePowerAvailable;
+            data.flexiblePowerScheduled.storageHeaters = flexiblePowerScheduled;
+            data.flexibleLoadYearUtilised.storageHeaters = flexibleLoadYearUtilised;
             data.incomeYear.storageHeaters = incomeYear;
             return data;
         }
@@ -39940,7 +39973,6 @@ var flexibilityModel = function () {
          * 
          * The model assumes that 80% of the immersion heater power can be shifted. 
          * The remaining 20% is to allow the household keep some control.
-         * The income is calculated assuming all the available load is shifted (flexibleLoadFactor = 1)
          * 
          *  Inputs from user:
          *      - data.household.occupancy      integer
@@ -39949,8 +39981,9 @@ var flexibilityModel = function () {
          *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
          *      
          *  Global outputs:
-         *      - data.flexiblePower.immersionHeater     kW
-         *      - data.flexibleLoadYear.immersionHeater      kWh/year
+         *      - data.flexiblePowerAvailable.immersionHeater     kW
+         *      - data.flexiblePowerScheduled.immersionHeater     kW
+         *      - data.flexibleLoadYearUtilised.immersionHeater      kWh/year
          *      - data.flexibilityIncomeYear.immersionHeater     £
          *      
          *********************************************/
@@ -39959,64 +39992,35 @@ var flexibilityModel = function () {
         key: "immersionHeaterFlexibility",
         value: function immersionHeaterFlexibility(data) {
 
-            var flexiblePower = 0;
-            var flexibleLoad = 0;
+            var flexiblePowerAvailable = 0;
+            var flexiblePowerScheduled = 0;
+            var flexibleLoadYearUtilised = 0;
             var incomeYear = 0;
 
             if (data.immersionHeater != undefined && (data.immersionHeater.present === true || data.immersionHeater.present == "Yes")) {
 
                 var flexiblePowerFactor = 0.8;
-                var flexibleLoadFactor = 1;
                 data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
 
-                var immersionHeatingSystem = { // this is a immersion heater system that we can pass as an input to openBEM
-                    gains_W: {},
-                    energy_requirements: {},
-                    occupancy: data.household.occupancy,
-                    water_heating: {
-                        override_annual_energy_content: false,
-                        low_water_use_design: false,
-                        hot_water_control_type: "no_cylinder_thermostat",
-                        pipework_insulation: "All accesible piperwok insulated",
-                        storage_type: {
-                            category: "Cylinders with immersion",
-                            declared_loss_factor_known: false,
-                            loss_factor_b: 0.076,
-                            manufacturer_loss_factor: 0,
-                            name: "Cylinder with electric immersion, 170 litres, 12mm loose fit jacket ",
-                            source: "--",
-                            storage_volume: 170,
-                            tag: "HWS14",
-                            temperature_factor_a: 0,
-                            temperature_factor_b: 0.6,
-                            volume_factor_b: 0.817
-                        },
-                        solar_water_heating: false,
-                        hot_water_store_in_dwelling: 1
-                    },
-                    heating_systems: [{
-                        combi_loss: 0,
-                        efficiency: 1,
-                        fraction_water_heating: 1,
-                        instantaneous_water_heating: false,
-                        name: "Electric Immersion System",
-                        primary_circuit_loss: "No",
-                        provides: "water"
-                    }]
-                };
-
-                if (data.immersionHeater.controlType === "Programmer" || data.immersionHeater.controlType === "Advanced controls") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";else if (data.immersionHeater.controlType === "Thermostat") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
+                var immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
 
                 var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
                 var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
-                flexiblePower = flexiblePowerFactor * data.immersionHeater.rating;
-                flexibleLoad = flexibleLoadFactor * flexiblePower * timeOfUseYear;
-                incomeYear = this.incomeFromFlexibility(flexiblePower, flexibleLoad, timeOfUseYear);
+
+                flexiblePowerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
+                flexiblePowerScheduled = this.scheduledAvailabilityFactor * flexiblePowerAvailable;
+
+                var flexibleLoadAvailable = flexiblePowerScheduled * timeOfUseYear;
+                flexibleLoadYearUtilised = this.utilisedLoadFactor * flexibleLoadAvailable;
+
+                incomeYear = this.incomeFromFlexibility(flexiblePowerScheduled, flexibleLoadYearUtilised, timeOfUseYear);
             }
 
-            data.flexiblePower.immersionHeater = flexiblePower;
-            data.flexibleLoad.immersionHeater = flexibleLoad;
+            data.flexiblePowerAvailable.immersionHeater = flexiblePowerAvailable;
+            data.flexiblePowerScheduled.immersionHeater = flexiblePowerScheduled;
+            data.flexibleLoadYearUtilised.immersionHeater = flexibleLoadYearUtilised;
             data.incomeYear.immersionHeater = incomeYear;
+
             return data;
         }
 
@@ -40033,16 +40037,58 @@ var flexibilityModel = function () {
 
     }, {
         key: "incomeFromFlexibility",
-        value: function incomeFromFlexibility(power, load, availability) {
-            return power * availability * this.availabilityFee + load * this.utilisationFee;
+        value: function incomeFromFlexibility(scheduledPower, utilisedLoad, availability) {
+            return scheduledPower * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
         }
+
+        /************************************
+         * getImmersionHeaterSystem
+         * 
+         * Returns a immersion heater system as specified in  openBEM
+         */
+
     }, {
-        key: "validateData",
-        value: function validateData(data, defaults) {
-            for (var z in defaults) {
-                if (data[z] == undefined) data[z] = defaults[z];
-            }
-            return data;
+        key: "getImmersionHeaterSystem",
+        value: function getImmersionHeaterSystem(occupancy, controlType) {
+            var immersionHeatingSystem = {
+                gains_W: {},
+                energy_requirements: {},
+                occupancy: occupancy,
+                water_heating: {
+                    override_annual_energy_content: false,
+                    low_water_use_design: false,
+                    hot_water_control_type: "no_cylinder_thermostat",
+                    pipework_insulation: "All accesible piperwok insulated",
+                    storage_type: {
+                        category: "Cylinders with immersion",
+                        declared_loss_factor_known: false,
+                        loss_factor_b: 0.076,
+                        manufacturer_loss_factor: 0,
+                        name: "Cylinder with electric immersion, 170 litres, 12mm loose fit jacket ",
+                        source: "--",
+                        storage_volume: 170,
+                        tag: "HWS14",
+                        temperature_factor_a: 0,
+                        temperature_factor_b: 0.6,
+                        volume_factor_b: 0.817
+                    },
+                    solar_water_heating: false,
+                    hot_water_store_in_dwelling: 1
+                },
+                heating_systems: [{
+                    combi_loss: 0,
+                    efficiency: 1,
+                    fraction_water_heating: 1,
+                    instantaneous_water_heating: false,
+                    name: "Electric Immersion System",
+                    primary_circuit_loss: "No",
+                    provides: "water"
+                }]
+            };
+
+            if (controlType === "Programmer" || controlType === "Advanced controls") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";else if (controlType === "Thermostat") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
+
+            return immersionHeatingSystem;
         }
     }]);
 
@@ -44693,8 +44739,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.assessment.data.tariffType,
-                  expression: "assessment.data.tariffType"
+                  value: _vm.assessment.data.tariff.type,
+                  expression: "assessment.data.tariff.type"
                 }
               ],
               staticClass: "form-control",
@@ -44709,8 +44755,8 @@ var render = function() {
                       return val
                     })
                   _vm.$set(
-                    _vm.assessment.data,
-                    "tariffType",
+                    _vm.assessment.data.tariff,
+                    "type",
                     $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                   )
                 }
@@ -44727,9 +44773,48 @@ var render = function() {
                 _vm._v("Flat rate")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Smart" } }, [_vm._v("Smart")])
+              _c("option", { attrs: { value: "Smart", disabled: "" } }, [
+                _vm._v("Smart")
+              ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticStyle: { margin: "5px 0" } }, [
+            _vm.assessment.data.tariff.type != "Flat rate"
+              ? _c("span", [_vm._v("High rate")])
+              : _vm._e(),
+            _vm.assessment.data.tariff.type == "Flat rate"
+              ? _c("span", [_vm._v("Rate")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.assessment.data.tariff.rate,
+                  expression: "assessment.data.tariff.rate"
+                }
+              ],
+              staticClass: "form-control",
+              staticStyle: { "margin-left": "15px" },
+              attrs: { type: "number", min: "0.01", step: "0.01" },
+              domProps: { value: _vm.assessment.data.tariff.rate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.assessment.data.tariff,
+                    "rate",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" £/kWh\n            ")
+          ])
         ])
       ]),
       _vm._v(" "),
