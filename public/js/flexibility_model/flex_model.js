@@ -29,8 +29,8 @@ import openBEM from './openBEM/model-r10.js';
  * it would normally be used but it is used at another time of the day. 
  * 
  * The total income is calculated as the income from flexibility minus 
- * the cost of the energy use at a different time of the day. For simplicity only 
- * one elctrical tariff rate is used (for differential tariffs the high rate ahould be used).
+ * the cost of the energy used at a different time of the day. For simplicity only 
+ * one electrical tariff rate is used (for differential tariffs the high rate ahould be used).
  * 
  * The model is quite verbose with the aim of facilitating its interpretation.
  * 
@@ -86,6 +86,7 @@ class flexibilityModel {
      *      - data.fees.utilisation     £/kWh (Optional)
      *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
      *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
+     *      - data.electricalTariffRate     £/kWh (Optional)
      *      
      ****************************************************/
     ini(data) {
@@ -128,7 +129,7 @@ class flexibilityModel {
      *      
      *  Global outputs:
      *      - data.powerAvailable.storageHeaters         kW
-     *      - data.flexibilityHoursScheduled.storageHeaters         kW
+     *      - data.flexibilityHoursScheduled.storageHeaters         hours
      *      - data.loadUtilisedYear.storageHeaters      kWh/year
      *      - data.flexibilityIncomeYear.storageHeaters     £
      *      
@@ -143,7 +144,7 @@ class flexibilityModel {
 
         if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
 
-            let chargingTimeDay = 7;
+            let chargingTimeDay = data.storageHeaters.chargingTime != undefined ?data.storageHeaters.chargingTime : 7;
             let flexiblePowerFactor = data.household.EPC / 100;
 
             data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
@@ -152,9 +153,6 @@ class flexibilityModel {
             let daysOfHeating = 365;
             if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === true || data.storageHeaters.heatingOffSummer == "Yes"))
                 daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August
-
-            if (data.storageHeaters.chargingTime != undefined)
-                chargingTimeDay = data.storageHeaters.chargingTime;
 
             powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
             flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
@@ -187,7 +185,7 @@ class flexibilityModel {
      *      
      *  Global outputs:
      *      - data.powerAvailable.immersionHeater     kW
-     *      - data.flexibilityHoursScheduled.immersionHeater     kW
+     *      - data.flexibilityHoursScheduled.immersionHeater     hours
      *      - data.loadUtilisedYear.immersionHeater      kWh/year
      *      - data.flexibilityIncomeYear.immersionHeater     £
      *      
@@ -245,6 +243,9 @@ class flexibilityModel {
      * getImmersionHeaterSystem
      * 
      * Returns a immersion heater system as specified in  openBEM
+     * 
+     * @param occupancy Integer
+     * @param controlType   String (None, Thermostat, Programmer, Advanced controls)
      */
     getImmersionHeaterSystem(occupancy, controlType) {
         let immersionHeatingSystem = {
