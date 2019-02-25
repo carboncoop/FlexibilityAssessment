@@ -38786,25 +38786,28 @@ var render = function() {
             key: "actions",
             fn: function(data) {
               return [
-                _c("button", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "open-assessment",
-                      attrs: {
-                        "assessment-id": data.item.id,
-                        href: "/assessment/" + data.item.id + "/edit"
-                      }
-                    },
-                    [
-                      _c("font-awesome-icon", {
-                        staticStyle: { cursor: "pointer" },
-                        attrs: { icon: "edit", size: "xs", title: "Open" }
-                      })
-                    ],
-                    1
-                  )
-                ]),
+                _c(
+                  "a",
+                  {
+                    staticClass: "open-assessment",
+                    attrs: {
+                      "assessment-id": data.item.id,
+                      href: "/assessment/" + data.item.id + "/edit"
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      [
+                        _c("font-awesome-icon", {
+                          staticStyle: { cursor: "pointer" },
+                          attrs: { icon: "edit", size: "xs", title: "Open" }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -39309,7 +39312,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.view = newView;
         }
     },
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        this.view = "assessment-report";
+    }
 });
 
 /***/ }),
@@ -39756,7 +39761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         if (this.assessment.data.tariff == undefined) {
-            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0.15 });
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0.17 });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -39836,7 +39841,7 @@ var flexibilityModel = function () {
 
         console.log("Debug Flexibility model");
 
-        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services
+        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
         this.availabilityFee = 0.125; // £/kW/h
         this.utilisationFee = 0.175; // £/kWh
 
@@ -45661,7 +45666,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\n", ""]);
 
 // exports
 
@@ -45672,6 +45677,21 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(235);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45685,13 +45705,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         initialAssessment: Object,
         reportUrl: String
     },
+    data: function data() {
+        return {
+            assessment: JSON.parse(JSON.stringify(this.initialAssessment)),
+            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
+            schemes: {
+                secure: { availability: 0.125, utilisation: 0.175 },
+                dynamic: { availability: 0.05, utilisation: 0.3 },
+                restore: { availability: 0, utilisation: 0.6 }
+            },
+            incomeYear: {}
+        };
+    },
     mounted: function mounted() {
-        console.log(this.reportUrl);
+        for (var scheme in this.schemes) {
+            this.assessment.data.fees = this.schemes[scheme];
+            this.incomeYear[scheme] = JSON.parse(JSON.stringify(this.flexibilityModel.run(this.assessment.data).incomeYearTotal));
+        }
+        console.log(this.incomeYear);
     }
 });
 
@@ -45706,20 +45745,36 @@ var render = function() {
   return _c("div", { attrs: { id: "assessment-report" } }, [
     _c("h1", [_vm._v("Flexibility assessment report")]),
     _vm._v(" "),
-    _vm.reportUrl != ""
-      ? _c("p", [
-          _vm._v("You can download this report in pdf format "),
-          _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
-            _vm._v("here")
-          ])
-        ])
-      : _vm._e(),
+    _c("p", { staticClass: "red" }, [_vm._v("Intro text about Flexibility")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Schemes")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
+        "In the UK there is currently only one Distribution Network Operator (DNO) that offers flexibility.\n        DNOs are the companies that own and operate the cables and towers that bring electricity from \n        the grid to our homes and businesses."
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        " We have calculated the potential income from flexibility for three different schemes. Each of \n    these schemes respond to different requirements of the National Grid. They also have different implications \n    for the household and provide different revenues."
+      )
+    ]),
+    _vm._v(" "),
+    _vm.reportUrl != ""
+      ? _c("p", { staticStyle: { "font-size": "14px" } }, [
+          _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
+            _vm._v("Unique link")
+          ]),
+          _vm._v(" to this report to share with household "),
+          _c("br"),
+          _vm._v(" "),
+          _c("a", {
+            attrs: { target: "blank", href: _vm.reportUrl },
+            domProps: { textContent: _vm._s(_vm.reportUrl) }
+          })
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

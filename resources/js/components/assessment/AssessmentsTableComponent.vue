@@ -4,7 +4,7 @@
         <p>Filter assessments <input v-model='filter' type='text' class='form-control filter'></p>
         <b-table striped hover responsive fixed :items="assessmentsForTable" :fields="tableColumns" :outlined="true">
                  <template slot="actions" slot-scope="data">
-                <button><a class="open-assessment" v-bind:assessment-id="data.item.id" v-bind:href="'/assessment/' + data.item.id + '/edit'"><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></a></button>
+                     <a class="open-assessment" v-bind:assessment-id="data.item.id" v-bind:href="'/assessment/' + data.item.id + '/edit'"><button><font-awesome-icon icon="edit" size="xs" title="Open" style="cursor:pointer" /></button></a>
                 <button v-b-modal.delete-assessment-modal class="delete-button" v-bind:assessment-name="data.item.name" v-on:click="setAssessmentToDelete(data.item.id)"><font-awesome-icon icon="trash" size="xs" title="Delete" style="cursor:pointer" /></button>
             </template>
         </b-table>

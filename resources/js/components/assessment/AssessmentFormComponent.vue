@@ -343,7 +343,7 @@
             }
 
             if (this.assessment.data.tariff == undefined) {
-                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0.15});
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0.17});
             }
 
             if (this.assessment.data.energyUse == undefined) {

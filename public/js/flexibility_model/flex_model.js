@@ -41,7 +41,7 @@ class flexibilityModel {
     constructor() {
         console.log("Debug Flexibility model");
         
-        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services
+        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
         this.availabilityFee = 0.125;// £/kW/h
         this.utilisationFee = 0.175; // £/kWh
 
