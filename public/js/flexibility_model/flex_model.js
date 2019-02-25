@@ -27,7 +27,7 @@ import openBEM from './openBEM/model-r10.js';
  * 
  * The model assumes that the load is shifted: the energy is not used at the time when 
  * it would normally be used but it is used at another time of the day. 
- * 
+ *  
  * The total income is calculated as the income from flexibility minus 
  * the cost of the energy used at a different time of the day. For simplicity only 
  * one electrical tariff rate is used (for differential tariffs the high rate ahould be used).
@@ -40,14 +40,26 @@ class flexibilityModel {
 
     constructor() {
         console.log("Debug Flexibility model");
-        
+
         // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
         this.availabilityFee = 0.125;// £/kW/h
         this.utilisationFee = 0.175; // £/kWh
 
-        // Flexibility awarded factors
-        this.scheduledAvailabilityFactor = 1; // Fraction of the amount of availablity declared by the household that the Scheme secures and therefor pays for
-        this.utilisedLoadFactor = 1; // Fraction of the available load that the scheme utilises and therefor pays for
+        // The amount of of load shifted is calculated depending on the amount of hours 
+        // the DNO schedules. The model allows for 2 posibilities:
+        //      - The household declares how much time the load is available and 
+        //      the DNO accepts certain amount of it (this is defined by the scheduledAvailabilityFactor)
+        //      This is more likely to be useful in the future.
+        //      - There is an estimated amount of hours per year that the DNO will 
+        //      require to shift the load (defined by dnoEstimatedAvailabilityRequired)
+        //      This is currently more realistic to use.
+        // Which one to use is defined by the user: data.useDnoEstimatedHoursRequired (defaults to true)
+        this.scheduledAvailabilityFactor = 1;
+        this.dnoEstimatedAvailabilityRequired = 125; // hours/year
+
+        // Fraction of the available load that the scheme utilises and therefor pays for
+        this.utilisedLoadFactor = 1;
+
 
         // Electric tariff rate at which the household will pay the shifted load
         this.electricalTariffRate = 0.17;     // £/kWh
@@ -89,6 +101,7 @@ class flexibilityModel {
      *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
      *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
      *      - data.electricalTariffRate     £/kWh (Optional)
+     *      - data.dnoEstimatedAvailabilityRequired.hoursYear     hours (Optional)
      *      
      ****************************************************/
     ini(data) {
@@ -108,6 +121,9 @@ class flexibilityModel {
 
         if (data.tariff != undefined && data.tariff.rate != undefined)
             this.electricalTariffRate = data.tariff.rate;
+
+        if (data.dnoEstimatedAvailabilityRequired != undefined && data.dnoEstimatedAvailabilityRequired.hoursYear != undefined)
+            this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired.hoursYear;
     }
 
     /********************************************
@@ -128,6 +144,7 @@ class flexibilityModel {
      *      - data.storageHeaters.rating    integer kW
      *      - data.storageHeaters.chargingTime      integer hours/day - defaults to 7
      *      - data.storageHeaters.heatingOffSummer  boolean or String (Yes/No) - defaults to true
+     *      - data.useDnoEstimatedHoursRequired.use      boolean or String (Yes/No) - defaults to true
      *      
      *  Global outputs:
      *      - data.powerAvailable.storageHeaters         kW
@@ -146,18 +163,22 @@ class flexibilityModel {
 
         if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
 
-            let chargingTimeDay = data.storageHeaters.chargingTime != undefined ?data.storageHeaters.chargingTime : 7;
+            let chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
             let flexiblePowerFactor = data.household.EPC / 100;
 
             data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
             data.storageHeaters.rating = data.storageHeaters.rating == undefined ? 0 : 1.0 * data.storageHeaters.rating;
 
-            let daysOfHeating = 365;
-            if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === true || data.storageHeaters.heatingOffSummer == "Yes"))
-                daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August
-
             powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
-            flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
+
+            if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true)
+                flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;
+            else {
+                let daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August;
+                if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === false || data.storageHeaters.heatingOffSummer == "No"))
+                    daysOfHeating = 365;
+                flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
+            }
 
             let flexibleLoadYearAvailable = powerAvailable * flexibilityHoursScheduled;
             loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadYearAvailable;
@@ -184,6 +205,7 @@ class flexibilityModel {
      *      - data.immersionHeater.present   boolean/String  (Yes/No)
      *      - data.immersionHeater.rating    integer kW
      *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
+     *      - data.useDnoEstimatedHoursRequired      boolean or String (Yes/No) - defaults to true
      *      
      *  Global outputs:
      *      - data.powerAvailable.immersionHeater     kW
@@ -204,14 +226,16 @@ class flexibilityModel {
 
             let flexiblePowerFactor = 0.8;
             data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
-
-            let immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
-
-            let annualWaterHeatingDemand = openBEM.calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
-            let timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
-
             powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
-            flexibilityHoursScheduled = this.scheduledAvailabilityFactor * timeOfUseYear;
+
+            if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true)
+                flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;
+            else {
+                let immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
+                let annualWaterHeatingDemand = openBEM.calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
+                let timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
+                flexibilityHoursScheduled = this.scheduledAvailabilityFactor * timeOfUseYear;
+            }
 
             let flexibleLoadAvailable = powerAvailable * flexibilityHoursScheduled;
             loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadAvailable;
@@ -237,8 +261,8 @@ class flexibilityModel {
      * @param availability Integer  hours
      * @returns income generated in a day in £
      */
-    incomeFromFlexibility(scheduledPower, utilisedLoad, availability) {
-        return scheduledPower * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
+    incomeFromFlexibility(power, utilisedLoad, availability) {
+        return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
     }
 
     /************************************
