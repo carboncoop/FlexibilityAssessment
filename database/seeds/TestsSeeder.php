@@ -49,7 +49,7 @@ class TestsSeeder extends Seeder {
         for ($index = 0; $index < count($users_ids); $index++) {
             for ($i = 1; $i < 5; $i++) {
                 DB::table('assessments')->insert([
-                    'name' => "Assessment " . $i,
+                    'name' => "Assessment " . $index . $i,
                     'description' => 'Belongs to ' . $roles[$index],
                     'address1' => "Address " . $i,
                     'address2' => "",
