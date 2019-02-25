@@ -39844,7 +39844,7 @@ var flexibilityModel = function () {
         this.scheduledAvailabilityFactor = 1; // Fraction of the amount of availablity declared by the household that the Scheme secures and therefor pays for
         this.utilisedLoadFactor = 1; // Fraction of the available load that the scheme utilises and therefor pays for
 
-        // Electric tariff rate at which the shifted load will be paid
+        // Electric tariff rate at which the household will pay the shifted load
         this.electricalTariffRate = 0.17; // £/kWh
     }
 
