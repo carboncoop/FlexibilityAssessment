@@ -45684,7 +45684,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n", ""]);
 
 // exports
 
@@ -45696,6 +45696,58 @@ exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\n", ""]);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(77);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45737,16 +45789,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
             schemes: {
                 secure: { availability: 0.125, utilisation: 0.175 },
-                dynamic: { availability: 0.05, utilisation: 0.3 },
+                dynamic: { availability: 0.005, utilisation: 0.3 },
                 restore: { availability: 0, utilisation: 0.6 }
             },
-            incomeYear: {}
+            incomeYear: { secure: 0, dynamic: 0, restore: 0 }
         };
     },
     mounted: function mounted() {
         for (var scheme in this.schemes) {
             this.assessment.data.fees = this.schemes[scheme];
-            this.incomeYear[scheme] = JSON.parse(JSON.stringify(this.flexibilityModel.run(this.assessment.data).incomeYearTotal));
+            this.incomeYear[scheme] = this.flexibilityModel.run(this.assessment.data).incomeYearTotal.toFixed(2);
         }
         console.log(this.incomeYear);
     }
@@ -45769,33 +45821,108 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "In the UK there is currently only one Distribution Network Operator (DNO) that offers flexibility.\n        DNOs are the companies that own and operate the cables and towers that bring electricity from \n        the grid to our homes and businesses."
+        " We have calculated the potential income from flexibility for three different type of schemes. Each of \n        them respond to different requirements of the National Grid. They also have different implications \n        for the household and provide different revenues."
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Potential income from flexibility")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "In this table you can find how much you may be able to make per year with any of \n        the schemes described above and for the energy assets you have in your \n        household"
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table", attrs: { id: "potential-income" } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.secure))]),
+        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.dynamic))]),
+        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.restore))])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Secure")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "DNOs know in advance when the electricity demand is high or low and also when \n        there is more or less energy available in the National Grid. This scheme \n        aims to manage these predictable situations."
       )
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        " We have calculated the potential income from flexibility for three different schemes. Each of \n    these schemes respond to different requirements of the National Grid. They also have different implications \n    for the household and provide different revenues."
+        "The household (or an automated system) will declare a week in advance how \n        much power and when can be turned on or off in the house. The DNO \n        will agree to some of that power and time and pay a fee. \n        The following week the DNO will use all or some of that power.\n        When this happens another fee is paid to the household for the \n        total amount of energy the DNO uses."
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "The advantage of this scheme is that the household knows exactly when \n        the DNO will use the energy. This allows the household to prepare themselves \n        and choose which other moments of the week they use their energy. \n        The con is that the fees are lower compared to the other schemes."
+      )
+    ]),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Dynamic")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "This scheme aims to support the grid in the case of a specific fault. \n        It works in a similar way than the Secure scheme: the household declares \n        a week in advance the power and the time they can turn things off. The \n        DNO will agree to that and pay a feed. Again, the DNO may or may not \n        require the household to stop using power and it will pay accordingly \n        to the amount of energy not used."
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "The difference with the Secure scheme is that the DNO will only notify \n        the household to turn off things 15 minutes in advance. This can \n        be more inconvenient for the household. On the other hand the income \n        is usually higher"
+      )
+    ]),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Restore")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "This scheme deals with unexpected faults in the grid. Such events are rare and \n        offer no warning as they depend on failure of equipment. Under such \n        circumstances, response can be used to reduce the stress on the network. \n        When taking part in this scheme there is no pre-agreement of when the \n        household may have to stop using power. Payment is only for the \n        amount of energy that is not used."
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "The advantage of this scheme is that the income is higher than in any other scheme. \n        But the household never knows when they will have to stop using power."
       )
     ]),
     _vm._v(" "),
     _vm.reportUrl != ""
-      ? _c("p", { staticStyle: { "font-size": "14px" } }, [
-          _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
-            _vm._v("Unique link")
-          ]),
-          _vm._v(" to this report to share with household "),
-          _c("br"),
-          _vm._v(" "),
-          _c("a", {
-            attrs: { target: "blank", href: _vm.reportUrl },
-            domProps: { textContent: _vm._s(_vm.reportUrl) }
-          })
-        ])
+      ? _c(
+          "p",
+          { staticStyle: { "font-size": "14px", "margin-top": "50px" } },
+          [
+            _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
+              _vm._v("Unique link")
+            ]),
+            _vm._v(" to this report to share with household "),
+            _c("br"),
+            _vm._v(" "),
+            _c("a", {
+              attrs: { target: "blank", href: _vm.reportUrl },
+              domProps: { textContent: _vm._s(_vm.reportUrl) }
+            })
+          ]
+        )
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("Secure")]),
+      _c("td", [_vm._v("Dynamic")]),
+      _c("td", [_vm._v("Restore")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
