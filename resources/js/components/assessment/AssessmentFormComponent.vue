@@ -289,7 +289,7 @@
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                     this.flexibilityModel.run(dataForModel);
-                    console.log("Flexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
+                    console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                     console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
                     console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                     console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
@@ -305,7 +305,7 @@
             // Initialize required data to run the model
 
             if (this.assessment.data.household == undefined) {
-                Vue.set(this.assessment.data, 'household', {EPC: 55, knownEPC: "No"}); // default value to use (lowest rate of band D if user doesn't know the real one
+                Vue.set(this.assessment.data, 'household', {EPC: 55, knownEPC: "No", occupancy: 1}); // default value to use (lowest rate of band D if user doesn't know the real one
             }
 
             if (this.assessment.data.immersionHeater == undefined) {
@@ -343,7 +343,7 @@
             }
 
             if (this.assessment.data.tariff == undefined) {
-                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", LowRate: 0.15, HighRate: 0.15, FlatRate: 0.15});
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0.15});
             }
 
             if (this.assessment.data.energyUse == undefined) {

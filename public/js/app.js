@@ -39702,7 +39702,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
                 this.flexibilityModel.run(dataForModel);
-                console.log("Flexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
+                console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                 console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
                 console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                 console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
@@ -39718,7 +39718,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // Initialize required data to run the model
 
         if (this.assessment.data.household == undefined) {
-            Vue.set(this.assessment.data, 'household', { EPC: 55, knownEPC: "No" }); // default value to use (lowest rate of band D if user doesn't know the real one
+            Vue.set(this.assessment.data, 'household', { EPC: 55, knownEPC: "No", occupancy: 1 }); // default value to use (lowest rate of band D if user doesn't know the real one
         }
 
         if (this.assessment.data.immersionHeater == undefined) {
@@ -39756,7 +39756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         if (this.assessment.data.tariff == undefined) {
-            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", LowRate: 0.15, HighRate: 0.15, FlatRate: 0.15 });
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0.15 });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -39833,6 +39833,8 @@ function flex_model(flex_im_count, flex_im_score, flex_sh_count, flex_sh_score) 
 var flexibilityModel = function () {
     function flexibilityModel() {
         _classCallCheck(this, flexibilityModel);
+
+        console.log("Debug Flexibility model");
 
         // Default fees - https://flexiblepower.wpdserv.net/flexibility-services
         this.availabilityFee = 0.125; // £/kW/h

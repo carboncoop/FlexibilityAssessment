@@ -39,6 +39,8 @@ import openBEM from './openBEM/model-r10.js';
 class flexibilityModel {
 
     constructor() {
+        console.log("Debug Flexibility model");
+        
         // Default fees - https://flexiblepower.wpdserv.net/flexibility-services
         this.availabilityFee = 0.125;// £/kW/h
         this.utilisationFee = 0.175; // £/kWh
