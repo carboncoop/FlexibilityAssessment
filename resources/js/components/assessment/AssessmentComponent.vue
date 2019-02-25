@@ -1,6 +1,6 @@
 <template>
     <div id="assessment">
-        <assessment-side-menu dusk="assessment-side-menu-component" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment' v-on:updateView='updateView'></assessment-side-menu>
+        <assessment-side-menu class="no-print" dusk="assessment-side-menu-component" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment' v-on:updateView='updateView'></assessment-side-menu>
         <assessment-form dusk="assessment-form-component" v-if="view == 'assessment-form'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-form>
         <assessment-report v-if="view == 'assessment-report'" v-bind:initial-assessment='assessment' v-bind:report-url='reportUrl'></assessment-report>
         <assessment-questionnaire v-if="view == 'assessment-questionnaire'" v-bind:initial-assessment='assessment' v-on:assessmentChange='updateAssessment'></assessment-questionnaire>
@@ -17,6 +17,18 @@
     }
     #assessment-form, #assessment-report, #assessment-questionnaire{
         margin-left:200px
+    }
+
+    @media print {
+        .no-print{
+            display:none;
+        }
+        #assessment-report{
+            margin-left:0
+        }
+        #assessment{
+            margin-top:50px
+        }
     }
 </style>
 
@@ -63,7 +75,7 @@
             }
         },
         mounted: function () {
-            this.view="assessment-form";
+            this.view = "assessment-report";
         }
     }
 </script>
