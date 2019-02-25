@@ -45918,9 +45918,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-
 
 
 
@@ -45930,6 +45927,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
     data: function data() {
+        var updateSortableArray = this.updateSortableArray;
         return {
             sectionsInIntro: ['[Intro] What are the coming changes in the energy system?', "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?", 'Flexibility Agreements with customers', 'Aggregation', 'What is the Energy Community Aggregation Service (ECAS)?', "The changes in the grid, are beginning to be felt in people's homes'", "Can I sign up for offering flexibility now?", "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?", "What about taking part in this research 'demonstration' project?", "How can I sign up to take part in this research project", "What would I get for taking part?"],
             sortableLIstOptions: {
@@ -45939,15 +45937,20 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
                 multipleDropzonesItemsDraggingEnabled: true,
                 showDropzoneAreas: true,
                 onDrop: function onDrop(event) {
-                    //console.log(this.assessment.data.signupPriorities)
-                },
-                onDragstart: function onDragstart(event) {},
-                onDragend: function onDragend(event) {}
+                    updateSortableArray(event.owner.children, event.droptarget.dataset.id);
+                }
             }
         };
     },
+    methods: {
+        updateSortableArray: function updateSortableArray(items, property) {
+            this.assessment.data.questionnaire[property] = [];
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].innerText != "") this.assessment.data.questionnaire[property].push(items[i].innerText);
+            }
+        }
+    },
     created: function created() {
-
         if (this.assessment.data.questionnaire == undefined) {
             Vue.set(this.assessment.data, 'questionnaire', {});
 
@@ -46851,12 +46854,8 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important) "
+        "How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important)\n    "
       ),
-      _c("span", { staticClass: "red" }, [
-        _vm._v("Data doesn't get saved. Needs fixing")
-      ]),
-      _vm._v(" "),
       _c(
         "ol",
         {
@@ -46868,49 +46867,19 @@ var render = function() {
               expression: "sortableLIstOptions",
               arg: "options"
             }
-          ]
+          ],
+          staticClass: "dropZoneSignUpPriorities",
+          attrs: { "data-id": "signupPriorities" }
         },
-        [
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.signupPriorities[0]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.signupPriorities[1]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.signupPriorities[2]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.signupPriorities[3]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.signupPriorities[4]
-              )
-            }
-          })
-        ]
+        _vm._l(_vm.assessment.data.questionnaire.signupPriorities, function(
+          item
+        ) {
+          return _c(
+            "li",
+            { key: item, staticClass: "drag-item", attrs: { "data-id": item } },
+            [_c("div", [_vm._v(_vm._s(item))])]
+          )
+        })
       )
     ]),
     _vm._v(" "),
@@ -47056,12 +47025,8 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important) "
+        "How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important)\n    "
       ),
-      _c("span", { staticClass: "red" }, [
-        _vm._v("Data doesn't get saved. Needs fixing")
-      ]),
-      _vm._v(" "),
       _c(
         "ol",
         {
@@ -47073,33 +47038,19 @@ var render = function() {
               expression: "sortableLIstOptions",
               arg: "options"
             }
-          ]
+          ],
+          staticClass: "dropzoneputtingMeOffRating",
+          attrs: { "data-id": "puttingMeOffRating" }
         },
-        [
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.puttingMeOffRating[0]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.puttingMeOffRating[1]
-              )
-            }
-          }),
-          _vm._v(" "),
-          _c("li", {
-            domProps: {
-              textContent: _vm._s(
-                _vm.assessment.data.questionnaire.puttingMeOffRating[2]
-              )
-            }
-          })
-        ]
+        _vm._l(_vm.assessment.data.questionnaire.puttingMeOffRating, function(
+          item
+        ) {
+          return _c(
+            "li",
+            { key: item, staticClass: "drag-item", attrs: { "data-id": item } },
+            [_c("div", [_vm._v(_vm._s(item))])]
+          )
+        })
       )
     ]),
     _vm._v(" "),

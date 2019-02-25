@@ -32,13 +32,11 @@
 
         <h2>Signup priorities & finances</h2>
 
-        <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important) <span class="red">Data doesn't get saved. Needs fixing</span>
-        <ol v-drag-and-drop:options="sortableLIstOptions">
-            <li v-text="assessment.data.questionnaire.signupPriorities[0]"></li>
-            <li v-text="assessment.data.questionnaire.signupPriorities[1]"></li>
-            <li v-text="assessment.data.questionnaire.signupPriorities[2]"></li>
-            <li v-text="assessment.data.questionnaire.signupPriorities[3]"></li>
-            <li v-text="assessment.data.questionnaire.signupPriorities[4]"></li>
+        <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important)
+        <ol class="dropZoneSignUpPriorities" v-drag-and-drop:options="sortableLIstOptions" data-id="signupPriorities">
+            <li class="drag-item" v-for="item in assessment.data.questionnaire.signupPriorities" :key="item" :data-id="item">
+                <div>{{ item }}</div>
+            </li>
         </ol>
         </p>
 
@@ -60,11 +58,11 @@
             </select>
         </p>
 
-        <p>How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important) <span class="red">Data doesn't get saved. Needs fixing</span>
-        <ol v-drag-and-drop:options="sortableLIstOptions">
-            <li v-text="assessment.data.questionnaire.puttingMeOffRating[0]"></li>
-            <li v-text="assessment.data.questionnaire.puttingMeOffRating[1]"></li>
-            <li v-text="assessment.data.questionnaire.puttingMeOffRating[2]"></li>
+        <p>How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important)
+        <ol class="dropzoneputtingMeOffRating" v-drag-and-drop:options="sortableLIstOptions" data-id="puttingMeOffRating">
+              <li class="drag-item" v-for="item in assessment.data.questionnaire.puttingMeOffRating" :key="item" :data-id="item">
+                <div>{{ item }}</div>
+            </li>
         </ol>
         </p>
 
@@ -93,13 +91,13 @@
 <script>
 
     import {AssessmentInput} from './mixins/AssessmentInput.js';
-
     import VueDraggable from 'vue-draggable';
     Vue.use(VueDraggable);
 
     export default{
         mixins: [AssessmentInput],
         data: function () {
+            const updateSortableArray = this.updateSortableArray;
             return {
                 sectionsInIntro: [
                     '[Intro] What are the coming changes in the energy system?',
@@ -121,35 +119,39 @@
                     multipleDropzonesItemsDraggingEnabled: true,
                     showDropzoneAreas: true,
                     onDrop: function (event) {
-                        //console.log(this.assessment.data.signupPriorities)
-                    },
-                    onDragstart: function (event) {},
-                    onDragend: function (event) {}
+                        updateSortableArray(event.owner.children,event.droptarget.dataset.id);
+                    }
                 }
             };
         },
-        created: function () {            
-            
+        methods: {
+            updateSortableArray: function (items, property) {
+                this.assessment.data.questionnaire[property] = [];
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].innerText != "")
+                        this.assessment.data.questionnaire[property].push(items[i].innerText)
+                }
+            },
+        },
+        created: function () {
             if (this.assessment.data.questionnaire == undefined) {
                 Vue.set(this.assessment.data, 'questionnaire', {});
-                
-                 this.assessment.data.questionnaire.signupPriorities = [
+
+                this.assessment.data.questionnaire.signupPriorities = [
                     'The rewards offered (£)',
                     'A Community / Not for Profit provider ',
                     'The reduction in my carbon footprint ',
                     'The opportunity to learn more about my energy system',
                     'Being part of a group working with sustainable technology?'
                 ];
-                
-                  this.assessment.data.questionnaire.puttingMeOffRating = [
+
+                this.assessment.data.questionnaire.puttingMeOffRating = [
                     'If I had to change how I control my heaters',
                     'If I had to buy new heaters',
                     'If I needed my landlord\'s permission'
                 ];
             }
-
         }
     }
-
 
 </script>
