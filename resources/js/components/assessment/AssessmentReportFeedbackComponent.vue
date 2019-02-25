@@ -33,10 +33,6 @@
             </select>
         </p>
 
-        <p>How could we improve the report? <span class='red'>Isn't this the same question than the second</span>
-            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.howToImproveTheReport"></textarea>            
-        </p>
-
         <p>Anything else you want to share?
             <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.anythingElseToShareReportFeedback"></textarea>            
         </p>

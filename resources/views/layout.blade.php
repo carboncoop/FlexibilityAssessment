@@ -22,13 +22,14 @@
 
             <b-navbar toggleable="md" type="dark" variant="primary" class="navbar-custom">
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-                <b-navbar-brand href="#"><img class="logo" src="{{asset('img/carboncoop-logo.png')}}" /></b-navbar-brand>
+                <!-- <b-navbar-brand href="#"><img class="logo" src="{{asset('img/carboncoop-logo.png')}}" /></b-navbar-brand> -->
                 <b-collapse is-nav id="nav_collapse">
                     <b-navbar-nav>
-                        <b-nav-item href="{{ url('/') }}">Flexibility Home Assessment</b-nav-item>
+                        <!-- <b-nav-item href="{{ url('/') }}">Flexibility Assessment</b-nav-item> -->
                     </b-navbar-nav>
                     <!-- Right aligned nav items -->
                     <b-navbar-nav class="ml-auto">
+                        <b-nav-item href="{{ url('/') }}">Home</b-nav-item>
                         @guest
                         <b-navbar-nav>
                             <b-nav-item id="login-link" href="{{ route('login') }}">{{ __('Login') }}</b-nav-item>

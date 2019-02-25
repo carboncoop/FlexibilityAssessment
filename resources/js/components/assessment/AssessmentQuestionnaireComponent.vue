@@ -1,7 +1,8 @@
 <template>
     <div id="assessment-questionnaire">
         <h1>Flexibility assessment questionnaire</h1>
-        <p class="red">Do we want an intro here?</p>
+        <p>Complete this section to give us all the information you would need to 
+            sign up for a flexibility agreement.</p>
 
 
         <h2>Platform feedback</h2>

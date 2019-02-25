@@ -1,20 +1,27 @@
 <template>
     <div id="assessment-form">
         <h1>Flexibility assessment</h1>
-        <p class="red">Do we want an intro here?</p>
+        <p>The way you pay for gas and electricity will probably change; if you 
+            can be flexible with your energy demand you may be able to lower your 
+            bills.</p>
+        <p>Fill out this assessment, to generate a report which will give you information 
+            on the flexibility of your energy consumption.</p>
 
-        <h2>Household data</h2>
+        <h2 style="margin-top:35px">Household data</h2>
         <table id='household-data'>
             <tr>
                 <td>Type of property</td>
                 <td>
                     <select class="form-control" v-model="assessment.data.household.typeOfPropert">
-                        <option value="Flat (conversion)">Flat (conversion)</option>
-                        <option value="Flat (purpose built)">Flat (purpose built)</option>
-                        <option value="Mid-terrace">Mid-terrace</option>
-                        <option value="End-terrace">End-terrace</option>
-                        <option value="Semi-detached">Semi-detached</option>
-                        <option value="Detached">Detached</option>
+                        <option value="Short tenement">Short tenement</option>
+                        <option value="Retail tenement">Retail tenement</option>
+                        <option value="Dense tenement">Dense tenement</option>
+                        <option value="Standard tenement">Standard tenement</option>
+                        <option value="Basement tenement">Basement tenement</option>
+                        <option value="Large individual house">Large individual house</option>
+                        <option value="Terrace house">Terrace house</option>
+                        <option value="20th century house">20th century house</option>
+                        <option value="Other flat block">Other flat block</option>
                     </select>
                 </td>
             </tr>
@@ -35,8 +42,8 @@
                 <td>Age of the house</td>
                 <td>
                     <select class="form-control" v-model="assessment.data.household.ageOfTheHouse">
-                        <option value="A category">A category</option>    
-                        <option style="color:red" value="Add categories">Add categories</option>                        
+                        <option value="Pre-1919">Pre-1919</option>    
+                        <option value="Post-1919">Post-1919</option>                        
                     </select>        
                 </td>
             </tr>
@@ -62,7 +69,7 @@
         <h2>Energy assets</h2>
         <table id="energy-assets" class="table">
             <tr> 
-                <td>Have you got an immersion heater</td>
+                <td>Do you have an immersion heater</td>
                 <td>
                     <input type="radio" name="immersionHeater" value="Yes" v-model="assessment.data.immersionHeater.present"  /> Yes <input type="radio" name="immersionHeater" value="No" v-model="assessment.data.immersionHeater.present" checked /> No
                     <div class='heaters' v-if="assessment.data.immersionHeater.present =='Yes'">
@@ -85,7 +92,7 @@
             </tr>
 
             <tr>
-                <td>Have you got storage heaters</td>
+                <td>Do you have storage heaters</td>
                 <td>
                     <input type="radio" name="storageHeaters" value="Yes" v-model="assessment.data.storageHeaters.present"  /> Yes <input type="radio" name="storageHeaters" value="No" v-model="assessment.data.storageHeaters.present" checked /> No
                     <table class='heaters' v-if="assessment.data.storageHeaters.present =='Yes'">
@@ -108,7 +115,7 @@
             </tr>
 
             <tr>
-                <td>Have you got other electric heaters</td>
+                <td>Do you have other electric heaters</td>
                 <td>
                     <input type="radio" name="otherElectricHeaters" value="Yes" v-model="assessment.data.otherElectricHeaters.present" /> Yes <input type="radio" name="otherElectricHeaters" value="No" v-model="assessment.data.otherElectricHeaters.present" checked /> No
                     <table class='heaters' v-if="assessment.data.otherElectricHeaters.present =='Yes'">
@@ -124,7 +131,7 @@
         </tr>
 
         <tr>
-            <td>Have you got any smart device</td>
+            <td>Do you have any smart device</td>
             <td>
                 <input type="radio" name="smartDevices" value="Yes" v-model="assessment.data.smartDevices.present" /> Yes <input type="radio" name="smartDevices" value="No" v-model="assessment.data.smartDevices.present" checked /> No
                 <table class='heaters' v-if="assessment.data.smartDevices.present =='Yes'">
@@ -140,7 +147,7 @@
         </tr>
 
         <tr>
-            <td>Have you got an electric vehicle </td>
+            <td>Do you have an electric vehicle </td>
             <td>
                 <input type="radio" name="electricVehicle" value="Yes" v-model="assessment.data.electricVehicle.present" /> Yes <input type="radio" name="electricVehicle" value="No" v-model="assessment.data.electricVehicle.present" checked /> No
                 <table class='heaters' v-if="assessment.data.electricVehicle.present =='Yes'">
@@ -154,7 +161,7 @@
         </tr>
 
         <tr>
-            <td>Have you got any smart home management tools in use <span class='red'>Is this included in other questions (like controls for heating)?</span></td>
+            <td>Do you have any smart home management tools in use?</td>
             <td>
                 <input type="radio" name="smartHomeEnergyManagement" value="Yes" v-model="assessment.data.smartHomeEnergyManagement.present" /> Yes <input type="radio" name="smartHomeEnergyManagement" value="No" v-model="assessment.data.smartHomeEnergyManagement.present" checked /> No
                 <table class='heaters' v-if="assessment.data.smartHomeEnergyManagement.present =='Yes'">
@@ -187,6 +194,16 @@
             </td>
         </tr>
 
+        <tr>
+            <td>Meter payment method</td>
+            <td>
+                <select class="form-control" v-model="assessment.data.paymentMethod">
+                    <option value="Pre-payment">Pre-payment</option>    
+                    <option value="Credit">Credit</option>    
+                </select> 
+            </td>
+        </tr>
+
         <tr><td>Total annual energy use from bills</td><td><input class="form-control" type="number" min="0" step="1" v-model="assessment.data.energyUse" /> kWh</td></tr>
 
         <tr>
@@ -212,7 +229,7 @@
             </td>
         </tr>
 
-        <tr><td>Have you got a smart meter?</td><td><input type="radio" name="smartMeter" value="Yes" v-model="assessment.data.smartMeter"  /> Yes <input type="radio" name="smartMeter" value="No" v-model="assessment.data.smartMeter" checked /> No</td></tr></tr>
+        <tr><td>Do you have a smart meter?</td><td><input type="radio" name="smartMeter" value="Yes" v-model="assessment.data.smartMeter"  /> Yes <input type="radio" name="smartMeter" value="No" v-model="assessment.data.smartMeter" checked /> No</td></tr></tr>
 
 
         </table>

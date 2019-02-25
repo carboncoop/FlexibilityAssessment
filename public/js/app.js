@@ -40016,6 +40016,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43073,9 +43090,21 @@ var render = function() {
   return _c("div", { attrs: { id: "assessment-form" } }, [
     _c("h1", [_vm._v("Flexibility assessment")]),
     _vm._v(" "),
-    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
+    _c("p", [
+      _vm._v(
+        "The way you pay for gas and electricity will probably change; if you \n        can be flexible with your energy demand you may be able to lower your \n        bills."
+      )
+    ]),
     _vm._v(" "),
-    _c("h2", [_vm._v("Household data")]),
+    _c("p", [
+      _vm._v(
+        "Fill out this assessment, to generate a report which will give you information \n        on the flexibility of your energy consumption."
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", { staticStyle: { "margin-top": "35px" } }, [
+      _vm._v("Household data")
+    ]),
     _vm._v(" "),
     _c("table", { attrs: { id: "household-data" } }, [
       _c("tr", [
@@ -43113,28 +43142,40 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { value: "Flat (conversion)" } }, [
-                _vm._v("Flat (conversion)")
+              _c("option", { attrs: { value: "Short tenement" } }, [
+                _vm._v("Short tenement")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Flat (purpose built)" } }, [
-                _vm._v("Flat (purpose built)")
+              _c("option", { attrs: { value: "Retail tenement" } }, [
+                _vm._v("Retail tenement")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Mid-terrace" } }, [
-                _vm._v("Mid-terrace")
+              _c("option", { attrs: { value: "Dense tenement" } }, [
+                _vm._v("Dense tenement")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "End-terrace" } }, [
-                _vm._v("End-terrace")
+              _c("option", { attrs: { value: "Standard tenement" } }, [
+                _vm._v("Standard tenement")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Semi-detached" } }, [
-                _vm._v("Semi-detached")
+              _c("option", { attrs: { value: "Basement tenement" } }, [
+                _vm._v("Basement tenement")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Detached" } }, [
-                _vm._v("Detached")
+              _c("option", { attrs: { value: "Large individual house" } }, [
+                _vm._v("Large individual house")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Terrace house" } }, [
+                _vm._v("Terrace house")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "20th century house" } }, [
+                _vm._v("20th century house")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other flat block" } }, [
+                _vm._v("Other flat block")
               ])
             ]
           )
@@ -43303,18 +43344,13 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { value: "A category" } }, [
-                _vm._v("A category")
+              _c("option", { attrs: { value: "Pre-1919" } }, [
+                _vm._v("Pre-1919")
               ]),
               _vm._v(" "),
-              _c(
-                "option",
-                {
-                  staticStyle: { color: "red" },
-                  attrs: { value: "Add categories" }
-                },
-                [_vm._v("Add categories")]
-              )
+              _c("option", { attrs: { value: "Post-1919" } }, [
+                _vm._v("Post-1919")
+              ])
             ]
           )
         ])
@@ -43484,7 +43520,7 @@ var render = function() {
     _vm._v(" "),
     _c("table", { staticClass: "table", attrs: { id: "energy-assets" } }, [
       _c("tr", [
-        _c("td", [_vm._v("Have you got an immersion heater")]),
+        _c("td", [_vm._v("Do you have an immersion heater")]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -43640,7 +43676,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Have you got storage heaters")]),
+        _c("td", [_vm._v("Do you have storage heaters")]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -43889,7 +43925,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Have you got other electric heaters")]),
+        _c("td", [_vm._v("Do you have other electric heaters")]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -44096,7 +44132,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Have you got any smart device")]),
+        _c("td", [_vm._v("Do you have any smart device")]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -44278,7 +44314,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Have you got an electric vehicle ")]),
+        _c("td", [_vm._v("Do you have an electric vehicle ")]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -44515,7 +44551,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _vm._m(1),
+        _c("td", [
+          _vm._v("Do you have any smart home management tools in use?")
+        ]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -44843,6 +44881,51 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
+        _c("td", [_vm._v("Meter payment method")]),
+        _vm._v(" "),
+        _c("td", [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.assessment.data.paymentMethod,
+                  expression: "assessment.data.paymentMethod"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.assessment.data,
+                    "paymentMethod",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "Pre-payment" } }, [
+                _vm._v("Pre-payment")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Credit" } }, [_vm._v("Credit")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
         _c("td", [_vm._v("Total annual energy use from bills")]),
         _c("td", [
           _c("input", {
@@ -45014,7 +45097,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Have you got a smart meter?")]),
+        _c("td", [_vm._v("Do you have a smart meter?")]),
         _c("td", [
           _c("input", {
             directives: [
@@ -45070,19 +45153,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [_c("td"), _c("td")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _vm._v("Have you got any smart home management tools in use "),
-      _c("span", { staticClass: "red" }, [
-        _vm._v(
-          "Is this included in other questions (like controls for heating)?"
-        )
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -46122,6 +46192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -46896,7 +46967,11 @@ var render = function() {
   return _c("div", { attrs: { id: "assessment-questionnaire" } }, [
     _c("h1", [_vm._v("Flexibility assessment questionnaire")]),
     _vm._v(" "),
-    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
+    _c("p", [
+      _vm._v(
+        "Complete this section to give us all the information you would need to \n        sign up for a flexibility agreement."
+      )
+    ]),
     _vm._v(" "),
     _c("h2", [_vm._v("Platform feedback")]),
     _vm._v(" "),
@@ -47461,10 +47536,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -47675,41 +47746,6 @@ var render = function() {
           ])
         ]
       )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v("How could we improve the report? "),
-      _c("span", { staticClass: "red" }, [
-        _vm._v("Isn't this the same question than the second")
-      ]),
-      _vm._v(" "),
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.assessment.data.reportFeedback.howToImproveTheReport,
-            expression: "assessment.data.reportFeedback.howToImproveTheReport"
-          }
-        ],
-        staticStyle: { display: "block" },
-        attrs: { rows: "4", cols: "75" },
-        domProps: {
-          value: _vm.assessment.data.reportFeedback.howToImproveTheReport
-        },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(
-              _vm.assessment.data.reportFeedback,
-              "howToImproveTheReport",
-              $event.target.value
-            )
-          }
-        }
-      })
     ]),
     _vm._v(" "),
     _c("p", [
