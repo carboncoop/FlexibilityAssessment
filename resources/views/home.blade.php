@@ -52,6 +52,8 @@
             <a href="how-could-my-organisation-benefit-from-flexibility"><button>How could my organisation benefit from 'flexibility'?</button></a> 
 
             <a href="scotland-potential-flexibility-map"><button>Scotland potential flexibility map</button></a> 
+            
+            <a href="resources-for-community-organisations"><button>Resources for community organisations</button></a> 
 
         </div>
 

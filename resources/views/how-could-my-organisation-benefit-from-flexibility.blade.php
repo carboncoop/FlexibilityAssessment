@@ -50,8 +50,8 @@
         <p>Registration for new organisations is closed but if you want to show your interest, please get in contact with <a href="mailto:Gillian.wilson@communityenergyscotland.org.uk"> Community Energy Scotland</a></p>
         @endif
 
-        <h2>DEMONSTRATION PROJECT RESOURCES for Community organisations</h2>
-        <p style="color:red">(links to key project documents including the flyer for households –to be written by South Seeds)</p>
+        <h2>Resources for Community organisations</h2>
+        <p>Find useful resources <a href="resources-for-community-organisations">here</a></p>
 
         <h2>What do we have to do as an aggregator on this research project? </h2>
         <p>To get ready for the potential future ECAS project, we want to learn much more about what flexibility might be available through households, what would attract households to sign up for offering flexibility and what would discourage them from getting involved. We also want to test what kind of information a community organisation would need or want, to help them understand whether it would be worthwhile getting involved in being a local aggregator organisation and what it would involve. This demonstration project aims to work with South Seeds to carry out this research. </p>

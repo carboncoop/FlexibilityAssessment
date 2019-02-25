@@ -41,6 +41,10 @@ Route::get('/scotland-potential-flexibility-map', function () {
     return view('scotland-potential-flexibility-map');
 });
 
+Route::get('/resources-for-community-organisations', function () {
+    return view('resources-for-community-organisations');
+});
+
 if (config('app.registration_enabled') == false) {
     Auth::routes(['register' => false]);
 }
