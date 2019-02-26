@@ -13,7 +13,7 @@
                 that own the cables that carry the electricity form the grid to your house.</p>
             <p>DNOs are very interested in flexibility. They know when there is 
                 extra energy in the grid and also when there is not enough. They are 
-                the ones that will pay households for shifting the energy consmption.</p>
+                the ones that will pay households for shifting the energy consumption.</p>
         </div>
 
 
@@ -53,10 +53,28 @@
 
 
         <h2>Your flexible power</h2>
+
         <p>The model estimates that every year the DNOs will ask households to turn 
             off electrical loads for around 125 hours.</p>
-        <p v-if='assessment.data.powerAvailable.storageHeaters > 0'>Your <b>storage heaters</b> use {{assessment.data.powerAvailable.storageHeaters}}kW. Taking part in a flexibility scheme it will shift {{assessment.data.loadUtilisedYear.storageHeaters}}kWh/year</p>
-        <p v-if='assessment.data.powerAvailable.immersionHeater > 0'>Your <b>immersion heater</b> use {{assessment.data.powerAvailable.immersionHeater}}kW. Taking part in a flexibility scheme it will shift {{assessment.data.loadUtilisedYear.immersionHeater}}kWh/year</p>
+
+        <p>In the table below you can see how much flexible power is available in 
+            your household and the potential amount of energy taht can be shifted.</p>
+
+        <table class="table" style="width:500px; font-size:16px; line-height: 20px;">
+            <tr><td></td><td>Rating</td><td>Flexible power available</td><td>Potential energy shifted</td></tr>
+            <tr v-if='assessment.data.powerAvailable.storageHeaters > 0'>
+                <td>Storage heaters</td>
+                <td>{{(assessment.data.storageHeaters.number * assessment.data.storageHeaters.rating).toFixed(2)}}kW</td>
+                <td>{{assessment.data.powerAvailable.storageHeaters.toFixed(2)}}kW </td>
+                <td>{{assessment.data.loadUtilisedYear.storageHeaters.toFixed(2)}}kWh/year</td>
+            </tr>
+            <tr>
+                <td>Immersion heater</td>
+                <td>{{assessment.data.immersionHeater.rating.toFixed(2)}}kW</td>
+                <td>{{assessment.data.powerAvailable.immersionHeater.toFixed(2)}}kW</td>
+                <td>{{assessment.data.loadUtilisedYear.immersionHeater.toFixed(2)}}kWh/year</td>
+            </tr>
+        </table>
 
 
         <h2>Schemes</h2>           
@@ -76,7 +94,7 @@
         </table>      
 
 
-        <div style='text-align:center'>
+        <div style='text-align:center; margin-top: 35px'>
             <div class='info-box-inline'>
                 <h3>Secure scheme</h3>
                 <p>DNOs can predict when the electricity demand will be high or low and also when 
@@ -121,7 +139,7 @@
             </div>
         </div>
 
-        <p class="no-print" style="font-size:14px; margin-top: 50px" v-if='reportUrl != ""'><a target='blank' v-bind:href='reportUrl'>Unique link</a> to this report to share with household <br />
+        <p class="no-print" style="font-size:14px; margin-top: 50px" v-if='reportUrl != ""'>Unique link to this report to share with household <br />
             <a target='blank' v-bind:href='reportUrl' v-text="reportUrl"></a>
         </p>
     </div>

@@ -45940,6 +45940,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46035,33 +46053,88 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.assessment.data.powerAvailable.storageHeaters > 0
-      ? _c("p", [
-          _vm._v("Your "),
-          _c("b", [_vm._v("storage heaters")]),
-          _vm._v(
-            " use " +
-              _vm._s(_vm.assessment.data.powerAvailable.storageHeaters) +
-              "kW. Taking part in a flexibility scheme it will shift " +
-              _vm._s(_vm.assessment.data.loadUtilisedYear.storageHeaters) +
-              "kWh/year"
-          )
-        ])
-      : _vm._e(),
+    _c("p", [
+      _vm._v(
+        "In the table below you can see how much flexible power is available in \n        your household and the potential amount of energy taht can be shifted."
+      )
+    ]),
     _vm._v(" "),
-    _vm.assessment.data.powerAvailable.immersionHeater > 0
-      ? _c("p", [
-          _vm._v("Your "),
-          _c("b", [_vm._v("immersion heater")]),
-          _vm._v(
-            " use " +
-              _vm._s(_vm.assessment.data.powerAvailable.immersionHeater) +
-              "kW. Taking part in a flexibility scheme it will shift " +
-              _vm._s(_vm.assessment.data.loadUtilisedYear.immersionHeater) +
-              "kWh/year"
-          )
+    _c(
+      "table",
+      {
+        staticClass: "table",
+        staticStyle: {
+          width: "500px",
+          "font-size": "16px",
+          "line-height": "20px"
+        }
+      },
+      [
+        _vm._m(2),
+        _vm._v(" "),
+        _vm.assessment.data.powerAvailable.storageHeaters > 0
+          ? _c("tr", [
+              _c("td", [_vm._v("Storage heaters")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    (
+                      _vm.assessment.data.storageHeaters.number *
+                      _vm.assessment.data.storageHeaters.rating
+                    ).toFixed(2)
+                  ) + "kW"
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.powerAvailable.storageHeaters.toFixed(2)
+                  ) + "kW "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.loadUtilisedYear.storageHeaters.toFixed(
+                      2
+                    )
+                  ) + "kWh/year"
+                )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [_vm._v("Immersion heater")]),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v(
+              _vm._s(_vm.assessment.data.immersionHeater.rating.toFixed(2)) +
+                "kW"
+            )
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v(
+              _vm._s(
+                _vm.assessment.data.powerAvailable.immersionHeater.toFixed(2)
+              ) + "kW"
+            )
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v(
+              _vm._s(
+                _vm.assessment.data.loadUtilisedYear.immersionHeater.toFixed(2)
+              ) + "kWh/year"
+            )
+          ])
         ])
-      : _vm._e(),
+      ]
+    ),
     _vm._v(" "),
     _c("h2", [_vm._v("Schemes")]),
     _vm._v(" "),
@@ -46082,7 +46155,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("table", { staticClass: "table", attrs: { id: "potential-income" } }, [
-      _vm._m(2),
+      _vm._m(3),
       _vm._v(" "),
       _c("tr", [
         _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.secure))]),
@@ -46091,7 +46164,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _vm._m(4),
     _vm._v(" "),
     _vm.reportUrl != ""
       ? _c(
@@ -46101,10 +46174,7 @@ var render = function() {
             staticStyle: { "font-size": "14px", "margin-top": "50px" }
           },
           [
-            _c("a", { attrs: { target: "blank", href: _vm.reportUrl } }, [
-              _vm._v("Unique link")
-            ]),
-            _vm._v(" to this report to share with household "),
+            _vm._v("Unique link to this report to share with household "),
             _c("br"),
             _vm._v(" "),
             _c("a", {
@@ -46132,7 +46202,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "DNOs are very interested in flexibility. They know when there is \n            extra energy in the grid and also when there is not enough. They are \n            the ones that will pay households for shifting the energy consmption."
+          "DNOs are very interested in flexibility. They know when there is \n            extra energy in the grid and also when there is not enough. They are \n            the ones that will pay households for shifting the energy consumption."
         )
       ])
     ])
@@ -46176,6 +46246,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
+      _c("td"),
+      _c("td", [_vm._v("Rating")]),
+      _c("td", [_vm._v("Flexible power available")]),
+      _c("td", [_vm._v("Potential energy shifted")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
       _c("td", [_vm._v("Secure")]),
       _c("td", [_vm._v("Dynamic")]),
       _c("td", [_vm._v("Restore")])
@@ -46185,61 +46266,65 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { "text-align": "center" } }, [
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Secure scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "DNOs can predict when the electricity demand will be high or low and also when \n                there is more or less energy available in the National Grid. This scheme \n                aims to manage these predictable situations."
-          )
+    return _c(
+      "div",
+      { staticStyle: { "text-align": "center", "margin-top": "35px" } },
+      [
+        _c("div", { staticClass: "info-box-inline" }, [
+          _c("h3", [_vm._v("Secure scheme")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "DNOs can predict when the electricity demand will be high or low and also when \n                there is more or less energy available in the National Grid. This scheme \n                aims to manage these predictable situations."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "The household (or an automated system) will declare a week in advance how \n                much power and when can be turned off in the house. The DNO \n                will agree to some of that power and time and pay a fee. \n                The following week the DNO will use all or some of that power.\n                When this happens another fee is paid to the household for the \n                total amount of energy the DNO uses."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "The advantage of this scheme is that the household knows exactly when \n                the DNO will use the energy. This allows the household to prepare themselves \n                and choose which other moments of the week they use their energy. \n                The con is that the fees are lower compared to the other schemes."
+            )
+          ])
         ]),
         _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The household (or an automated system) will declare a week in advance how \n                much power and when can be turned off in the house. The DNO \n                will agree to some of that power and time and pay a fee. \n                The following week the DNO will use all or some of that power.\n                When this happens another fee is paid to the household for the \n                total amount of energy the DNO uses."
-          )
+        _c("div", { staticClass: "info-box-inline" }, [
+          _c("h3", [_vm._v("Dynamic scheme")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "This scheme aims to support the grid in the case of a specific fault. \n                It works in a similar way than the Secure scheme: the household declares \n                a week in advance the power and the time they can turn things off. The \n                DNO will agree to that and pay a feed. Again, the DNO may or may not \n                require the household to stop using power and it will pay accordingly \n                to the amount of energy not used."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "The difference with the Secure scheme is that the DNO will only notify \n                the household to turn off things 15 minutes in advance. This can \n                be more inconvenient for the household. On the other hand the income \n                is usually higher"
+            )
+          ])
         ]),
         _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The advantage of this scheme is that the household knows exactly when \n                the DNO will use the energy. This allows the household to prepare themselves \n                and choose which other moments of the week they use their energy. \n                The con is that the fees are lower compared to the other schemes."
-          )
+        _c("div", { staticClass: "info-box-inline" }, [
+          _c("h3", [_vm._v("Restore scheme")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "This scheme deals with unexpected faults in the grid. Such events are rare and \n                offer no warning as they depend on failure of equipment. Under such \n                circumstances, response can be used to reduce the stress on the network. \n                When taking part in this scheme there is no pre-agreement of when the \n                household may have to stop using power. Payment is only for the \n                amount of energy that is not used."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "The advantage of this scheme is that the income is higher than in any other scheme. \n                But the household never knows when they will have to stop using power."
+            )
+          ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Dynamic scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "This scheme aims to support the grid in the case of a specific fault. \n                It works in a similar way than the Secure scheme: the household declares \n                a week in advance the power and the time they can turn things off. The \n                DNO will agree to that and pay a feed. Again, the DNO may or may not \n                require the household to stop using power and it will pay accordingly \n                to the amount of energy not used."
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The difference with the Secure scheme is that the DNO will only notify \n                the household to turn off things 15 minutes in advance. This can \n                be more inconvenient for the household. On the other hand the income \n                is usually higher"
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Restore scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "This scheme deals with unexpected faults in the grid. Such events are rare and \n                offer no warning as they depend on failure of equipment. Under such \n                circumstances, response can be used to reduce the stress on the network. \n                When taking part in this scheme there is no pre-agreement of when the \n                household may have to stop using power. Payment is only for the \n                amount of energy that is not used."
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The advantage of this scheme is that the income is higher than in any other scheme. \n                But the household never knows when they will have to stop using power."
-          )
-        ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
