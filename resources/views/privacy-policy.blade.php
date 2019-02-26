@@ -60,6 +60,12 @@
             <td>Unique token</td>
             <td>Sessional</td>
         </tr>
+        <tr>
+            <td>laravel_cookie_consent</td>
+            <td>Used to save user's consent to the use of cookies.</td>
+            <td>Unique token</td>
+            <td>Persistent</td>
+        </tr>
     </tbody>
 </table>
 @endsection

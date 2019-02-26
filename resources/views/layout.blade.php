@@ -17,7 +17,7 @@
 
     </head>
     <body>
-
+        
         <div id="app" v-cloak>
 
             <b-navbar toggleable="md" type="dark" variant="primary" class="navbar-custom">
@@ -75,6 +75,7 @@
 
         </div>
 
+        @include('cookieConsent::index')
     </body>
     <script src="{{asset('js/app.js')}}"></script>
     @yield('script-below')
