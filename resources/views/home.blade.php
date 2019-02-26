@@ -54,6 +54,8 @@
             <a href="scotland-potential-flexibility-map"><button>Glasgow and Scotland potential flexibility</button></a> 
             
             <a href="resources-for-community-organisations"><button>Resources for community organisations</button></a> 
+            
+            <a href="privacy-policy"><button>Privacy policy</button></a> 
 
         </div>
 

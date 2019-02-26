@@ -45,6 +45,11 @@ Route::get('/resources-for-community-organisations', function () {
     return view('resources-for-community-organisations');
 });
 
+
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+});
+
 if (config('app.registration_enabled') == false) {
     Auth::routes(['register' => false]);
 }
