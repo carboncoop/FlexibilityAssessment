@@ -5,7 +5,7 @@
 @section('style')
 
 <style>
-    .card a{
+    .card-header a{
         background: #d6d4ce;
         border:none;
         font-size:20px;
@@ -13,7 +13,7 @@
         margin-left: 25px
     }
 
-    .card a:hover{
+    .card-header a:hover{
         background:none;
         color:black
     }
