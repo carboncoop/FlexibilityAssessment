@@ -63,10 +63,15 @@ h2{
 
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
+    color:#ff2712
 }
 
 @media print{
     #footer{
-     margin-top: 200px
+        margin-top: 200px
     }
+}
+
+a{
+    color:#ff2712
 }
