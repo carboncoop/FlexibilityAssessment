@@ -15171,6 +15171,7 @@ __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__["c" /* library *
 Vue.component('assessments-table', __webpack_require__(222));
 Vue.component('assessment', __webpack_require__(228));
 Vue.component('assessment-report', __webpack_require__(78));
+Vue.component('assessments-aggregation', __webpack_require__(272));
 Vue.component('font-awesome-icon', __WEBPACK_IMPORTED_MODULE_2__fortawesome_vue_fontawesome__["a" /* FontAwesomeIcon */]);
 Vue.component('organisation-users', __webpack_require__(260));
 Vue.component('organisation-details', __webpack_require__(265));
@@ -49538,6 +49539,487 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 271 */,
+/* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(273)
+}
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(275)
+/* template */
+var __vue_template__ = __webpack_require__(276)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-0063d52c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/assessment/AssessmentsAggregationComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0063d52c", Component.options)
+  } else {
+    hotAPI.reload("data-v-0063d52c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(274);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("6bcc4d08", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\n.first-column[data-v-0063d52c]{\n    width: 50px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(77);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        'assessments': Array
+    },
+    data: function data() {
+        return {
+            checkBoxAll: false,
+            assessmentsForTable: this.assessments,
+            assessmentsChecked: {},
+            tableColumns: { 'checkbox': { label: 'Add to report', class: "first-column" }, 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true } },
+            filter: "",
+            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
+            schemesFees: {
+                secure: { availability: 0.125, utilisation: 0.175 },
+                dynamic: { availability: 0.005, utilisation: 0.3 },
+                restore: { availability: 0, utilisation: 0.6 }
+            },
+            report: {
+                numberOfAssessment: 0,
+                schemes: {
+                    secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                    dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                    restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
+                }
+            }
+        };
+    },
+    watch: {
+        filter: function filter() {
+            if (this.filter.length < 3) this.assessmentsForTable = this.assessments;else {
+                // Find the assessments taht match the filter value
+                this.assessmentsForTable = [];
+                this.assessments.forEach(function (assessment) {
+                    var filterLC = this.filter.toLowerCase();
+                    if (assessment.name.toLowerCase().indexOf(filterLC) != -1 || assessment.description != undefined && assessment.description.toLowerCase().indexOf(filterLC) != -1 || assessment.postcode.toLowerCase().indexOf(filterLC) != -1 || assessment.owner_name.toLowerCase().indexOf(filterLC) != -1) this.assessmentsForTable.push(assessment);
+                }, this);
+                this.updateReport();
+            }
+        }
+    },
+    methods: {
+        checkUncheckAll: function checkUncheckAll() {
+            // I don't know why but thc checkbox is false when ticked and viceversa
+            if (this.checkBoxAll === false) {
+                for (var key in this.assessments) {
+                    this.assessmentsChecked[this.assessments[key].id] = true;
+                }
+            } else {
+                for (var _key in this.assessments) {
+                    this.assessmentsChecked[this.assessments[_key].id] = false;
+                }
+            }
+            this.updateReport();
+        },
+        updateReport: function updateReport() {
+            this.$nextTick(function () {
+                var assessmentsForReport = [];
+                // The assessments for the reports are the ones that are shown in the table and also checked
+                for (var key in this.assessmentsForTable) {
+                    if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
+                }
+
+                // Generate report
+                this.report = {
+                    numberOfAssessments: 0,
+                    schemes: {
+                        secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                        dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                        restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
+                    }
+                };
+                var myself = this;
+                assessmentsForReport.forEach(function (assessment) {
+                    myself.report.numberOfAssessments++;
+                    for (var scheme in myself.schemesFees) {
+                        assessment.data.fees = myself.schemesFees[scheme];
+                        myself.flexibilityModel.run(assessment.data);
+                        myself.report.schemes[scheme].powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
+                        myself.report.schemes[scheme].loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
+                        myself.report.schemes[scheme].incomeYearTotal += assessment.data.incomeYearTotal;
+                    }
+                });
+                console.log(this.report);
+            });
+        }
+    },
+    created: function created() {
+        for (var key in this.assessments) {
+            this.assessmentsChecked[this.assessments[key].id] = false;
+        }
+    }
+});
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "assessment-aggregation-component" } },
+    [
+      _c("p", [
+        _vm._v("Filter assessments "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.filter,
+              expression: "filter"
+            }
+          ],
+          staticClass: "form-control filter",
+          staticStyle: { "margin-right": "25px" },
+          attrs: { type: "text" },
+          domProps: { value: _vm.filter },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.filter = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.checkBoxAll,
+              expression: "checkBoxAll"
+            }
+          ],
+          attrs: { type: "checkbox" },
+          domProps: {
+            checked: Array.isArray(_vm.checkBoxAll)
+              ? _vm._i(_vm.checkBoxAll, null) > -1
+              : _vm.checkBoxAll
+          },
+          on: {
+            click: _vm.checkUncheckAll,
+            change: function($event) {
+              var $$a = _vm.checkBoxAll,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.checkBoxAll = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.checkBoxAll = $$a
+                      .slice(0, $$i)
+                      .concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.checkBoxAll = $$c
+              }
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.checkBoxAll === true ? _c("span", [_vm._v("Unselect")]) : _vm._e(),
+        _vm.checkBoxAll === false ? _c("span", [_vm._v("Select")]) : _vm._e(),
+        _vm._v(" all")
+      ]),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          striped: "",
+          hover: "",
+          responsive: "",
+          fixed: "",
+          items: _vm.assessmentsForTable,
+          fields: _vm.tableColumns,
+          outlined: true
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "checkbox",
+            fn: function(data) {
+              return [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.assessmentsChecked[data.item.id],
+                      expression: "assessmentsChecked[data.item.id]"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.assessmentsChecked[data.item.id])
+                      ? _vm._i(_vm.assessmentsChecked[data.item.id], null) > -1
+                      : _vm.assessmentsChecked[data.item.id]
+                  },
+                  on: {
+                    click: _vm.updateReport,
+                    change: function($event) {
+                      var $$a = _vm.assessmentsChecked[data.item.id],
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.assessmentsChecked,
+                              data.item.id,
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.assessmentsChecked,
+                              data.item.id,
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.assessmentsChecked, data.item.id, $$c)
+                      }
+                    }
+                  }
+                })
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _vm.report.numberOfAssessments > 0
+        ? _c("div", { attrs: { id: "report" } }, [
+            _c("h2", { staticStyle: { "margin-top": "35px" } }, [
+              _vm._v("Aggregated Flexibility report")
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("tr", [
+                _c("td", [_vm._v("Number of assessments")]),
+                _c("td", [_vm._v(_vm._s(_vm.report.numberOfAssessments))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Flexible power available (kW)")]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(_vm.report.schemes.secure.powerAvailable.toFixed(2))
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Total load shifted (kWh/year)")]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.report.schemes.secure.loadUtilisedYear.toFixed(2)
+                    )
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Total income per scheme (£/year)")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("table", [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.secure.incomeYearTotal.toFixed(2)
+                          )
+                        )
+                      ]),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.dynamic.incomeYearTotal.toFixed(
+                              2
+                            )
+                          )
+                        )
+                      ]),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.restore.incomeYearTotal.toFixed(
+                              2
+                            )
+                          )
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("Secure")]),
+      _c("td", [_vm._v("Dynamic")]),
+      _c("td", [_vm._v("Restore")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0063d52c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
