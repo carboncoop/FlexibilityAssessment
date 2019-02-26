@@ -56,7 +56,7 @@
 
 <!-- Flexibility assessment model -->
 <script src="{{asset('js/flexibility_model/data.js')}}"></script>
-<script src="{{asset('js/flexibility_model/flex_model.js')}}"></script>
+<!--<script src="{{asset('js/flexibility_model/flex_model.js')}}"  type="module"></script>-->
 
 @endsection
 
@@ -84,9 +84,14 @@
 
 <!-- Draw map -->
 @section('script-below')
-<script>
+<script type="module">
+
+            import {flexibilityModel} from "{{asset('js/flexibility_model/flex_model.js')}}";
+            // require("{{asset('js/flexibility_model/flex_model.js')}}");
+            let flex_model = new flexibilityModel();
+
             var geojson;
-            grades = [0, 4, 8, 16, 32, 64, 128, 256]; // Flexibility ranges, used for coloring the postcodes in the map
+            let grades = [0, 4, 8, 16, 32, 64, 128, 256]; // Flexibility ranges, used for coloring the postcodes in the map
 
 
 
@@ -111,10 +116,30 @@
                 return this._div;
             };
 
+
+    
             // method that we will use to update the control based on feature properties passed
+            let flexibility = {
+                household: {},
+                storageHeaters: {
+                    present: true,
+                    number: 1.5, // 1.5 storage heaters average per house thaat has storage heaters
+                    rating: 1.5      // kW average power of a storage heater
+                },
+                immersionHeater: {
+                    present: true,
+                    rating: 2, // average power of a immersion heater
+                    controlType: "Thermostat"
+                }
+            };
             info.update = function (props) {
+                if (props) {
+                    flexibility.household.EPC = props.flex_sh_score / props.flex_sh_count;
+                    flex_model.run(flexibility);
+                }
                 this._div.innerHTML = (props ?
-                        'Postcode Sector: ' + props.RMSect + '<br />EPC Estimated Domestic Flexibility = ' + (flex_model(props.flex_im_count, props.flex_im_score, props.flex_sh_count, props.flex_sh_score)).toFixed(0) + ' kW'
+                        'Postcode Sector: ' + props.RMSect + '<br />EPC Estimated Domestic Flexibility = '
+                        + (props.flex_sh_count * flexibility.powerAvailable.storageHeaters + props.flex_im_count * flexibility.powerAvailable.immersionHeater).toFixed(2) + ' kW'
                         : 'Hover over a Postcode Sector');
             };
 
@@ -193,8 +218,23 @@
             }
 
             function style(feature) {
+                let flexibility = {
+                    household: {},
+                    storageHeaters: {
+                        present: true,
+                        number: 1.5, // 1.5 storage heaters average per house thaat has storage heaters
+                        rating: 1.5      // kW average power of a storage heater
+                    },
+                    immersionHeater: {
+                        present: true,
+                        rating: 2, // average power of a immersion heater
+                        controlType: "Thermostat"
+                    }
+                 };
+                flexibility.household.EPC = feature.properties.flex_sh_score / feature.properties.flex_sh_count;
+                flex_model.run(flexibility);
                 return {
-                    fillColor: getColor(flex_model(feature.properties.flex_im_count, feature.properties.flex_im_score, feature.properties.flex_sh_count, feature.properties.flex_sh_score)),
+                    fillColor: getColor(feature.properties.flex_sh_count * flexibility.powerAvailable.storageHeaters + feature.properties.flex_im_count * flexibility.powerAvailable.immersionHeater),
                     weight: 2,
                     opacity: 0.5,
                     color: 'white',
