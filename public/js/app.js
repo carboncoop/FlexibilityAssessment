@@ -14914,7 +14914,6 @@ var flexibilityModel = function () {
 
             if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
 
-                var chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
                 var flexiblePowerFactor = data.household.EPC / 100;
 
                 data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
@@ -14923,6 +14922,7 @@ var flexibilityModel = function () {
                 powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
 
                 if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
+                    var chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
                     var daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August;
                     if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === false || data.storageHeaters.heatingOffSummer == "No")) daysOfHeating = 365;
                     flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
