@@ -104,7 +104,10 @@
             southside. It covers the South central area dominated by tenements and 
             blocks of flats. This is most of the G42 postcode and part of the G41 
             postcode. Based on reported Scottish EPC data for domestic properties 
-            the area contains an estimated total of 2607kW (2.6MW) of flexible capacity· This would be equivalent to turning on/off a 150m wind turbine</p>
+            the area contains an estimated total of 2607kW (2.6MW) of flexible capacity 
+            which is equivalent to turning a 150m wind turbine on/off on demand· 
+            After running the model we estimate that this potential flexibility 
+            could generate around £42K.</p>
 
         <p>The below table gives an estimate of total available flexibility from 
             storage heaters and immersion heaters in some of the postcode sectors 
