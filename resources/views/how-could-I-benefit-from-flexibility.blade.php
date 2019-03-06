@@ -6,15 +6,14 @@
 
 <style>
 
-    .card a{
+    .card-header a{
         background: #d6d4ce;
         border:none;
         font-size:20px;
         text-align:left;
-        margin-left: 25px
     }
 
-    .card a:hover{
+    .card-header a:hover{
         background:none;
         color:black
     }
@@ -38,7 +37,7 @@
             <li><b>Smart meters are being rolled out.</b> The Government says that every house will have one by 2020, unless they have requested an opt-out. </li>
             <li><b>If you have a smart meter, prices for electricity could be different at different times of day and you could decide to use more of the electricity you need, when it is cheapest.</b> Smart Meters give you much more information about your energy use, and are designed for a new range of electricity tariffs which are beginning to be developed, where the price depends on when you use energy (called 'time of use' tariffs).</li>
             <li><b>Smart appliances are starting to come out, for example,</b> many new electric heaters, cars, and washing machines let you remotely control them. Smart home controllers can communicate with and coordinate these smart devices and this makes them available for offering flexibility</li>
-            <li>Some people have <b>bought electric vehicles</b> and are charging them either at home or through publicly available charge points saving money on fuel costs. </li>
+            <li>Some people have large loads to charge at home such as electric wheel chairs, electric bike batteries or even in some cases electric cars.</li>
         </ul>                
 
         <div role="tablist">
@@ -74,7 +73,7 @@
                 </b-card-header>
                 <b-collapse id="accordion4" accordion="my-accordion" role="tabpanel">
                     <b-card-body>
-                        <p>For our research, we're working with South Seeds in Glasgow and we want to see how flexibility could work in the south side of Glasgow in future. </p>
+                        <p>For our research, we're working with South Seeds in Glasgow and we want to see how flexibility could work in the southside of Glasgow in future. </p>
                         <p>As part of this South Seeds are recruiting a group of householders to go through a home visit and survey to give feedback on our ideas and information. </p>
                     </b-card-body>
                 </b-collapse>
@@ -88,6 +87,7 @@
                     <b-card-body>
                         <p>South Seeds are looking for about 20 households to take part in our project. This would involve you doing the following:</p>
                         <ul>
+                            <li>South Seeds are hosting an event on 4 March (between 3 and 5pm) at Pollokshields Community Centre where local people can find out more. If you can’t make that there may be another chance to participate in an event, get in touch with South seeds to find out, 0141 636 3959.</li>
                             <li>Attending an information session (probably in February 2019) about the project and about how we will work with you – this will give you more detailed information about the changes in the energy system and about the project</li>
                             <li>Having a home visit by a South Seeds Energy Officer, who will offer you a home energy audit and do a short interview (about 30 minutes) about what appliances you have in your home, whether they are suitable for flexibility and also ask you questions about how clear our information is on this webpage and about the project </li>
                             <li>Having a short telephone follow up call after the home visit, to give your feedback on the report we will provide you with, about the flexibility options that might be relevant to your household</li>
@@ -104,7 +104,7 @@
                     <b-card-body>
                         <p>You would get a payment in total of £100 for taking part (paid in several instalments depending on completing the various steps above). You would also get the chance to learn more about the changes and how flexibility will work in practice.</p>
                         <p>South Seeds would really value this chance to get feedback on this idea from local people, which will help South Seeds think about how such a project might work in the future.  </p>
-                        <p>If you are interested in being a participant – please contact South Seeds <span style="color:red">(hyperlink to an email to SS?)</span> to sign up. If you want more information before signing up please ring <span style="color:red">xxxxx </span></p>
+                        <p>If you are interested in being a participant – please contact <a href="mailto:flexibility@southseeds.org"> South Seeds</a> to sign up. If you want more information before signing up please ring 0141 636 3959</p>
                     </b-card-body>
                 </b-collapse>
             </b-card>

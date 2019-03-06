@@ -75,37 +75,44 @@
 <div>
     <div id='how-could-I-benefit-from-flexibility'>
 
-        <h1>Glasgow and Scotland potential flexibility</h1>
+        <h1>How flexibility differs across Scotland and within communities</h1>
+        <br />
 
-        <h2>Estimating available flexibility</h2>
+        <h2>Estimating available flexibility in your area</h2>
 
-        <p>Certain household loads (electrical devices) can provide flexibility 
-            to the electricity system. Flexible loads are those that can be turned 
-            on when there isn't enough energy in the grid or off when there is 
-            excess. Flexible power is measured in kW like any other device.</p>
+        <p>Certain household energy loads (electrical devices) can be managed in 
+            a ‘flexibly’ way so that there is less strain on the grid. Flexible 
+            loads are those that can be turned on when there is enough energy 
+            in the grid or off when there is excess demand on the grid. Flexible 
+            power is measured in kW like any other device.</p>
 
-        <p>The most promising candidates for future flexibility are electric vehicles, 
-            heat pumps, and battery storage technology. However levels of penetration 
-            of this technology are currently very low and dispersed. </p>
+        <p>The most promising opportunities for future flexibility are electric 
+            vehicles, heat pumps, and battery storage technology. However currently 
+            this technology is only available in a few homes. </p>
 
         <p>Immersion heaters and storage heaters, despite having lower potential 
-            per installation, have the advantage of being much more common and are 
-            also often concentrated in particular areas due to physical (grid), 
-            economic, social, and political factors. This density of load can be 
-            economically valuable where there are specific local flexibility requirements. </p>
+            per installation, are much more common and are also often concentrated 
+            in particular areas where there isn’t access to a gas supply or there 
+            are other (economic, social or political) reasons. This density of 
+            an electricity load can be economically valuable where there are specific 
+            local flexibility requirements. </p>
 
 
-        <h2>South Seeds postal district</h2>
+        <h2>South Seeds area</h2>
 
-        <p>Based on reported Scottish EPC data for domestic properties, the South 
-            Seeds postal districts of G42 and G43 contain an estimated total of 
-            2607kW (2.6MW) of flexible capacity.</p>
+        <p>South Seeds is a community-led organisation which is based on Glasgow’s 
+            southside. It covers the South central area dominated by tenements and 
+            blocks of flats. This is most of the G42 postcode and part of the G41 
+            postcode. Based on reported Scottish EPC data for domestic properties 
+            the area contains an estimated total of 2607kW (2.6MW) of flexible capacity· This would be equivalent to turning on/off a 150m wind turbine</p>
 
         <p>The below table gives an estimate of total available flexibility from 
-            storage heaters and immersion heaters in different postcode sectors 
-            in the South Seeds area using simple assumptions about typical average 
-            loads and potential availability and utilisation of these loads. In 
-            particular, it was assumed that the available flexibility from a storage 
+            storage heaters and immersion heaters in some of the postcode sectors 
+            South Seeds covers(using simple assumptions about typical average loads 
+            and potential availability and utilisation of these loads). </p>
+        
+        <p>If you are interested in how this was calculated, it was assumed that 
+            the available flexibility from a storage 
             heater is correlated with the EPC performance of a given property. These 
             numbers are only indicative and should only be taken as being meaningful 
             in the aggregate. In reality the flexibility available from a particular 
@@ -117,7 +124,7 @@
             made to housing stock.</p>
 
 
-        <p>If nothing else, these numbers highlight the large amounts of potential 
+        <p>These numbers highlight the large amounts of potential 
             flexibility which is currently unharnessed in homes in Scotland (and 
             elsewhere). </p>
 

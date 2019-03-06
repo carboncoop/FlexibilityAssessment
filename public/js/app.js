@@ -772,7 +772,7 @@ function toComment(sourceMap) {
 "use strict";
 
 
-var bind = __webpack_require__(71);
+var bind = __webpack_require__(72);
 var isBuffer = __webpack_require__(204);
 
 /*global toString:true*/
@@ -1336,50 +1336,6 @@ function clickHandlerFactory(_ref3) {
 
 /***/ }),
 /* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* Form control contextual state class computation
- *
- * Returned class is either 'is-valid' or 'is-invalid' based on the 'state' prop
- * state can be one of five values:
- *  - true or 'valid' for is-valid
- *  - false or 'invalid' for is-invalid
- *  - null (or empty string) for no contextual state
- */
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  props: {
-    state: {
-      // true/'valid', false/'invalid', '',null
-      type: [Boolean, String],
-      default: null
-    }
-  },
-  computed: {
-    computedState: function computedState() {
-      var state = this.state;
-      if (state === true || state === 'valid') {
-        return true;
-      } else if (state === false || state === 'invalid') {
-        return false;
-      }
-      return null;
-    },
-    stateClass: function stateClass() {
-      var state = this.computedState;
-      if (state === true) {
-        return 'is-valid';
-      } else if (state === false) {
-        return 'is-invalid';
-      }
-      return null;
-    }
-  }
-});
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1607,7 +1563,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -1716,6 +1672,50 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* Form control contextual state class computation
+ *
+ * Returned class is either 'is-valid' or 'is-invalid' based on the 'state' prop
+ * state can be one of five values:
+ *  - true or 'valid' for is-valid
+ *  - false or 'invalid' for is-invalid
+ *  - null (or empty string) for no contextual state
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: {
+    state: {
+      // true/'valid', false/'invalid', '',null
+      type: [Boolean, String],
+      default: null
+    }
+  },
+  computed: {
+    computedState: function computedState() {
+      var state = this.state;
+      if (state === true || state === 'valid') {
+        return true;
+      } else if (state === false || state === 'invalid') {
+        return false;
+      }
+      return null;
+    },
+    stateClass: function stateClass() {
+      var state = this.computedState;
+      if (state === true) {
+        return 'is-valid';
+      } else if (state === false) {
+        return 'is-invalid';
+      }
+      return null;
+    }
+  }
+});
+
+/***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1796,7 +1796,7 @@ module.exports = g;
 /* harmony export (immutable) */ __webpack_exports__["a"] = pluckProps;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(42);
 
 
 
@@ -2374,7 +2374,7 @@ var BVRL = '__BV_root_listeners__';
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = prefixPropName;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__upper_first__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__upper_first__ = __webpack_require__(47);
 
 
 /**
@@ -2393,7 +2393,7 @@ function prefixPropName(prefix, value) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = copyProps;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(42);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -6865,10 +6865,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(72);
+    adapter = __webpack_require__(73);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(72);
+    adapter = __webpack_require__(73);
   }
   return adapter;
 }
@@ -6943,7 +6943,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(41)))
 
 /***/ }),
 /* 38 */
@@ -9625,6 +9625,322 @@ var AssessmentInput = {
 
 /***/ }),
 /* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return flexibilityModel; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__ = __webpack_require__(236);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/*******************************
+ * Flexibility Model
+ * 
+ * The model calculates how much load can be shifted for different electrical assets 
+ * in a household and the potential income this can generate.
+ * 
+ * The model assumes that the load is shifted: the energy is not used at the time when 
+ * it would normally be used but it is used at another time of the day. 
+ *  
+ * The total income is calculated as the income from flexibility minus 
+ * the cost of the energy used at a different time of the day. For simplicity only 
+ * one electrical tariff rate is used (for differential tariffs the high rate ahould be used).
+ * 
+ * The model is quite verbose with the aim of facilitating its interpretation.
+ * 
+ */
+
+
+
+var flexibilityModel = function () {
+    function flexibilityModel() {
+        _classCallCheck(this, flexibilityModel);
+
+        console.log("Debug Flexibility model");
+
+        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
+        this.availabilityFee = 0.125; // £/kW/h
+        this.utilisationFee = 0.175; // £/kWh
+
+        // The amount of of load shifted is calculated depending on the amount of hours 
+        // the DNO schedules. The model allows for 2 posibilities:
+        //      - The household declares how much time the load is available and 
+        //      the DNO accepts certain amount of it (this is defined by the scheduledAvailabilityFactor)
+        //      This is more likely to be useful in the future.
+        //      - There is an estimated amount of hours per year that the DNO will 
+        //      require to shift the load (defined by dnoEstimatedAvailabilityRequired)
+        //      This is currently more realistic to use.
+        // Which one to use is defined by the user: data.useDnoEstimatedHoursRequired (defaults to true)
+        this.scheduledAvailabilityFactor = 1;
+        this.dnoEstimatedAvailabilityRequired = 125; // hours/year
+
+        // Fraction of the available load that the scheme utilises and therefor pays for
+        this.utilisedLoadFactor = 1;
+
+        // Electric tariff rate at which the household will pay the shifted load
+        this.electricalTariffRate = 0.17; // £/kWh
+    }
+
+    _createClass(flexibilityModel, [{
+        key: "run",
+        value: function run(data) {
+
+            data.powerAvailable = {};
+            data.flexibilityHoursScheduled = {};
+            data.loadUtilisedYear = {};
+            data.incomeYear = {};
+            data.incomeYearTotal = 0;
+
+            this.ini(data);
+            this.storageHeatersFlexibility(data);
+            this.immersionHeaterFlexibility(data);
+
+            for (var source in data.incomeYear) {
+                data.incomeYearTotal += data.incomeYear[source];
+            }
+
+            return data;
+        }
+
+        /****************************************************
+         *  ini     
+         *  
+         *  If specified by the user, we change the 
+         *  - default fees
+         *  - fractions of flexibility scheduleds and utilised by the scheme
+         *  - electric tariff rate at which the shifted load will be paid
+         *  
+         *  
+         *  User inputs:
+         *      - data.fees.availability    £/kW/h (Optional)
+         *      - data.fees.utilisation     £/kWh (Optional)
+         *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
+         *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
+         *      - data.electricalTariffRate     £/kWh (Optional)
+         *      - data.dnoEstimatedAvailabilityRequired.hoursYear     hours (Optional)
+         *      
+         ****************************************************/
+
+    }, {
+        key: "ini",
+        value: function ini(data) {
+            if (data.fees != undefined) {
+                if (data.fees.availability != undefined) this.availabilityFee = data.fees.availability;
+                if (data.fees.utilisation != undefined) this.utilisationFee = data.fees.utilisation;
+            }
+
+            if (data.flexibilityAwardedFactors != undefined) {
+                if (data.flexibilityAwardedFactors.scheduledAvailability != undefined) this.scheduledAvailabilityFactor = data.flexibilityAwardedFactors.scheduledAvailability;
+                if (data.flexibilityAwardedFactors.utilisedLoad != undefined) this.utilisedLoadFactor = data.flexibilityAwardedFactors.utilisedLoad;
+            }
+
+            if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRate = data.tariff.rate;
+
+            if (data.dnoEstimatedAvailabilityRequired != undefined && data.dnoEstimatedAvailabilityRequired.hoursYear != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired.hoursYear;
+        }
+
+        /********************************************
+         * storageHeatersFlexibility 
+         * 
+         * The EPC rating is used as the factor by which the amount of the charging 
+         * time can be reduced during the normal charging period (night). The aim of 
+         * using the EPC is to minimize the impact to the occupants' thermal comfort.
+         * 
+         * We assume that houses with higher EPCs have better insulation and higher 
+         * thermal capacity. In these cases a bigger load can be shifted and the house 
+         * will still be at an acceptable temperature.
+         * 
+         *  Inputs from user:
+         *      - data.household.EPC      Integer - defaults to 55 (lowest rate in band D)
+         *      - data.storageHeaters.present   boolean or String (Yes/No)
+         *      - data.storageHeaters.number    integer
+         *      - data.storageHeaters.rating    integer kW
+         *      - data.storageHeaters.chargingTime      integer hours/day - defaults to 7
+         *      - data.storageHeaters.heatingOffSummer  boolean or String (Yes/No) - defaults to true
+         *      - data.useDnoEstimatedHoursRequired.use      boolean or String (Yes/No) - defaults to true
+         *      
+         *  Global outputs:
+         *      - data.powerAvailable.storageHeaters         kW
+         *      - data.flexibilityHoursScheduled.storageHeaters         hours
+         *      - data.loadUtilisedYear.storageHeaters      kWh/year
+         *      - data.flexibilityIncomeYear.storageHeaters     £
+         *      
+         *********************************************/
+
+    }, {
+        key: "storageHeatersFlexibility",
+        value: function storageHeatersFlexibility(data) {
+
+            var powerAvailable = 0;
+            var flexibilityHoursScheduled = 0;
+            var loadUtilisedYear = 0;
+            var incomeYear = 0;
+
+            if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
+
+                var flexiblePowerFactor = data.household.EPC / 100;
+
+                data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
+                data.storageHeaters.rating = data.storageHeaters.rating == undefined ? 0 : 1.0 * data.storageHeaters.rating;
+
+                powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
+
+                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
+                    var chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
+                    var daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August;
+                    if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === false || data.storageHeaters.heatingOffSummer == "No")) daysOfHeating = 365;
+                    flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
+                }
+
+                var flexibleLoadYearAvailable = powerAvailable * flexibilityHoursScheduled;
+                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadYearAvailable;
+
+                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
+            }
+
+            data.powerAvailable.storageHeaters = powerAvailable;
+            data.flexibilityHoursScheduled.storageHeaters = flexibilityHoursScheduled;
+            data.loadUtilisedYear.storageHeaters = loadUtilisedYear;
+            data.incomeYear.storageHeaters = incomeYear;
+            return data;
+        }
+
+        /********************************************
+         * immersionHeaterFlexibility 
+         * 
+         * The model assumes that 80% of the immersion heater power can be shifted. 
+         * The remaining 20% is to allow the household keep some control.
+         * 
+         *  Inputs from user:
+         *      - data.household.occupancy      integer (not used when useDnoEstimatedHoursRequired == true)
+         *      - data.immersionHeater.present   boolean/String  (Yes/No)
+         *      - data.immersionHeater.rating    integer kW
+         *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
+         *      - data.useDnoEstimatedHoursRequired      boolean or String (Yes/No) - defaults to true
+         *      
+         *  Global outputs:
+         *      - data.powerAvailable.immersionHeater     kW
+         *      - data.flexibilityHoursScheduled.immersionHeater     hours
+         *      - data.loadUtilisedYear.immersionHeater      kWh/year
+         *      - data.flexibilityIncomeYear.immersionHeater     £
+         *      
+         *********************************************/
+
+    }, {
+        key: "immersionHeaterFlexibility",
+        value: function immersionHeaterFlexibility(data) {
+
+            var powerAvailable = 0;
+            var flexibilityHoursScheduled = 0;
+            var loadUtilisedYear = 0;
+            var incomeYear = 0;
+
+            if (data.immersionHeater != undefined && (data.immersionHeater.present === true || data.immersionHeater.present == "Yes")) {
+
+                var flexiblePowerFactor = 0.8;
+                data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
+                powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
+
+                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
+                    var immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
+                    var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
+                    var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
+                    flexibilityHoursScheduled = this.scheduledAvailabilityFactor * timeOfUseYear;
+                }
+
+                var flexibleLoadAvailable = powerAvailable * flexibilityHoursScheduled;
+                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadAvailable;
+
+                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
+            }
+
+            data.powerAvailable.immersionHeater = powerAvailable;
+            data.flexibilityHoursScheduled.immersionHeater = flexibilityHoursScheduled;
+            data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
+            data.incomeYear.immersionHeater = incomeYear;
+
+            return data;
+        }
+
+        /******************************************
+         *  incomeDay
+         *  
+         *  Calculates the income generated by a flexible asset
+         *  
+         * @param power Integer kW
+         * @param load Integer  kWh
+         * @param availability Integer  hours
+         * @returns income generated in a day in £
+         */
+
+    }, {
+        key: "incomeFromFlexibility",
+        value: function incomeFromFlexibility(power, utilisedLoad, availability) {
+            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
+        }
+
+        /************************************
+         * getImmersionHeaterSystem
+         * 
+         * Returns a immersion heater system as specified in  openBEM
+         * 
+         * @param occupancy Integer
+         * @param controlType   String (None, Thermostat, Programmer, Advanced controls)
+         */
+
+    }, {
+        key: "getImmersionHeaterSystem",
+        value: function getImmersionHeaterSystem(occupancy, controlType) {
+            var immersionHeatingSystem = {
+                gains_W: {},
+                energy_requirements: {},
+                occupancy: occupancy,
+                water_heating: {
+                    override_annual_energy_content: false,
+                    low_water_use_design: false,
+                    hot_water_control_type: "no_cylinder_thermostat",
+                    pipework_insulation: "All accesible piperwok insulated",
+                    storage_type: {
+                        category: "Cylinders with immersion",
+                        declared_loss_factor_known: false,
+                        loss_factor_b: 0.076,
+                        manufacturer_loss_factor: 0,
+                        name: "Cylinder with electric immersion, 170 litres, 12mm loose fit jacket ",
+                        source: "--",
+                        storage_volume: 170,
+                        tag: "HWS14",
+                        temperature_factor_a: 0,
+                        temperature_factor_b: 0.6,
+                        volume_factor_b: 0.817
+                    },
+                    solar_water_heating: false,
+                    hot_water_store_in_dwelling: 1
+                },
+                heating_systems: [{
+                    combi_loss: 0,
+                    efficiency: 1,
+                    fraction_water_heating: 1,
+                    instantaneous_water_heating: false,
+                    name: "Electric Immersion System",
+                    primary_circuit_loss: "No",
+                    provides: "water"
+                }]
+            };
+
+            if (controlType === "Programmer" || controlType === "Advanced controls") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";else if (controlType === "Thermostat") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
+
+            return immersionHeatingSystem;
+        }
+    }]);
+
+    return flexibilityModel;
+}();
+
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -9814,7 +10130,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9824,14 +10140,14 @@ function identity(x) {
 }
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export props */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb_link__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb_link__ = __webpack_require__(44);
 
 
 
@@ -9864,7 +10180,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_1__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9919,7 +10235,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_2__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9933,7 +10249,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_2__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9947,7 +10263,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_2__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9963,7 +10279,7 @@ function upperFirst(str) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10043,7 +10359,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10092,7 +10408,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10141,7 +10457,7 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */]
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10197,7 +10513,7 @@ var props = {
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10234,12 +10550,12 @@ var props = {
 });
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collapse__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_toggle__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_toggle__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__(1);
 
 
@@ -10261,7 +10577,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10285,7 +10601,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10344,7 +10660,7 @@ var unbindTargets = function unbindTargets(vnode, binding, listenTypes) {
 /* harmony default export */ __webpack_exports__["b"] = (bindTargets);
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10780,7 +11096,7 @@ var AttachmentMap = {
 });
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10829,7 +11145,7 @@ var props = {
 });
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10878,7 +11194,7 @@ var props = {
 });
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10918,7 +11234,7 @@ var props = {
 });
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10958,15 +11274,15 @@ var props = {
 });
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__ = __webpack_require__(34);
@@ -11130,7 +11446,7 @@ var props = {
 });
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11251,14 +11567,14 @@ var props = {
 });
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__ = __webpack_require__(34);
 
 
@@ -11349,7 +11665,7 @@ var props = {
 });
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11379,7 +11695,7 @@ var props = {
 });
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11416,7 +11732,7 @@ var props = {
 });
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11440,7 +11756,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11482,7 +11798,7 @@ Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11917,7 +12233,7 @@ var props = {
 });
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12074,7 +12390,7 @@ var PopOver = function (_ToolTip) {
 /* harmony default export */ __webpack_exports__["a"] = (PopOver);
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12410,7 +12726,7 @@ var OBSERVER_CONFIG = {
 });
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12523,7 +12839,7 @@ var OBSERVER_CONFIG = {
 });
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12541,7 +12857,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12552,7 +12868,7 @@ var settle = __webpack_require__(207);
 var buildURL = __webpack_require__(209);
 var parseHeaders = __webpack_require__(210);
 var isURLSameOrigin = __webpack_require__(211);
-var createError = __webpack_require__(73);
+var createError = __webpack_require__(74);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(212);
 
 module.exports = function xhrAdapter(config) {
@@ -12728,7 +13044,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12753,7 +13069,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12765,7 +13081,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12791,7 +13107,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14740,322 +15056,6 @@ var autoReplace = function autoReplace() {
 
 
 /***/ }),
-/* 77 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return flexibilityModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__ = __webpack_require__(236);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/*******************************
- * Flexibility Model
- * 
- * The model calculates how much load can be shifted for different electrical assets 
- * in a household and the potential income this can generate.
- * 
- * The model assumes that the load is shifted: the energy is not used at the time when 
- * it would normally be used but it is used at another time of the day. 
- *  
- * The total income is calculated as the income from flexibility minus 
- * the cost of the energy used at a different time of the day. For simplicity only 
- * one electrical tariff rate is used (for differential tariffs the high rate ahould be used).
- * 
- * The model is quite verbose with the aim of facilitating its interpretation.
- * 
- */
-
-
-
-var flexibilityModel = function () {
-    function flexibilityModel() {
-        _classCallCheck(this, flexibilityModel);
-
-        console.log("Debug Flexibility model");
-
-        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
-        this.availabilityFee = 0.125; // £/kW/h
-        this.utilisationFee = 0.175; // £/kWh
-
-        // The amount of of load shifted is calculated depending on the amount of hours 
-        // the DNO schedules. The model allows for 2 posibilities:
-        //      - The household declares how much time the load is available and 
-        //      the DNO accepts certain amount of it (this is defined by the scheduledAvailabilityFactor)
-        //      This is more likely to be useful in the future.
-        //      - There is an estimated amount of hours per year that the DNO will 
-        //      require to shift the load (defined by dnoEstimatedAvailabilityRequired)
-        //      This is currently more realistic to use.
-        // Which one to use is defined by the user: data.useDnoEstimatedHoursRequired (defaults to true)
-        this.scheduledAvailabilityFactor = 1;
-        this.dnoEstimatedAvailabilityRequired = 125; // hours/year
-
-        // Fraction of the available load that the scheme utilises and therefor pays for
-        this.utilisedLoadFactor = 1;
-
-        // Electric tariff rate at which the household will pay the shifted load
-        this.electricalTariffRate = 0.17; // £/kWh
-    }
-
-    _createClass(flexibilityModel, [{
-        key: "run",
-        value: function run(data) {
-
-            data.powerAvailable = {};
-            data.flexibilityHoursScheduled = {};
-            data.loadUtilisedYear = {};
-            data.incomeYear = {};
-            data.incomeYearTotal = 0;
-
-            this.ini(data);
-            this.storageHeatersFlexibility(data);
-            this.immersionHeaterFlexibility(data);
-
-            for (var source in data.incomeYear) {
-                data.incomeYearTotal += data.incomeYear[source];
-            }
-
-            return data;
-        }
-
-        /****************************************************
-         *  ini     
-         *  
-         *  If specified by the user, we change the 
-         *  - default fees
-         *  - fractions of flexibility scheduleds and utilised by the scheme
-         *  - electric tariff rate at which the shifted load will be paid
-         *  
-         *  
-         *  User inputs:
-         *      - data.fees.availability    £/kW/h (Optional)
-         *      - data.fees.utilisation     £/kWh (Optional)
-         *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
-         *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
-         *      - data.electricalTariffRate     £/kWh (Optional)
-         *      - data.dnoEstimatedAvailabilityRequired.hoursYear     hours (Optional)
-         *      
-         ****************************************************/
-
-    }, {
-        key: "ini",
-        value: function ini(data) {
-            if (data.fees != undefined) {
-                if (data.fees.availability != undefined) this.availabilityFee = data.fees.availability;
-                if (data.fees.utilisation != undefined) this.utilisationFee = data.fees.utilisation;
-            }
-
-            if (data.flexibilityAwardedFactors != undefined) {
-                if (data.flexibilityAwardedFactors.scheduledAvailability != undefined) this.scheduledAvailabilityFactor = data.flexibilityAwardedFactors.scheduledAvailability;
-                if (data.flexibilityAwardedFactors.utilisedLoad != undefined) this.utilisedLoadFactor = data.flexibilityAwardedFactors.utilisedLoad;
-            }
-
-            if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRate = data.tariff.rate;
-
-            if (data.dnoEstimatedAvailabilityRequired != undefined && data.dnoEstimatedAvailabilityRequired.hoursYear != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired.hoursYear;
-        }
-
-        /********************************************
-         * storageHeatersFlexibility 
-         * 
-         * The EPC rating is used as the factor by which the amount of the charging 
-         * time can be reduced during the normal charging period (night). The aim of 
-         * using the EPC is to minimize the impact to the occupants' thermal comfort.
-         * 
-         * We assume that houses with higher EPCs have better insulation and higher 
-         * thermal capacity. In these cases a bigger load can be shifted and the house 
-         * will still be at an acceptable temperature.
-         * 
-         *  Inputs from user:
-         *      - data.household.EPC      Integer - defaults to 55 (lowest rate in band D)
-         *      - data.storageHeaters.present   boolean or String (Yes/No)
-         *      - data.storageHeaters.number    integer
-         *      - data.storageHeaters.rating    integer kW
-         *      - data.storageHeaters.chargingTime      integer hours/day - defaults to 7
-         *      - data.storageHeaters.heatingOffSummer  boolean or String (Yes/No) - defaults to true
-         *      - data.useDnoEstimatedHoursRequired.use      boolean or String (Yes/No) - defaults to true
-         *      
-         *  Global outputs:
-         *      - data.powerAvailable.storageHeaters         kW
-         *      - data.flexibilityHoursScheduled.storageHeaters         hours
-         *      - data.loadUtilisedYear.storageHeaters      kWh/year
-         *      - data.flexibilityIncomeYear.storageHeaters     £
-         *      
-         *********************************************/
-
-    }, {
-        key: "storageHeatersFlexibility",
-        value: function storageHeatersFlexibility(data) {
-
-            var powerAvailable = 0;
-            var flexibilityHoursScheduled = 0;
-            var loadUtilisedYear = 0;
-            var incomeYear = 0;
-
-            if (data.storageHeaters != undefined && (data.storageHeaters.present === true || data.storageHeaters.present == "Yes")) {
-
-                var flexiblePowerFactor = data.household.EPC / 100;
-
-                data.storageHeaters.number = data.storageHeaters.number == undefined ? 0 : 1.0 * data.storageHeaters.number;
-                data.storageHeaters.rating = data.storageHeaters.rating == undefined ? 0 : 1.0 * data.storageHeaters.rating;
-
-                powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
-
-                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
-                    var chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
-                    var daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August;
-                    if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === false || data.storageHeaters.heatingOffSummer == "No")) daysOfHeating = 365;
-                    flexibilityHoursScheduled = this.scheduledAvailabilityFactor * daysOfHeating * chargingTimeDay;
-                }
-
-                var flexibleLoadYearAvailable = powerAvailable * flexibilityHoursScheduled;
-                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadYearAvailable;
-
-                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
-            }
-
-            data.powerAvailable.storageHeaters = powerAvailable;
-            data.flexibilityHoursScheduled.storageHeaters = flexibilityHoursScheduled;
-            data.loadUtilisedYear.storageHeaters = loadUtilisedYear;
-            data.incomeYear.storageHeaters = incomeYear;
-            return data;
-        }
-
-        /********************************************
-         * immersionHeaterFlexibility 
-         * 
-         * The model assumes that 80% of the immersion heater power can be shifted. 
-         * The remaining 20% is to allow the household keep some control.
-         * 
-         *  Inputs from user:
-         *      - data.household.occupancy      integer (not used when useDnoEstimatedHoursRequired == true)
-         *      - data.immersionHeater.present   boolean/String  (Yes/No)
-         *      - data.immersionHeater.rating    integer kW
-         *      - data.immersionHeater.controlType  String (None, Thermostat, Programmer, Advanced controls)
-         *      - data.useDnoEstimatedHoursRequired      boolean or String (Yes/No) - defaults to true
-         *      
-         *  Global outputs:
-         *      - data.powerAvailable.immersionHeater     kW
-         *      - data.flexibilityHoursScheduled.immersionHeater     hours
-         *      - data.loadUtilisedYear.immersionHeater      kWh/year
-         *      - data.flexibilityIncomeYear.immersionHeater     £
-         *      
-         *********************************************/
-
-    }, {
-        key: "immersionHeaterFlexibility",
-        value: function immersionHeaterFlexibility(data) {
-
-            var powerAvailable = 0;
-            var flexibilityHoursScheduled = 0;
-            var loadUtilisedYear = 0;
-            var incomeYear = 0;
-
-            if (data.immersionHeater != undefined && (data.immersionHeater.present === true || data.immersionHeater.present == "Yes")) {
-
-                var flexiblePowerFactor = 0.8;
-                data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
-                powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
-
-                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
-                    var immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
-                    var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
-                    var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;
-                    flexibilityHoursScheduled = this.scheduledAvailabilityFactor * timeOfUseYear;
-                }
-
-                var flexibleLoadAvailable = powerAvailable * flexibilityHoursScheduled;
-                loadUtilisedYear = this.utilisedLoadFactor * flexibleLoadAvailable;
-
-                incomeYear = this.incomeFromFlexibility(powerAvailable, loadUtilisedYear, flexibilityHoursScheduled);
-            }
-
-            data.powerAvailable.immersionHeater = powerAvailable;
-            data.flexibilityHoursScheduled.immersionHeater = flexibilityHoursScheduled;
-            data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
-            data.incomeYear.immersionHeater = incomeYear;
-
-            return data;
-        }
-
-        /******************************************
-         *  incomeDay
-         *  
-         *  Calculates the income generated by a flexible asset
-         *  
-         * @param power Integer kW
-         * @param load Integer  kWh
-         * @param availability Integer  hours
-         * @returns income generated in a day in £
-         */
-
-    }, {
-        key: "incomeFromFlexibility",
-        value: function incomeFromFlexibility(power, utilisedLoad, availability) {
-            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
-        }
-
-        /************************************
-         * getImmersionHeaterSystem
-         * 
-         * Returns a immersion heater system as specified in  openBEM
-         * 
-         * @param occupancy Integer
-         * @param controlType   String (None, Thermostat, Programmer, Advanced controls)
-         */
-
-    }, {
-        key: "getImmersionHeaterSystem",
-        value: function getImmersionHeaterSystem(occupancy, controlType) {
-            var immersionHeatingSystem = {
-                gains_W: {},
-                energy_requirements: {},
-                occupancy: occupancy,
-                water_heating: {
-                    override_annual_energy_content: false,
-                    low_water_use_design: false,
-                    hot_water_control_type: "no_cylinder_thermostat",
-                    pipework_insulation: "All accesible piperwok insulated",
-                    storage_type: {
-                        category: "Cylinders with immersion",
-                        declared_loss_factor_known: false,
-                        loss_factor_b: 0.076,
-                        manufacturer_loss_factor: 0,
-                        name: "Cylinder with electric immersion, 170 litres, 12mm loose fit jacket ",
-                        source: "--",
-                        storage_volume: 170,
-                        tag: "HWS14",
-                        temperature_factor_a: 0,
-                        temperature_factor_b: 0.6,
-                        volume_factor_b: 0.817
-                    },
-                    solar_water_heating: false,
-                    hot_water_store_in_dwelling: 1
-                },
-                heating_systems: [{
-                    combi_loss: 0,
-                    efficiency: 1,
-                    fraction_water_heating: 1,
-                    instantaneous_water_heating: false,
-                    name: "Electric Immersion System",
-                    primary_circuit_loss: "No",
-                    provides: "water"
-                }]
-            };
-
-            if (controlType === "Programmer" || controlType === "Advanced controls") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating separately timed";else if (controlType === "Thermostat") immersionHeatingSystem.water_heating.hot_water_control_type = "Cylinder thermostat, water heating not separately timed";
-
-            return immersionHeatingSystem;
-        }
-    }]);
-
-    return flexibilityModel;
-}();
-
-
-
-/***/ }),
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15064,7 +15064,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(244)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(246)
 /* template */
@@ -15132,7 +15132,7 @@ var AxiosErrorCallback = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(81);
-module.exports = __webpack_require__(270);
+module.exports = __webpack_require__(275);
 
 
 /***/ }),
@@ -15141,7 +15141,7 @@ module.exports = __webpack_require__(270);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fortawesome_free_solid_svg_icons__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_vue_fontawesome__ = __webpack_require__(221);
 
@@ -15171,10 +15171,10 @@ __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__["c" /* library *
 Vue.component('assessments-table', __webpack_require__(222));
 Vue.component('assessment', __webpack_require__(228));
 Vue.component('assessment-report', __webpack_require__(78));
-Vue.component('assessments-aggregation', __webpack_require__(272));
+Vue.component('assessments-aggregation', __webpack_require__(260));
 Vue.component('font-awesome-icon', __WEBPACK_IMPORTED_MODULE_2__fortawesome_vue_fontawesome__["a" /* FontAwesomeIcon */]);
-Vue.component('organisation-users', __webpack_require__(260));
-Vue.component('organisation-details', __webpack_require__(265));
+Vue.component('organisation-users', __webpack_require__(265));
+Vue.component('organisation-details', __webpack_require__(270));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -26413,7 +26413,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(40)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(41)))
 
 /***/ }),
 /* 85 */
@@ -26541,7 +26541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__card__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__carousel__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__layout__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__collapse__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__collapse__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dropdown__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__embed__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__form__ = __webpack_require__(129);
@@ -26558,7 +26558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__list_group__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__media__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modal__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nav__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nav__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__navbar__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pagination__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pagination_nav__ = __webpack_require__(173);
@@ -27025,8 +27025,8 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_2__utils_object__["a" /* assign */]
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breadcrumb__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breadcrumb_item__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb_link__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breadcrumb_item__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breadcrumb_link__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_plugins__ = __webpack_require__(1);
 
 
@@ -27058,7 +27058,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_array__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_object__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breadcrumb_item__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breadcrumb_item__ = __webpack_require__(43);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -27373,8 +27373,8 @@ var ITEM_SELECTOR = ['.btn:not(.disabled):not([disabled]):not(.dropdown-item)', 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_plugins__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_group__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input_group_addon__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__input_group_prepend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input_group_append__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__input_group_prepend__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input_group_append__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__input_group_text__ = __webpack_require__(29);
 
 
@@ -27409,8 +27409,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* unused harmony export props */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_group_prepend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input_group_append__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_group_prepend__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input_group_append__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__input_group_text__ = __webpack_require__(29);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -27494,10 +27494,10 @@ var props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__card_header__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__card_body__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__card_footer__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__card_img__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__card_header__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__card_body__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__card_footer__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__card_img__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__card_group__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_plugins__ = __webpack_require__(1);
 
@@ -27540,10 +27540,10 @@ Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_pluck_props__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_object__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mixins_card_mixin__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__card_body__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__card_header__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__card_footer__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__card_img__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__card_body__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__card_header__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__card_footer__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__card_img__ = __webpack_require__(51);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -28307,7 +28307,7 @@ var TransitionEndEvents = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__container__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__container__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__col__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_row__ = __webpack_require__(31);
@@ -28578,7 +28578,7 @@ function memoize(fn) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = suffixPropName;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__upper_first__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__upper_first__ = __webpack_require__(47);
 
 
 /**
@@ -28794,7 +28794,7 @@ var EVENT_TOGGLE = 'bv::toggle::collapse';
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__(4);
 
 
@@ -28867,7 +28867,7 @@ var EVENT_STATE = 'bv::collapse::state';
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button_button__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_css__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dropdown_css__);
@@ -29278,11 +29278,11 @@ var props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_row__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_text__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_text__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_plugins__ = __webpack_require__(1);
 
 
@@ -29353,11 +29353,11 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warn__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout_form_row__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_form_text__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_form_invalid_feedback__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__form_form_valid_feedback__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_form_text__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_form_invalid_feedback__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__form_form_valid_feedback__ = __webpack_require__(60);
 
 
 
@@ -29654,7 +29654,7 @@ var SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disable
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_checkbox__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_checkbox__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__(1);
 
@@ -29689,9 +29689,9 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_checkbox__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_checkbox__ = __webpack_require__(61);
 
 
 
@@ -29805,7 +29805,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_radio__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_radio__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_radio_group__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__(1);
 
@@ -29838,9 +29838,9 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_radio__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_radio__ = __webpack_require__(63);
 
 
 
@@ -29982,7 +29982,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_input_css__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_input_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__form_input_css__);
@@ -30214,7 +30214,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__(12);
 
 
 
@@ -30394,7 +30394,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__(3);
 
@@ -30679,7 +30679,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__(3);
 
@@ -31037,7 +31037,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* unused harmony export props */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layout_container__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layout_container__ = __webpack_require__(52);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -31297,8 +31297,8 @@ var props = Object(__WEBPACK_IMPORTED_MODULE_2__utils_object__["a" /* assign */]
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_aside__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_body__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_aside__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_body__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_plugins__ = __webpack_require__(1);
 
 
@@ -31328,8 +31328,8 @@ Object(__WEBPACK_IMPORTED_MODULE_3__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* unused harmony export props */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_body__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_aside__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_body__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_aside__ = __webpack_require__(65);
 
 
 
@@ -31387,7 +31387,7 @@ var props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_modal__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_modal__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__(1);
 
 
@@ -32172,7 +32172,7 @@ var Selector = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__(4);
 
 
@@ -32331,7 +32331,7 @@ var props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__ = __webpack_require__(0);
 
 
@@ -32359,7 +32359,7 @@ var props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__(56);
 
 
 
@@ -32439,8 +32439,8 @@ var props = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__navbar_nav__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_brand__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__collapse__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__collapse__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_plugins__ = __webpack_require__(1);
 
@@ -32700,7 +32700,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_pagination__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_pagination__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__(4);
 
 
@@ -32804,7 +32804,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_pagination__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_pagination__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__link_link__ = __webpack_require__(9);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -32921,9 +32921,9 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_popover_class__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_popover_class__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(70);
 
 
 
@@ -32992,7 +32992,7 @@ var HTMLElement = isSSR ? Object : window.HTMLElement;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__progress__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__progress_bar__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__progress_bar__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__(1);
 
 
@@ -33018,7 +33018,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__progress_bar__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__progress_bar__ = __webpack_require__(71);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -36238,7 +36238,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_tooltip_class__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_toolpop__ = __webpack_require__(70);
 
 
 
@@ -36287,8 +36287,8 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toggle__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toggle__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scrollspy__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tooltip__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popover__ = __webpack_require__(198);
@@ -37160,7 +37160,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_popover_class__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_popover_class__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_object__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warn__ = __webpack_require__(8);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -37388,7 +37388,7 @@ module.exports = __webpack_require__(203);
 
 
 var utils = __webpack_require__(7);
-var bind = __webpack_require__(71);
+var bind = __webpack_require__(72);
 var Axios = __webpack_require__(205);
 var defaults = __webpack_require__(37);
 
@@ -37423,9 +37423,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(75);
+axios.Cancel = __webpack_require__(76);
 axios.CancelToken = __webpack_require__(219);
-axios.isCancel = __webpack_require__(74);
+axios.isCancel = __webpack_require__(75);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -37578,7 +37578,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(73);
+var createError = __webpack_require__(74);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -38011,7 +38011,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(7);
 var transformData = __webpack_require__(216);
-var isCancel = __webpack_require__(74);
+var isCancel = __webpack_require__(75);
 var defaults = __webpack_require__(37);
 var isAbsoluteURL = __webpack_require__(217);
 var combineURLs = __webpack_require__(218);
@@ -38171,7 +38171,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(75);
+var Cancel = __webpack_require__(76);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -38270,7 +38270,7 @@ module.exports = function spread(callback) {
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FontAwesomeIcon; });
 /* unused harmony export FontAwesomeLayers */
 /* unused harmony export FontAwesomeLayersText */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__ = __webpack_require__(77);
 
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -38784,7 +38784,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(223)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(226)
 /* template */
@@ -38837,7 +38837,7 @@ var content = __webpack_require__(224);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("2d77bca5", content, false, {});
+var update = __webpack_require__(10)("2d77bca5", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -39469,7 +39469,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(229)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(231)
 /* template */
@@ -39522,7 +39522,7 @@ var content = __webpack_require__(230);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("21ee9e75", content, false, {});
+var update = __webpack_require__(10)("21ee9e75", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -39655,7 +39655,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(233)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(235)
 /* template */
@@ -39708,7 +39708,7 @@ var content = __webpack_require__(234);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("511d26a5", content, false, {});
+var update = __webpack_require__(10)("511d26a5", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -39744,7 +39744,7 @@ exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[dat
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__ = __webpack_require__(40);
 //
 //
 //
@@ -45167,7 +45167,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(240)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(242)
 /* template */
@@ -45220,7 +45220,7 @@ var content = __webpack_require__(241);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("2db0b566", content, false, {});
+var update = __webpack_require__(10)("2db0b566", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45724,7 +45724,7 @@ var content = __webpack_require__(245);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("138abe5b", content, false, {});
+var update = __webpack_require__(10)("138abe5b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45759,7 +45759,7 @@ exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#pote
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(40);
 //
 //
 //
@@ -46346,7 +46346,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(249)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(251)
 /* template */
@@ -46399,7 +46399,7 @@ var content = __webpack_require__(250);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("0ba7ecbd", content, false, {});
+var update = __webpack_require__(10)("0ba7ecbd", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -47725,7 +47725,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(255)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(257)
 /* template */
@@ -47778,7 +47778,7 @@ var content = __webpack_require__(256);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("49c33d2a", content, false, {});
+var update = __webpack_require__(10)("49c33d2a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -48208,11 +48208,491 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(261)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(263)
 /* template */
 var __vue_template__ = __webpack_require__(264)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-0063d52c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/assessment/AssessmentsAggregationComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0063d52c", Component.options)
+  } else {
+    hotAPI.reload("data-v-0063d52c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 261 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(262);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(10)("6bcc4d08", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\n.first-column[data-v-0063d52c]{\n    width: 50px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 263 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(40);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        'assessments': Array
+    },
+    data: function data() {
+        return {
+            checkBoxAll: false,
+            assessmentsForTable: this.assessments,
+            assessmentsChecked: {},
+            tableColumns: { 'checkbox': { label: 'Add to report', class: "first-column" }, 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true } },
+            filter: "",
+            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
+            schemesFees: {
+                secure: { availability: 0.125, utilisation: 0.175 },
+                dynamic: { availability: 0.005, utilisation: 0.3 },
+                restore: { availability: 0, utilisation: 0.6 }
+            },
+            report: {
+                numberOfAssessment: 0,
+                schemes: {
+                    secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                    dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                    restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
+                }
+            }
+        };
+    },
+    watch: {
+        filter: function filter() {
+            if (this.filter.length < 3) this.assessmentsForTable = this.assessments;else {
+                // Find the assessments taht match the filter value
+                this.assessmentsForTable = [];
+                this.assessments.forEach(function (assessment) {
+                    var filterLC = this.filter.toLowerCase();
+                    if (assessment.name.toLowerCase().indexOf(filterLC) != -1 || assessment.description != undefined && assessment.description.toLowerCase().indexOf(filterLC) != -1 || assessment.postcode.toLowerCase().indexOf(filterLC) != -1 || assessment.owner_name.toLowerCase().indexOf(filterLC) != -1) this.assessmentsForTable.push(assessment);
+                }, this);
+                this.updateReport();
+            }
+        }
+    },
+    methods: {
+        checkUncheckAll: function checkUncheckAll() {
+            // I don't know why but thc checkbox is false when ticked and viceversa
+            if (this.checkBoxAll === false) {
+                for (var key in this.assessments) {
+                    this.assessmentsChecked[this.assessments[key].id] = true;
+                }
+            } else {
+                for (var _key in this.assessments) {
+                    this.assessmentsChecked[this.assessments[_key].id] = false;
+                }
+            }
+            this.updateReport();
+        },
+        updateReport: function updateReport() {
+            this.$nextTick(function () {
+                var assessmentsForReport = [];
+                // The assessments for the reports are the ones that are shown in the table and also checked
+                for (var key in this.assessmentsForTable) {
+                    if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
+                }
+
+                // Generate report
+                this.report = {
+                    numberOfAssessments: 0,
+                    schemes: {
+                        secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                        dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
+                        restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
+                    }
+                };
+                var myself = this;
+                assessmentsForReport.forEach(function (assessment) {
+                    myself.report.numberOfAssessments++;
+                    for (var scheme in myself.schemesFees) {
+                        assessment.data.fees = myself.schemesFees[scheme];
+                        myself.flexibilityModel.run(assessment.data);
+                        myself.report.schemes[scheme].powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
+                        myself.report.schemes[scheme].loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
+                        myself.report.schemes[scheme].incomeYearTotal += assessment.data.incomeYearTotal;
+                    }
+                });
+                console.log(this.report);
+            });
+        }
+    },
+    created: function created() {
+        for (var key in this.assessments) {
+            this.assessmentsChecked[this.assessments[key].id] = false;
+        }
+    }
+});
+
+/***/ }),
+/* 264 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "assessment-aggregation-component" } },
+    [
+      _c("p", [
+        _vm._v("Filter assessments "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.filter,
+              expression: "filter"
+            }
+          ],
+          staticClass: "form-control filter",
+          staticStyle: { "margin-right": "25px" },
+          attrs: { type: "text" },
+          domProps: { value: _vm.filter },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.filter = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.checkBoxAll,
+              expression: "checkBoxAll"
+            }
+          ],
+          attrs: { type: "checkbox" },
+          domProps: {
+            checked: Array.isArray(_vm.checkBoxAll)
+              ? _vm._i(_vm.checkBoxAll, null) > -1
+              : _vm.checkBoxAll
+          },
+          on: {
+            click: _vm.checkUncheckAll,
+            change: function($event) {
+              var $$a = _vm.checkBoxAll,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.checkBoxAll = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.checkBoxAll = $$a
+                      .slice(0, $$i)
+                      .concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.checkBoxAll = $$c
+              }
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.checkBoxAll === true ? _c("span", [_vm._v("Unselect")]) : _vm._e(),
+        _vm.checkBoxAll === false ? _c("span", [_vm._v("Select")]) : _vm._e(),
+        _vm._v(" all")
+      ]),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          striped: "",
+          hover: "",
+          responsive: "",
+          fixed: "",
+          items: _vm.assessmentsForTable,
+          fields: _vm.tableColumns,
+          outlined: true
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "checkbox",
+            fn: function(data) {
+              return [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.assessmentsChecked[data.item.id],
+                      expression: "assessmentsChecked[data.item.id]"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.assessmentsChecked[data.item.id])
+                      ? _vm._i(_vm.assessmentsChecked[data.item.id], null) > -1
+                      : _vm.assessmentsChecked[data.item.id]
+                  },
+                  on: {
+                    click: _vm.updateReport,
+                    change: function($event) {
+                      var $$a = _vm.assessmentsChecked[data.item.id],
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.assessmentsChecked,
+                              data.item.id,
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.assessmentsChecked,
+                              data.item.id,
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.assessmentsChecked, data.item.id, $$c)
+                      }
+                    }
+                  }
+                })
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _vm.report.numberOfAssessments > 0
+        ? _c("div", { attrs: { id: "report" } }, [
+            _c("h2", { staticStyle: { "margin-top": "35px" } }, [
+              _vm._v("Aggregated Flexibility report")
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("tr", [
+                _c("td", [_vm._v("Number of assessments")]),
+                _c("td", [_vm._v(_vm._s(_vm.report.numberOfAssessments))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Flexible power available (kW)")]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(_vm.report.schemes.secure.powerAvailable.toFixed(2))
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Total load shifted (kWh/year)")]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.report.schemes.secure.loadUtilisedYear.toFixed(2)
+                    )
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("Total income per scheme (£/year)")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("table", [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.secure.incomeYearTotal.toFixed(2)
+                          )
+                        )
+                      ]),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.dynamic.incomeYearTotal.toFixed(
+                              2
+                            )
+                          )
+                        )
+                      ]),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.report.schemes.restore.incomeYearTotal.toFixed(
+                              2
+                            )
+                          )
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("Secure")]),
+      _c("td", [_vm._v("Dynamic")]),
+      _c("td", [_vm._v("Restore")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0063d52c", module.exports)
+  }
+}
+
+/***/ }),
+/* 265 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(266)
+}
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(268)
+/* template */
+var __vue_template__ = __webpack_require__(269)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48251,17 +48731,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 261 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(262);
+var content = __webpack_require__(267);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("21c500ae", content, false, {});
+var update = __webpack_require__(10)("21c500ae", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -48277,7 +48757,7 @@ if(false) {
 }
 
 /***/ }),
-/* 262 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(6)(false);
@@ -48291,7 +48771,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 263 */
+/* 268 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48427,7 +48907,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 264 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48944,19 +49424,19 @@ if (false) {
 }
 
 /***/ }),
-/* 265 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(266)
+  __webpack_require__(271)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(11)
 /* script */
-var __vue_script__ = __webpack_require__(268)
+var __vue_script__ = __webpack_require__(273)
 /* template */
-var __vue_template__ = __webpack_require__(269)
+var __vue_template__ = __webpack_require__(274)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48995,17 +49475,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 266 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(267);
+var content = __webpack_require__(272);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("4fa95682", content, false, {});
+var update = __webpack_require__(10)("4fa95682", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -49021,7 +49501,7 @@ if(false) {
 }
 
 /***/ }),
-/* 267 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(6)(false);
@@ -49035,7 +49515,7 @@ exports.push([module.i, "\ntable[data-v-1dd4244f]{\n    margin-left: 50px;\n}\nt
 
 
 /***/ }),
-/* 268 */
+/* 273 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49138,7 +49618,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 269 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49535,491 +50015,10 @@ if (false) {
 }
 
 /***/ }),
-/* 270 */
+/* 275 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 271 */,
-/* 272 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(273)
-}
-var normalizeComponent = __webpack_require__(12)
-/* script */
-var __vue_script__ = __webpack_require__(275)
-/* template */
-var __vue_template__ = __webpack_require__(276)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-0063d52c"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/assessment/AssessmentsAggregationComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0063d52c", Component.options)
-  } else {
-    hotAPI.reload("data-v-0063d52c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 273 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(274);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(11)("6bcc4d08", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0063d52c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AssessmentsAggregationComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 274 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\n.first-column[data-v-0063d52c]{\n    width: 50px !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 275 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(77);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        'assessments': Array
-    },
-    data: function data() {
-        return {
-            checkBoxAll: false,
-            assessmentsForTable: this.assessments,
-            assessmentsChecked: {},
-            tableColumns: { 'checkbox': { label: 'Add to report', class: "first-column" }, 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true } },
-            filter: "",
-            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
-            schemesFees: {
-                secure: { availability: 0.125, utilisation: 0.175 },
-                dynamic: { availability: 0.005, utilisation: 0.3 },
-                restore: { availability: 0, utilisation: 0.6 }
-            },
-            report: {
-                numberOfAssessment: 0,
-                schemes: {
-                    secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                    dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                    restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
-                }
-            }
-        };
-    },
-    watch: {
-        filter: function filter() {
-            if (this.filter.length < 3) this.assessmentsForTable = this.assessments;else {
-                // Find the assessments taht match the filter value
-                this.assessmentsForTable = [];
-                this.assessments.forEach(function (assessment) {
-                    var filterLC = this.filter.toLowerCase();
-                    if (assessment.name.toLowerCase().indexOf(filterLC) != -1 || assessment.description != undefined && assessment.description.toLowerCase().indexOf(filterLC) != -1 || assessment.postcode.toLowerCase().indexOf(filterLC) != -1 || assessment.owner_name.toLowerCase().indexOf(filterLC) != -1) this.assessmentsForTable.push(assessment);
-                }, this);
-                this.updateReport();
-            }
-        }
-    },
-    methods: {
-        checkUncheckAll: function checkUncheckAll() {
-            // I don't know why but thc checkbox is false when ticked and viceversa
-            if (this.checkBoxAll === false) {
-                for (var key in this.assessments) {
-                    this.assessmentsChecked[this.assessments[key].id] = true;
-                }
-            } else {
-                for (var _key in this.assessments) {
-                    this.assessmentsChecked[this.assessments[_key].id] = false;
-                }
-            }
-            this.updateReport();
-        },
-        updateReport: function updateReport() {
-            this.$nextTick(function () {
-                var assessmentsForReport = [];
-                // The assessments for the reports are the ones that are shown in the table and also checked
-                for (var key in this.assessmentsForTable) {
-                    if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
-                }
-
-                // Generate report
-                this.report = {
-                    numberOfAssessments: 0,
-                    schemes: {
-                        secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                        dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                        restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
-                    }
-                };
-                var myself = this;
-                assessmentsForReport.forEach(function (assessment) {
-                    myself.report.numberOfAssessments++;
-                    for (var scheme in myself.schemesFees) {
-                        assessment.data.fees = myself.schemesFees[scheme];
-                        myself.flexibilityModel.run(assessment.data);
-                        myself.report.schemes[scheme].powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
-                        myself.report.schemes[scheme].loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
-                        myself.report.schemes[scheme].incomeYearTotal += assessment.data.incomeYearTotal;
-                    }
-                });
-                console.log(this.report);
-            });
-        }
-    },
-    created: function created() {
-        for (var key in this.assessments) {
-            this.assessmentsChecked[this.assessments[key].id] = false;
-        }
-    }
-});
-
-/***/ }),
-/* 276 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "assessment-aggregation-component" } },
-    [
-      _c("p", [
-        _vm._v("Filter assessments "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.filter,
-              expression: "filter"
-            }
-          ],
-          staticClass: "form-control filter",
-          staticStyle: { "margin-right": "25px" },
-          attrs: { type: "text" },
-          domProps: { value: _vm.filter },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.filter = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.checkBoxAll,
-              expression: "checkBoxAll"
-            }
-          ],
-          attrs: { type: "checkbox" },
-          domProps: {
-            checked: Array.isArray(_vm.checkBoxAll)
-              ? _vm._i(_vm.checkBoxAll, null) > -1
-              : _vm.checkBoxAll
-          },
-          on: {
-            click: _vm.checkUncheckAll,
-            change: function($event) {
-              var $$a = _vm.checkBoxAll,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && (_vm.checkBoxAll = $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    (_vm.checkBoxAll = $$a
-                      .slice(0, $$i)
-                      .concat($$a.slice($$i + 1)))
-                }
-              } else {
-                _vm.checkBoxAll = $$c
-              }
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.checkBoxAll === true ? _c("span", [_vm._v("Unselect")]) : _vm._e(),
-        _vm.checkBoxAll === false ? _c("span", [_vm._v("Select")]) : _vm._e(),
-        _vm._v(" all")
-      ]),
-      _vm._v(" "),
-      _c("b-table", {
-        attrs: {
-          striped: "",
-          hover: "",
-          responsive: "",
-          fixed: "",
-          items: _vm.assessmentsForTable,
-          fields: _vm.tableColumns,
-          outlined: true
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "checkbox",
-            fn: function(data) {
-              return [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.assessmentsChecked[data.item.id],
-                      expression: "assessmentsChecked[data.item.id]"
-                    }
-                  ],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(_vm.assessmentsChecked[data.item.id])
-                      ? _vm._i(_vm.assessmentsChecked[data.item.id], null) > -1
-                      : _vm.assessmentsChecked[data.item.id]
-                  },
-                  on: {
-                    click: _vm.updateReport,
-                    change: function($event) {
-                      var $$a = _vm.assessmentsChecked[data.item.id],
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.assessmentsChecked,
-                              data.item.id,
-                              $$a.concat([$$v])
-                            )
-                        } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.assessmentsChecked,
-                              data.item.id,
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
-                        }
-                      } else {
-                        _vm.$set(_vm.assessmentsChecked, data.item.id, $$c)
-                      }
-                    }
-                  }
-                })
-              ]
-            }
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _vm.report.numberOfAssessments > 0
-        ? _c("div", { attrs: { id: "report" } }, [
-            _c("h2", { staticStyle: { "margin-top": "35px" } }, [
-              _vm._v("Aggregated Flexibility report")
-            ]),
-            _vm._v(" "),
-            _c("table", { staticClass: "table" }, [
-              _c("tr", [
-                _c("td", [_vm._v("Number of assessments")]),
-                _c("td", [_vm._v(_vm._s(_vm.report.numberOfAssessments))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Flexible power available (kW)")]),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.report.schemes.secure.powerAvailable.toFixed(2))
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Total load shifted (kWh/year)")]),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.report.schemes.secure.loadUtilisedYear.toFixed(2)
-                    )
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Total income per scheme (£/year)")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("table", [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.secure.incomeYearTotal.toFixed(2)
-                          )
-                        )
-                      ]),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.dynamic.incomeYearTotal.toFixed(
-                              2
-                            )
-                          )
-                        )
-                      ]),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.restore.incomeYearTotal.toFixed(
-                              2
-                            )
-                          )
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Secure")]),
-      _c("td", [_vm._v("Dynamic")]),
-      _c("td", [_vm._v("Restore")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0063d52c", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
