@@ -21,7 +21,7 @@
 
     <b-card>
         <b-tabs>
-            <b-tab title="Assessments" >
+            <b-tab title="Assessments" active>
                 <br />
                 <assessments-table v-bind:assessments="{{ $assessments }}" v-bind:administrator-view="true"></assessments-table>
             </b-tab>
@@ -29,7 +29,7 @@
                 <br />
                 <organisation-users v-bind:users="{{ $organisation->users }}"></organisation-users>
             </b-tab>
-            <b-tab title="Aggregation" active>
+            <b-tab title="Aggregation" >
                 <assessments-aggregation v-bind:assessments="{{ $assessments }}"></assessments-aggregation>
             </b-tab>
             <b-tab title="Org. Details">
