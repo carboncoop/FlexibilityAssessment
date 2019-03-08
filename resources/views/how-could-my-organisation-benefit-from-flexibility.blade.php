@@ -152,11 +152,75 @@
 
     <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion10 variant="info"style='color:red'>Finding participants to sign up for this demonstrator </b-btn>
+            <b-btn block href="#" v-b-toggle.accordion10 variant="info">Finding participants to sign up for this demonstrator </b-btn>
         </b-card-header>
         <b-collapse id="accordion10" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-                <p style='color:red'>(description of the types of participants we are looking for to be inserted here - BENNY - separate document to be drafted and agreed)</p>
+                <p><b>South Seeds will recruit interested locals to participate in the project in the following ways:</b></p>
+                <ul>
+                    <li>25-40 info-session attendees will: Attend an information session on smart energy and flexibility </li>
+                    <li>20 home visit receivers will: Receive a home energy audit and flexibility assessment from South Seeds, then review the report created and feedback on the process in an interview with the assessor</li>
+                    <li>3-10 self-assessors may: Log onto the website, self-assess and view the report created, then fill out feedback about the process (through an online questionnaire, or a face to face interview?)</li>
+                </ul>
+                <b>Composition of Home Visit Receivers</b>
+                <p>The number of interviews will not produce statistically valid data, but will be useful as a ‘focus group’ to gather qualitative information on the process we are designing for flexibility signup. </p>
+                <p>Participants for the info-sessions (if actively recruited) should be chosen with a mind to securing the right mix for the Home Visit Receiver group. The table below outlines preferences for the Home Visit Receivers. </p>
+                <table class="table">
+                    <tr><th colspan="2">Preferred Composition of the 20 Home Visit Receivers</th></tr>
+                    <tr><th>FACTOR</th><th>COMMENTS</th></tr>
+                    <tr>
+                        <td>Wealth/Class</td>
+                        <td>
+                            <ul>
+                                <li>>50% should be from lower income households</li>
+                                <li>Group will ideally contain a mixture of income brackets</li>
+                            </ul></td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>
+                            <ul>
+                                <li>The more age diversity, the better. </li>
+                                <li>The group should not contain >75% from a single age bracket (eg. not all pensioners, all families, or all students!) </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tenure</td>
+                        <td>
+                            <ul>
+                                <li>50%+ from social housing (council, RSL)</li>
+                                <li><33% owner-occupiers</li>
+                                <li><20% private rented</li>
+                                <li>Participation from a housing co-op or other alternative housing model would be a bonus!</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Heating Type</td>
+                        <td>
+                            <ul>
+                                <li>>90% participants must rely on an electric immersion element or electric heating system as their primary source of hot water or space heating (just having a few plug-in electric heaters alongside gas central heating doesn’t count!)</li>
+                                <li>75%+ should use storage heaters or other electric heating (eg. radiant electric heaters, a heat pump, or an inline electric boiler) for their primary source of space heating</li>
+                                <li>Having at least one participant with an electric vehicle would be a great bonus!</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <p><b>Composition of Self-Assessors</b></p>
+                <p>The composition of the self-assessors is not so important. Self-assessors will hopefully draw attention to themselves during the initial outreach and the info-session. They will represent the people who, on seeing a poster or social media advert, came along to an info-session out of interest and without having to be coaxed by South Seeds staff.</p>
+                <p>The self-assessors will need to have a higher level of technical confidence than is required for the home visit receivers. Key characteristics will be:</p>
+                <ul>
+                    <li>Self-selecting to some extent (ie. people with interest and enthusiasm in the project)</li>
+                    <li>Decent IT skills </li>
+                    <li>Some knowledge about their heating system. </li>
+                    <li>Must have electric space heating, an electric immersion element and/or an electric vehicle</li>
+                </ul>
+                <p>If at all possible…</p>
+                <ul>
+                    <li>At least one should come from a low income household</li>
+                    <li>At least one should live in council or social housing</li>
+                </ul>
             </b-card-body>
         </b-collapse>
     </b-card>
@@ -220,12 +284,31 @@
 
     <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion15 variant="info" style="color:red">Accessing other types of flexibility reports on the platforms</b-btn>
+            <b-btn block href="#" v-b-toggle.accordion15 variant="info">Accessing other types of flexibility reports on the platform</b-btn>
         </b-card-header>
         <b-collapse id="accordion15" accordion="my-accordion" role="tabpanel">
             <b-card-body>
                 <p>As an aggregation organisation you will also need to be able to see how the flexibility being offered by individual households (as indicated by their individual reports above) adds up or 'aggregates' into larger amounts of flexibility for offering to the grid management companies.</p>
-                <p>You can access a range of 'aggregation reports' from the organisation's dashboard clicking the "Aggregation" tab. (<span style="color: red">instructions on what kinds of reports they could have / how to use the report function – to be written by Carbon Coop? )</span></p>
+                <p>You can access an 'aggregation report' from the organisation's 
+                    dashboard clicking the "Aggregation" tab. From there you can 
+                    filter the list of assessments and/or tick the check boxes to 
+                    choose which assessments use for the report.</p>
+                <p>The information shown in the report is:</p>
+                <ul>
+                    <li>Number of assessments in report</li>
+                    <li>Flexible power available (kW)</li>
+                    <li>Total load shifted (kWh/year)</li>
+                    <li>A table indicating the total income that each one of the 
+                        3 schemes (Secure, Dynamic and Restore) would generate. 
+                        More information about these schemes can be found in the 
+                        household report</li>
+                    <li>You are also able to calculate the income for a bespoke 
+                        scheme by tweaking the different factors that the model 
+                        uses</li>
+                </ul>
+                <div style="text-align:center">
+                    <img style="margin: auto" src="{{url('/img/Flexibility Tool - Aggregation report.jpg')}}" />
+                </div>
             </b-card-body>
         </b-collapse>
     </b-card>
