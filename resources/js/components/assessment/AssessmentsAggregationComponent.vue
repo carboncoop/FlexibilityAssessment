@@ -34,21 +34,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Estimated Availibility Required  <span title="Amount of hours per year that the DNO requires availability"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
+                    <td>Estimated Availibility Required <span title="Amount of hours per year that the DNO requires availability"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
                         <span v-if="index <= 2">{{scheme.dnoEstimatedAvailabilityRequired.toFixed(2)}}</span>
                         <span v-if="index > 2"><input class="form-control" type="number" min="0" step="1" v-model="scheme.dnoEstimatedAvailabilityRequired" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Availability fee (£/kW/h)</td>
+                    <td>Availability fee (£/kW/h) <span title="Fee paid by the DNO for the amount of time and power that the household ensures will be available to be turned on/off"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
                         <span v-if="index <= 2">{{scheme.fees.availability.toFixed(3)}}</span>
                         <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.availability" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Utilisation fee (£/kWh/year)</td>
+                    <td>Utilisation fee (£/kWh/year) <span title="Fee paid by the DNO for the amount of energy actually shifted by the household"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
                         <span v-if="index <= 2">{{scheme.fees.utilisation.toFixed(3)}}</span>
                         <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.utilisation" v-on:change="updateReport" /></span>

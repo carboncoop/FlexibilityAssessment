@@ -48769,7 +48769,7 @@ var render = function() {
                 "tr",
                 [
                   _c("td", [
-                    _vm._v("Estimated Availibility Required  "),
+                    _vm._v("Estimated Availibility Required "),
                     _c(
                       "span",
                       {
@@ -48844,7 +48844,24 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Availability fee (£/kW/h)")]),
+                  _c("td", [
+                    _vm._v("Availability fee (£/kW/h) "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          title:
+                            "Fee paid by the DNO for the amount of time and power that the household ensures will be available to be turned on/off"
+                        }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          attrs: { icon: "question-circle", size: "xs" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
@@ -48898,7 +48915,24 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Utilisation fee (£/kWh/year)")]),
+                  _c("td", [
+                    _vm._v("Utilisation fee (£/kWh/year) "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          title:
+                            "Fee paid by the DNO for the amount of energy actually shifted by the household"
+                        }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          attrs: { icon: "question-circle", size: "xs" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
