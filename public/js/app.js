@@ -48285,7 +48285,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\n.first-column[data-v-0063d52c]{\n    width: 50px !important;\n}\n", ""]);
+exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\ntd.first-column[data-v-0063d52c]{\n    width: 50px !important;\n    text-align:center !important;\n}\ninput[type=number][data-v-0063d52c]{\n    width:85px\n}\n", ""]);
 
 // exports
 
@@ -48339,7 +48339,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48354,20 +48395,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tableColumns: { 'checkbox': { label: 'Add to report', class: "first-column" }, 'name': { sortable: true }, 'description': {}, 'postcode': { sortable: true }, 'owner_name': { sortable: true } },
             filter: "",
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
-            schemesFees: {
-                secure: { availability: 0.125, utilisation: 0.175 },
-                dynamic: { availability: 0.005, utilisation: 0.3 },
-                restore: { availability: 0, utilisation: 0.6 }
-            },
-            report: {
-                numberOfAssessment: 0,
-                schemes: {
-                    secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                    dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                    restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
-                }
-            }
+            numberOfAssessments: 0,
+            schemes: [{
+                name: "Secure",
+                powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
+                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                dnoEstimatedAvailabilityRequired: 125,
+                fees: { availability: 0.125, utilisation: 0.175 }
+            }, {
+                name: "Dynamic",
+                powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
+                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                dnoEstimatedAvailabilityRequired: 125,
+                fees: { availability: 0.005, utilisation: 0.3 }
+            }, {
+                name: "Restore",
+                powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
+                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                dnoEstimatedAvailabilityRequired: 125,
+                fees: { availability: 0, utilisation: 0.6 }
+            }, {
+                name: "User defined",
+                powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
+                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                dnoEstimatedAvailabilityRequired: 125,
+                fees: { availability: 0.125, utilisation: 0.175 }
+            }]
         };
+    },
+    computed: {
+        schemesPreChange: function schemesPreChange() {
+            // we need to access the old a new "schemes" object in the watch method. But when watching the "schemes" the new and old values are the same, see note here: https://vuejs.org/v2/api/#vm-watch
+            return JSON.parse(JSON.stringify(this.schemes));
+        }
     },
     watch: {
         filter: function filter() {
@@ -48403,28 +48463,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 for (var key in this.assessmentsForTable) {
                     if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
                 }
-
-                // Generate report
-                this.report = {
-                    numberOfAssessments: 0,
-                    schemes: {
-                        secure: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                        dynamic: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 },
-                        restore: { powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0 }
-                    }
-                };
+                // Ini report
+                this.numberOfAssessments = assessmentsForReport.length;
+                this.schemes.forEach(function (scheme) {
+                    scheme.powerAvailable = 0;
+                    scheme.loadUtilisedYear = 0;
+                    scheme.incomeYearTotal = 0;
+                });
+                //Generate report
                 var myself = this;
                 assessmentsForReport.forEach(function (assessment) {
-                    myself.report.numberOfAssessments++;
-                    for (var scheme in myself.schemesFees) {
-                        assessment.data.fees = myself.schemesFees[scheme];
+                    myself.schemes.forEach(function (scheme) {
+                        assessment.data.fees = scheme.fees;
+                        assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
+                        assessment.data.dnoEstimatedAvailabilityRequired = scheme.dnoEstimatedAvailabilityRequired;
                         myself.flexibilityModel.run(assessment.data);
-                        myself.report.schemes[scheme].powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
-                        myself.report.schemes[scheme].loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
-                        myself.report.schemes[scheme].incomeYearTotal += assessment.data.incomeYearTotal;
-                    }
+                        scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
+                        scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
+                        scheme.incomeYearTotal += assessment.data.incomeYearTotal;
+                    });
                 });
-                console.log(this.report);
+                console.log(this.schemes);
             });
         }
     },
@@ -48582,7 +48641,7 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _vm.report.numberOfAssessments > 0
+      _vm.numberOfAssessments > 0
         ? _c("div", { attrs: { id: "report" } }, [
             _c("h2", { staticStyle: { "margin-top": "35px" } }, [
               _vm._v("Aggregated Flexibility report")
@@ -48591,66 +48650,322 @@ var render = function() {
             _c("table", { staticClass: "table" }, [
               _c("tr", [
                 _c("td", [_vm._v("Number of assessments")]),
-                _c("td", [_vm._v(_vm._s(_vm.report.numberOfAssessments))])
+                _c("td", [_vm._v(_vm._s(_vm.numberOfAssessments))])
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v("Flexible power available (kW)")]),
                 _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.report.schemes.secure.powerAvailable.toFixed(2))
-                  )
+                  _vm._v(_vm._s(_vm.schemes[0].powerAvailable.toFixed(2)))
                 ])
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v("Total load shifted (kWh/year)")]),
                 _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.report.schemes.secure.loadUtilisedYear.toFixed(2)
-                    )
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Total income per scheme (£/year)")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("table", [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.secure.incomeYearTotal.toFixed(2)
-                          )
-                        )
-                      ]),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.dynamic.incomeYearTotal.toFixed(
-                              2
-                            )
-                          )
-                        )
-                      ]),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.report.schemes.restore.incomeYearTotal.toFixed(
-                              2
-                            )
-                          )
-                        )
-                      ])
-                    ])
-                  ])
+                  _vm._v(_vm._s(_vm.schemes[0].loadUtilisedYear.toFixed(2)))
                 ])
               ])
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c(
+                "tr",
+                [
+                  _c("td"),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme) {
+                    return _c("td", [_vm._v(_vm._s(scheme.name))])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [
+                    _vm._v("Utilised factor  "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          title:
+                            "Fraction of available load offered to the DNO that is finally shifted"
+                        }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          attrs: { icon: "question-circle", size: "xs" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 2
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                scheme.flexibilityAwardedFactors.utilisedLoadFactor.toFixed(
+                                  2
+                                )
+                              )
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 2
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    scheme.flexibilityAwardedFactors
+                                      .utilisedLoadFactor,
+                                  expression:
+                                    "scheme.flexibilityAwardedFactors.utilisedLoadFactor"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: "1",
+                                step: "0.01"
+                              },
+                              domProps: {
+                                value:
+                                  scheme.flexibilityAwardedFactors
+                                    .utilisedLoadFactor
+                              },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme.flexibilityAwardedFactors,
+                                    "utilisedLoadFactor",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [
+                    _vm._v("Estimated Availibility Required  "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          title:
+                            "Amount of hours per year that the DNO requires availability"
+                        }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          attrs: { icon: "question-circle", size: "xs" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 2
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                scheme.dnoEstimatedAvailabilityRequired.toFixed(
+                                  2
+                                )
+                              )
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 2
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    scheme.dnoEstimatedAvailabilityRequired,
+                                  expression:
+                                    "scheme.dnoEstimatedAvailabilityRequired"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "number", min: "0", step: "1" },
+                              domProps: {
+                                value: scheme.dnoEstimatedAvailabilityRequired
+                              },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme,
+                                    "dnoEstimatedAvailabilityRequired",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Availability fee (£/kW/h)")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 2
+                        ? _c("span", [
+                            _vm._v(_vm._s(scheme.fees.availability.toFixed(3)))
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 2
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: scheme.fees.availability,
+                                  expression: "scheme.fees.availability"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: "1",
+                                step: "0.001"
+                              },
+                              domProps: { value: scheme.fees.availability },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme.fees,
+                                    "availability",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Utilisation fee (£/kWh/year)")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 2
+                        ? _c("span", [
+                            _vm._v(_vm._s(scheme.fees.utilisation.toFixed(3)))
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 2
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: scheme.fees.utilisation,
+                                  expression: "scheme.fees.utilisation"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: "1",
+                                step: "0.001"
+                              },
+                              domProps: { value: scheme.fees.utilisation },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme.fees,
+                                    "utilisation",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Total income per scheme (£/year)")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(scheme.incomeYearTotal.toFixed(2)) +
+                          "\n                "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
             ])
           ])
         : _vm._e()
@@ -48658,18 +48973,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Secure")]),
-      _c("td", [_vm._v("Dynamic")]),
-      _c("td", [_vm._v("Restore")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
