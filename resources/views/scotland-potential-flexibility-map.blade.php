@@ -149,7 +149,17 @@
         <h2>Scotland Flexibility Potential Map</h2>
         <p>Using the whole Scottish domestic EPC data set and a similar methodology 
             to the above for estimating flexibility, an interactive map of the potential
-            flexibility in all Scottish postal sectors was produced.
+            flexibility in all Scottish postal sectors was produced.</p>
+        <p>Flexibility schemes will need to find and work with households who have 
+            energy use that they can flex. Most electricity use within households 
+            is not ‘flexible’, because there is no easy way to change the time that 
+            energy is used. The most promising ‘flexible’ devices are electric storage 
+            heaters and immersion elements. These are flexible because they can charge 
+            up at any time and store the heat for later.</p>
+        <p>This map shows an estimate of the total flexible electric heating load 
+            installed in households for each postcode region. Community Aggregation 
+            groups could use this map to concentrate their recruitment efforts in areas 
+            with the most flexible load</p>
 
         <div id="mapid" style="height: 800px;width: 800px;"></div>
 
@@ -170,7 +180,8 @@
     let flex_model = new flexibilityModel();
 
     var geojson;
-    let grades = [0, 4, 8, 16, 32, 64, 128, 256]; // Flexibility ranges, used for coloring the postcodes in the map
+    //let grades = [0, 4, 8, 16, 32, 64, 128, 256]; // Flexibility ranges, used for coloring the postcodes in the map
+    let grades = [0, 32, 64, 128, 256, 512, 1024]; // Flexibility ranges, used for coloring the postcodes in the map
 
 
 
