@@ -327,12 +327,12 @@
 
             if (this.assessment.data.immersionHeater == undefined) {
                 Vue.set(this.assessment.data, 'immersionHeater', {});
-                this.assessment.data.immersionHeater = {"present": 'No', rating: 1, controlType: "None"};
+                this.assessment.data.immersionHeater = {"present": 'No', rating: 0, controlType: "None"};
             }
 
             if (this.assessment.data.storageHeaters == undefined) {
                 Vue.set(this.assessment.data, 'storageHeaters', {});
-                this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 1};
+                this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 0};
             }
 
             if (this.assessment.data.otherElectricHeaters == undefined) {

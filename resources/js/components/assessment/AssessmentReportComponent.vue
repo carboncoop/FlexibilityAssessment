@@ -19,7 +19,7 @@
                 <td>{{assessment.data.powerAvailable.storageHeaters.toFixed(2)}}kW </td>
                 <td>{{assessment.data.loadUtilisedYear.storageHeaters.toFixed(2)}}kWh/year</td>
             </tr>
-            <tr>
+            <tr v-if='assessment.data.powerAvailable.immersionHeater > 0'>
                 <td>Immersion heater</td>
                 <td>{{assessment.data.immersionHeater.rating.toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.immersionHeater.toFixed(2)}}kW</td>
@@ -85,46 +85,6 @@
 
         <h2 class="new-page">FAQ</h2>
         
-        <h3>What is the Secure scheme?</h3>
-        
-        <p>DNOs can predict when the electricity demand will be high or low and also when 
-            there is more or less energy available in the National Grid. This scheme 
-            aims to manage these predictable situations.</p>
-        <p>The household (or an automated system) will declare a week in advance how 
-            much power and when can be turned off in the house. The DNO 
-            will agree to some of that power and time and pay a fee. 
-            The following week the DNO will use all or some of that power.
-            When this happens another fee is paid to the household for the 
-            total amount of energy the DNO uses.</p>
-        <p>The advantage of this scheme is that the household knows exactly when 
-            the DNO will use the energy. This allows the household to prepare themselves 
-            and choose which other moments of the week they use their energy. 
-            The con is that the fees are lower compared to the other schemes.</p>
-
-        <h3>What is the Dynamic scheme?</h3>
-        
-        <p>This scheme aims to support the grid in the case of a specific fault. 
-            It works in a similar way than the Secure scheme: the household declares 
-            a week in advance the power and the time they can turn things off. The 
-            DNO will agree to that and pay a feed. Again, the DNO may or may not 
-            require the household to stop using power and it will pay accordingly 
-            to the amount of energy not used.</p>
-        <p>The difference with the Secure scheme is that the DNO will only notify 
-            the household to turn off things 15 minutes in advance. This can 
-            be more inconvenient for the household. On the other hand the income 
-            is usually higher</p>
-
-        <h3>What is the Restore scheme?</h3>
-        
-        <p>This scheme deals with unexpected faults in the grid. Such events are rare and 
-            offer no warning as they depend on failure of equipment. Under such 
-            circumstances, response can be used to reduce the stress on the network. 
-            When taking part in this scheme there is no pre-agreement of when the 
-            household may have to stop using power. Payment is only for the 
-            amount of energy that is not used.</p>
-        <p>The advantage of this scheme is that the income is higher than in any other scheme. 
-            But the household never knows when they will have to stop using power.</p>
-
         <h3>What is a DNO?</h3>
         <p>DNOs are the Distribution Network Operators. They are the companies 
             that own the cables that carry the electricity from the grid to your house.</p>
@@ -209,6 +169,9 @@
         margin: 10px 5px;
         height: 535px;
     }
+    .info-box-inline h3{
+        margin-top:0;
+    }
 
     @media print {
         .no-print{
@@ -217,9 +180,6 @@
 
         #assessment{
             margin-top:0px
-        }
-        #content.container{
-            margin-top:0;
         }
         .new-page{
             page-break-before: always;

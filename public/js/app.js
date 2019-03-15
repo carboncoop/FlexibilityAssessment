@@ -40074,12 +40074,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         if (this.assessment.data.immersionHeater == undefined) {
             Vue.set(this.assessment.data, 'immersionHeater', {});
-            this.assessment.data.immersionHeater = { "present": 'No', rating: 1, controlType: "None" };
+            this.assessment.data.immersionHeater = { "present": 'No', rating: 0, controlType: "None" };
         }
 
         if (this.assessment.data.storageHeaters == undefined) {
             Vue.set(this.assessment.data, 'storageHeaters', {});
-            this.assessment.data.storageHeaters = { "present": 'No', number: 0, rating: 1 };
+            this.assessment.data.storageHeaters = { "present": 'No', number: 0, rating: 0 };
         }
 
         if (this.assessment.data.otherElectricHeaters == undefined) {
@@ -45754,7 +45754,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    max-width:260px;\n    margin: 10px 5px;\n    height: 535px;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n#content.container[data-v-0ad708b6]{\n        margin-top:0;\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    max-width:260px;\n    margin: 10px 5px;\n    height: 535px;\n}\n.info-box-inline h3[data-v-0ad708b6]{\n    margin-top:0;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n}\n", ""]);
 
 // exports
 
@@ -45766,46 +45766,6 @@ exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#pote
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(40);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -46106,32 +46066,39 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v("Immersion heater")]),
-          _vm._v(" "),
-          _c("td", [
-            _vm._v(
-              _vm._s(_vm.assessment.data.immersionHeater.rating.toFixed(2)) +
-                "kW"
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", [
-            _vm._v(
-              _vm._s(
-                _vm.assessment.data.powerAvailable.immersionHeater.toFixed(2)
-              ) + "kW"
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", [
-            _vm._v(
-              _vm._s(
-                _vm.assessment.data.loadUtilisedYear.immersionHeater.toFixed(2)
-              ) + "kWh/year"
-            )
-          ])
-        ])
+        _vm.assessment.data.powerAvailable.immersionHeater > 0
+          ? _c("tr", [
+              _c("td", [_vm._v("Immersion heater")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.immersionHeater.rating.toFixed(2)
+                  ) + "kW"
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.powerAvailable.immersionHeater.toFixed(
+                      2
+                    )
+                  ) + "kW"
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.loadUtilisedYear.immersionHeater.toFixed(
+                      2
+                    )
+                  ) + "kWh/year"
+                )
+              ])
+            ])
+          : _vm._e()
       ]
     ),
     _vm._v(" "),
@@ -46164,54 +46131,6 @@ var render = function() {
     _vm._m(2),
     _vm._v(" "),
     _c("h2", { staticClass: "new-page" }, [_vm._v("FAQ")]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("What is the Secure scheme?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "DNOs can predict when the electricity demand will be high or low and also when \n        there is more or less energy available in the National Grid. This scheme \n        aims to manage these predictable situations."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The household (or an automated system) will declare a week in advance how \n        much power and when can be turned off in the house. The DNO \n        will agree to some of that power and time and pay a fee. \n        The following week the DNO will use all or some of that power.\n        When this happens another fee is paid to the household for the \n        total amount of energy the DNO uses."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The advantage of this scheme is that the household knows exactly when \n        the DNO will use the energy. This allows the household to prepare themselves \n        and choose which other moments of the week they use their energy. \n        The con is that the fees are lower compared to the other schemes."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("What is the Dynamic scheme?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "This scheme aims to support the grid in the case of a specific fault. \n        It works in a similar way than the Secure scheme: the household declares \n        a week in advance the power and the time they can turn things off. The \n        DNO will agree to that and pay a feed. Again, the DNO may or may not \n        require the household to stop using power and it will pay accordingly \n        to the amount of energy not used."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The difference with the Secure scheme is that the DNO will only notify \n        the household to turn off things 15 minutes in advance. This can \n        be more inconvenient for the household. On the other hand the income \n        is usually higher"
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("What is the Restore scheme?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "This scheme deals with unexpected faults in the grid. Such events are rare and \n        offer no warning as they depend on failure of equipment. Under such \n        circumstances, response can be used to reduce the stress on the network. \n        When taking part in this scheme there is no pre-agreement of when the \n        household may have to stop using power. Payment is only for the \n        amount of energy that is not used."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The advantage of this scheme is that the income is higher than in any other scheme. \n        But the household never knows when they will have to stop using power."
-      )
-    ]),
     _vm._v(" "),
     _c("h3", [_vm._v("What is a DNO?")]),
     _vm._v(" "),
