@@ -1,12 +1,13 @@
 <template>
     <div id="assessment-form">
         <h1>Flexibility assessment - Report feedback</h1>
-        <p class="red">Do we want an intro here?</p>
 
         <h2>About the report</h2>
         <p>Which of the flexibility offers would you choose, and why?
             <select class="form-control" v-model="assessment.data.reportFeedback.flexibilityOfferChosen">
-                <option style="color: red">Update when we know the possible schemes</option>
+                <option value="Secure">Secure</option>
+                <option value="Dynamic">Dynamic</option>
+                <option value="Restore">Restore</option>
             </select>
         </p>
 

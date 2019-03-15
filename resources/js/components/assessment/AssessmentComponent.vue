@@ -75,7 +75,7 @@
             }
         },
         mounted: function () {
-            this.view = "assessment-report";
+            this.view = "assessment-form";
         }
     }
 </script>

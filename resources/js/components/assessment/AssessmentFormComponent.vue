@@ -48,12 +48,14 @@
                 </td>
             </tr>
             <tr>
-                <td>Ownership status</td>
+                <td>Tenure</td>
                 <td>
                     <select class="form-control" v-model="assessment.data.household.ownerShipStatus">
                         <option value="Private rental">Private rental</option>    
+                        <option value="Mid-market rent">Mid-market rent</option>    
                         <option value="Social landlord">Social landlord</option>    
-                        <option value="Owner">Owner</option>    
+                        <option value="Owner">Owner</option>        
+                        <option value="Other">Other</option>    
                     </select>     
                 </td>
             </tr>
@@ -259,17 +261,15 @@
     }
     table#energy-assets, table#household-data{
         width: 100%;
-        max-width: 700px;
     }
     #energy-assets td:first-child, #household-data td:first-child{
         width:280px
     }
     table.heaters{
-        width:350px;
+        width: 100%;
     }
     table.heaters td{
         border:none;
-        width:300px;
         padding-bottom:0;
         padding-left:0;
         height:15px

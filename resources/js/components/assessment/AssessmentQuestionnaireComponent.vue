@@ -33,7 +33,7 @@
 
         <h2>Signup priorities & finances</h2>
 
-        <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important)
+        <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)
         <ol class="dropZoneSignUpPriorities" v-drag-and-drop:options="sortableLIstOptions" data-id="signupPriorities">
             <li class="drag-item" v-for="item in assessment.data.questionnaire.signupPriorities" :key="item" :data-id="item">
                 <div>{{ item }}</div>
@@ -51,17 +51,15 @@
             </select>
         </p>
 
-        <p>Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply - <span class="red">link to tenure??</span> - <span class="red">Also in the spreadsheet this questions was shaded, was there a reason for that?</span>)
-            <select class="form-control" v-model="assessment.data.questionnaire.preparedToPayUpfront">
-                <option value="No - I wouldn't pay anything upfront">No - I wouldn't pay anything upfront</option>
-                <option value="Yes - I would consider paying upfront to join, if it meant I got more back from the scheme">Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</option>
-                <option value="Yes - I would consider upgrading to new smart heaters so I could join">Yes - I would consider upgrading to new smart heaters so I could join</option>
-            </select>
+        <p>Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)</p>            
+        <p style="margin:0 25px 50px"><input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.no"> No - I wouldn't pay anything upfront</input><br />
+            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"> Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</input><br />
+            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"> Yes - I would consider upgrading to new smart heaters so I could join</input><br />
         </p>
 
-        <p>How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important)
+        <p>How important would the following be, in putting me off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)
         <ol class="dropzoneputtingMeOffRating" v-drag-and-drop:options="sortableLIstOptions" data-id="puttingMeOffRating">
-              <li class="drag-item" v-for="item in assessment.data.questionnaire.puttingMeOffRating" :key="item" :data-id="item">
+            <li class="drag-item" v-for="item in assessment.data.questionnaire.puttingMeOffRating" :key="item" :data-id="item">
                 <div>{{ item }}</div>
             </li>
         </ol>
@@ -120,7 +118,7 @@
                     multipleDropzonesItemsDraggingEnabled: true,
                     showDropzoneAreas: true,
                     onDrop: function (event) {
-                        updateSortableArray(event.owner.children,event.droptarget.dataset.id);
+                        updateSortableArray(event.owner.children, event.droptarget.dataset.id);
                     }
                 }
             };
@@ -151,6 +149,8 @@
                     'If I had to buy new heaters',
                     'If I needed my landlord\'s permission'
                 ];
+
+                this.assessment.data.questionnaire.preparedToPayUpfront = {no: 0, yesToJoin: 0, yesUpgradeHeating: 0};
             }
         }
     }

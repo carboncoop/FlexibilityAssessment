@@ -39642,7 +39642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-        this.view = "assessment-report";
+        this.view = "assessment-form";
     }
 });
 
@@ -39732,7 +39732,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n    max-width: 700px;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width:350px;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    width:300px;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width: 100%;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n", ""]);
 
 // exports
 
@@ -43351,7 +43351,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Ownership status")]),
+        _c("td", [_vm._v("Tenure")]),
         _vm._v(" "),
         _c("td", [
           _c(
@@ -43389,11 +43389,17 @@ var render = function() {
                 _vm._v("Private rental")
               ]),
               _vm._v(" "),
+              _c("option", { attrs: { value: "Mid-market rent" } }, [
+                _vm._v("Mid-market rent")
+              ]),
+              _vm._v(" "),
               _c("option", { attrs: { value: "Social landlord" } }, [
                 _vm._v("Social landlord")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Owner" } }, [_vm._v("Owner")])
+              _c("option", { attrs: { value: "Owner" } }, [_vm._v("Owner")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")])
             ]
           )
         ])
@@ -46039,7 +46045,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "This is the report that summarises the calculations and results. Please be aware \n        that they are only indicative."
+        "This is the report that summarizes the calculations and results. Please be aware \n        that they are only indicative."
       )
     ]),
     _vm._v(" "),
@@ -46047,7 +46053,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "In the table below you can see how much flexible power is available in \n        your household and the potential amount of energy taht can be shifted."
+        "In the table below you can see how much flexible power is available in \n        your household and the potential amount of energy that can be shifted."
       )
     ]),
     _vm._v(" "),
@@ -46211,7 +46217,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "DNOs are the Distribution Network Operators. They are the companies \n        that own the cables that carry the electricity form the grid to your house."
+        "DNOs are the Distribution Network Operators. They are the companies \n        that own the cables that carry the electricity from the grid to your house."
       )
     ]),
     _vm._v(" "),
@@ -46576,8 +46582,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -46617,6 +46621,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
             this.assessment.data.questionnaire.signupPriorities = ['The rewards offered (£)', 'A Community / Not for Profit provider ', 'The reduction in my carbon footprint ', 'The opportunity to learn more about my energy system', 'Being part of a group working with sustainable technology?'];
 
             this.assessment.data.questionnaire.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
+
+            this.assessment.data.questionnaire.preparedToPayUpfront = { no: 0, yesToJoin: 0, yesUpgradeHeating: 0 };
         }
     }
 });
@@ -47518,7 +47524,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in tempting me to sign up to a flexibility agreement? (1 - most important, 5 - least important)\n    "
+        "How important would the following be, in tempting me to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)\n    "
       ),
       _c(
         "ol",
@@ -47607,89 +47613,200 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply - "
-      ),
-      _c("span", { staticClass: "red" }, [_vm._v("link to tenure??")]),
-      _vm._v(" - "),
-      _c("span", { staticClass: "red" }, [
-        _vm._v(
-          "Also in the spreadsheet this questions was shaded, was there a reason for that?"
-        )
-      ]),
-      _vm._v(")\n        "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.assessment.data.questionnaire.preparedToPayUpfront,
-              expression: "assessment.data.questionnaire.preparedToPayUpfront"
-            }
-          ],
-          staticClass: "form-control",
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
+        "Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)"
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticStyle: { margin: "0 25px 50px" } }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+            expression: "assessment.data.questionnaire.preparedToPayUpfront.no"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+          )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+        },
+        on: {
+          change: function($event) {
+            var $$a = _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "no",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "no",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
               _vm.$set(
-                _vm.assessment.data.questionnaire,
-                "preparedToPayUpfront",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "no",
+                $$c
               )
             }
           }
-        },
-        [
-          _c(
-            "option",
-            { attrs: { value: "No - I wouldn't pay anything upfront" } },
-            [_vm._v("No - I wouldn't pay anything upfront")]
-          ),
-          _vm._v(" "),
-          _c(
-            "option",
-            {
-              attrs: {
-                value:
-                  "Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
-              }
-            },
-            [
-              _vm._v(
-                "Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "option",
-            {
-              attrs: {
-                value:
-                  "Yes - I would consider upgrading to new smart heaters so I could join"
-              }
-            },
-            [
-              _vm._v(
-                "Yes - I would consider upgrading to new smart heaters so I could join"
-              )
-            ]
+        }
+      }),
+      _vm._v(" No - I wouldn't pay anything upfront"),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value:
+              _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin,
+            expression:
+              "assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
           )
-        ]
-      )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesToJoin,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
+        },
+        on: {
+          change: function($event) {
+            var $$a =
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesToJoin,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesToJoin",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesToJoin",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
+              _vm.$set(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "yesToJoin",
+                $$c
+              )
+            }
+          }
+        }
+      }),
+      _vm._v(
+        " Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
+      ),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value:
+              _vm.assessment.data.questionnaire.preparedToPayUpfront
+                .yesUpgradeHeating,
+            expression:
+              "assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront
+              .yesUpgradeHeating
+          )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesUpgradeHeating,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront
+                .yesUpgradeHeating
+        },
+        on: {
+          change: function($event) {
+            var $$a =
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesUpgradeHeating,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesUpgradeHeating",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesUpgradeHeating",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
+              _vm.$set(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "yesUpgradeHeating",
+                $$c
+              )
+            }
+          }
+        }
+      }),
+      _vm._v(
+        " Yes - I would consider upgrading to new smart heaters so I could join"
+      ),
+      _c("br")
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in putting me off signing up to a flexibility agreement? (1 - most important, 3 - least important)\n    "
+        "How important would the following be, in putting me off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)\n    "
       ),
       _c(
         "ol",
@@ -47964,6 +48081,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -47987,8 +48105,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "assessment-form" } }, [
     _c("h1", [_vm._v("Flexibility assessment - Report feedback")]),
-    _vm._v(" "),
-    _c("p", { staticClass: "red" }, [_vm._v("Do we want an intro here?")]),
     _vm._v(" "),
     _c("h2", [_vm._v("About the report")]),
     _vm._v(" "),
@@ -48028,9 +48144,11 @@ var render = function() {
           }
         },
         [
-          _c("option", { staticStyle: { color: "red" } }, [
-            _vm._v("Update when we know the possible schemes")
-          ])
+          _c("option", { attrs: { value: "Secure" } }, [_vm._v("Secure")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Dynamic" } }, [_vm._v("Dynamic")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Restore" } }, [_vm._v("Restore")])
         ]
       )
     ]),

@@ -3,13 +3,13 @@
         <h1>Flexibility assessment report</h1>
         <p>The Flexibility Assessment Tool calculates the available flexibility of 
             your household and the potential income that can be generated from it.</p>
-        <p>This is the report that summarises the calculations and results. Please be aware 
+        <p>This is the report that summarizes the calculations and results. Please be aware 
             that they are only indicative.</p>
 
         <h2>Your flexible power</h2>
 
         <p>In the table below you can see how much flexible power is available in 
-            your household and the potential amount of energy taht can be shifted.</p>
+            your household and the potential amount of energy that can be shifted.</p>
 
         <table class="table" style="width:750px;line-height: 20px;margin:auto; text-align: center">
             <tr><td></td><td>Rating</td><td>Flexible power available</td><td>Potential energy shifted</td></tr>
@@ -127,7 +127,7 @@
 
         <h3>What is a DNO?</h3>
         <p>DNOs are the Distribution Network Operators. They are the companies 
-            that own the cables that carry the electricity form the grid to your house.</p>
+            that own the cables that carry the electricity from the grid to your house.</p>
         <p>DNOs are very interested in flexibility. They know when there is 
             extra energy in the grid and also when there is not enough. They are 
             the ones that will pay households for shifting the energy consumption.</p>
