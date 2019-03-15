@@ -2,7 +2,7 @@
     border-top:solid 1px;
     background: #d6d4ce;
     padding:10px;
-    font-size:18px
+    font-size:20px
 }
 #content{
     background:white;
@@ -54,7 +54,7 @@ h2{
 }
 
 #assessment-table-component table td{
-    font-size:16px
+    font-size:18px
 }
 
 .navbar-custom {
@@ -68,7 +68,11 @@ h1,h2,h3,h4,h5,h6{
 
 @media print{
     #footer{
-        margin-top: 175px
+        margin-top: 780px
+    }
+    body, #page{
+        border: none;
+        background-color: white;
     }
 }
 

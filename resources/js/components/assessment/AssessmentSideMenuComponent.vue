@@ -15,7 +15,7 @@
             <ul>
                 <li dusk="show-questionnaire" v-on:click="$emit('updateView', 'assessment-questionnaire')">Questionnaire</li>
                 <li dusk="show-form" v-on:click="$emit('updateView', 'assessment-form')">Assessment</li>
-                <li dusk="show-report-feeback" v-on:click="$emit('updateView', 'assessment-report-feedback')">Report feedback</li>
+                <li dusk="show-report-feeback" v-on:click="$emit('updateView', 'assessment-report-feedback')">Feedback</li>
             </ul>
             <p>Other:</p>
             <ul>
@@ -46,7 +46,7 @@
         max-width:300px;
         position:fixed;
         padding-right: 30px;
-        font-size:15px
+        font-size:17px
     }
     #assessment-navigation p{
         margin-bottom: 0;

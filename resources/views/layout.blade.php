@@ -28,7 +28,7 @@
                         <!-- <b-nav-item href="{{ url('/') }}">Flexibility Assessment</b-nav-item> -->
                     </b-navbar-nav>
                     <!-- Right aligned nav items -->
-                    <b-navbar-nav class="ml-auto">
+                    <b-navbar-nav>
                         <b-nav-item href="{{ url('/') }}">Home</b-nav-item>
                         @guest
                         <b-navbar-nav>

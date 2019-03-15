@@ -27,7 +27,7 @@
             margin-left:0
         }
         #assessment{
-            margin-top:50px
+            margin-top:0px
         }
     }
 </style>
@@ -75,7 +75,7 @@
             }
         },
         mounted: function () {
-            this.view = "assessment-form";
+            this.view = "assessment-report";
         }
     }
 </script>

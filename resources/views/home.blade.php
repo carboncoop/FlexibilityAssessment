@@ -5,7 +5,8 @@
 <style>
 
     #home #navigation-buttons{
-        max-width: 625px;
+        max-width: 725px;
+        text-align:center;
         margin:auto;
     }
 
