@@ -9718,7 +9718,7 @@ var flexibilityModel = function () {
          *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
          *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
          *      - data.electricalTariffRate     £/kWh (Optional)
-         *      - data.dnoEstimatedAvailabilityRequired.hoursYear     hours (Optional)
+         *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
          *      
          ****************************************************/
 
@@ -9737,7 +9737,7 @@ var flexibilityModel = function () {
 
             if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRate = data.tariff.rate;
 
-            if (data.dnoEstimatedAvailabilityRequired != undefined && data.dnoEstimatedAvailabilityRequired.hoursYear != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired.hoursYear;
+            if (data.dnoEstimatedAvailabilityRequired != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
         }
 
         /********************************************
@@ -9786,7 +9786,7 @@ var flexibilityModel = function () {
 
                 powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
 
-                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
+                if (data.useDnoEstimatedHoursRequired == undefined || data.dnoEstimatedHourRequired == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
                     var chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
                     var daysOfHeating = 365 - 30 - 31 - 31; // Summer months: June, July and August;
                     if (data.storageHeaters.heatingOffSummer != undefined && (data.storageHeaters.heatingOffSummer === false || data.storageHeaters.heatingOffSummer == "No")) daysOfHeating = 365;
@@ -9842,7 +9842,7 @@ var flexibilityModel = function () {
                 data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
                 powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
 
-                if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
+                if (data.useDnoEstimatedHoursRequired == undefined || data.useDnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true) flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;else {
                     var immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
                     var annualWaterHeatingDemand = __WEBPACK_IMPORTED_MODULE_0__openBEM_model_r10_js__["a" /* default */].calc.water_heating(immersionHeatingSystem).water_heating.annual_waterheating_demand;
                     var timeOfUseYear = annualWaterHeatingDemand / data.immersionHeater.rating;

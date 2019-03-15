@@ -85,7 +85,7 @@ class flexibilityModel {
      *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
      *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
      *      - data.electricalTariffRate     £/kWh (Optional)
-     *      - data.dnoEstimatedAvailabilityRequired.hoursYear     hours (Optional)
+     *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
      *      
      ****************************************************/
     ini(data) {
@@ -106,8 +106,8 @@ class flexibilityModel {
         if (data.tariff != undefined && data.tariff.rate != undefined)
             this.electricalTariffRate = data.tariff.rate;
 
-        if (data.dnoEstimatedAvailabilityRequired != undefined && data.dnoEstimatedAvailabilityRequired.hoursYear != undefined)
-            this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired.hoursYear;
+        if (data.dnoEstimatedAvailabilityRequired != undefined)
+            this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
     }
 
     /********************************************
@@ -154,7 +154,7 @@ class flexibilityModel {
 
             powerAvailable = flexiblePowerFactor * data.storageHeaters.number * data.storageHeaters.rating;
 
-            if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true)
+            if (data.useDnoEstimatedHoursRequired == undefined || data.dnoEstimatedHourRequired == "Yes" || data.dnoEstimatedHourRequired === true)
                 flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;
             else {
                 let chargingTimeDay = data.storageHeaters.chargingTime != undefined ? data.storageHeaters.chargingTime : 7;
@@ -212,7 +212,7 @@ class flexibilityModel {
             data.immersionHeater.rating = data.immersionHeater.rating == undefined ? 0 : 1.0 * data.immersionHeater.rating;
             powerAvailable = flexiblePowerFactor * data.immersionHeater.rating;
 
-            if (data.dnoEstimatedHoursRequired == undefined || data.dnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true)
+            if (data.useDnoEstimatedHoursRequired == undefined || data.useDnoEstimatedHoursRequired.use == undefined || data.dnoEstimatedHourRequired.use == "Yes" || data.dnoEstimatedHourRequired === true)
                 flexibilityHoursScheduled = this.dnoEstimatedAvailabilityRequired;
             else {
                 let immersionHeatingSystem = this.getImmersionHeaterSystem(data.household.occupancy, data.immersionHeater.controlType);
