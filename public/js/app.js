@@ -48910,12 +48910,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }]
         };
     },
-    computed: {
-        schemesPreChange: function schemesPreChange() {
-            // we need to access the old a new "schemes" object in the watch method. But when watching the "schemes" the new and old values are the same, see note here: https://vuejs.org/v2/api/#vm-watch
-            return JSON.parse(JSON.stringify(this.schemes));
-        }
-    },
     watch: {
         filter: function filter() {
             if (this.filter.length < 3) this.assessmentsForTable = this.assessments;else {

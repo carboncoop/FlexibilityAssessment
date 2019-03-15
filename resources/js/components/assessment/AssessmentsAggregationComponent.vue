@@ -129,11 +129,6 @@
                 ]
             };
         },
-        computed: {
-            schemesPreChange: function () { // we need to access the old a new "schemes" object in the watch method. But when watching the "schemes" the new and old values are the same, see note here: https://vuejs.org/v2/api/#vm-watch
-                return JSON.parse(JSON.stringify(this.schemes));
-            }
-        },
         watch: {
             filter: function () {
                 if (this.filter.length < 3)
