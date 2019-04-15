@@ -17,18 +17,19 @@
 
     </head>
     <body>
-        
+
         <div id="app" v-cloak>
 
             <b-navbar toggleable="md" type="dark" variant="primary" class="navbar-custom">
+
+                <b-navbar-brand href="#">
+                    Flexible Power
+                    <p class="strapline">Flexibly using electricity to save money for users and make money for community groups</p>
+                </b-navbar-brand>
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-                <!-- <b-navbar-brand href="#"><img class="logo" src="{{asset('img/carboncoop-logo.png')}}" /></b-navbar-brand> -->
-                <b-collapse is-nav id="nav_collapse">
-                    <b-navbar-nav>
-                        <!-- <b-nav-item href="{{ url('/') }}">Flexibility Assessment</b-nav-item> -->
-                    </b-navbar-nav>
+                <b-collapse is-nav id="nav_collapse"> 
                     <!-- Right aligned nav items -->
-                    <b-navbar-nav>
+                    <b-navbar-nav class="ml-auto">
                         <b-nav-item href="{{ url('/') }}">Home</b-nav-item>
                         @guest
                         <b-navbar-nav>
@@ -63,21 +64,43 @@
 
             <main id="page">
                 <div id="content" class='container'>
-                    @yield('content')
+                    @if(isset($sidemenu) && $sidemenu === true)
+                    <div style="display: inline-block; width: 77%; vertical-align: top">
+                        @yield('content')
+                    </div>
+                    @else
+                    <div>
+                        @yield('content')
+                    </div>
+                    @endif
+
+                    @if(isset($sidemenu) && $sidemenu === true)
+                    <div style="display: inline-block; width: 18%; vertical-align: top; margin:92px 15px">
+                        <b-list-group>
+                            <b-list-group-item><a href="more-about-the-project">About</a></b-list-group-item>
+                            <b-list-group-item><a href="how-could-I-benefit-from-flexibility">Benefits for Users</a></b-list-group-item>
+                            <b-list-group-item><a href="how-could-my-organisation-benefit-from-flexibility">Benefits for Organisations</a></b-list-group-item>
+                            <b-list-group-item><a href="scotland-potential-flexibility-map">Where is the Flexibility?</a></b-list-group-item>
+                            <b-list-group-item><a href="resources-for-community-organisations">Resources for organisations</a></b-list-group-item>
+                            <b-list-group-item><a href="privacy-policy">Your Data and Privacy</a></b-list-group-item>
+                        </b-list-group>
+                    </div>
+                    @endif
                 </div>
-            </main>
-
-            <div id="footer">
-                <a href="https://carbon.coop/" target="blank"><img class="carboncoop" src="{{asset('img/carboncoop-logo.png')}}" /></a>
-                <a href="http://www.communityenergyscotland.org.uk/" target="blank"><img class="community-energy-scotland" src="{{asset('img/community-energy-scotland-logo.png')}}" /></a>
-                <a href="http://southseeds.org/" target="blank"><img class="south-seeds-logo" src="{{asset('img/south-seeds-logo.png')}}" /></a>
-            </div>
-
         </div>
+    </main>
 
-        @include('cookieConsent::index')
-    </body>
-    <script src="{{asset('js/app.js')}}"></script>
-    @yield('script-below')
+    <div id="footer">
+        <a href="https://carbon.coop/" target="blank"><img class="carboncoop" src="{{asset('img/carboncoop-logo.png')}}" /></a>
+        <a href="http://www.communityenergyscotland.org.uk/" target="blank"><img class="community-energy-scotland" src="{{asset('img/community-energy-scotland-logo.png')}}" /></a>
+        <a href="http://southseeds.org/" target="blank"><img class="south-seeds-logo" src="{{asset('img/south-seeds-logo.png')}}" /></a>
+    </div>
+
+</div>
+
+@include('cookieConsent::index')
+</body>
+<script src="{{asset('js/app.js')}}"></script>
+@yield('script-below')
 
 </html>

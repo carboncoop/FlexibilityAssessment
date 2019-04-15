@@ -1,10 +1,26 @@
 @extends('layout')
 
-@section('title', "Scotland Flexibility Potential Map" )
+@section('title', "Where is the Flexibility?" )
 
 
 @section('style')
 <style>
+    .card-header a{
+        background: #d6d4ce;
+        border:none;
+        font-size:20px;
+        text-align:left;
+    }
+
+    .card-header a:hover{
+        background:none;
+        color:black
+    }
+
+    .card-body{
+        margin-left:50px
+    }
+
     .info {
         padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
@@ -75,93 +91,133 @@
 <div>
     <div id='how-could-I-benefit-from-flexibility'>
 
-        <h1>How flexibility differs across Scotland and within communities</h1>
+        <h1>Where is the Flexibility?</h1>
         <br />
 
-        <h2>Estimating available flexibility in your area</h2>
+        <p><b>The flexibility is in your home,</b> it is the electricity supply and 
+            your ability to use this supply at times to different peak demand.</p>
+        <p>The most promising opportunities for future flexibility are electric vehicles,
+            heat pumps, and battery storage technology. However currently this technology
+            is only available in a few homes. Right now, immersion heaters and electric
+            storage heaters have the most potential. </p>
+        <p>The map shows where there are concentrations of homes with immersion heater 
+            and electric storage heaters, these are the areas where an aggregated 
+            flexibility scheme could work best.</p>
 
-        <p>Certain household energy loads (electrical devices) can be managed in 
-            a ‘flexibly’ way so that there is less strain on the grid. Flexible 
-            loads are those that can be turned on when there is enough energy 
-            in the grid or off when there is excess demand on the grid. Flexible 
-            power is measured in kW like any other device.</p>
+        <div role="tablist">            
+            <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                    <b-btn block href="#" v-b-toggle.accordion2 variant="info">Testing the concept on Glasgow's southside</b-btn>
+                </b-card-header>
+                <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
+                    <b-card-body>
+                        <p>South Seeds is a community-led organisation which is based on Glasgow’s 
+                            southside. It covers the South central area dominated by tenements and 
+                            blocks of flats. This is most of the G42 postcode and part of the G41 
+                            postcode. Based on reported Scottish EPC data for domestic properties 
+                            the area contains an estimated total of 2607kW (2.6MW) of flexible capacity 
+                            which is equivalent to turning a 150m wind turbine on/off on demand· 
+                            After running the model we estimate that this potential flexibility 
+                            could generate around £42K.</p>
 
-        <p>The most promising opportunities for future flexibility are electric 
-            vehicles, heat pumps, and battery storage technology. However currently 
-            this technology is only available in a few homes. </p>
+                        <p>The below table gives an estimate of total available flexibility from 
+                            storage heaters and immersion heaters in some of the postcode sectors 
+                            South Seeds covers(using simple assumptions about typical average loads 
+                            and potential availability and utilisation of these loads). </p>
 
-        <p>Immersion heaters and storage heaters, despite having lower potential 
-            per installation, are much more common and are also often concentrated 
-            in particular areas where there isn’t access to a gas supply or there 
-            are other (economic, social or political) reasons. This density of 
-            an electricity load can be economically valuable where there are specific 
-            local flexibility requirements. </p>
-
-
-        <h2>South Seeds area</h2>
-
-        <p>South Seeds is a community-led organisation which is based on Glasgow’s 
-            southside. It covers the South central area dominated by tenements and 
-            blocks of flats. This is most of the G42 postcode and part of the G41 
-            postcode. Based on reported Scottish EPC data for domestic properties 
-            the area contains an estimated total of 2607kW (2.6MW) of flexible capacity 
-            which is equivalent to turning a 150m wind turbine on/off on demand· 
-            After running the model we estimate that this potential flexibility 
-            could generate around £42K.</p>
-
-        <p>The below table gives an estimate of total available flexibility from 
-            storage heaters and immersion heaters in some of the postcode sectors 
-            South Seeds covers(using simple assumptions about typical average loads 
-            and potential availability and utilisation of these loads). </p>
-        
-        <p>If you are interested in how this was calculated, it was assumed that 
-            the available flexibility from a storage 
-            heater is correlated with the EPC performance of a given property. These 
-            numbers are only indicative and should only be taken as being meaningful 
-            in the aggregate. In reality the flexibility available from a particular 
-            installation depends on many factors including patterns of utilisation 
-            and the detailed specifications of the equipment which cannot be evaluated 
-            without a site visit and assessment (or continuous monitoring). The EPC 
-            dataset is a large but potentially distorted sample of all domestic premises 
-            and some information is recorded erroneously or expires as changes are 
-            made to housing stock.</p>
+                        <p>If you are interested in how this was calculated, it was assumed that 
+                            the available flexibility from a storage 
+                            heater is correlated with the EPC performance of a given property. These 
+                            numbers are only indicative and should only be taken as being meaningful 
+                            in the aggregate. In reality the flexibility available from a particular 
+                            installation depends on many factors including patterns of utilisation 
+                            and the detailed specifications of the equipment which cannot be evaluated 
+                            without a site visit and assessment (or continuous monitoring). The EPC 
+                            dataset is a large but potentially distorted sample of all domestic premises 
+                            and some information is recorded erroneously or expires as changes are 
+                            made to housing stock.</p>
 
 
-        <p>These numbers highlight the large amounts of potential 
-            flexibility which is currently unharnessed in homes in Scotland (and 
-            elsewhere). </p>
+                        <p>These numbers highlight the large amounts of potential 
+                            flexibility which is currently unharnessed in homes in Scotland (and 
+                            elsewhere). </p>
 
-        <table class='table' id='south-seeds-postcodes-flexibility'>
-            <tr><td>Postcode Sector</td><td>Immersion Heater (kW)</td><td>Storage Heater (kW)</td></tr>
-            <tr><td>G41 1</td><td>85</td><td>65</td></tr>
-            <tr><td>G41 2</td><td>106</td><td>28</td></tr>
-            <tr><td>G41 3</td><td>356</td><td>241</td></tr>
-            <tr><td>G41 4</td><td>32</td><td>21</td></tr>
-            <tr><td>G41 5</td><td>260</td><td>214</td></tr>
-            <tr><td>G42 0</td><td>150</td><td>129</td></tr>
-            <tr><td>G42 7</td><td>145</td><td>32</td></tr>
-            <tr><td>G42 8</td><td>197</td><td>64</td></tr>
-            <tr><td>G42 9</td><td>276</td><td>206</td></tr>
-            <tr sytle='font-weight:bold'><td>Total</td><td>1607</td><td>1000</td></tr>
-        </table>
+                        <table class='table' id='south-seeds-postcodes-flexibility'>
+                            <tr><td>Postcode Sector</td><td>Immersion Heater (kW)</td><td>Storage Heater (kW)</td></tr>
+                            <tr><td>G41 1</td><td>85</td><td>65</td></tr>
+                            <tr><td>G41 2</td><td>106</td><td>28</td></tr>
+                            <tr><td>G41 3</td><td>356</td><td>241</td></tr>
+                            <tr><td>G41 4</td><td>32</td><td>21</td></tr>
+                            <tr><td>G41 5</td><td>260</td><td>214</td></tr>
+                            <tr><td>G42 0</td><td>150</td><td>129</td></tr>
+                            <tr><td>G42 7</td><td>145</td><td>32</td></tr>
+                            <tr><td>G42 8</td><td>197</td><td>64</td></tr>
+                            <tr><td>G42 9</td><td>276</td><td>206</td></tr>
+                            <tr sytle='font-weight:bold'><td>Total</td><td>1607</td><td>1000</td></tr>
+                        </table>
+                    </b-card-body>
+                </b-collapse>
+            </b-card>
 
+            <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                    <b-btn block href="#" v-b-toggle.accordion3 variant="info">How was this map made?</b-btn>
+                </b-card-header>
+                <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
+                    <b-card-body>
+                        <p>Using Scottish domestic Energy Performance Certificate 
+                            (EPC) data, we have produced an interactive map of the 
+                            potential flexibility across the whole of Scotland.</p>
+                        <p>Flexibility schemes will need to find and work with households 
+                            who have energy use that they can flex. Most electricity 
+                            use within households is not ‘flexible’, because there
+                            is no easy way to change the time that energy is used. 
+                            The most promising ‘flexible’ devices are electric storage
+                            heaters and immersion elements. These are flexible because 
+                            they can charge up at any time and store the heat for
+                            later.</p>
+                        <p>This map uses EPC data (which record the type of heating 
+                            in each house surveyed) to estimate the total amount of
+                            electric storage and immersion heating load installed 
+                            in households for each postcode region. Deeper red colours 
+                            (and higher numbers), represent more electric heating 
+                            in an area. Lighter colours and lower number represent 
+                            less electric heating.</p>
+                    </b-card-body>
+                </b-collapse>
+            </b-card>
 
-        <h2>Scotland Flexibility Potential Map</h2>
-        <p>Using the whole Scottish domestic EPC data set and a similar methodology 
-            to the above for estimating flexibility, an interactive map of the potential
-            flexibility in all Scottish postal sectors was produced.</p>
-        <p>Flexibility schemes will need to find and work with households who have 
-            energy use that they can flex. Most electricity use within households 
-            is not ‘flexible’, because there is no easy way to change the time that 
-            energy is used. The most promising ‘flexible’ devices are electric storage 
-            heaters and immersion elements. These are flexible because they can charge 
-            up at any time and store the heat for later.</p>
-        <p>This map shows an estimate of the total flexible electric heating load 
-            installed in households for each postcode region. Community Aggregation 
-            groups could use this map to concentrate their recruitment efforts in areas 
-            with the most flexible load</p>
+            <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                    <b-btn block href="#" v-b-toggle.accordion4 variant="info">How to use this map?</b-btn>
+                </b-card-header>
+                <b-collapse id="accordion4" accordion="my-accordion" role="tabpanel">
+                    <b-card-body>
+                        <p>If you are a community group interested in aggregating 
+                            Flexible Power, you will want to know how many potential 
+                            Flexible loads exist in households near you. If there 
+                            aren’t many, it might be difficult for you to get a project 
+                            off the ground, while if every household has a large 
+                            flexible load, it will be much easier for you!</p>
+                        <p>Electric Storage heating and immersion elements are the
+                            most important flexible loads at the moment, and this 
+                            map will give you an idea of which parts of Scotland 
+                            have the most electrical heating in them. </p>
+                        <p>Deeper red colours (and higher numbers), represent more 
+                            electric heating in an area. Lighter colours and lower
+                            number represent less electric heating: so if your area
+                            is particularly dark red, that’s good news! </p>
+                        <p>This map could also help direct outreach work: If you 
+                            are out recruiting households to participate in Flexible
+                            Power, you might want to concentrate your efforts on the
+                            darker red parts of your area, as these will include more 
+                            households with electric heating.</p>
+                    </b-card-body>
+                </b-collapse>
+            </b-card>
+        </div>
 
-        <div id="mapid" style="height: 800px;width: 800px;"></div>
+        <div id="mapid" style="height: 800px;width: 800px;margin-top:35px"></div>
 
     </div>
 </div>

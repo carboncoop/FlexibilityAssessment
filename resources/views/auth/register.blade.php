@@ -8,7 +8,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register a new Community Group') }}</div>
+                    <div class="card-header">
+                        <strong>{{ __('Register an interest in acting as a Community Aggregator') }}</strong>
+                        <p>If your organisation is interested in facilitating Flexible Power in 
+                            your area, please fill in the form below. All information you provide 
+                            will be treated in accordance with our <a href="privacy-policy">Privacy Policy.</a></p>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" id="registration-form" action="{{ route('register') }}">
@@ -55,7 +60,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row">
                                 <label for="postcode_zones" class="col-md-4 col-form-label text-md-right">{{ __('Postcode zone(s)*') }}</label>
 
@@ -178,6 +183,11 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                        <strong>Find out more about the project</strong>
+                        <p>If you are an individual in Glasgow, contact SouthSeeds for more information: 0141 636 3959</p>
+                        <p>If you are a community group looking for more information, but not yet ready to register, get in touch at: <a href="mailto:Gillian.Wilson@communityenergyscotland.org.uk">Gillian.Wilson@communityenergyscotland.org.uk</a></p>
                     </div>
                 </div>
             </div>

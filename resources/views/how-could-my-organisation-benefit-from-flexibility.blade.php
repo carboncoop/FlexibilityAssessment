@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', "How could my organisation benefit from 'flexibility'?" )
+@section('title', "Benefits for organisations" )
 
 @section('style')
 <style>
@@ -10,7 +10,7 @@
         border:none;
         font-size:20px;
         text-align:left;
-        margin-left: 25px
+        text-align:left;
     }
 
     .card-header a:hover{
@@ -27,14 +27,23 @@
 
 
 @section('content')
-<h1>Material for the community organisation as an ‘aggregator</h1>
+<h1>Benefits for organisations</h1>
 
-<h2>ECAS: Our Community Aggregator</h2>
-<p>Power companies want to work with big chunks of flexibility in use of electricity to make it worth their effort. So far, most Flexibility Agreements are with big businesses and factories. As they start to work with householders, they want to make the contracts through 'aggregators'. Aggregators are organisations that bring lots of little energy users together and make a deal on their behalf./</p>
-<p>So far it's mainly energy suppliers and heating appliance companies that are looking to become aggregators. We would like to set up ECAS as a cooperative, open-source aggregator, that lets community groups across the UK come together into a force large enough to deal directly with the power companies and grid operators. </p>
+<p>Only organisations with really large flexible electricity loads can make deals 
+    with power companies. Smaller energy users would have to band together and make
+    a collective deal with an energy company. The organisation which brings together 
+    lots of little energy users to make a collective deal with a power company is 
+    known as an ‘aggregator’. </p>
+<p>Some organisations are already benefiting from working with power companies to 
+    ‘aggregate’ flexible electricity use and make money. However most of these organisations 
+    are technology companies and energy suppliers, with community based organisations 
+    yet to really benefit.  </p>
+<p>There is scope for community based organisations with good relationships with 
+    householders to bring them together and aggregate their flexible use. In doing 
+    so make money for the house holder and for the organisation. This would be called 
+    an Energy Community Aggregation Service (ECAS).</p>
 
 <div role="tablist">
-
     <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn block href="#" v-b-toggle.accordion2 variant="info">Who is involved?</b-btn>

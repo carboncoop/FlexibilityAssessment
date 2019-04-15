@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', "How could I benefit from 'flexibility?'" )
+@section('title', "Benefits for Users" )
 
 @section('style')
 
@@ -31,7 +31,7 @@
 @section('content')
 
     <div id='how-could-I-benefit-from-flexibility'>
-        <h1>How could I benefit from 'flexibility'?</h1>
+        <h1>Benefits for Users</h1>
         <p><b>The changes in the grid, are beginning to be felt in people's homes:</b></p>
         <ul>
             <li><b>Smart meters are being rolled out.</b> The Government says that every house will have one by 2020, unless they have requested an opt-out. </li>
@@ -56,7 +56,7 @@
 
             <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                    <b-btn block href="#" v-b-toggle.accordion3 variant="info">How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?</b-btn>
+                    <b-btn block href="#" v-b-toggle.accordion3 variant="info">How could a Flexibility Agreement work for a household in the future if we set up ECAS?</b-btn>
                 </b-card-header>
                 <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
                     <b-card-body>

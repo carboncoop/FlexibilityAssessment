@@ -20,7 +20,7 @@
     }
 
     #home button{    
-        color:#ff2712;
+        color:#305698;
         cursor:pointer;
     }
 
@@ -38,25 +38,24 @@
 
     <div id='home'>
 
-        <h1>Energy Community Aggregation Service (ECAS) research project</h1>
+        <h1>Flexible Power</h1>
 
-        <h2>What is this project? </h2>
-
-        <p style="color: red;">More catching and explanatory title to be agreed</p>
-        <p>We are developing a project including a 'demonstration' or research web platform to help community groups and residents understand the coming changes in the energy system in Scotland and the UK. The project also helps to show how these changes might help community groups and residents to reduce fuel costs or earn an income from getting involved in the energy market. We want to test this platform to help us understand what information you (either as a community organisation representative or as a resident) would find helpful to understanding the changes and the likely opportunities. </p>
+        <p>Flexibly using electricity to save money for users and make money for community groups</p>
+        
+        <p>This research project will explore the benefits and possibilities of an energy community aggregation service (ECAS). Want to know more, simply click on the tabs to find out.</p>
 
         <div id="navigation-buttons">
-            <a href="more-about-the-project"><button>More about the project</button></a>
+            <a href="more-about-the-project"><button>About</button></a>
 
-            <a href="how-could-I-benefit-from-flexibility"><button>How could I benefit from 'flexibility'?</button></a>
+            <a href="how-could-I-benefit-from-flexibility"><button>Benefits for Users</button></a>
 
-            <a href="how-could-my-organisation-benefit-from-flexibility"><button>How could my organisation benefit from 'flexibility'?</button></a> 
+            <a href="how-could-my-organisation-benefit-from-flexibility"><button>Benefits for Organisations</button></a> 
 
-            <a href="scotland-potential-flexibility-map"><button>Glasgow and Scotland potential flexibility</button></a> 
+            <a href="scotland-potential-flexibility-map"><button>Where is the Flexibility?</button></a> 
             
-            <a href="resources-for-community-organisations"><button>Resources for community organisations</button></a> 
+            <a href="resources-for-community-organisations"><button>Resources for organisations</button></a> 
             
-            <a href="privacy-policy"><button>Privacy policy</button></a> 
+            <a href="privacy-policy"><button>Your Data and Privacy</button></a> 
 
         </div>
 

@@ -58,12 +58,14 @@ h2{
 }
 
 .navbar-custom {
-    background-color: white !important;
+    background-color: #ffe599 !important;
 }
 
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
-    color:#ff2712
+    color:#305698
+
+
 }
 
 @media print{
@@ -79,10 +81,29 @@ h1,h2,h3,h4,h5,h6{
 }
 
 a{
-    color:#ff2712
+    color:#305698
 }
 
 .cookie-consent{
     background-color: lightgrey!important;
     color:black !important
+}
+
+.navbar-brand{
+    color:#305698!important;
+    font-weight:bold;
+}
+
+.navbar-brand p{
+    font-size:16px;
+    margin: 0;
+    font-style: italic; 
+}
+
+@media only screen and (max-width: 690px){
+    .strapline{display:none}
+} 
+
+#registration-form{
+    margin-bottom:25px;
 }

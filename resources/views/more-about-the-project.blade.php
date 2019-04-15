@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', "How could I benefit from 'flexibility?'" )
+@section('title', "About" )
 
 @section('style')
 
@@ -10,7 +10,6 @@
         border:none;
         font-size:20px;
         text-align:left;
-        margin-left: 25px
     }
 
     .card-header a:hover{
@@ -30,8 +29,19 @@
 @section('content')
 
 <div id='more-about-the-project'>
-    <h1>More about the project</h1>
-    <p>Explore the topics below to better understand this project.</p>
+    <h1>About</h1>
+
+    <p>The way we make electricity is becoming more diverse, with much more coming 
+        from renewable generators. The grid which connects generation with use, 
+        by taking electricity across the country and eventually to our homes is changing 
+        in response to this. However it is not changing fast enough and in places there 
+        are grid constraints. </p>
+    <p>The good news is that the grid could continue to carry more electricity if 
+        users are more flexible about when they use electricity – for example changing 
+        devices and adjusting heating controls. </p>
+    <p>Smart devices are being developed to do this for users, and flexible electricity 
+        use will become part of all our futures. But the moment we don’t know exactly 
+        how this will work: that is why we are carrying out this project.</p>
 
     <div role="tablist">
 
@@ -68,7 +78,9 @@
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion4 variant="info">What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion4 variant="info">
+                    <p>What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?</p>
+                </b-btn>
             </b-card-header>
             <b-collapse id="accordion4" accordion="my-accordion" role="tabpanel">
                 <b-card-body>

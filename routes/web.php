@@ -26,28 +26,28 @@ Route::get('/home', function () {
 });
 
 Route::get('/more-about-the-project', function () {
-    return view('more-about-the-project');
+    return view('more-about-the-project', ['sidemenu'=>true]);
 });
 
 Route::get('/how-could-I-benefit-from-flexibility', function () {
-    return view('how-could-I-benefit-from-flexibility');
+    return view('how-could-I-benefit-from-flexibility', ['sidemenu'=>true]);
 });
 
 Route::get('/how-could-my-organisation-benefit-from-flexibility', function () {
-    return view('how-could-my-organisation-benefit-from-flexibility');
+    return view('how-could-my-organisation-benefit-from-flexibility', ['sidemenu'=>true]);
 });
 
 Route::get('/scotland-potential-flexibility-map', function () {
-    return view('scotland-potential-flexibility-map');
+    return view('scotland-potential-flexibility-map', ['sidemenu'=>true]);
 });
 
 Route::get('/resources-for-community-organisations', function () {
-    return view('resources-for-community-organisations');
+    return view('resources-for-community-organisations', ['sidemenu'=>true]);
 });
 
 
 Route::get('/privacy-policy', function () {
-    return view('privacy-policy');
+    return view('privacy-policy', ['sidemenu'=>true]);
 });
 
 if (config('app.registration_enabled') == false) {
