@@ -75,8 +75,9 @@
                     @endif
 
                     @if(isset($sidemenu) && $sidemenu === true)
-                    <div style="display: inline-block; width: 18%; vertical-align: top; margin:92px 15px">
+                    <div style="display: inline-block; width: 18%; vertical-align: top; margin:30px 15px">
                         <b-list-group>
+                            <b-list-group-item><a href="/">Home</a></b-list-group-item>
                             <b-list-group-item><a href="more-about-the-project">About</a></b-list-group-item>
                             <b-list-group-item><a href="how-could-I-benefit-from-flexibility">Benefits for Users</a></b-list-group-item>
                             <b-list-group-item><a href="how-could-my-organisation-benefit-from-flexibility">Benefits for Organisations</a></b-list-group-item>

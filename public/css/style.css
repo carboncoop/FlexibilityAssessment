@@ -1,6 +1,6 @@
 #page, #assessments{
     border-top:solid 1px;
-    background: #d6d4ce;
+    background: white;
     padding:10px;
     font-size:20px
 }
@@ -58,7 +58,7 @@ h2{
 }
 
 .navbar-custom {
-    background-color: #ffe599 !important;
+    background-color: #e9f9e7 !important;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -106,4 +106,9 @@ a{
 
 #registration-form{
     margin-bottom:25px;
+}
+
+.list-group-item {
+  border: 1px solid rgba(0, 0, 0, 0);  
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
 }

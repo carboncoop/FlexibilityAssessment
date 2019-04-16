@@ -6,10 +6,19 @@
 <style>
 
     .card-header a{
-        background: #d6d4ce;
+        background: #c1d8ff;
+        weight:bold;
         border:none;
         font-size:20px;
         text-align:left;
+    }
+    
+    header.card-header{
+        background: #c1d8ff;
+    }
+    
+    header.card-header:hover{
+        background: white;
     }
 
     .card-header a:hover{
