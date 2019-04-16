@@ -45,17 +45,17 @@
         <p>This research project will explore the benefits and possibilities of an energy community aggregation service (ECAS). Want to know more, simply click on the tabs to find out.</p>
 
         <div id="navigation-buttons">
-            <a href="more-about-the-project"><button>About</button></a>
+            <a href="about"><button>About</button></a>
 
-            <a href="how-could-I-benefit-from-flexibility"><button>Benefits for Users</button></a>
+            <a href="benefits-for-users"><button>Benefits for Users</button></a>
 
-            <a href="how-could-my-organisation-benefit-from-flexibility"><button>Benefits for Organisations</button></a> 
+            <a href="benefits-for-organisations"><button>Benefits for Organisations</button></a> 
 
-            <a href="scotland-potential-flexibility-map"><button>Where is the Flexibility?</button></a> 
+            <a href="where-is-the-flexibility"><button>Where is the Flexibility?</button></a> 
             
-            <a href="resources-for-community-organisations"><button>Resources for organisations</button></a> 
+            <a href="resources-for-organisations"><button>Resources for organisations</button></a> 
             
-            <a href="privacy-policy"><button>Your Data and Privacy</button></a> 
+            <a href="your-data-and-privacy"><button>Your Data and Privacy</button></a> 
 
         </div>
 

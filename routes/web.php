@@ -25,29 +25,29 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/more-about-the-project', function () {
-    return view('more-about-the-project', ['sidemenu'=>true]);
+Route::get('/about', function () {
+    return view('about', ['sidemenu'=>true]);
 });
 
-Route::get('/how-could-I-benefit-from-flexibility', function () {
-    return view('how-could-I-benefit-from-flexibility', ['sidemenu'=>true]);
+Route::get('/benefits-for-users', function () {
+    return view('benefits-for-users', ['sidemenu'=>true]);
 });
 
-Route::get('/how-could-my-organisation-benefit-from-flexibility', function () {
-    return view('how-could-my-organisation-benefit-from-flexibility', ['sidemenu'=>true]);
+Route::get('/benefits-for-organisations', function () {
+    return view('benefits-for-organisations', ['sidemenu'=>true]);
 });
 
-Route::get('/scotland-potential-flexibility-map', function () {
-    return view('scotland-potential-flexibility-map', ['sidemenu'=>true]);
+Route::get('/where-is-the-flexibility', function () {
+    return view('where-is-the-flexibility', ['sidemenu'=>true]);
 });
 
-Route::get('/resources-for-community-organisations', function () {
-    return view('resources-for-community-organisations', ['sidemenu'=>true]);
+Route::get('/resources-for-organisations', function () {
+    return view('resources-for-organisations', ['sidemenu'=>true]);
 });
 
 
-Route::get('/privacy-policy', function () {
-    return view('privacy-policy', ['sidemenu'=>true]);
+Route::get('/your-data-and-privacy', function () {
+    return view('your-data-and-privacy', ['sidemenu'=>true]);
 });
 
 if (config('app.registration_enabled') == false) {

@@ -78,12 +78,12 @@
                     <div style="display: inline-block; width: 18%; vertical-align: top; margin:30px 15px">
                         <b-list-group>
                             <b-list-group-item><a href="/">Home</a></b-list-group-item>
-                            <b-list-group-item><a href="more-about-the-project">About</a></b-list-group-item>
-                            <b-list-group-item><a href="how-could-I-benefit-from-flexibility">Benefits for Users</a></b-list-group-item>
-                            <b-list-group-item><a href="how-could-my-organisation-benefit-from-flexibility">Benefits for Organisations</a></b-list-group-item>
-                            <b-list-group-item><a href="scotland-potential-flexibility-map">Where is the Flexibility?</a></b-list-group-item>
-                            <b-list-group-item><a href="resources-for-community-organisations">Resources for organisations</a></b-list-group-item>
-                            <b-list-group-item><a href="privacy-policy">Your Data and Privacy</a></b-list-group-item>
+                            <b-list-group-item><a href="about">About</a></b-list-group-item>
+                            <b-list-group-item><a href="benefits-for-users">Benefits for Users</a></b-list-group-item>
+                            <b-list-group-item><a href="benefits-for-organisations">Benefits for Organisations</a></b-list-group-item>
+                            <b-list-group-item><a href="where-is-the-flexibility">Where is the Flexibility?</a></b-list-group-item>
+                            <b-list-group-item><a href="resources-for-organisations">Resources for organisations</a></b-list-group-item>
+                            <b-list-group-item><a href="your-data-and-privacy">Your Data and Privacy</a></b-list-group-item>
                         </b-list-group>
                     </div>
                     @endif

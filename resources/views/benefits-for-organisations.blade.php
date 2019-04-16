@@ -133,7 +133,7 @@
         </b-card-header>
         <b-collapse id="accordion7" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-                <p>Find useful resources <a href="resources-for-community-organisations">here</a></p>
+                <p>Find useful resources <a href="resources-for-organisations">here</a></p>
             </b-card-body>
         </b-collapse>
     </b-card>
