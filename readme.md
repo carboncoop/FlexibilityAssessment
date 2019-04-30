@@ -10,7 +10,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-##Installation - Production
+## Installation - Production
 
 Clone this repository `git clone https://github.com/carboncoop/FlexibilityAssessment.git installation_directory`
 
@@ -27,7 +27,7 @@ Migrate database `php artisan migrate`
 Create passport keys `php artisan passport:install`
 
 
-##Installation - Development
+## Installation - Development
 
 Comes with Telescope for debugging and Dusk for tests.
 
