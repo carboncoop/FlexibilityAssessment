@@ -10,14 +10,12 @@
         <p class="question">What was the most useful information provided to you on the platform/by the Energy Assessor, about the changes coming in the energy system?
             <select class="form-control" v-model="assessment.data.questionnaire.mostUsefulInformation">
                 <option v-for="(section, index) in sectionsInIntro" v-bind:value="section">{{section}}</option>
-                <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
 
         <p class="question">What was the least useful information?
             <select class="form-control" v-model="assessment.data.questionnaire.leastUsefulInformation">
                 <option v-for="(section, index) in sectionsInIntro" v-bind:value="section">{{section}}</option>
-                <option style="color: red">[From Carlos] I have copied and pasted all the sections, needs feedback</option>
             </select>
         </p>
 
@@ -33,7 +31,7 @@
 
         <h2>Signup priorities & finances</h2>
 
-        <p>How important would the following be, in tempting me to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)
+        <p>How important would the following be, in attracting you to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)
         <ol class="dropZoneSignUpPriorities" v-drag-and-drop:options="sortableLIstOptions" data-id="signupPriorities">
             <li class="drag-item" v-for="item in assessment.data.questionnaire.signupPriorities" :key="item" :data-id="item">
                 <div>{{ item }}</div>
@@ -57,12 +55,16 @@
             <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"> Yes - I would consider upgrading to new smart heaters so I could join</input><br />
         </p>
 
-        <p>How important would the following be, in putting me off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)
+        <p>How important would the following be, in putting you off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)
         <ol class="dropzoneputtingMeOffRating" v-drag-and-drop:options="sortableLIstOptions" data-id="puttingMeOffRating">
             <li class="drag-item" v-for="item in assessment.data.questionnaire.puttingMeOffRating" :key="item" :data-id="item">
                 <div>{{ item }}</div>
             </li>
         </ol>
+        </p>
+
+        <p>What other information would you want before you made a decision on whether to sign up for a flexibility agreement in the future, and what further questions do you have about how the energy system is changing and about flexibility? 
+            <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.questionnaire.otherInfoBeforeDecision" />
         </p>
 
         <h2>Other feedback</h2>
@@ -107,9 +109,6 @@
                     "The changes in the grid, are beginning to be felt in people's homes'",
                     "Can I sign up for offering flexibility now?",
                     "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?",
-                    "What about taking part in this research 'demonstration' project?",
-                    "How can I sign up to take part in this research project",
-                    "What would I get for taking part?"
                 ],
                 sortableLIstOptions: {
                     dropzoneSelector: 'ol',

@@ -49819,6 +49819,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -49830,7 +49832,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
     data: function data() {
         var updateSortableArray = this.updateSortableArray;
         return {
-            sectionsInIntro: ['[Intro] What are the coming changes in the energy system?', "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?", 'Flexibility Agreements with customers', 'Aggregation', 'What is the Energy Community Aggregation Service (ECAS)?', "The changes in the grid, are beginning to be felt in people's homes'", "Can I sign up for offering flexibility now?", "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?", "What about taking part in this research 'demonstration' project?", "How can I sign up to take part in this research project", "What would I get for taking part?"],
+            sectionsInIntro: ['[Intro] What are the coming changes in the energy system?', "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?", 'Flexibility Agreements with customers', 'Aggregation', 'What is the Energy Community Aggregation Service (ECAS)?', "The changes in the grid, are beginning to be felt in people's homes'", "Can I sign up for offering flexibility now?", "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?"],
             sortableLIstOptions: {
                 dropzoneSelector: 'ol',
                 draggableSelector: 'li',
@@ -50637,20 +50639,11 @@ var render = function() {
             }
           }
         },
-        [
-          _vm._l(_vm.sectionsInIntro, function(section, index) {
-            return _c("option", { domProps: { value: section } }, [
-              _vm._v(_vm._s(section))
-            ])
-          }),
-          _vm._v(" "),
-          _c("option", { staticStyle: { color: "red" } }, [
-            _vm._v(
-              "[From Carlos] I have copied and pasted all the sections, needs feedback"
-            )
+        _vm._l(_vm.sectionsInIntro, function(section, index) {
+          return _c("option", { domProps: { value: section } }, [
+            _vm._v(_vm._s(section))
           ])
-        ],
-        2
+        })
       )
     ]),
     _vm._v(" "),
@@ -50686,20 +50679,11 @@ var render = function() {
             }
           }
         },
-        [
-          _vm._l(_vm.sectionsInIntro, function(section, index) {
-            return _c("option", { domProps: { value: section } }, [
-              _vm._v(_vm._s(section))
-            ])
-          }),
-          _vm._v(" "),
-          _c("option", { staticStyle: { color: "red" } }, [
-            _vm._v(
-              "[From Carlos] I have copied and pasted all the sections, needs feedback"
-            )
+        _vm._l(_vm.sectionsInIntro, function(section, index) {
+          return _c("option", { domProps: { value: section } }, [
+            _vm._v(_vm._s(section))
           ])
-        ],
-        2
+        })
       )
     ]),
     _vm._v(" "),
@@ -50761,7 +50745,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in tempting me to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)\n    "
+        "How important would the following be, in attracting you to sign up to a flexibility agreement? (Drag & drop, 1 - most important, 5 - least important)\n    "
       ),
       _c(
         "ol",
@@ -51043,7 +51027,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How important would the following be, in putting me off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)\n    "
+        "How important would the following be, in putting you off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)\n    "
       ),
       _c(
         "ol",
@@ -51070,6 +51054,39 @@ var render = function() {
           )
         })
       )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "What other information would you want before you made a decision on whether to sign up for a flexibility agreement in the future, and what further questions do you have about how the energy system is changing and about flexibility? \n        "
+      ),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.questionnaire.otherInfoBeforeDecision,
+            expression: "assessment.data.questionnaire.otherInfoBeforeDecision"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: {
+          value: _vm.assessment.data.questionnaire.otherInfoBeforeDecision
+        },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data.questionnaire,
+              "otherInfoBeforeDecision",
+              $event.target.value
+            )
+          }
+        }
+      })
     ]),
     _vm._v(" "),
     _c("h2", [_vm._v("Other feedback")]),
