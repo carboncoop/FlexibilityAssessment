@@ -249,6 +249,28 @@
                 </b-card-body>
             </b-collapse>
         </b-card>
+
+        <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-btn block href="#" v-b-toggle.accordion16 variant="info">Energy Officer user manual</b-btn>
+            </b-card-header>
+            <b-collapse id="accordion16" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Energy Officers.pdf')}}" target="blank">Energy Officer user manual</a></p>
+                </b-card-body>
+            </b-collapse>
+        </b-card>
+
+        <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-btn block href="#" v-b-toggle.accordion17 variant="info">Organisation user manual</b-btn>
+            </b-card-header>
+            <b-collapse id="accordion17" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Organization.pdf')}}" target="blank">Organisation user manual</a></p>
+                </b-card-body>
+            </b-collapse>
+        </b-card>
     </div>
 
 </div>

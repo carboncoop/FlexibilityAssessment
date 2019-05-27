@@ -48600,6 +48600,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: { initialAssessment: Object },
@@ -48767,7 +48768,9 @@ var render = function() {
               }
             },
             [_vm._v("Report")]
-          )
+          ),
+          _vm._v(" "),
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -48985,7 +48988,26 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          attrs: {
+            href:
+              "/resources/Flexibility Assessment tool - User manual - Energy Officers.pdf",
+            target: "blank"
+          }
+        },
+        [_vm._v("Energy Officer user manual")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -20,6 +20,7 @@
             <p>Other:</p>
             <ul>
                 <li dusk="show-report" v-on:click="$emit('updateView', 'assessment-report')">Report</li>
+                <li><a href="/resources/Flexibility Assessment tool - User manual - Energy Officers.pdf" target="blank">Energy Officer user manual</a></li>
             </ul>
         </div>
 
