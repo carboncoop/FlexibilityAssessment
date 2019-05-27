@@ -1,5 +1,6 @@
 <template>
     <div id="assessment-report">
+        <button class='btn no-print' style="float: right" v-on:click='print' title='To export the report use the "Save as PDF" functionality in the Print dialog'>Print</button>
         <h1>Flexibility assessment report</h1>
         <p>The Flexibility Assessment Tool calculates the available flexibility of 
             your household and the potential income that can be generated from it.</p>
@@ -215,6 +216,11 @@
                 this.incomeYear[scheme] = this.flexibilityModel.run(this.assessment.data).incomeYearTotal.toFixed(2);
             }
             console.log(this.incomeYear);
+        },
+        methods:{
+            print: function(){
+                window.print();
+            }
         }
     }
 </script>

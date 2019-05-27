@@ -196,8 +196,16 @@
             </b-card-header>
             <b-collapse id="accordion13" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>To be able to provide the householder with a copy of their interview record and the results of the flexibility offer, you can access and print off a report from their interview in the "Report" section of the assessment. At the bottom of the report you will also find a unique link that can be forwarded to the householder.</p>
-                    <p>This will then need to be given to the participant household to read, in advance of a follow up telephone call. </p>
+                    <p>To be able to provide the householder with a copy of their 
+                        interview record and the results of the flexibility offer, 
+                        you can access and print off a report from their interview 
+                        in the "Report" section of the assessment. At the bottom of 
+                        the report you will also find a unique link that can be 
+                        forwarded to the householder.</p>
+                    <p>To export the report use the "Save as PDF" functionality 
+                        in the Print dialog</p>
+                    <p>This will then need to be given to the participant household 
+                        to read, in advance of a follow up telephone call. </p>
                 </b-card-body>
             </b-collapse>
         </b-card>

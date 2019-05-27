@@ -49232,6 +49232,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -49259,6 +49260,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.incomeYear[scheme] = this.flexibilityModel.run(this.assessment.data).incomeYearTotal.toFixed(2);
         }
         console.log(this.incomeYear);
+    },
+    methods: {
+        print: function print() {
+            window.print();
+        }
     }
 });
 
@@ -49271,6 +49277,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "assessment-report" } }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn no-print",
+        staticStyle: { float: "right" },
+        attrs: {
+          title:
+            'To export the report use the "Save as PDF" functionality in the Print dialog'
+        },
+        on: { click: _vm.print }
+      },
+      [_vm._v("Print")]
+    ),
+    _vm._v(" "),
     _c("h1", [_vm._v("Flexibility assessment report")]),
     _vm._v(" "),
     _c("p", [
