@@ -15,7 +15,7 @@
             <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.whatDoYouThinkOfReport"></textarea>            
         </p>
 
-        <p>Is the report language too simple or complicated?           
+        <p>What did you think of the language in the report- for example was it over simplified or did it come across as over complicated?           
             <select class="form-control" v-model="assessment.data.reportFeedback.reportLanguage">
                 <option value='1- Too simple'>1- Too simple</option>
                 <option value='2'>2</option>
@@ -25,7 +25,7 @@
             </select>
         </p>
 
-        <p>Is there too much or too little information given in the report?       
+        <p>What did you think of the information in the report, would you like to have known more or less?    
             <select class="form-control" v-model="assessment.data.reportFeedback.howMuchInformationInReport">
                 <option value='1- Too little'>1- Too little</option>
                 <option value='2'>2</option>
@@ -35,7 +35,7 @@
             </select>
         </p>
 
-        <p>Anything else you want to share?
+        <p>Is there anything else you would like to tell us?
             <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.anythingElseToShareReportFeedback"></textarea>            
         </p>
         

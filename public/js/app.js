@@ -51425,7 +51425,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "Is the report language too simple or complicated?           \n        "
+        "What did you think of the language in the report- for example was it over simplified or did it come across as over complicated?           \n        "
       ),
       _c(
         "select",
@@ -51479,7 +51479,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "Is there too much or too little information given in the report?       \n        "
+        "What did you think of the information in the report, would you like to have known more or less?    \n        "
       ),
       _c(
         "select",
@@ -51534,7 +51534,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", [
-      _vm._v("Anything else you want to share?\n        "),
+      _vm._v("Is there anything else you would like to tell us?\n        "),
       _c("textarea", {
         directives: [
           {
