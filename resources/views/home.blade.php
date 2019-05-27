@@ -47,15 +47,15 @@
         <div id="navigation-buttons">
             <a href="about"><button>About</button></a>
 
-            <a href="benefits-for-users"><button>Benefits for Users</button></a>
+            <a href="benefits-for-users"><button>Benefits for users</button></a>
 
-            <a href="benefits-for-organisations"><button>Benefits for Organisations</button></a> 
+            <a href="benefits-for-organisations"><button>Benefits for organisations</button></a> 
 
-            <a href="where-is-the-flexibility"><button>Where is the Flexibility?</button></a> 
+            <a href="where-is-the-flexibility"><button>Where is the flexibility?</button></a> 
             
             <a href="resources-for-organisations"><button>Resources for organisations</button></a> 
             
-            <a href="your-data-and-privacy"><button>Your Data and Privacy</button></a> 
+            <a href="your-data-and-privacy"><button>Your data and privacy</button></a> 
 
         </div>
 
