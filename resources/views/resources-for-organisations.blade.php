@@ -158,13 +158,11 @@
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion11 variant="info" style='color:red'>Registering the participants' details</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion11 variant="info">Registering the participants' details</b-btn>
             </b-card-header>
             <b-collapse id="accordion11" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>Please enter participants' here (link to the questions and data collection fields section of the platform) to register the details of each participant household </p>
-                    <p style="color:red">I am not very clear about how you want the process to be. As the tool works now the energy officer will create an assessment and that's when the details are inputted. Are you thinking about inputting those details at a different time than when the assessment happens? </p>
-
+                    <p>Log into the tool and create a new assessment. Add participant's details.</p>
                 </b-card-body>
             </b-collapse>
         </b-card>
@@ -182,7 +180,7 @@
                         <ul>
                             <li>Carry out the home energy audit</li>
                             <li>Explain the purpose of the visit again, including the ECAS demonstrator and this interview – in case they have not read the flyer, go through the flyer information at the start of the flexibility element of the interview </li>
-                            <li>Log into the tool, create a new assessment and carry out the flexibility interview questions in the sections "Questionnaire" and "Assessment". The section "Report feedback" will be left for the follow up telephone call.  </li>
+                            <li>Log into the tool, if the participant has already been registered find an open their assessment. Otherwise create a new assessment and carry out the flexibility interview questions in the sections "Questionnaire" and "Assessment". The section "Report feedback" will be left for the follow up telephone call.  </li>
                         </ul>
                         </li>
                     </ul>
