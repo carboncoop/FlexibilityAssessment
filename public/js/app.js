@@ -49220,13 +49220,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 dynamic: { availability: 0.005, utilisation: 0.3 },
                 restore: { availability: 0, utilisation: 0.6 }
             },
-            incomeYear: { secure: 0, dynamic: 0, restore: 0 }
+            incomeYear: { secure: 0, dynamic: 0, restore: 0 },
+            incomePerAsset: { secure: { storageHeaters: 0, immersionHeater: 0 }, dynamic: { storageHeaters: 0, immersionHeater: 0 }, restore: { storageHeaters: 0, immersionHeater: 0 } }
         };
     },
     mounted: function mounted() {
         for (var scheme in this.schemes) {
             this.assessment.data.fees = this.schemes[scheme];
-            this.incomeYear[scheme] = this.flexibilityModel.run(this.assessment.data).incomeYearTotal.toFixed(2);
+            var result = this.flexibilityModel.run(this.assessment.data);
+            this.incomeYear[scheme] = result.incomeYearTotal.toFixed(2);
+            this.incomePerAsset[scheme].storageHeaters = result.incomeYear.storageHeaters;
+            this.incomePerAsset[scheme].immersionHeater = result.incomeYear.immersionHeater;
         }
         console.log(this.incomeYear);
     },
@@ -49325,9 +49329,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [
                 _vm._v(
-                  _vm._s(
-                    _vm.assessment.data.incomeYear.storageHeaters.toFixed(2)
-                  ) + "£/year"
+                  _vm._s(_vm.incomePerAsset.secure.storageHeaters.toFixed(2)) +
+                    "£/year"
                 )
               ])
             ])
@@ -49357,9 +49360,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [
                 _vm._v(
-                  _vm._s(
-                    _vm.assessment.data.incomeYear.immersionHeater.toFixed(2)
-                  ) + "£/year"
+                  _vm._s(_vm.incomePerAsset.secure.immersionHeater.toFixed(2)) +
+                    "£/year"
                 )
               ])
             ])
@@ -49375,9 +49377,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("p", [
-      _c("b", [_vm._v("Secure scheme: £" + _vm._s(_vm.incomeYear.secure))])
-    ]),
+    _c(
+      "p",
+      { staticStyle: { "text-align": "center", "margin-bottom": "50px" } },
+      [_c("b", [_vm._v("Secure scheme: £" + _vm._s(_vm.incomeYear.secure))])]
+    ),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),

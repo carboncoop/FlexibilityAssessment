@@ -16,20 +16,20 @@
                 <td>Storage heaters</td>
                 <td>{{(assessment.data.storageHeaters.number * assessment.data.storageHeaters.rating).toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.storageHeaters.toFixed(2)}}kW </td>
-                <td>{{assessment.data.incomeYear.storageHeaters.toFixed(2)}}£/year</td>
+                <td>{{incomePerAsset.secure.storageHeaters.toFixed(2)}}£/year</td>
             </tr>
             <tr v-if='assessment.data.powerAvailable.immersionHeater > 0'>
                 <td>Immersion heater</td>
                 <td>{{assessment.data.immersionHeater.rating.toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.immersionHeater.toFixed(2)}}kW</td>
-                <td>{{assessment.data.incomeYear.immersionHeater.toFixed(2)}}£/year</td>
+                <td>{{incomePerAsset.secure.immersionHeater.toFixed(2)}}£/year</td>
             </tr>
         </table>
 
         <h2>Potential income from flexibility</h2>
         <p>This is how much you may be able to make per year 
             for the energy assets you have in your household</p>
-        <p><b>Secure scheme: £{{incomeYear.secure}}</b></p>
+        <p style="text-align: center; margin-bottom: 50px"><b>Secure scheme: £{{incomeYear.secure}}</b></p>
  
 
         <div style='text-align:center;'>
@@ -154,13 +154,17 @@
                     dynamic: {availability: 0.005, utilisation: 0.3},
                     restore: {availability: 0, utilisation: 0.6}
                 },
-                incomeYear: {secure: 0, dynamic: 0, restore: 0}
+                incomeYear: {secure: 0, dynamic: 0, restore: 0},
+                incomePerAsset:{secure: {storageHeaters:0, immersionHeater:0}, dynamic: {storageHeaters:0, immersionHeater:0}, restore: {storageHeaters:0, immersionHeater:0}}
             };
         },
         mounted: function () {
             for (let scheme in this.schemes) {
                 this.assessment.data.fees = this.schemes[scheme];
-                this.incomeYear[scheme] = this.flexibilityModel.run(this.assessment.data).incomeYearTotal.toFixed(2);
+                let result = this.flexibilityModel.run(this.assessment.data);
+                this.incomeYear[scheme] = result.incomeYearTotal.toFixed(2);
+                this.incomePerAsset[scheme].storageHeaters = result.incomeYear.storageHeaters;
+                this.incomePerAsset[scheme].immersionHeater = result.incomeYear.immersionHeater;
             }
             console.log(this.incomeYear);
         },
