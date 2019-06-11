@@ -49052,7 +49052,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    max-width:260px;\n    margin: 10px 5px;\n    height: 535px;\n}\n.info-box-inline h3[data-v-0ad708b6]{\n    margin-top:0;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    margin: 10px 5px;\n}\n.info-box-inline h3[data-v-0ad708b6]{\n    margin-top:0;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n}\n", ""]);
 
 // exports
 
@@ -49064,59 +49064,6 @@ exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#pote
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(42);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -49317,21 +49264,25 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The Flexibility Assessment Tool calculates the available flexibility of \n        your household and the potential income that can be generated from it."
+        "Thank you for taking the time to complete our Flexibility assessment. Using the answers you provided, this report tells you how much income you could generate by using your electricity flexibly. "
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("Please be aware that these results are only indicative.")
+    ]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("How flexibility works")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "The companies that run the grid know when there is excess energy in the grid, and when there is not enough. When this happens, they have to pay to do something about it."
       )
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "This is the report that summarizes the calculations and results. Please be aware \n        that they are only indicative."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h2", [_vm._v("Your flexible power")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "In the table below you can see how much flexible power is available in \n        your household and the potential amount of energy that can be shifted."
+        "That’s why they are keen for households to be flexible in when you use electricity. This means agreeing to let the grid company occasionally change when one of your devices turns on or off.  This flexibility lets the grid company increase or reduce the amount of energy used on the grid to deal with problems as they come up. "
       )
     ]),
     _vm._v(" "),
@@ -49375,10 +49326,8 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.assessment.data.loadUtilisedYear.storageHeaters.toFixed(
-                      2
-                    )
-                  ) + "kWh/year"
+                    _vm.assessment.data.incomeYear.storageHeaters.toFixed(2)
+                  ) + "£/year"
                 )
               ])
             ])
@@ -49409,10 +49358,8 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.assessment.data.loadUtilisedYear.immersionHeater.toFixed(
-                      2
-                    )
-                  ) + "kWh/year"
+                    _vm.assessment.data.incomeYear.immersionHeater.toFixed(2)
+                  ) + "£/year"
                 )
               ])
             ])
@@ -49420,67 +49367,61 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("h2", [_vm._v("Schemes")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The potential income from flexibility is calculated for three different\n        type of schemes. Each of them respond to different requirements of the \n        National Grid. They also have different implications for the household \n        and provide different revenues."
-      )
-    ]),
-    _vm._v(" "),
     _c("h2", [_vm._v("Potential income from flexibility")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "In this table you can find how much you may be able to make per year with any of \n        the schemes described below and for the energy assets you have in your \n        household"
+        "This is how much you may be able to make per year \n        for the energy assets you have in your household"
       )
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table", attrs: { id: "potential-income" } }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.secure))]),
-        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.dynamic))]),
-        _c("td", [_vm._v("£" + _vm._s(_vm.incomeYear.restore))])
-      ])
+    _c("p", [
+      _c("b", [_vm._v("Secure scheme: £" + _vm._s(_vm.incomeYear.secure))])
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(1),
     _vm._v(" "),
     _c("h2", { staticClass: "new-page" }, [_vm._v("FAQ")]),
     _vm._v(" "),
-    _c("h3", [_vm._v("What is a DNO?")]),
+    _c("h3", [_vm._v("Who are the ‘grid companies’?")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "DNOs are the Distribution Network Operators. They are the companies \n        that own the cables that carry the electricity from the grid to your house."
+        "When we say ‘grid company’, we mean the Distribution Network Operators, or DNOs. These are the companies that own the cables that carry the electricity from the grid to your house."
       )
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "DNOs are very interested in flexibility. They know when there is \n        extra energy in the grid and also when there is not enough. They are \n        the ones that will pay households for shifting the energy consumption."
+        "DNOs are very interested in flexibility. They know when there is extra energy in the grid and also when there is not enough. They are the ones that will pay households for shifting energy consumption."
       )
     ]),
     _vm._v(" "),
-    _c("h3", [_vm._v("How is the available flexibility calculated?")]),
+    _c("h3", [
+      _vm._v(
+        "What happens if I want to use a device but it has been switched off?"
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [_vm._v("Xxxxxxx NEW CONTENT NEEDED xxxxxxxX")]),
+    _vm._v(" "),
+    _c("h3", [_vm._v("How have we calculated your available flexibility?")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The calculations are based in a model that takes your answers to the assessment \n        as inputs, it runs them through and algorithm and generates the results."
+        "Our calculations are based on the information we gathered on the devices you have in your home, based on the assumption that you would have a smart controller fitted to these devices after you signed up."
       )
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The model assumes that some of the power used in the house is shifted. This means that\n        the energy is not used at the time when you would normally use it but \n        at a different time of the day. "
+        "The model assumes that some of the power used by these devices is shifted. This doesn’t mean that you use more or less electricity, but that the energy is not used at the time when you would normally use it but at a different time of the day."
       )
     ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How much energy can be shifted depends on the electrical devices in your house. \n        This model takes into account storage heaters and immersion heaters but \n        also how efficient your house is and the occupancy."
+        "How much energy can be shifted depends on the electrical devices in your house. This model takes into account storage heaters and immersion heaters but also how efficient your house is and how many people live in the house."
       )
     ]),
     _vm._v(" "),
@@ -49490,12 +49431,8 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The model assumes that 80% of the immersion heater power can be shifted. "
+        "The model assumes that 80% of the immersion heater power can be shifted. The remaining 20% cannot be shifted, allowing you to keep some control."
       )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v("The remaining 20% is to allow the householder keep some control.")
     ]),
     _vm._v(" "),
     _c("h3", [
@@ -49504,15 +49441,15 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The EPC rating is used as the factor by which the amount of the charging \n        time can be reduced during the normal charging period (night). The aim of \n        using the EPC is to minimize the impact to the occupants' thermal comfort."
+        "The EPC rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (night). The aim of using the EPC is to minimize the impact to the occupants' thermal comfort."
       )
     ]),
     _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model assumes that houses with higher EPCs have better insulation and higher \n        thermal capacity. In these cases a bigger load can be shifted and the house \n        will still be at an acceptable temperature."
-      )
-    ]),
+    _c("p"),
+    _vm._v(
+      "The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature."
+    ),
+    _c("p"),
     _vm._v(" "),
     _c("h3", [_vm._v("How is the income from flexibility calculated?")]),
     _vm._v(" "),
@@ -49522,13 +49459,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("h3", [_vm._v("How much time will I have to be flexible?")]),
+    _c("h3", [_vm._v("How many hours will my device be switched off for?")]),
     _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model estimates that every year the DNOs will ask households to turn \n        off electrical loads for around 125 hours."
-      )
-    ]),
+    _c("p", [_vm._v("Xxxxxxx NEW CONTENT NEEDED xxxxxxxX")]),
     _vm._v(" "),
     _vm.reportUrl != ""
       ? _c(
@@ -49559,17 +49492,7 @@ var staticRenderFns = [
       _c("td"),
       _c("td", [_vm._v("Rating")]),
       _c("td", [_vm._v("Flexible power available")]),
-      _c("td", [_vm._v("Potential energy shifted")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Secure")]),
-      _c("td", [_vm._v("Dynamic")]),
-      _c("td", [_vm._v("Restore")])
+      _c("td", [_vm._v("Estimated earnings ")])
     ])
   },
   function() {
@@ -49589,32 +49512,6 @@ var staticRenderFns = [
         _c("p", [
           _vm._v(
             "The advantage of this scheme is that the household knows exactly when \n                the DNO will use the energy. This allows the household to prepare themselves \n                and choose which other moments of the week they use their energy. \n                The con is that the fees are lower compared to the other schemes."
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Dynamic scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "This scheme aims to support the grid in the case of a specific fault. \n                It works in a similar way than the Secure scheme: the household declares \n                a week in advance the power and the time they can turn things off. The \n                DNO will agree to that and pay a feed. Again, the DNO may or may not \n                require the household to stop using power and it will pay accordingly \n                to the amount of energy not used."
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The difference with the Secure scheme is that the DNO will only notify \n                the household to turn off things 15 minutes in advance. This can \n                be more inconvenient for the household. On the other hand the income \n                is usually higher"
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Restore scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "This scheme deals with unexpected faults in the grid. Such events are rare and \n                offer no warning as they depend on failure of equipment. Under such \n                circumstances, response can be used to reduce the stress on the network. \n                When taking part in this scheme there is no pre-agreement of when the \n                household may have to stop using power. Payment is only for the \n                amount of energy that is not used."
           )
         ])
       ])
