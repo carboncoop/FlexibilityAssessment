@@ -102,28 +102,28 @@
                         name: "Secure",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
-                        dnoEstimatedAvailabilityRequired: 125,
+                        dnoEstimatedAvailabilityRequired: 68,
                         fees: {availability: 0.125, utilisation: 0.175}
                     },
                     {
                         name: "Dynamic",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
-                        dnoEstimatedAvailabilityRequired: 125,
+                        dnoEstimatedAvailabilityRequired: 30,
                         fees: {availability: 0.005, utilisation: 0.3}
                     },
                     {
                         name: "Restore",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
-                        dnoEstimatedAvailabilityRequired: 125,
+                        dnoEstimatedAvailabilityRequired: 10,
                         fees: {availability: 0, utilisation: 0.6}
                     },
                     {
                         name: "User defined",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
-                        dnoEstimatedAvailabilityRequired: 125,
+                        dnoEstimatedAvailabilityRequired: 68,
                         fees: {availability: 0.125, utilisation: 0.175}
                     }
                 ]

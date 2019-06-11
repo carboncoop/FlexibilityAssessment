@@ -10018,7 +10018,7 @@ var flexibilityModel = function () {
         //      This is currently more realistic to use.
         // Which one to use is defined by the user: data.useDnoEstimatedHoursRequired (defaults to true)
         this.scheduledAvailabilityFactor = 1;
-        this.dnoEstimatedAvailabilityRequired = 125; // hours/year
+        this.dnoEstimatedAvailabilityRequired = 68; // hours/year
 
         // Fraction of the available load that the scheme utilises and therefor pays for
         this.utilisedLoadFactor = 1;
@@ -52038,25 +52038,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: "Secure",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
-                dnoEstimatedAvailabilityRequired: 125,
+                dnoEstimatedAvailabilityRequired: 68,
                 fees: { availability: 0.125, utilisation: 0.175 }
             }, {
                 name: "Dynamic",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
-                dnoEstimatedAvailabilityRequired: 125,
+                dnoEstimatedAvailabilityRequired: 30,
                 fees: { availability: 0.005, utilisation: 0.3 }
             }, {
                 name: "Restore",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
-                dnoEstimatedAvailabilityRequired: 125,
+                dnoEstimatedAvailabilityRequired: 10,
                 fees: { availability: 0, utilisation: 0.6 }
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
-                dnoEstimatedAvailabilityRequired: 125,
+                dnoEstimatedAvailabilityRequired: 68,
                 fees: { availability: 0.125, utilisation: 0.175 }
             }]
         };
