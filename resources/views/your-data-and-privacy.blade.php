@@ -43,9 +43,9 @@
     service will need to handle users’ data appropriately. </p>
 <p>One reason for this project is that we think a cooperative, community-based aggregator
     will be more trustworthy with the data of its energy users than large technology 
-    companies. That’s why we want to be very clear with how we are managing data, and
+    companies. That’s why we want to be very clear about how we are managing data, and
     what users’ rights are, from the get-go. </p>
-<p>The tabs below provide information about your rights, and how we use data on this 
+<p>The tabs below provides information about your rights, and how we use data on this 
     site.</p>
 
 
@@ -72,13 +72,13 @@
         </b-card-header>
         <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-                <p>This service collects information about you, your home and how you use energy in it. 
+                <p>During an Energy Audit, a trained assesor will collect information about you, your home and how you use energy in it. 
                     This information is collected for the purpose of providing you with a flexibility 
                     energy assessment. We retain a copy of your assessment for a period of 5 years 
                     after it is produced in case you lose your copy and need to retrieve it.</p>
                 <p>This data is also anonymised and aggregated by the Community Organisation that 
                     carried out your assessment. The purpose of the aggregated data is to better 
-                    understand the flexibility potential of an area.</p>
+                    understand the total flexibility potential of each area.</p>
                 <p>We do not use the data collected and processed for any other purpose unless 
                     you expressly permit it.</p>
             </b-card-body>

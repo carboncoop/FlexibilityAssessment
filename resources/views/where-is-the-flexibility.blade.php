@@ -110,14 +110,15 @@
             heat pumps, and battery storage technology. However currently this technology
             is only available in a few homes. Right now, immersion heaters and electric
             storage heaters have the most potential. </p>
-        <p>The map shows where there are concentrations of homes with immersion heater 
-            and electric storage heaters, these are the areas where an aggregated 
-            flexibility scheme could work best.</p>
+        <p>The map below shows where there are concentrations of homes with immersion heaters 
+            and electric storage heaters. These heaters use a large amount of electricity, and 
+			could be flexible if they were retrofitted with a smart controller. So it is the areas 
+			with lots of these heaters where an aggregated flexibility scheme could work best in the short term.</p>
 
         <div role="tablist">            
             <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                    <b-btn block href="#" v-b-toggle.accordion2 variant="info">Testing the concept on Glasgow's southside</b-btn>
+                    <b-btn block href="#" v-b-toggle.accordion2 variant="info">Flexibility in Glasgow's southside</b-btn>
                 </b-card-header>
                 <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                     <b-card-body>
@@ -126,34 +127,21 @@
                             blocks of flats. This is most of the G42 postcode and part of the G41 
                             postcode. Based on reported Scottish EPC data for domestic properties 
                             the area contains an estimated total of 2607kW (2.6MW) of flexible capacity 
-                            which is equivalent to turning a 150m wind turbine on/off on demand· 
+                            which is equivalent to turning a 150m wind turbine on and off on demand. 
                             After running the model we estimate that this potential flexibility 
-                            could generate around £42K.</p>
+                            could generate around £42K per year.</p>
 
-                        <p>The below table gives an estimate of total available flexibility from 
+                        <p>The table below gives an estimate of total available flexibility from 
                             storage heaters and immersion heaters in some of the postcode sectors 
                             South Seeds covers(using simple assumptions about typical average loads 
-                            and potential availability and utilisation of these loads). </p>
-
-                        <p>If you are interested in how this was calculated, it was assumed that 
-                            the available flexibility from a storage 
-                            heater is correlated with the EPC performance of a given property. These 
-                            numbers are only indicative and should only be taken as being meaningful 
-                            in the aggregate. In reality the flexibility available from a particular 
-                            installation depends on many factors including patterns of utilisation 
-                            and the detailed specifications of the equipment which cannot be evaluated 
-                            without a site visit and assessment (or continuous monitoring). The EPC 
-                            dataset is a large but potentially distorted sample of all domestic premises 
-                            and some information is recorded erroneously or expires as changes are 
-                            made to housing stock.</p>
-
+                            and the potential availability and utilisation of these loads). </p>
 
                         <p>These numbers highlight the large amounts of potential 
                             flexibility which is currently unharnessed in homes in Scotland (and 
                             elsewhere). </p>
 
                         <table class='table' id='south-seeds-postcodes-flexibility'>
-                            <tr><td>Postcode Sector</td><td>Immersion Heater (kW)</td><td>Storage Heater (kW)</td></tr>
+                            <tr><td>Postcode Sector</td><td>Immersion Heater Capacity (kW)</td><td>Storage Heater Capacity (kW)</td></tr>
                             <tr><td>G41 1</td><td>85</td><td>65</td></tr>
                             <tr><td>G41 2</td><td>106</td><td>28</td></tr>
                             <tr><td>G41 3</td><td>356</td><td>241</td></tr>
@@ -175,9 +163,6 @@
                 </b-card-header>
                 <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
                     <b-card-body>
-                        <p>Using Scottish domestic Energy Performance Certificate 
-                            (EPC) data, we have produced an interactive map of the 
-                            potential flexibility across the whole of Scotland.</p>
                         <p>Flexibility schemes will need to find and work with households 
                             who have energy use that they can flex. Most electricity 
                             use within households is not ‘flexible’, because there
@@ -186,20 +171,31 @@
                             heaters and immersion elements. These are flexible because 
                             they can charge up at any time and store the heat for
                             later.</p>
-                        <p>This map uses EPC data (which record the type of heating 
-                            in each house surveyed) to estimate the total amount of
+                        <p>This map uses Scottish Energy Performance Certificate (EPC) 
+							data, which records the type of heating in each house surveyed.
+							EPC results were used to estimate the total amount of
                             electric storage and immersion heating load installed 
                             in households for each postcode region. Deeper red colours 
                             (and higher numbers), represent more electric heating 
                             in an area. Lighter colours and lower number represent 
                             less electric heating.</p>
+						<p>This map is therefore based on the assumption that the available flexibility from a storage 
+                            heater is correlated with the EPC performance of a given property. These 
+                            numbers are only indicative and should only be taken as being meaningful 
+                            in the aggregate. In reality the flexibility available from a particular 
+                            installation depends on many factors including use pattern
+                            and the detailed specifications of the equipment which cannot be evaluated 
+                            without a site visit and assessment (or continuous monitoring). The EPC 
+                            dataset is a large but potentially distorted sample of all domestic premises 
+                            and some information is recorded erroneously or expires as changes are 
+                            made to housing stock.</p>
                     </b-card-body>
                 </b-collapse>
             </b-card>
 
             <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                    <b-btn block href="#" v-b-toggle.accordion4 variant="info">How to use this map?</b-btn>
+                    <b-btn block href="#" v-b-toggle.accordion4 variant="info">How should I use this map?</b-btn>
                 </b-card-header>
                 <b-collapse id="accordion4" accordion="my-accordion" role="tabpanel">
                     <b-card-body>
@@ -207,19 +203,19 @@
                             Flexible Power, you will want to know how many potential 
                             Flexible loads exist in households near you. If there 
                             aren’t many, it might be difficult for you to get a project 
-                            off the ground, while if every household has a large 
+                            off the ground; if every household has a large 
                             flexible load, it will be much easier for you!</p>
                         <p>Electric Storage heating and immersion elements are the
-                            most important flexible loads at the moment, and this 
-                            map will give you an idea of which parts of Scotland 
+                            most important flexible loads at the moment, so this 
+                            map is designed to give you an idea of which parts of Scotland 
                             have the most electrical heating in them. </p>
                         <p>Deeper red colours (and higher numbers), represent more 
                             electric heating in an area. Lighter colours and lower
-                            number represent less electric heating: so if your area
+                            number represent less electric heating. If your area
                             is particularly dark red, that’s good news! </p>
-                        <p>This map could also help direct outreach work: If you 
-                            are out recruiting households to participate in Flexible
-                            Power, you might want to concentrate your efforts on the
+                        <p>This map could also help you to direct your outreach work within your local areas: 
+							If you are out recruiting households to participate in the Flexible
+                            Power Community, you might want to concentrate your efforts on the
                             darker red parts of your area, as these will include more 
                             households with electric heating.</p>
                     </b-card-body>

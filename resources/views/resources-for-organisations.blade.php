@@ -48,34 +48,37 @@
         and more will do so in the future, as there is the potential for both the 
         user and the organisation to make money from such schemes. </p>
     <p>Very few resources exist yet for interested organisations; we have listed 
-        some below but we also recommend that interested groups get in touch with 
+        some information below, mainly relating to our ongoing Flexible Power Community trial. 
+		We also recommend that interested groups get in touch with 
         us or others who have experience.</p>
 
     <div role="tablist">
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion8 variant="info">What do we have to do as an aggregator on this research project? </b-btn>
+                <b-btn block href="#" v-b-toggle.accordion8 variant="info">What is the role for a local community group in this research project? </b-btn>
             </b-card-header>
             <b-collapse id="accordion8" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>To get ready for the potential future ECAS project, we want to learn much more about what flexibility might be available through households, what would attract households to sign up for offering flexibility and what would discourage them from getting involved. We also want to test what kind of information a community organisation would need or want, to help them understand whether it would be worthwhile getting involved in being a local aggregator organisation and what it would involve. This demonstration project aims to work with South Seeds to carry out this research. </p>
+                    <p>To get ready for a future Flexible Power Community, we want to learn much more about what flexibility might be available through households, what would attract households to sign up for offering flexibility and what would discourage them from getting involved. </p>
+					<p>We also want to test what kind of information a community organisation will want, to help them decide whether to get involved in being a local aggregator organisation and understand what that would involve. This demonstration project aims to work with South Seeds to carry out this research. </p>
                 </b-card-body>
             </b-collapse>
         </b-card>
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion9 variant="info">The roles of the Community Organisation in this research project</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion9 variant="info">What will the community group do as part of this research?</b-btn>
             </b-card-header>
             <b-collapse id="accordion9" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>We are asking the Community Organisation to be the front face of this research project and you would have the following roles: </p>
+                    <p>We are asking Southseeds, as the trial community organisation, to be the front face of this research project when communicating with householdrs in Glasgow. The includes the following roles: </p>
                     <ul>
-                        <li>Helping plan local community engagement, with Community Energy Scotland input</li>
-                        <li>Planning for and recruiting at least 20 participants</li>
-                        <li>Hosting an information session for potential participants, with CES input, to explain the changes that are coming in the energy system and briefing participants on what the demonstration project is trying to do and how they would get involved</li>
-                        <li>Carrying out home visits, including a home energy audit and an interview for the project, with each participant household, followed up by a phone call to get feedback on the report</li>
-                        <li>Providing feedback on the support and information the project provides to your organisation in delivering its role and whether it is clear enough and how it could be improved for future delivery of such an ECAS system</li>
+                        <li>Help plan local community engagement, with Community Energy Scotland (CES) input</li>
+                        <li>Plan for and recruiting at least 20 participants</li>
+                        <li>Host an information session for potential participants, with CES input, to: (a) explain the changes that are coming in the energy system, and (b) Briefparticipants on the demonstration project and how they would get involved</li>
+                        <li>Carry out home visits, including a home energy audit and an interview with each participating household </li> 
+						<li>Send a report to each household following their home visit, and followed this up with a phone call to get feedback on the report</li>
+                        <li>Provide feedback on the support and information that the project provides to your organisation in delivering its role, including whether this support is clear enough and how it could be improved for future delivery of such an ECAS system</li>
                     </ul>
                 </b-card-body>
             </b-collapse>
@@ -158,11 +161,16 @@
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion11 variant="info">Registering the participants' details</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion11 variant="info" style='color:red'>Registering the participants' details</b-btn>
             </b-card-header>
             <b-collapse id="accordion11" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>Log into the tool and create a new assessment. Add participant's details.</p>
+					<p>This website provides a simple data collection form for registering participants' details: </p>
+					<ul>
+						<li>Log into the website (using the link on the top right) </li>
+						<li>Click 'New' to create a new assessment, or click on an existing particuipant's assessment from the list displayed </li>
+						<li>Enter details in teh relevant boxes of the form </li>
+					</ul>
                 </b-card-body>
             </b-collapse>
         </b-card>
@@ -180,7 +188,7 @@
                         <ul>
                             <li>Carry out the home energy audit</li>
                             <li>Explain the purpose of the visit again, including the ECAS demonstrator and this interview – in case they have not read the flyer, go through the flyer information at the start of the flexibility element of the interview </li>
-                            <li>Log into the tool, if the participant has already been registered find an open their assessment. Otherwise create a new assessment and carry out the flexibility interview questions in the sections "Questionnaire" and "Assessment". The section "Report feedback" will be left for the follow up telephone call.  </li>
+                            <li>Log into the tool, create a new assessment and carry out the flexibility interview questions in the sections "Questionnaire" and "Assessment". The section "Report feedback" will be left for the follow up telephone call.  </li>
                         </ul>
                         </li>
                     </ul>
@@ -190,20 +198,13 @@
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion13 variant="info">Creating the report from the interview and sending it to the participants</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion13 variant="info">Creating the report and sending it to participants</b-btn>
             </b-card-header>
             <b-collapse id="accordion13" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>To be able to provide the householder with a copy of their 
-                        interview record and the results of the flexibility offer, 
-                        you can access and print off a report from their interview 
-                        in the "Report" section of the assessment. At the bottom of 
-                        the report you will also find a unique link that can be 
-                        forwarded to the householder.</p>
-                    <p>To export the report use the "Save as PDF" functionality 
-                        in the Print dialog</p>
-                    <p>This will then need to be given to the participant household 
-                        to read, in advance of a follow up telephone call. </p>
+                    <p>To be able to provide the householder with a copy of their interview record and the results of the flexibility offer, you can access and print off a report from their interview in the "Report" section of the assessment. At the bottom of the report you will also find a unique link that can be forwarded to the householder.</p>
+                    <p>To export the report, click on the printable link provided at the bottom of the report and use the "Save as PDF" functionality of your browser. </p>
+					<p>This will then need to be given to the participant household to read, in advance of a follow up telephone call. </p>
                 </b-card-body>
             </b-collapse>
         </b-card>
@@ -214,34 +215,29 @@
             </b-card-header>
             <b-collapse id="accordion14" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>The Energy Officer will first find the assessment. Questions in the "Report feedback" section would then be asked over the phone, to secure their response to this final element of the survey.</p>
+                    <p>First find and review the householders' report on this website. Then call the householder and ask the questions in the "Feedback" section. Fill the householders' responses into the relevant parts of the form.</p>
                 </b-card-body>
             </b-collapse>
         </b-card>
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion15 variant="info">Accessing other types of flexibility reports on the platform</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion15 variant="info">Accessing a summary of the aggregated flexibility available in your community</b-btn>
             </b-card-header>
             <b-collapse id="accordion15" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <p>As an aggregation organisation you will also need to be able to see how the flexibility being offered by individual households (as indicated by their individual reports above) adds up or 'aggregates' into larger amounts of flexibility for offering to the grid management companies.</p>
+                    <p>As an aggregation organisation you will want to be able to see how the flexibility being offered by individual households (as indicated by their individual reports) adds up or 'aggregates' into a total amount of flexibility available for contracting with a power company.</p>
                     <p>You can access an 'aggregation report' from the organisation's 
-                        dashboard clicking the "Aggregation" tab. From there you can 
-                        filter the list of assessments and/or tick the check boxes to 
-                        choose which assessments use for the report.</p>
-                    <p>The information shown in the report is:</p>
+                        dashboard by clicking the "Aggregation" tab. From there you can filter the list of assessments and/or tick the check boxes to choose which assessments use for the report.</p>
+                    <p>The information shown in an aggregation report is:</p>
                     <ul>
-                        <li>Number of assessments in report</li>
-                        <li>Flexible power available (kW)</li>
-                        <li>Total load shifted (kWh/year)</li>
-                        <li>A table indicating the total income that each one of the 
-                            3 schemes (Secure, Dynamic and Restore) would generate. 
+                        <li>Total number of assessments</li>
+                        <li>Total flexible power available (kW)</li>
+                        <li>Total load that could be shifted annualy (kWh/year estimate)</li>
+                        <li>Summary data and estimated total annual income from each of the 3 flexibility schemes (Secure, Dynamic and Restore). 
                             More information about these schemes can be found in the 
                             household report</li>
-                        <li>You are also able to calculate the income for a bespoke 
-                            scheme by tweaking the different factors that the model 
-                            uses</li>
+                        <li>Advanced: You could estimate the income provided by a different, bespoke, flexibility scheme by tweaking the factors that the model uses</li>
                     </ul>
                     <div style="text-align:center">
                         <img style="margin: auto" src="{{url('/img/Flexibility Tool - Aggregation report.jpg')}}" />
@@ -249,29 +245,9 @@
                 </b-card-body>
             </b-collapse>
         </b-card>
-
-        <b-card no-body class="mb-1">
-            <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion16 variant="info">Energy Officer user manual</b-btn>
-            </b-card-header>
-            <b-collapse id="accordion16" accordion="my-accordion" role="tabpanel">
-                <b-card-body>
-                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Energy Officers.pdf')}}" target="blank">Energy Officer user manual</a></p>
-                </b-card-body>
-            </b-collapse>
-        </b-card>
-
-        <b-card no-body class="mb-1">
-            <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion17 variant="info">Organisation user manual</b-btn>
-            </b-card-header>
-            <b-collapse id="accordion17" accordion="my-accordion" role="tabpanel">
-                <b-card-body>
-                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Organization.pdf')}}" target="blank">Organisation user manual</a></p>
-                </b-card-body>
-            </b-collapse>
-        </b-card>
     </div>
+
+NOTE --- NEW CONTENT IS NOW ON THE WEBITE AND WILL NEED ADDING!!!! (ENERGY OFFICER MANUAL AND ORGANISATION USER MANUAL)  !!!!!!
 
 </div>
 @endsection
