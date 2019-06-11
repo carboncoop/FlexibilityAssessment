@@ -161,15 +161,15 @@
 
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-btn block href="#" v-b-toggle.accordion11 variant="info" style='color:red'>Registering the participants' details</b-btn>
+                <b-btn block href="#" v-b-toggle.accordion11 variant="info">Registering the participants' details</b-btn>
             </b-card-header>
             <b-collapse id="accordion11" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
 					<p>This website provides a simple data collection form for registering participants' details: </p>
 					<ul>
 						<li>Log into the website (using the link on the top right) </li>
-						<li>Click 'New' to create a new assessment, or click on an existing particuipant's assessment from the list displayed </li>
-						<li>Enter details in teh relevant boxes of the form </li>
+						<li>Click 'New' to create a new assessment, or click on an existing participant's assessment from the list displayed </li>
+						<li>Enter details in the relevant boxes of the form </li>
 					</ul>
                 </b-card-body>
             </b-collapse>
@@ -245,9 +245,29 @@
                 </b-card-body>
             </b-collapse>
         </b-card>
-    </div>
+        
+        <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-btn block href="#" v-b-toggle.accordion16 variant="info">Energy Officer user manual</b-btn>
+            </b-card-header>
+            <b-collapse id="accordion16" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Energy Officers.pdf')}}" target="blank">Energy Officer user manual</a></p>
+                </b-card-body>
+            </b-collapse>
+        </b-card>
 
-NOTE --- NEW CONTENT IS NOW ON THE WEBITE AND WILL NEED ADDING!!!! (ENERGY OFFICER MANUAL AND ORGANISATION USER MANUAL)  !!!!!!
+        <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-btn block href="#" v-b-toggle.accordion17 variant="info">Organisation user manual</b-btn>
+            </b-card-header>
+            <b-collapse id="accordion17" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                    <p>Download <a href="{{url('/resources/Flexibility Assessment tool - User manual - Organization.pdf')}}" target="blank">Organisation user manual</a></p>
+                </b-card-body>
+            </b-collapse>
+        </b-card>
+    </div>
 
 </div>
 @endsection
