@@ -41,11 +41,8 @@
 
 <div id='how-could-I-benefit-from-flexibility'>
     <h1>Benefits for Users</h1>
-    <p><b>Flexible use of electricity at home could allow users to save money on their bills. </b></p>
-    <p>As the we are all encouraged to switch our use to electricity rather than 
-        other energy sources such as gas, our electricity bills will increase, however 
-        by understanding flexibility we can bring down our bills and even potentially 
-        earn money from opting to turn appliances off.</p> 
+    <p>Being more flexible with electricity use at home will bring challenges and opportunities for everyone. Some people who have avoided smart technology will need to engage if they want to control their bills.  </p>
+    <p>For example heat is one of the biggest loads in a home and smart controllers can be used to sync the charge times of your heaters to when the sun is shining, the wind is blowing, and there is spare power in the grid. And by doing so, you can earn an income from the power companies as a thank you.</p>
 
     <div role="tablist">
 
