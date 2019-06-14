@@ -20,17 +20,17 @@
                     <td></td>
                     <td v-for="scheme in schemes">{{scheme.name}}</td>
                 </tr>
-                <!-- We are using the option by default useDnoEstimatedHoursRequired = true, so scheduledAvailabilityFactor is not taking into account when running the model
+                <!-- We are using the option by default useDnoEstimatedHoursRequired = true, so scheduledAvailability is not taking into account when running the model
                 <tr>
                      <td>Scheduled Availability factor  <span title="Fraction of power offered by household that is accepted by the DNO"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
-                    <td v-for="scheme in schemes">{{scheme.scheduledAvailabilityFactor}}</td>
+                    <td v-for="scheme in schemes">{{scheme.scheduledAvailability}}</td>
                 </tr>
                 -->                
                 <tr>
                     <td>Utilised factor  <span title="Fraction of available load offered to the DNO that is finally shifted"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.flexibilityAwardedFactors.utilisedLoadFactor.toFixed(2)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.01" v-model="scheme.flexibilityAwardedFactors.utilisedLoadFactor" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 2">{{scheme.flexibilityAwardedFactors.utilisedLoad.toFixed(2)}}</span>
+                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.01" v-model="scheme.flexibilityAwardedFactors.utilisedLoad" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
@@ -101,28 +101,28 @@
                     {
                         name: "Secure",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 68,
                         fees: {availability: 0.125, utilisation: 0.175}
                     },
                     {
                         name: "Dynamic",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 30,
                         fees: {availability: 0.005, utilisation: 0.3}
                     },
                     {
                         name: "Restore",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 10,
                         fees: {availability: 0, utilisation: 0.6}
                     },
                     {
                         name: "User defined",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1},
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 68,
                         fees: {availability: 0.125, utilisation: 0.175}
                     }

@@ -52041,25 +52041,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             schemes: [{
                 name: "Secure",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 68,
                 fees: { availability: 0.125, utilisation: 0.175 }
             }, {
                 name: "Dynamic",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 30,
                 fees: { availability: 0.005, utilisation: 0.3 }
             }, {
                 name: "Restore",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 10,
                 fees: { availability: 0, utilisation: 0.6 }
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailabilityFactor: 1, utilisedLoadFactor: 1 },
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 68,
                 fees: { availability: 0.125, utilisation: 0.175 }
             }]
@@ -52345,7 +52345,7 @@ var render = function() {
                         ? _c("span", [
                             _vm._v(
                               _vm._s(
-                                scheme.flexibilityAwardedFactors.utilisedLoadFactor.toFixed(
+                                scheme.flexibilityAwardedFactors.utilisedLoad.toFixed(
                                   2
                                 )
                               )
@@ -52362,9 +52362,9 @@ var render = function() {
                                   rawName: "v-model",
                                   value:
                                     scheme.flexibilityAwardedFactors
-                                      .utilisedLoadFactor,
+                                      .utilisedLoad,
                                   expression:
-                                    "scheme.flexibilityAwardedFactors.utilisedLoadFactor"
+                                    "scheme.flexibilityAwardedFactors.utilisedLoad"
                                 }
                               ],
                               staticClass: "form-control",
@@ -52376,8 +52376,7 @@ var render = function() {
                               },
                               domProps: {
                                 value:
-                                  scheme.flexibilityAwardedFactors
-                                    .utilisedLoadFactor
+                                  scheme.flexibilityAwardedFactors.utilisedLoad
                               },
                               on: {
                                 change: _vm.updateReport,
@@ -52387,7 +52386,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     scheme.flexibilityAwardedFactors,
-                                    "utilisedLoadFactor",
+                                    "utilisedLoad",
                                     $event.target.value
                                   )
                                 }
