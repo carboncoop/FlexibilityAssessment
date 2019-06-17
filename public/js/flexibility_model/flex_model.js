@@ -45,8 +45,9 @@ class flexibilityModel {
         this.utilisedLoadFactor = 1;
 
 
-        // Electric tariff rate at which the household will pay the shifted load
-        this.electricalTariffRate = 0.17;     // £/kWh
+        // Electric tariff rate difference. We assume that, in the cases that the 
+        // household has a differential rate, the shift is done from low to high rate
+        this.electricalTariffRateDifferenceDifference = 0.08;     // £/kWh
 
     }
 
@@ -84,7 +85,7 @@ class flexibilityModel {
      *      - data.fees.utilisation     £/kWh (Optional)
      *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
      *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
-     *      - data.electricalTariffRate     £/kWh (Optional)
+     *      - data.electricalTariffRateDifference     £/kWh (Optional)
      *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
      *      
      ****************************************************/
@@ -104,7 +105,7 @@ class flexibilityModel {
         }
 
         if (data.tariff != undefined && data.tariff.rate != undefined)
-            this.electricalTariffRate = data.tariff.rate;
+            this.electricalTariffRateDifference = data.tariff.rate;
 
         if (data.dnoEstimatedAvailabilityRequired != undefined)
             this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
@@ -246,7 +247,7 @@ class flexibilityModel {
      * @returns income generated in a day in £
      */
     incomeFromFlexibility(power, utilisedLoad, availability) {
-        return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
+        return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRateDifference;
     }
 
     /************************************

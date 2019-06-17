@@ -190,8 +190,12 @@
                     <option value="Smart" disabled>Smart</option>    
                 </select> 
                 <div style="margin: 5px 0">
-                    <span v-if="assessment.data.tariff.type != 'Flat rate'">High rate</span><span v-if="assessment.data.tariff.type == 'Flat rate'">Rate</span> 
-                    <input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh
+                    <div v-if="assessment.data.tariff.type != 'Flat rate'" style="vertical-alignment: top">
+                        <table class="table-no-style">
+                            <tr v-if="!assessment.data.tariff.unknown"><td>Difference between lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh</td></tr>
+                            <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control" v-model="assessment.data.tariff.unknown" style="display: inline-block; width:15px; height:15px; margin: 0 10px 0 15px;" />Unknown</p></td></tr> 
+                            </table>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -278,6 +282,10 @@
         width:100px;
         display:inline-block;
     }
+    .table-no-style, .table-no-style tr, .table-no-style td{
+        border: none;
+        margin: 0
+    }
 </style>
 
 <script>
@@ -305,6 +313,11 @@
                 deep: true,
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
+                    if (dataForModel.tariff.type == "Flat rate")
+                        dataForModel.tariff.rate = 0;
+                    else if (dataForModel.tariff.unknown == true)
+                        dataForModel.tariff.rate = 0.08; // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs/
+                    console.log(dataForModel)
                     this.flexibilityModel.run(dataForModel);
                     console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                     console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
@@ -360,7 +373,7 @@
             }
 
             if (this.assessment.data.tariff == undefined) {
-                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0.17});
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0, unknown: false});
             }
 
             if (this.assessment.data.energyUse == undefined) {

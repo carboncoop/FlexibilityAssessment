@@ -10023,8 +10023,9 @@ var flexibilityModel = function () {
         // Fraction of the available load that the scheme utilises and therefor pays for
         this.utilisedLoadFactor = 1;
 
-        // Electric tariff rate at which the household will pay the shifted load
-        this.electricalTariffRate = 0.17; // £/kWh
+        // Electric tariff rate difference. We assume that, in the cases that the 
+        // household has a differential rate, the shift is done from low to high rate
+        this.electricalTariffRateDifferenceDifference = 0.08; // £/kWh
     }
 
     _createClass(flexibilityModel, [{
@@ -10062,7 +10063,7 @@ var flexibilityModel = function () {
          *      - data.fees.utilisation     £/kWh (Optional)
          *      - data.flexibilityAwardedFactors.scheduledAvailability      Number (0-1)  (Optional)
          *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
-         *      - data.electricalTariffRate     £/kWh (Optional)
+         *      - data.electricalTariffRateDifference     £/kWh (Optional)
          *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
          *      
          ****************************************************/
@@ -10080,7 +10081,7 @@ var flexibilityModel = function () {
                 if (data.flexibilityAwardedFactors.utilisedLoad != undefined) this.utilisedLoadFactor = data.flexibilityAwardedFactors.utilisedLoad;
             }
 
-            if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRate = data.tariff.rate;
+            if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRateDifference = data.tariff.rate;
 
             if (data.dnoEstimatedAvailabilityRequired != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
         }
@@ -10222,7 +10223,7 @@ var flexibilityModel = function () {
     }, {
         key: "incomeFromFlexibility",
         value: function incomeFromFlexibility(power, utilisedLoad, availability) {
-            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRate;
+            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRateDifference;
         }
 
         /************************************
@@ -43008,7 +43009,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width: 100%;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width: 100%;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n.table-no-style[data-v-19f5d1d6], .table-no-style tr[data-v-19f5d1d6], .table-no-style td[data-v-19f5d1d6]{\n    border: none;\n    margin: 0\n}\n", ""]);
 
 // exports
 
@@ -43021,6 +43022,14 @@ exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[dat
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__ = __webpack_require__(42);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43328,6 +43337,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deep: true,
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
+                if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = 0.08; // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs/
+                console.log(dataForModel);
                 this.flexibilityModel.run(dataForModel);
                 console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                 console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
@@ -43383,7 +43394,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         if (this.assessment.data.tariff == undefined) {
-            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0.17 });
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0, unknown: false });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -48119,39 +48130,132 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticStyle: { margin: "5px 0" } }, [
             _vm.assessment.data.tariff.type != "Flat rate"
-              ? _c("span", [_vm._v("High rate")])
-              : _vm._e(),
-            _vm.assessment.data.tariff.type == "Flat rate"
-              ? _c("span", [_vm._v("Rate")])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.assessment.data.tariff.rate,
-                  expression: "assessment.data.tariff.rate"
-                }
-              ],
-              staticClass: "form-control",
-              staticStyle: { "margin-left": "15px" },
-              attrs: { type: "number", min: "0.01", step: "0.01" },
-              domProps: { value: _vm.assessment.data.tariff.rate },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.assessment.data.tariff,
-                    "rate",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" £/kWh\n            ")
+              ? _c("div", { staticStyle: { "vertical-alignment": "top" } }, [
+                  _c("table", { staticClass: "table-no-style" }, [
+                    !_vm.assessment.data.tariff.unknown
+                      ? _c("tr", [
+                          _c("td", [
+                            _vm._v("Difference between lowest and highest rate")
+                          ]),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.assessment.data.tariff.rate,
+                                  expression: "assessment.data.tariff.rate"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { "margin-left": "15px" },
+                              attrs: {
+                                type: "number",
+                                min: "0.01",
+                                step: "0.01"
+                              },
+                              domProps: {
+                                value: _vm.assessment.data.tariff.rate
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.assessment.data.tariff,
+                                    "rate",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" £/kWh")
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [
+                        _vm.assessment.data.tariff.unknown
+                          ? _c("span", [
+                              _vm._v(
+                                "Difference between lowest and highest rate"
+                              )
+                            ])
+                          : _vm._e()
+                      ]),
+                      _c("td", [
+                        _c("p", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.assessment.data.tariff.unknown,
+                                expression: "assessment.data.tariff.unknown"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            staticStyle: {
+                              display: "inline-block",
+                              width: "15px",
+                              height: "15px",
+                              margin: "0 10px 0 15px"
+                            },
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(
+                                _vm.assessment.data.tariff.unknown
+                              )
+                                ? _vm._i(
+                                    _vm.assessment.data.tariff.unknown,
+                                    null
+                                  ) > -1
+                                : _vm.assessment.data.tariff.unknown
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.assessment.data.tariff.unknown,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.assessment.data.tariff,
+                                        "unknown",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.assessment.data.tariff,
+                                        "unknown",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(
+                                    _vm.assessment.data.tariff,
+                                    "unknown",
+                                    $$c
+                                  )
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v("Unknown")
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              : _vm._e()
           ])
         ])
       ]),
