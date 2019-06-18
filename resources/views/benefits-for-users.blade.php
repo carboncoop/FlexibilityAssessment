@@ -41,8 +41,10 @@
 
 <div id='how-could-I-benefit-from-flexibility'>
     <h1>Benefits for Users</h1>
-    <p>Being more flexible with electricity use at home will bring challenges and opportunities for everyone. Some people who have avoided smart technology will need to engage if they want to control their bills.  </p>
-    <p>For example heat is one of the biggest loads in a home and smart controllers can be used to sync the charge times of your heaters to when the sun is shining, the wind is blowing, and there is spare power in the grid. And by doing so, you can earn an income from the power companies as a thank you.</p>
+    <p>As we fight climate change, renewable electricity has become a key resource. But the more power stations we replace with solar panels and wind turbines, the more strain is put on the grid providing the electricity.</p>
+    <p>This is because while we could choose when to fire up a power station, we can’t choose when the wind will blow or when the sun will shine.</p>
+    <p>There’s a simple solution. Be more flexible in your power use. </p>
+    <p>That means using smart controllers to sync the charge times of your heaters to when the sun is shining, the wind is blowing, and there is spare power in the grid. And by doing so, you can earn an income from the power companies as a thank you.</p>
 
     <div role="tablist">
 

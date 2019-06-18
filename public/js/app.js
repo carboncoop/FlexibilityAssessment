@@ -49294,18 +49294,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49372,15 +49360,23 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "Thank you for taking the time to complete our Flexibility assessment. Using the answers you provided, this report tells you how much income you could generate by using your electricity flexibly. "
+        "Thank you for taking the time to complete our Flexibility assessment. Using the answers you provided, this report tells you how much income you could generate by using your electricity flexibly."
       )
     ]),
     _vm._v(" "),
     _c("p", [
-      _vm._v("Please be aware that these results are only indicative.")
+      _vm._v(
+        "Please be aware that these results are only indicative as the market and prices for flexibility are not yet fully developed."
+      )
     ]),
     _vm._v(" "),
     _c("h2", [_vm._v("How flexibility works")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Renewable electricity is now playing a crucial role in helping tackle climate change and building a sustainable society. We are using electricity more than ever before; in everything from electric heaters to cars.  But there’s a problem. Renewable energy comes from the wind, the rain, and the sun, but we can’t control the weather. Ideally, the electricity generated needs to match electricity use at all times, but we can’t turn the wind up and down on demand. "
+      )
+    ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
@@ -49390,7 +49386,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "That’s why they are keen for households to be flexible in when you use electricity. This means agreeing to let the grid company occasionally change when one of your devices turns on or off.  This flexibility lets the grid company increase or reduce the amount of energy used on the grid to deal with problems as they come up. "
+        "That’s why they are keen for households to be flexible in when you use electricity. This means agreeing to let the grid company occasionally change when one of your devices turns on or off. This flexibility lets the grid company increase or reduce the amount of energy used on the grid to deal with problems as they come up. "
       )
     ]),
     _vm._v(" "),
@@ -49473,21 +49469,47 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _c("h2", [_vm._v("What would I need to change?")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "After you sign up, we would install a smart controller in your home. This will be a small box about the size of a wifi router. The smart controller will automatically receive flexibility requests from the grid."
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "The smart controller will then control when your storage heaters and/or immersion elements charge up. It will make sure that your flexible devices provide heat for you when you need it, while also avoiding charging at times when the grid is overloaded."
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "In order for the smart controller to work, it will need to know when you want heat in your house. This is still a trial project so we don’t know exactly how it would work yet. But you might need to change how you control your heating system, so that the smart controller can see your heating preferences and make sure you get heat when you need it. This could mean using a programmable thermostat, or setting your heating times using an app or webpage. "
+      )
+    ]),
+    _vm._v(" "),
     _c("h2", [_vm._v("Potential income from flexibility")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "This is how much you may be able to make per year \n        for the energy assets you have in your household"
+        "How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a r006Fugh estimate for you below. "
       )
     ]),
     _vm._v(" "),
     _c(
       "p",
       { staticStyle: { "text-align": "center", "margin-bottom": "50px" } },
-      [_c("b", [_vm._v("Secure scheme: £" + _vm._s(_vm.incomeYear.secure))])]
+      [
+        _c("b", [
+          _vm._v("Estimated income: "),
+          _c("span", { staticStyle: {} }, [
+            _vm._v("£" + _vm._s(_vm.incomeYear.secure) + " to income Y")
+          ]),
+          _vm._v(" per")
+        ])
+      ]
     ),
-    _vm._v(" "),
-    _vm._m(1),
     _vm._v(" "),
     _c("h2", { staticClass: "new-page" }, [_vm._v("FAQ")]),
     _vm._v(" "),
@@ -49505,14 +49527,6 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("h3", [
-      _vm._v(
-        "What happens if I want to use a device but it has been switched off?"
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [_vm._v("Xxxxxxx NEW CONTENT NEEDED xxxxxxxX")]),
-    _vm._v(" "),
     _c("h3", [_vm._v("How have we calculated your available flexibility?")]),
     _vm._v(" "),
     _c("p", [
@@ -49523,7 +49537,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The model assumes that some of the power used by these devices is shifted. This doesn’t mean that you use more or less electricity, but that the energy is not used at the time when you would normally use it but at a different time of the day."
+        "The model assumes that some of the power used by these devices is ‘shifted’. This doesn’t mean that you use more or less electricity, but that you use it at a different time of the day to when you normally would."
       )
     ]),
     _vm._v(" "),
@@ -49549,27 +49563,39 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The EPC rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (night). The aim of using the EPC is to minimize the impact to the occupants' thermal comfort."
+        "Your house’s Energy Performance Certificate (EPC) rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (normally night), to other times of day when flexibility is needed. The aim of using the EPC is to minimize the impact to your thermal comfort."
       )
     ]),
     _vm._v(" "),
-    _c("p"),
-    _vm._v(
-      "The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature."
-    ),
-    _c("p"),
+    _c("p", [
+      _vm._v(
+        "The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature."
+      )
+    ]),
     _vm._v(" "),
     _c("h3", [_vm._v("How is the income from flexibility calculated?")]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The income is calculated as the fees you get paid by the DNO minus the \n        cost of using the energy at a different time of the day"
+        "The income is calculated as the fees from the DNO minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. "
       )
     ]),
     _vm._v(" "),
-    _c("h3", [_vm._v("How many hours will my device be switched off for?")]),
+    _c("h3", [_vm._v("How much time will I have to be flexible?")]),
     _vm._v(" "),
-    _c("p", [_vm._v("Xxxxxxx NEW CONTENT NEEDED xxxxxxxX")]),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("h3", [
+      _vm._v(
+        "Will signing up for flexibility mean I can’t use my heaters when I want?"
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. "
+      )
+    ]),
     _vm._v(" "),
     _vm.reportUrl != ""
       ? _c(
@@ -49607,22 +49633,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { "text-align": "center" } }, [
-      _c("div", { staticClass: "info-box-inline" }, [
-        _c("h3", [_vm._v("Secure scheme")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "This scheme aims to manage predictable needs of the grid. The \n                household agrees in advance with the DNO how much power they \n                can stop using and for how long. The DNO will pay a fee for this. \n                The following week the DNO will use all or some of that power\n                and pay another fee for the total amount."
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "The advantage of this scheme is that the household knows exactly when \n                the DNO will use the energy. This allows the household to prepare themselves \n                and choose which other moments of the week they use their energy. \n                The con is that the fees are lower compared to the other schemes."
-          )
-        ])
-      ])
+    return _c("p", [
+      _vm._v("The model estimates that the DNOs will require between "),
+      _c("span", { staticStyle: {} }, [_vm._v("X and Y")]),
+      _vm._v(" hours of flexibility each year.")
     ])
   }
 ]
@@ -51341,6 +51355,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -51365,52 +51384,98 @@ var render = function() {
   return _c("div", { attrs: { id: "assessment-form" } }, [
     _c("h1", [_vm._v("Flexibility assessment - Report feedback")]),
     _vm._v(" "),
-    _c("h2", [_vm._v("About the report")]),
+    _c("h2", { staticStyle: { "margin-bottom": "20px" } }, [
+      _vm._v("About the report")
+    ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "Which of the flexibility offers would you choose, and why?\n        "
-      ),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.assessment.data.reportFeedback.flexibilityOfferChosen,
-              expression:
-                "assessment.data.reportFeedback.flexibilityOfferChosen"
-            }
-          ],
-          staticClass: "form-control",
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.$set(
-                _vm.assessment.data.reportFeedback,
-                "flexibilityOfferChosen",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-              )
-            }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "Secure" } }, [_vm._v("Secure")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Dynamic" } }, [_vm._v("Dynamic")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Restore" } }, [_vm._v("Restore")])
-        ]
+        "If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?"
       )
     ]),
+    _vm._v(" "),
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.reportFeedback.heatingSettingUpMethod,
+            expression: "assessment.data.reportFeedback.heatingSettingUpMethod"
+          }
+        ],
+        staticClass: "form-control",
+        on: {
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.$set(
+              _vm.assessment.data.reportFeedback,
+              "heatingSettingUpMethod",
+              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+            )
+          }
+        }
+      },
+      [
+        _c("option", { attrs: { value: "1- Too simple" } }, [
+          _vm._v("1- Too simple")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3- just right" } }, [
+          _vm._v("3- just right")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "5- too complicated" } }, [
+          _vm._v("5- too complicated")
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "If you currently set your heating only using the knobs on the heaters, it might take time to get used to using  thermostat, app or webpage to set your heating. But the new system would also give you much more control and could help you cut costs. How would you feel about changing to a new system of heating controls?"
+      )
+    ]),
+    _vm._v(" "),
+    _c("textarea", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.assessment.data.reportFeedback.changeToANewSystem,
+          expression: "assessment.data.reportFeedback.changeToANewSystem"
+        }
+      ],
+      staticStyle: { display: "block" },
+      attrs: { rows: "4", cols: "75" },
+      domProps: {
+        value: _vm.assessment.data.reportFeedback.changeToANewSystem
+      },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.$set(
+            _vm.assessment.data.reportFeedback,
+            "changeToANewSystem",
+            $event.target.value
+          )
+        }
+      }
+    }),
     _vm._v(" "),
     _c("p", [
       _vm._v(
@@ -51600,7 +51665,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How easy was it to navigate through the website and begin your self-assessment? \n     "
+        "How easy was it to navigate through the website and begin your self-assessment? \n        "
       ),
       _c(
         "select",
@@ -51659,7 +51724,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How clear was the guidance provided to help you fill in the self-assessment? \n     "
+        "How clear was the guidance provided to help you fill in the self-assessment? \n        "
       ),
       _c(
         "select",
@@ -51714,7 +51779,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How easy was it for you to find all the information you needed to fill in the self-assessment? \n     "
+        "How easy was it for you to find all the information you needed to fill in the self-assessment? \n        "
       ),
       _c(
         "select",
@@ -51772,7 +51837,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", [
-      _vm._v("How easy was it to understand the report? \n     "),
+      _vm._v("How easy was it to understand the report? \n        "),
       _c(
         "select",
         {
