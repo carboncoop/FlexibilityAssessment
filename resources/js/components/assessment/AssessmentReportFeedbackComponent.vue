@@ -114,6 +114,14 @@
             if (this.assessment.data.reportFeedback == undefined) {
                 Vue.set(this.assessment.data, 'reportFeedback', {});
             }
+            
+            // For backwards compatibility
+            if (this.assessment.data.reportFeedback.heatingSettingUpMethod == undefined) {
+                Vue.set(this.assessment.data.reportFeedback, 'heatingSettingUpMethod', "");
+            }
+            if (this.assessment.data.reportFeedback.changeToANewSystem == undefined) {
+                Vue.set(this.assessment.data.reportFeedback, 'changeToANewSystem', "");
+            }
         }
     }
 
