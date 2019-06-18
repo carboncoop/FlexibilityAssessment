@@ -4,18 +4,6 @@
 
         <h2 style="margin-bottom: 20px">About the report</h2>
 
-        <p>If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?</p>
-        <select class="form-control" v-model="assessment.data.reportFeedback.heatingSettingUpMethod">
-            <option value='1- Too simple'>1- Too simple</option>
-            <option value='2'>2</option>
-            <option value='3- just right'>3- just right</option>
-            <option value='4'>4</option>
-            <option value='5- too complicated'>5- too complicated</option>
-        </select>
-
-        <p>If you currently set your heating only using the knobs on the heaters, it might take time to get used to using  thermostat, app or webpage to set your heating. But the new system would also give you much more control and could help you cut costs. How would you feel about changing to a new system of heating controls?</p>
-        <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.changeToANewSystem"></textarea>            
-
         <p>What do you think of the report? - what was good, and what needs improving?
             <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.reportFeedback.whatDoYouThinkOfReport"></textarea>            
         </p>
@@ -113,14 +101,6 @@
         created: function () {
             if (this.assessment.data.reportFeedback == undefined) {
                 Vue.set(this.assessment.data, 'reportFeedback', {});
-            }
-            
-            // For backwards compatibility
-            if (this.assessment.data.reportFeedback.heatingSettingUpMethod == undefined) {
-                Vue.set(this.assessment.data.reportFeedback, 'heatingSettingUpMethod', "");
-            }
-            if (this.assessment.data.reportFeedback.changeToANewSystem == undefined) {
-                Vue.set(this.assessment.data.reportFeedback, 'changeToANewSystem', "");
             }
         }
     }

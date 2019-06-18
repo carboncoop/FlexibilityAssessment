@@ -49840,6 +49840,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49881,6 +49893,14 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
             this.assessment.data.questionnaire.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
 
             this.assessment.data.questionnaire.preparedToPayUpfront = { no: 0, yesToJoin: 0, yesUpgradeHeating: 0 };
+        }
+
+        // For backwards compatibility
+        if (this.assessment.data.questionnaire.heatingSettingUpMethod == undefined) {
+            Vue.set(this.assessment.data.questionnaire, 'heatingSettingUpMethod', "");
+        }
+        if (this.assessment.data.questionnaire.changeToANewSystem == undefined) {
+            Vue.set(this.assessment.data.questionnaire, 'changeToANewSystem', "");
         }
     }
 });
@@ -50760,6 +50780,87 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
+    _c("h2", [_vm._v("Heating controls")]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?"
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.questionnaire.heatingSettingUpMethod,
+            expression: "assessment.data.questionnaire.heatingSettingUpMethod"
+          }
+        ],
+        staticClass: "form-control",
+        on: {
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.$set(
+              _vm.assessment.data.questionnaire,
+              "heatingSettingUpMethod",
+              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+            )
+          }
+        }
+      },
+      [
+        _c("option", { attrs: { value: "A programmable thermostat" } }, [
+          _vm._v("A programmable thermostat")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "App" } }, [_vm._v("App")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "Webpage" } }, [_vm._v("Webpage")])
+      ]
+    ),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "If you currently set your heating only using the knobs on the heaters, it might take time to get used to using  thermostat, app or webpage to set your heating. But the new system would also give you much more control and could help you cut costs. How would you feel about changing to a new system of heating controls?"
+      )
+    ]),
+    _vm._v(" "),
+    _c("textarea", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.assessment.data.questionnaire.changeToANewSystem,
+          expression: "assessment.data.questionnaire.changeToANewSystem"
+        }
+      ],
+      staticStyle: { display: "block" },
+      attrs: { rows: "4", cols: "75" },
+      domProps: { value: _vm.assessment.data.questionnaire.changeToANewSystem },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.$set(
+            _vm.assessment.data.questionnaire,
+            "changeToANewSystem",
+            $event.target.value
+          )
+        }
+      }
+    }),
+    _vm._v(" "),
     _c("h2", [_vm._v("Signup priorities & finances")]),
     _vm._v(" "),
     _c("p", [
@@ -51348,18 +51449,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -51369,14 +51458,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         if (this.assessment.data.reportFeedback == undefined) {
             Vue.set(this.assessment.data, 'reportFeedback', {});
-        }
-
-        // For backwards compatibility
-        if (this.assessment.data.reportFeedback.heatingSettingUpMethod == undefined) {
-            Vue.set(this.assessment.data.reportFeedback, 'heatingSettingUpMethod', "");
-        }
-        if (this.assessment.data.reportFeedback.changeToANewSystem == undefined) {
-            Vue.set(this.assessment.data.reportFeedback, 'changeToANewSystem', "");
         }
     }
 });
@@ -51395,95 +51476,6 @@ var render = function() {
     _c("h2", { staticStyle: { "margin-bottom": "20px" } }, [
       _vm._v("About the report")
     ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?"
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.assessment.data.reportFeedback.heatingSettingUpMethod,
-            expression: "assessment.data.reportFeedback.heatingSettingUpMethod"
-          }
-        ],
-        staticClass: "form-control",
-        on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.$set(
-              _vm.assessment.data.reportFeedback,
-              "heatingSettingUpMethod",
-              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-            )
-          }
-        }
-      },
-      [
-        _c("option", { attrs: { value: "1- Too simple" } }, [
-          _vm._v("1- Too simple")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "3- just right" } }, [
-          _vm._v("3- just right")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "5- too complicated" } }, [
-          _vm._v("5- too complicated")
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "If you currently set your heating only using the knobs on the heaters, it might take time to get used to using  thermostat, app or webpage to set your heating. But the new system would also give you much more control and could help you cut costs. How would you feel about changing to a new system of heating controls?"
-      )
-    ]),
-    _vm._v(" "),
-    _c("textarea", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.assessment.data.reportFeedback.changeToANewSystem,
-          expression: "assessment.data.reportFeedback.changeToANewSystem"
-        }
-      ],
-      staticStyle: { display: "block" },
-      attrs: { rows: "4", cols: "75" },
-      domProps: {
-        value: _vm.assessment.data.reportFeedback.changeToANewSystem
-      },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.$set(
-            _vm.assessment.data.reportFeedback,
-            "changeToANewSystem",
-            $event.target.value
-          )
-        }
-      }
-    }),
     _vm._v(" "),
     _c("p", [
       _vm._v(

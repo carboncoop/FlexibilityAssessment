@@ -28,6 +28,18 @@
             </select>
         </p>
 
+        <h2>Heating controls</h2>
+        
+        <p>If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?</p>
+        <select class="form-control" v-model="assessment.data.questionnaire.heatingSettingUpMethod">
+            <option value='A programmable thermostat'>A programmable thermostat</option>
+            <option value='App'>App</option>
+            <option value='Webpage'>Webpage</option>
+        </select>
+
+        <p>If you currently set your heating only using the knobs on the heaters, it might take time to get used to using  thermostat, app or webpage to set your heating. But the new system would also give you much more control and could help you cut costs. How would you feel about changing to a new system of heating controls?</p>
+        <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.questionnaire.changeToANewSystem"></textarea>            
+
 
         <h2>Signup priorities & finances</h2>
 
@@ -150,6 +162,14 @@
                 ];
 
                 this.assessment.data.questionnaire.preparedToPayUpfront = {no: 0, yesToJoin: 0, yesUpgradeHeating: 0};
+            }
+                                    
+            // For backwards compatibility
+            if (this.assessment.data.questionnaire.heatingSettingUpMethod == undefined) {
+                Vue.set(this.assessment.data.questionnaire, 'heatingSettingUpMethod', "");
+            }
+            if (this.assessment.data.questionnaire.changeToANewSystem == undefined) {
+                Vue.set(this.assessment.data.questionnaire, 'changeToANewSystem', "");
             }
         }
     }
