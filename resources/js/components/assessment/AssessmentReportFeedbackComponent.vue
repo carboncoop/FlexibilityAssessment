@@ -99,7 +99,8 @@
     export default{
         mixins: [AssessmentInput],
         created: function () {
-            if (this.assessment.data.reportFeedback == undefined) {
+            console.log(this.assessment.data)
+            if (this.assessment.data.reportFeedback == undefined || Array.isArray(this.assessment.data.reportFeedback) ==true ) {
                 Vue.set(this.assessment.data, 'reportFeedback', {});
             }
         }

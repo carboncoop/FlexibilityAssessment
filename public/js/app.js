@@ -51456,7 +51456,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
     created: function created() {
-        if (this.assessment.data.reportFeedback == undefined) {
+        console.log(this.assessment.data);
+        if (this.assessment.data.reportFeedback == undefined || Array.isArray(this.assessment.data.reportFeedback) == true) {
             Vue.set(this.assessment.data, 'reportFeedback', {});
         }
     }
