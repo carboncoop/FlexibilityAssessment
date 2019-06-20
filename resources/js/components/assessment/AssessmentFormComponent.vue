@@ -322,7 +322,7 @@
                     console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                     console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
                     console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
-                    console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                    console.log("Income year " + JSON.stringify(dataForModel.incomeYearBySource));
                     console.log("Income year total = " + dataForModel.incomeYearTotal);
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                         this.assessment.data = dataForModel;

@@ -36,7 +36,7 @@
         <p>How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a r006Fugh estimate for you below. </p>
         <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure}} to income Y</span> per</b></p>
 
-        
+
         <h2 class="new-page">FAQ</h2>
 
         <h3>Who are the ‘grid companies’?</h3>
@@ -60,7 +60,7 @@
 
         <h3>How much time will I have to be flexible?</h3>
         <p>The model estimates that the DNOs will require between <span style="red">X and Y</span> hours of flexibility each year.</p>
-        
+
         <h3>Will signing up for flexibility mean I can’t use my heaters when I want?</h3>
         <p>No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. </p>
 
@@ -143,16 +143,19 @@
                     restore: {availability: 0, utilisation: 0.6}
                 },
                 incomeYear: {secure: 0, dynamic: 0, restore: 0},
-                incomePerAsset: {secure: {storageHeaters: 0, immersionHeater: 0}, dynamic: {storageHeaters: 0, immersionHeater: 0}, restore: {storageHeaters: 0, immersionHeater: 0}}
+                incomePerAsset: {secure: {storageHeaters: 0, immersionHeater: 0}, dynamic: {storageHeaters: 0, immersionHeater: 0}, restore: {storageHeaters: 0, immersionHeater: 0}},
+                aggregatorFeeFactor: 0.3
             };
         },
         mounted: function () {
             for (let scheme in this.schemes) {
                 this.assessment.data.fees = this.schemes[scheme];
+                this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
                 let result = this.flexibilityModel.run(this.assessment.data);
-                this.incomeYear[scheme] = result.incomeYearTotal.toFixed(2);
-                this.incomePerAsset[scheme].storageHeaters = result.incomeYear.storageHeaters;
-                this.incomePerAsset[scheme].immersionHeater = result.incomeYear.immersionHeater;
+                this.incomeYear[scheme] = result.incomeYearTotalHousehold.toFixed(2);
+                console.log(result);
+                this.incomePerAsset[scheme].storageHeaters = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
+                this.incomePerAsset[scheme].immersionHeater = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
             }
             console.log(this.incomeYear);
         },

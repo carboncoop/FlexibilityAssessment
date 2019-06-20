@@ -25,7 +25,9 @@ class flexibilityModel {
     constructor() {
         console.log("Debug Flexibility model");
 
-        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
+        // Default values
+
+        // Fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
         this.availabilityFee = 0.125;// £/kW/h
         this.utilisationFee = 0.175; // £/kWh
 
@@ -44,10 +46,12 @@ class flexibilityModel {
         // Fraction of the available load that the scheme utilises and therefor pays for
         this.utilisedLoadFactor = 1;
 
-
         // Electric tariff rate difference. We assume that, in the cases that the 
         // household has a differential rate, the shift is done from low to high rate
         this.electricalTariffRateDifferenceDifference = 0.08;     // £/kWh
+
+        // Fraction deducted from household income and kept by the aggregator
+        this.aggregatorFeeFactor = 0.3;
 
     }
 
@@ -56,15 +60,19 @@ class flexibilityModel {
         data.powerAvailable = {};
         data.flexibilityHoursScheduled = {};
         data.loadUtilisedYear = {};
-        data.incomeYear = {};
+        data.incomeYearBySource = {};
         data.incomeYearTotal = 0;
+        data.incomeYearTotalHousehold = 0;
+        data.incomeYearTotalAggregator = 0;
 
         this.ini(data);
         this.storageHeatersFlexibility(data);
         this.immersionHeaterFlexibility(data);
 
-        for (let source in data.incomeYear) {
-            data.incomeYearTotal += data.incomeYear[source];
+        for (let source in data.incomeYearBySource) {
+            data.incomeYearTotal += data.incomeYearBySource[source];
+            data.incomeYearTotalHousehold += (1 - this.aggregatorFeeFactor) * data.incomeYearBySource[source];
+            data.incomeYearTotalAggregator += this.aggregatorFeeFactor * data.incomeYearBySource[source];
         }
 
         return data;
@@ -77,7 +85,8 @@ class flexibilityModel {
      *  If specified by the user, we change the 
      *  - default fees
      *  - fractions of flexibility scheduleds and utilised by the scheme
-     *  - electric tariff rate at which the shifted load will be paid
+     *  - diference in electric tariff rate at which the shifted load will be paid
+     *  - the fraction of the income kept by the aggregator
      *  
      *  
      *  User inputs:
@@ -87,6 +96,7 @@ class flexibilityModel {
      *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
      *      - data.electricalTariffRateDifference     £/kWh (Optional)
      *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
+     *      - data.aggregatorFeeFactor  Number (0-1)   (Optional)
      *      
      ****************************************************/
     ini(data) {
@@ -109,6 +119,9 @@ class flexibilityModel {
 
         if (data.dnoEstimatedAvailabilityRequired != undefined)
             this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
+        
+        if (data.aggregatorFeeFactor != undefined)
+            this.aggregatorFeeFactor = data.aggregatorFeeFactor;
     }
 
     /********************************************
@@ -175,7 +188,7 @@ class flexibilityModel {
         data.powerAvailable.storageHeaters = powerAvailable;
         data.flexibilityHoursScheduled.storageHeaters = flexibilityHoursScheduled;
         data.loadUtilisedYear.storageHeaters = loadUtilisedYear;
-        data.incomeYear.storageHeaters = incomeYear;
+        data.incomeYearBySource.storageHeaters = incomeYear;
         return data;
     }
 
@@ -231,7 +244,7 @@ class flexibilityModel {
         data.powerAvailable.immersionHeater = powerAvailable;
         data.flexibilityHoursScheduled.immersionHeater = flexibilityHoursScheduled;
         data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
-        data.incomeYear.immersionHeater = incomeYear;
+        data.incomeYearBySource.immersionHeater = incomeYear;
 
         return data;
     }

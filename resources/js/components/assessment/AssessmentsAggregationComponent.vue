@@ -55,9 +55,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Total income per scheme (£/year)</td>
+                    <td>Aggregator factor <span title="Fraction of total income kept by the aggregator"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        {{scheme.incomeYearTotal.toFixed(2)}}
+                        <span v-if="index <= 2">{{scheme.aggregatorFactor.toFixed(2)}}</span>
+                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFactor" v-on:change="updateReport" /></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total income household (£/year)</td>
+                    <td v-for="(scheme, index) in schemes">
+                        {{scheme.incomeYearTotalHousehold.toFixed(2)}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total income aggregator (£/year)</td>
+                    <td v-for="(scheme, index) in schemes">
+                        {{scheme.incomeYearTotalAggregator.toFixed(2)}}
                     </td>
                 </tr>
             </table>
@@ -78,7 +91,7 @@
     }
 
     input[type=number]{
-        width:85px
+        width:105px
     }
 </style>
 
@@ -103,28 +116,32 @@
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 68,
-                        fees: {availability: 0.125, utilisation: 0.175}
+                        fees: {availability: 0.125, utilisation: 0.175},
+                        aggregatorFactor: 0.3
                     },
                     {
                         name: "Dynamic",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 30,
-                        fees: {availability: 0.005, utilisation: 0.3}
+                        fees: {availability: 0.005, utilisation: 0.3},
+                        aggregatorFactor: 0.3
                     },
                     {
                         name: "Restore",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 10,
-                        fees: {availability: 0, utilisation: 0.6}
+                        fees: {availability: 0, utilisation: 0.6},
+                        aggregatorFactor: 0.3
                     },
                     {
                         name: "User defined",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
                         dnoEstimatedAvailabilityRequired: 68,
-                        fees: {availability: 0.125, utilisation: 0.175}
+                        fees: {availability: 0.125, utilisation: 0.175},
+                        aggregatorFactor: 0.3
                     }
                 ]
             };
@@ -174,7 +191,8 @@
                     this.schemes.forEach(function (scheme) {
                         scheme.powerAvailable = 0;
                         scheme.loadUtilisedYear = 0;
-                        scheme.incomeYearTotal = 0;
+                        scheme.incomeYearTotalHousehold = 0;
+                        scheme.incomeYearTotalAggregator = 0;
                     });
                     //Generate report
                     let myself = this;
@@ -183,10 +201,12 @@
                             assessment.data.fees = scheme.fees;
                             assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
                             assessment.data.dnoEstimatedAvailabilityRequired = scheme.dnoEstimatedAvailabilityRequired;
+                            assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
                             myself.flexibilityModel.run(assessment.data);
                             scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
                             scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
-                            scheme.incomeYearTotal += assessment.data.incomeYearTotal;
+                            scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
+                            scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
                         });
                     });
                     console.log(this.schemes);

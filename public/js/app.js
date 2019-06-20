@@ -10004,7 +10004,9 @@ var flexibilityModel = function () {
 
         console.log("Debug Flexibility model");
 
-        // Default fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
+        // Default values
+
+        // Fees - https://flexiblepower.wpdserv.net/flexibility-services - Secure service
         this.availabilityFee = 0.125; // £/kW/h
         this.utilisationFee = 0.175; // £/kWh
 
@@ -10026,6 +10028,9 @@ var flexibilityModel = function () {
         // Electric tariff rate difference. We assume that, in the cases that the 
         // household has a differential rate, the shift is done from low to high rate
         this.electricalTariffRateDifferenceDifference = 0.08; // £/kWh
+
+        // Fraction deducted from household income and kept by the aggregator
+        this.aggregatorFeeFactor = 0.3;
     }
 
     _createClass(flexibilityModel, [{
@@ -10035,15 +10040,19 @@ var flexibilityModel = function () {
             data.powerAvailable = {};
             data.flexibilityHoursScheduled = {};
             data.loadUtilisedYear = {};
-            data.incomeYear = {};
+            data.incomeYearBySource = {};
             data.incomeYearTotal = 0;
+            data.incomeYearTotalHousehold = 0;
+            data.incomeYearTotalAggregator = 0;
 
             this.ini(data);
             this.storageHeatersFlexibility(data);
             this.immersionHeaterFlexibility(data);
 
-            for (var source in data.incomeYear) {
-                data.incomeYearTotal += data.incomeYear[source];
+            for (var source in data.incomeYearBySource) {
+                data.incomeYearTotal += data.incomeYearBySource[source];
+                data.incomeYearTotalHousehold += (1 - this.aggregatorFeeFactor) * data.incomeYearBySource[source];
+                data.incomeYearTotalAggregator += this.aggregatorFeeFactor * data.incomeYearBySource[source];
             }
 
             return data;
@@ -10055,7 +10064,8 @@ var flexibilityModel = function () {
          *  If specified by the user, we change the 
          *  - default fees
          *  - fractions of flexibility scheduleds and utilised by the scheme
-         *  - electric tariff rate at which the shifted load will be paid
+         *  - diference in electric tariff rate at which the shifted load will be paid
+         *  - the fraction of the income kept by the aggregator
          *  
          *  
          *  User inputs:
@@ -10065,6 +10075,7 @@ var flexibilityModel = function () {
          *      - data.flexibilityAwardedFactors.utilisedLoad               Number (0-1)  (Optional)
          *      - data.electricalTariffRateDifference     £/kWh (Optional)
          *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
+         *      - data.aggregatorFeeFactor  Number (0-1)   (Optional)
          *      
          ****************************************************/
 
@@ -10084,6 +10095,8 @@ var flexibilityModel = function () {
             if (data.tariff != undefined && data.tariff.rate != undefined) this.electricalTariffRateDifference = data.tariff.rate;
 
             if (data.dnoEstimatedAvailabilityRequired != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
+
+            if (data.aggregatorFeeFactor != undefined) this.aggregatorFeeFactor = data.aggregatorFeeFactor;
         }
 
         /********************************************
@@ -10148,7 +10161,7 @@ var flexibilityModel = function () {
             data.powerAvailable.storageHeaters = powerAvailable;
             data.flexibilityHoursScheduled.storageHeaters = flexibilityHoursScheduled;
             data.loadUtilisedYear.storageHeaters = loadUtilisedYear;
-            data.incomeYear.storageHeaters = incomeYear;
+            data.incomeYearBySource.storageHeaters = incomeYear;
             return data;
         }
 
@@ -10204,7 +10217,7 @@ var flexibilityModel = function () {
             data.powerAvailable.immersionHeater = powerAvailable;
             data.flexibilityHoursScheduled.immersionHeater = flexibilityHoursScheduled;
             data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
-            data.incomeYear.immersionHeater = incomeYear;
+            data.incomeYearBySource.immersionHeater = incomeYear;
 
             return data;
         }
@@ -43343,7 +43356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                 console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
                 console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
-                console.log("Income year " + JSON.stringify(dataForModel.incomeYear));
+                console.log("Income year " + JSON.stringify(dataForModel.incomeYearBySource));
                 console.log("Income year total = " + dataForModel.incomeYearTotal);
                 if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                     this.assessment.data = dataForModel;
@@ -49313,16 +49326,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 restore: { availability: 0, utilisation: 0.6 }
             },
             incomeYear: { secure: 0, dynamic: 0, restore: 0 },
-            incomePerAsset: { secure: { storageHeaters: 0, immersionHeater: 0 }, dynamic: { storageHeaters: 0, immersionHeater: 0 }, restore: { storageHeaters: 0, immersionHeater: 0 } }
+            incomePerAsset: { secure: { storageHeaters: 0, immersionHeater: 0 }, dynamic: { storageHeaters: 0, immersionHeater: 0 }, restore: { storageHeaters: 0, immersionHeater: 0 } },
+            aggregatorFeeFactor: 0.3
         };
     },
     mounted: function mounted() {
         for (var scheme in this.schemes) {
             this.assessment.data.fees = this.schemes[scheme];
+            this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
             var result = this.flexibilityModel.run(this.assessment.data);
-            this.incomeYear[scheme] = result.incomeYearTotal.toFixed(2);
-            this.incomePerAsset[scheme].storageHeaters = result.incomeYear.storageHeaters;
-            this.incomePerAsset[scheme].immersionHeater = result.incomeYear.immersionHeater;
+            this.incomeYear[scheme] = result.incomeYearTotalHousehold.toFixed(2);
+            console.log(result);
+            this.incomePerAsset[scheme].storageHeaters = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
+            this.incomePerAsset[scheme].immersionHeater = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
         }
         console.log(this.incomeYear);
     },
@@ -52097,7 +52113,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\ntd.first-column[data-v-0063d52c]{\n    width: 50px !important;\n    text-align:center !important;\n}\ninput[type=number][data-v-0063d52c]{\n    width:85px\n}\n", ""]);
+exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n    max-width:250px;\n    display:inline-block;\n}\ntd.first-column[data-v-0063d52c]{\n    width: 50px !important;\n    text-align:center !important;\n}\ninput[type=number][data-v-0063d52c]{\n    width:105px\n}\n", ""]);
 
 // exports
 
@@ -52109,6 +52125,19 @@ exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n   
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(42);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52213,25 +52242,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 68,
-                fees: { availability: 0.125, utilisation: 0.175 }
+                fees: { availability: 0.125, utilisation: 0.175 },
+                aggregatorFactor: 0.3
             }, {
                 name: "Dynamic",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 30,
-                fees: { availability: 0.005, utilisation: 0.3 }
+                fees: { availability: 0.005, utilisation: 0.3 },
+                aggregatorFactor: 0.3
             }, {
                 name: "Restore",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 10,
-                fees: { availability: 0, utilisation: 0.6 }
+                fees: { availability: 0, utilisation: 0.6 },
+                aggregatorFactor: 0.3
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
                 dnoEstimatedAvailabilityRequired: 68,
-                fees: { availability: 0.125, utilisation: 0.175 }
+                fees: { availability: 0.125, utilisation: 0.175 },
+                aggregatorFactor: 0.3
             }]
         };
     },
@@ -52274,7 +52307,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.schemes.forEach(function (scheme) {
                     scheme.powerAvailable = 0;
                     scheme.loadUtilisedYear = 0;
-                    scheme.incomeYearTotal = 0;
+                    scheme.incomeYearTotalHousehold = 0;
+                    scheme.incomeYearTotalAggregator = 0;
                 });
                 //Generate report
                 var myself = this;
@@ -52283,10 +52317,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         assessment.data.fees = scheme.fees;
                         assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
                         assessment.data.dnoEstimatedAvailabilityRequired = scheme.dnoEstimatedAvailabilityRequired;
+                        assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
                         myself.flexibilityModel.run(assessment.data);
                         scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
                         scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
-                        scheme.incomeYearTotal += assessment.data.incomeYearTotal;
+                        scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
+                        scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
                     });
                 });
                 console.log(this.schemes);
@@ -52791,13 +52827,102 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Total income per scheme (£/year)")]),
+                  _c("td", [
+                    _vm._v("Aggregator factor "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          title:
+                            "Fraction of total income kept by the aggregator"
+                        }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          attrs: { icon: "question-circle", size: "xs" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 2
+                        ? _c("span", [
+                            _vm._v(_vm._s(scheme.aggregatorFactor.toFixed(2)))
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 2
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: scheme.aggregatorFactor,
+                                  expression: "scheme.aggregatorFactor"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: "1",
+                                step: "0.001"
+                              },
+                              domProps: { value: scheme.aggregatorFactor },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme,
+                                    "aggregatorFactor",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Total income household (£/year)")]),
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(scheme.incomeYearTotal.toFixed(2)) +
+                          _vm._s(scheme.incomeYearTotalHousehold.toFixed(2)) +
+                          "\n                "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Total income aggregator (£/year)")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(scheme.incomeYearTotalAggregator.toFixed(2)) +
                           "\n                "
                       )
                     ])
