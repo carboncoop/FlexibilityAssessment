@@ -76,7 +76,8 @@
                     <input type="radio" name="immersionHeater" value="Yes" v-model="assessment.data.immersionHeater.present"  /> Yes <input type="radio" name="immersionHeater" value="No" v-model="assessment.data.immersionHeater.present" checked /> No
                     <div class='heaters' v-if="assessment.data.immersionHeater.present =='Yes'">
                         <table class='heaters'>
-                            <tr><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.immersionHeater.rating" style='display:inline-block' /> kW</td></tr>
+                            <tr v-if="!assessment.data.immersionHeater.ratingUnknown"><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.immersionHeater.rating" style='display:inline-block' /> kW</td></tr>
+                            <tr><td><span v-if="assessment.data.immersionHeater.ratingUnknown">Rating</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.immersionHeater.ratingUnknown" />Unknown</p></td></tr> 
                             <tr>
                                 <td>Controls</td>
                                 <td>
@@ -101,7 +102,9 @@
                         <tr><td>Manufacturer</td><td><input type='text' class="form-control" v-model='assessment.data.storageHeaters.manufacturer' /></td></tr>
                         <tr><td>Model/make</td><td><input type='text' class="form-control" v-model='assessment.data.storageHeaters.modelMake' /></td></tr>
                         <tr><td>How many?</td><td><input class="form-control" type="number" min="0" step="1" v-model="assessment.data.storageHeaters.number" style='display:inline-block' /></td></tr>
-                        <tr><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.storageHeaters.rating" style='display:inline-block' /> kW</td></tr>
+                        <tr v-if="!assessment.data.storageHeaters.ratingUnknown"><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.storageHeaters.rating" style='display:inline-block' /> kW</td></tr>
+                        <tr><td><span v-if="assessment.data.storageHeaters.ratingUnknown">Rating</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.storageHeaters.ratingUnknown" />Unknown</p></td></tr> 
+
                         <tr>
                             <td>Controls</td>
                             <td>
@@ -193,8 +196,8 @@
                     <div v-if="assessment.data.tariff.type != 'Flat rate'" style="vertical-alignment: top">
                         <table class="table-no-style">
                             <tr v-if="!assessment.data.tariff.unknown"><td>Difference between lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh</td></tr>
-                            <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control" v-model="assessment.data.tariff.unknown" style="display: inline-block; width:15px; height:15px; margin: 0 10px 0 15px;" />Unknown</p></td></tr> 
-                            </table>
+                            <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.tariff.unknown" />Unknown</p></td></tr> 
+                        </table>
                     </div>
                 </div>
             </td>
@@ -286,6 +289,12 @@
         border: none;
         margin: 0
     }
+    input.unknown{
+        display: inline-block; 
+        width:15px; 
+        height:15px; 
+        margin: 0 10px 0 15px;
+    }
 </style>
 
 <script>
@@ -297,7 +306,12 @@
         mixins: [AssessmentInput],
         data: function () {
             return {
-                flexibilityModel: new flexibilityModel()
+                flexibilityModel: new flexibilityModel(),
+                defaultValues: {
+                    tariffRateDifference: 0.08, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                    storageHeatersRating: 2.7,
+                    immersionHeaterRating: 2.5
+                }
             };
         },
         methods: {
@@ -316,7 +330,11 @@
                     if (dataForModel.tariff.type == "Flat rate")
                         dataForModel.tariff.rate = 0;
                     else if (dataForModel.tariff.unknown == true)
-                        dataForModel.tariff.rate = 0.08; // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs/
+                        dataForModel.tariff.rate = this.defaultValues.tariffRateDifference;
+                    if (dataForModel.immersionHeater.ratingUnknown)
+                        dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+                    if (dataForModel.storageHeaters.ratingUnknown)
+                        dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
                     console.log(dataForModel)
                     this.flexibilityModel.run(dataForModel);
                     console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
@@ -342,12 +360,12 @@
 
             if (this.assessment.data.immersionHeater == undefined) {
                 Vue.set(this.assessment.data, 'immersionHeater', {});
-                this.assessment.data.immersionHeater = {"present": 'No', rating: 0, controlType: "None"};
+                this.assessment.data.immersionHeater = {"present": 'No', rating: 0, controlType: "None", ratingUnknown: false};
             }
 
             if (this.assessment.data.storageHeaters == undefined) {
                 Vue.set(this.assessment.data, 'storageHeaters', {});
-                this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 0};
+                this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 0, ratingUnknown: false};
             }
 
             if (this.assessment.data.otherElectricHeaters == undefined) {

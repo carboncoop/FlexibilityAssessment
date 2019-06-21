@@ -43028,7 +43028,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width: 100%;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n.table-no-style[data-v-19f5d1d6], .table-no-style tr[data-v-19f5d1d6], .table-no-style td[data-v-19f5d1d6]{\n    border: none;\n    margin: 0\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-19f5d1d6]{\n    color:red;\n}\nselect[data-v-19f5d1d6]{\n    max-width:350px\n}\nselect[data-v-19f5d1d6], ol[data-v-19f5d1d6],textarea[data-v-19f5d1d6]{\n    margin:0;\n}\nli[data-v-19f5d1d6]{\n    cursor:pointer;\n}\ntable[data-v-19f5d1d6]{\n    margin-bottom: 16px;\n}\ntd[data-v-19f5d1d6]{\n    padding: 2px 15px;\n    height:37px;\n    vertical-align: top;\n}\ntable#energy-assets[data-v-19f5d1d6], table#household-data[data-v-19f5d1d6]{\n    width: 100%;\n}\n#energy-assets td[data-v-19f5d1d6]:first-child, #household-data td[data-v-19f5d1d6]:first-child{\n    width:280px\n}\ntable.heaters[data-v-19f5d1d6]{\n    width: 100%;\n}\ntable.heaters td[data-v-19f5d1d6]{\n    border:none;\n    padding-bottom:0;\n    padding-left:0;\n    height:15px\n}\ninput[type=number][data-v-19f5d1d6]{\n    width:100px;\n    display:inline-block;\n}\n.table-no-style[data-v-19f5d1d6], .table-no-style tr[data-v-19f5d1d6], .table-no-style td[data-v-19f5d1d6]{\n    border: none;\n    margin: 0\n}\ninput.unknown[data-v-19f5d1d6]{\n    display: inline-block; \n    width:15px; \n    height:15px; \n    margin: 0 10px 0 15px;\n}\n", ""]);
 
 // exports
 
@@ -43331,6 +43331,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43340,7 +43349,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
     data: function data() {
         return {
-            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */]()
+            flexibilityModel: new __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
+            defaultValues: {
+                tariffRateDifference: 0.08, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                storageHeatersRating: 2.7,
+                immersionHeaterRating: 2.5
+            }
         };
     },
     methods: {
@@ -43356,7 +43370,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deep: true,
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
-                if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = 0.08; // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs/
+                if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = this.defaultValues.tariffRateDifference;
+                if (dataForModel.immersionHeater.ratingUnknown) dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+                if (dataForModel.storageHeaters.ratingUnknown) dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
                 console.log(dataForModel);
                 this.flexibilityModel.run(dataForModel);
                 console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
@@ -43382,12 +43398,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         if (this.assessment.data.immersionHeater == undefined) {
             Vue.set(this.assessment.data, 'immersionHeater', {});
-            this.assessment.data.immersionHeater = { "present": 'No', rating: 0, controlType: "None" };
+            this.assessment.data.immersionHeater = { "present": 'No', rating: 0, controlType: "None", ratingUnknown: false };
         }
 
         if (this.assessment.data.storageHeaters == undefined) {
             Vue.set(this.assessment.data, 'storageHeaters', {});
-            this.assessment.data.storageHeaters = { "present": 'No', number: 0, rating: 0 };
+            this.assessment.data.storageHeaters = { "present": 'No', number: 0, rating: 0, ratingUnknown: false };
         }
 
         if (this.assessment.data.otherElectricHeaters == undefined) {
@@ -46882,38 +46898,118 @@ var render = function() {
           _vm.assessment.data.immersionHeater.present == "Yes"
             ? _c("div", { staticClass: "heaters" }, [
                 _c("table", { staticClass: "heaters" }, [
-                  _c("tr", [
-                    _c("td", [_vm._v("Rating")]),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.assessment.data.immersionHeater.rating,
-                            expression: "assessment.data.immersionHeater.rating"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { display: "inline-block" },
-                        attrs: { type: "number", min: "0.1", step: "0.1" },
-                        domProps: {
-                          value: _vm.assessment.data.immersionHeater.rating
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                  !_vm.assessment.data.immersionHeater.ratingUnknown
+                    ? _c("tr", [
+                        _c("td", [_vm._v("Rating")]),
+                        _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value:
+                                  _vm.assessment.data.immersionHeater.rating,
+                                expression:
+                                  "assessment.data.immersionHeater.rating"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            staticStyle: { display: "inline-block" },
+                            attrs: { type: "number", min: "0.1", step: "0.1" },
+                            domProps: {
+                              value: _vm.assessment.data.immersionHeater.rating
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.assessment.data.immersionHeater,
+                                  "rating",
+                                  $event.target.value
+                                )
+                              }
                             }
-                            _vm.$set(
-                              _vm.assessment.data.immersionHeater,
-                              "rating",
-                              $event.target.value
+                          }),
+                          _vm._v(" kW")
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm.assessment.data.immersionHeater.ratingUnknown
+                        ? _c("span", [_vm._v("Rating")])
+                        : _vm._e()
+                    ]),
+                    _c("td", [
+                      _c("p", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value:
+                                _vm.assessment.data.immersionHeater
+                                  .ratingUnknown,
+                              expression:
+                                "assessment.data.immersionHeater.ratingUnknown"
+                            }
+                          ],
+                          staticClass: "form-control unknown",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.assessment.data.immersionHeater.ratingUnknown
                             )
+                              ? _vm._i(
+                                  _vm.assessment.data.immersionHeater
+                                    .ratingUnknown,
+                                  null
+                                ) > -1
+                              : _vm.assessment.data.immersionHeater
+                                  .ratingUnknown
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a =
+                                  _vm.assessment.data.immersionHeater
+                                    .ratingUnknown,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.assessment.data.immersionHeater,
+                                      "ratingUnknown",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.assessment.data.immersionHeater,
+                                      "ratingUnknown",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(
+                                  _vm.assessment.data.immersionHeater,
+                                  "ratingUnknown",
+                                  $$c
+                                )
+                              }
+                            }
                           }
-                        }
-                      }),
-                      _vm._v(" kW")
+                        }),
+                        _vm._v("Unknown")
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -47136,38 +47232,113 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("Rating")]),
-                  _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.assessment.data.storageHeaters.rating,
-                          expression: "assessment.data.storageHeaters.rating"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      staticStyle: { display: "inline-block" },
-                      attrs: { type: "number", min: "0.1", step: "0.1" },
-                      domProps: {
-                        value: _vm.assessment.data.storageHeaters.rating
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                !_vm.assessment.data.storageHeaters.ratingUnknown
+                  ? _c("tr", [
+                      _c("td", [_vm._v("Rating")]),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.assessment.data.storageHeaters.rating,
+                              expression:
+                                "assessment.data.storageHeaters.rating"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          staticStyle: { display: "inline-block" },
+                          attrs: { type: "number", min: "0.1", step: "0.1" },
+                          domProps: {
+                            value: _vm.assessment.data.storageHeaters.rating
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.assessment.data.storageHeaters,
+                                "rating",
+                                $event.target.value
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.assessment.data.storageHeaters,
-                            "rating",
-                            $event.target.value
+                        }),
+                        _vm._v(" kW")
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm.assessment.data.storageHeaters.ratingUnknown
+                      ? _c("span", [_vm._v("Rating")])
+                      : _vm._e()
+                  ]),
+                  _c("td", [
+                    _c("p", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.assessment.data.storageHeaters.ratingUnknown,
+                            expression:
+                              "assessment.data.storageHeaters.ratingUnknown"
+                          }
+                        ],
+                        staticClass: "form-control unknown",
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.assessment.data.storageHeaters.ratingUnknown
                           )
+                            ? _vm._i(
+                                _vm.assessment.data.storageHeaters
+                                  .ratingUnknown,
+                                null
+                              ) > -1
+                            : _vm.assessment.data.storageHeaters.ratingUnknown
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a =
+                                _vm.assessment.data.storageHeaters
+                                  .ratingUnknown,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.assessment.data.storageHeaters,
+                                    "ratingUnknown",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.assessment.data.storageHeaters,
+                                    "ratingUnknown",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.assessment.data.storageHeaters,
+                                "ratingUnknown",
+                                $$c
+                              )
+                            }
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" kW")
+                      }),
+                      _vm._v("Unknown")
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -48217,13 +48388,7 @@ var render = function() {
                                 expression: "assessment.data.tariff.unknown"
                               }
                             ],
-                            staticClass: "form-control",
-                            staticStyle: {
-                              display: "inline-block",
-                              width: "15px",
-                              height: "15px",
-                              margin: "0 10px 0 15px"
-                            },
+                            staticClass: "form-control unknown",
                             attrs: { type: "checkbox" },
                             domProps: {
                               checked: Array.isArray(
