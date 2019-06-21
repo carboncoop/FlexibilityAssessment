@@ -136,7 +136,7 @@
         </tr>
 
         <tr>
-            <td>Do you have any smart device</td>
+            <td>Do you have any smart home appliances (eg. grid-smart fridge)</td>
             <td>
                 <input type="radio" name="smartDevices" value="Yes" v-model="assessment.data.smartDevices.present" /> Yes <input type="radio" name="smartDevices" value="No" v-model="assessment.data.smartDevices.present" checked /> No
                 <table class='heaters' v-if="assessment.data.smartDevices.present =='Yes'">
@@ -195,6 +195,7 @@
                 <div style="margin: 5px 0">
                     <div v-if="assessment.data.tariff.type != 'Flat rate'" style="vertical-alignment: top">
                         <table class="table-no-style">
+                            <tr><td>Name</td><td><input style="margin-left: 15px" class="form-control" type="text" v-model='assessment.data.tariff.name'></td></tr>
                             <tr v-if="!assessment.data.tariff.unknown"><td>Difference between lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh</td></tr>
                             <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.tariff.unknown" />Unknown</p></td></tr> 
                         </table>
@@ -213,7 +214,7 @@
             </td>
         </tr>
 
-        <tr><td>Total annual energy use from bills</td><td><input class="form-control" type="number" min="0" step="1" v-model="assessment.data.energyUse" /> kWh</td></tr>
+        <tr><td>Total annual electricity use from bills</td><td><input class="form-control" type="number" min="0" step="1" v-model="assessment.data.energyUse" /> kWh</td></tr>
 
         <tr>
             <td>Mobile reception</td>
@@ -393,7 +394,7 @@
             }
 
             if (this.assessment.data.tariff == undefined) {
-                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0, unknown: false});
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0, unknown: false, name: ""});
             }
 
             if (this.assessment.data.energyUse == undefined) {

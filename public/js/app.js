@@ -43340,6 +43340,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -43431,7 +43432,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         if (this.assessment.data.tariff == undefined) {
-            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0, unknown: false });
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0, unknown: false, name: "" });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -47611,7 +47612,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Do you have any smart device")]),
+        _c("td", [
+          _vm._v(
+            "Do you have any smart home appliances (eg. grid-smart fridge)"
+          )
+        ]),
         _vm._v(" "),
         _c("td", [
           _c("input", {
@@ -48324,6 +48329,38 @@ var render = function() {
             _vm.assessment.data.tariff.type != "Flat rate"
               ? _c("div", { staticStyle: { "vertical-alignment": "top" } }, [
                   _c("table", { staticClass: "table-no-style" }, [
+                    _c("tr", [
+                      _c("td", [_vm._v("Name")]),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.assessment.data.tariff.name,
+                              expression: "assessment.data.tariff.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          staticStyle: { "margin-left": "15px" },
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.assessment.data.tariff.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.assessment.data.tariff,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
                     !_vm.assessment.data.tariff.unknown
                       ? _c("tr", [
                           _c("td", [
@@ -48492,7 +48529,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("tr", [
-        _c("td", [_vm._v("Total annual energy use from bills")]),
+        _c("td", [_vm._v("Total annual electricity use from bills")]),
         _c("td", [
           _c("input", {
             directives: [
