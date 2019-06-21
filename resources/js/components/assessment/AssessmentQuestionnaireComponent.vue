@@ -19,6 +19,14 @@
             </select>
         </p>
 
+        <p class="question">Which do you think left you with the clearest information about flexibility:
+            <select class="form-control" v-model="assessment.data.questionnaire.clearestInformation">
+                <option value="The event I attended">The event I attended</option>
+                <option value="The website">The website</option>
+                <option value="Talking with the Energy Officer">Talking with the Energy Officer</option>
+            </select>
+        </p>
+
         <p class="question">Do you feel you have enough information to help you decide about whether you would sign up for a flexibility agreement?
             <select class="form-control" v-model="assessment.data.questionnaire.enoughInformationToDecide">
                 <option value="1- Not at all">1- Not at all</option>
@@ -26,10 +34,13 @@
                 <option value="3- Nearly enough">3- Nearly enough</option>
                 <option value="4- Yes">4- Yes</option>
             </select>
+        <p>Please add any comments</p>
+        <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.questionnaire.enoughInformationToDecideComments"></textarea>            
+
         </p>
 
         <h2>Heating controls</h2>
-        
+
         <p>If you signed up for flexibility you would have a smart controller installed and you would need to set your heating times in a way that the smart controller could read. This could be via a programmable thermostat, an app, or a webpage. Which method of setting your heating would you prefer?</p>
         <select class="form-control" v-model="assessment.data.questionnaire.heatingSettingUpMethod">
             <option value='A programmable thermostat'>A programmable thermostat</option>
@@ -59,12 +70,6 @@
                 <option value="£50 per year">£50 per year</option>
                 <option value="£0 / not important to me">£0 / not important to me</option>
             </select>
-        </p>
-
-        <p>Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)</p>            
-        <p style="margin:0 25px 50px"><input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.no"> No - I wouldn't pay anything upfront</input><br />
-            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"> Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</input><br />
-            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"> Yes - I would consider upgrading to new smart heaters so I could join</input><br />
         </p>
 
         <p>How important would the following be, in putting you off signing up to a flexibility agreement? (Drag & Drop, 1 - most important, 3 - least important)
@@ -113,14 +118,11 @@
             const updateSortableArray = this.updateSortableArray;
             return {
                 sectionsInIntro: [
-                    '[Intro] What are the coming changes in the energy system?',
-                    "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?",
-                    'Flexibility Agreements with customers',
-                    'Aggregation',
-                    'What is the Energy Community Aggregation Service (ECAS)?',
-                    "The changes in the grid, are beginning to be felt in people's homes'",
-                    "Can I sign up for offering flexibility now?",
-                    "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?",
+                    'Information on the coming changes in the energy system',
+                    'Information on how these changes might affect you in your home',
+                    'Information explaining what ‘Flexibility’ and ‘Aggregation’ are',
+                    'Information explaining what Flexible Power Community is aiming to do',
+                    'Information about why you cannot sign up for flexibility yet'
                 ],
                 sortableLIstOptions: {
                     dropzoneSelector: 'ol',
@@ -160,10 +162,8 @@
                     'If I had to buy new heaters',
                     'If I needed my landlord\'s permission'
                 ];
-
-                this.assessment.data.questionnaire.preparedToPayUpfront = {no: 0, yesToJoin: 0, yesUpgradeHeating: 0};
             }
-                                    
+
             // For backwards compatibility
             if (this.assessment.data.questionnaire.heatingSettingUpMethod == undefined) {
                 Vue.set(this.assessment.data.questionnaire, 'heatingSettingUpMethod', "");
@@ -171,6 +171,13 @@
             if (this.assessment.data.questionnaire.changeToANewSystem == undefined) {
                 Vue.set(this.assessment.data.questionnaire, 'changeToANewSystem', "");
             }
+            if (this.assessment.data.questionnaire.leastUsefulInformation == undefined) {
+                Vue.set(this.assessment.data.questionnaire, 'leastUsefulInformation', "");
+            }
+            if (this.assessment.data.questionnaire.enoughInformationToDecideComments == undefined) {
+                Vue.set(this.assessment.data.questionnaire, 'enoughInformationToDecideComments', "");
+            }
+
         }
     }
 

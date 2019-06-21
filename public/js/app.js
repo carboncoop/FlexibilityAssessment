@@ -49868,6 +49868,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -49879,7 +49884,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
     data: function data() {
         var updateSortableArray = this.updateSortableArray;
         return {
-            sectionsInIntro: ['[Intro] What are the coming changes in the energy system?', "What do 'flexibility' and 'aggregation' mean when you are talking about the energy system?", 'Flexibility Agreements with customers', 'Aggregation', 'What is the Energy Community Aggregation Service (ECAS)?', "The changes in the grid, are beginning to be felt in people's homes'", "Can I sign up for offering flexibility now?", "How could a Flexibility Agreement work for an individual household in the future if we set up ECAS?"],
+            sectionsInIntro: ['Information on the coming changes in the energy system', 'Information on how these changes might affect you in your home', 'Information explaining what ‘Flexibility’ and ‘Aggregation’ are', 'Information explaining what Flexible Power Community is aiming to do', 'Information about why you cannot sign up for flexibility yet'],
             sortableLIstOptions: {
                 dropzoneSelector: 'ol',
                 draggableSelector: 'li',
@@ -49907,8 +49912,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
             this.assessment.data.questionnaire.signupPriorities = ['The rewards offered (£)', 'A Community / Not for Profit provider ', 'The reduction in my carbon footprint ', 'The opportunity to learn more about my energy system', 'Being part of a group working with sustainable technology?'];
 
             this.assessment.data.questionnaire.puttingMeOffRating = ['If I had to change how I control my heaters', 'If I had to buy new heaters', 'If I needed my landlord\'s permission'];
-
-            this.assessment.data.questionnaire.preparedToPayUpfront = { no: 0, yesToJoin: 0, yesUpgradeHeating: 0 };
         }
 
         // For backwards compatibility
@@ -49917,6 +49920,12 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
         }
         if (this.assessment.data.questionnaire.changeToANewSystem == undefined) {
             Vue.set(this.assessment.data.questionnaire, 'changeToANewSystem', "");
+        }
+        if (this.assessment.data.questionnaire.leastUsefulInformation == undefined) {
+            Vue.set(this.assessment.data.questionnaire, 'leastUsefulInformation', "");
+        }
+        if (this.assessment.data.questionnaire.enoughInformationToDecideComments == undefined) {
+            Vue.set(this.assessment.data.questionnaire, 'enoughInformationToDecideComments', "");
         }
     }
 });
@@ -50744,6 +50753,58 @@ var render = function() {
     _vm._v(" "),
     _c("p", { staticClass: "question" }, [
       _vm._v(
+        "Which do you think left you with the clearest information about flexibility:\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.questionnaire.clearestInformation,
+              expression: "assessment.data.questionnaire.clearestInformation"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data.questionnaire,
+                "clearestInformation",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "The event I attended" } }, [
+            _vm._v("The event I attended")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "The website" } }, [
+            _vm._v("The website")
+          ]),
+          _vm._v(" "),
+          _c(
+            "option",
+            { attrs: { value: "Talking with the Energy Officer" } },
+            [_vm._v("Talking with the Energy Officer")]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "question" }, [
+      _vm._v(
         "Do you feel you have enough information to help you decide about whether you would sign up for a flexibility agreement?\n        "
       ),
       _c(
@@ -50795,6 +50856,40 @@ var render = function() {
         ]
       )
     ]),
+    _c("p", [_vm._v("Please add any comments")]),
+    _vm._v(" "),
+    _c("textarea", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value:
+            _vm.assessment.data.questionnaire.enoughInformationToDecideComments,
+          expression:
+            "assessment.data.questionnaire.enoughInformationToDecideComments"
+        }
+      ],
+      staticStyle: { display: "block" },
+      attrs: { rows: "4", cols: "75" },
+      domProps: {
+        value:
+          _vm.assessment.data.questionnaire.enoughInformationToDecideComments
+      },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.$set(
+            _vm.assessment.data.questionnaire,
+            "enoughInformationToDecideComments",
+            $event.target.value
+          )
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("p"),
     _vm._v(" "),
     _c("h2", [_vm._v("Heating controls")]),
     _vm._v(" "),
@@ -50966,199 +51061,6 @@ var render = function() {
           ])
         ]
       )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)"
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", { staticStyle: { margin: "0 25px 50px" } }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
-            expression: "assessment.data.questionnaire.preparedToPayUpfront.no"
-          }
-        ],
-        attrs: { type: "checkbox" },
-        domProps: {
-          checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront.no
-          )
-            ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
-                null
-              ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront.no
-        },
-        on: {
-          change: function($event) {
-            var $$a = _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false
-            if (Array.isArray($$a)) {
-              var $$v = null,
-                $$i = _vm._i($$a, $$v)
-              if ($$el.checked) {
-                $$i < 0 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "no",
-                    $$a.concat([$$v])
-                  )
-              } else {
-                $$i > -1 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "no",
-                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                  )
-              }
-            } else {
-              _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                "no",
-                $$c
-              )
-            }
-          }
-        }
-      }),
-      _vm._v(" No - I wouldn't pay anything upfront"),
-      _c("br"),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value:
-              _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin,
-            expression:
-              "assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"
-          }
-        ],
-        attrs: { type: "checkbox" },
-        domProps: {
-          checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
-          )
-            ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
-                  .yesToJoin,
-                null
-              ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
-        },
-        on: {
-          change: function($event) {
-            var $$a =
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
-                  .yesToJoin,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false
-            if (Array.isArray($$a)) {
-              var $$v = null,
-                $$i = _vm._i($$a, $$v)
-              if ($$el.checked) {
-                $$i < 0 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "yesToJoin",
-                    $$a.concat([$$v])
-                  )
-              } else {
-                $$i > -1 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "yesToJoin",
-                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                  )
-              }
-            } else {
-              _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                "yesToJoin",
-                $$c
-              )
-            }
-          }
-        }
-      }),
-      _vm._v(
-        " Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
-      ),
-      _c("br"),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value:
-              _vm.assessment.data.questionnaire.preparedToPayUpfront
-                .yesUpgradeHeating,
-            expression:
-              "assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"
-          }
-        ],
-        attrs: { type: "checkbox" },
-        domProps: {
-          checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront
-              .yesUpgradeHeating
-          )
-            ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
-                  .yesUpgradeHeating,
-                null
-              ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront
-                .yesUpgradeHeating
-        },
-        on: {
-          change: function($event) {
-            var $$a =
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
-                  .yesUpgradeHeating,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false
-            if (Array.isArray($$a)) {
-              var $$v = null,
-                $$i = _vm._i($$a, $$v)
-              if ($$el.checked) {
-                $$i < 0 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "yesUpgradeHeating",
-                    $$a.concat([$$v])
-                  )
-              } else {
-                $$i > -1 &&
-                  _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                    "yesUpgradeHeating",
-                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                  )
-              }
-            } else {
-              _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
-                "yesUpgradeHeating",
-                $$c
-              )
-            }
-          }
-        }
-      }),
-      _vm._v(
-        " Yes - I would consider upgrading to new smart heaters so I could join"
-      ),
-      _c("br")
     ]),
     _vm._v(" "),
     _c("p", [
@@ -51465,6 +51367,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51473,8 +51404,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_AssessmentInput_js__["a" /* AssessmentInput */]],
     created: function created() {
         console.log(this.assessment.data);
+
+        // For backwards compatibility
         if (this.assessment.data.reportFeedback == undefined || Array.isArray(this.assessment.data.reportFeedback) == true) {
             Vue.set(this.assessment.data, 'reportFeedback', {});
+        }
+        if (this.assessment.data.reportFeedback.preparedToPayUpfront == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'preparedToPayUpfront', { no: 0, yesToJoin: 0, yesUpgradeHeating: 0 });
+        }
+        if (this.assessment.data.reportFeedback.clarificationsNeeded == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'clarificationsNeeded', "");
+        }
+        if (this.assessment.data.reportFeedback.enoughEarnings == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'enoughEarnings', "");
+        }
+        if (this.assessment.data.reportFeedback.preparedToPayUpfrontHowMuch == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'preparedToPayUpfrontHowMuch', "");
+        }
+        if (this.assessment.data.reportFeedback.howMuchInformationInReport == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'howMuchInformationInReport', "");
+        }
+        if (this.assessment.data.reportFeedback.explainToNeighbor == undefined) {
+            Vue.set(this.assessment.data.reportFeedback, 'explainToNeighbor', "");
         }
     }
 });
@@ -51488,10 +51439,324 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "assessment-form" } }, [
-    _c("h1", [_vm._v("Flexibility assessment - Report feedback")]),
+    _c("h1", { staticStyle: { "margin-bottom": "25px" } }, [
+      _vm._v("Flexibility assessment - Report feedback")
+    ]),
     _vm._v(" "),
-    _c("h2", { staticStyle: { "margin-bottom": "20px" } }, [
-      _vm._v("About the report")
+    _c("p", [
+      _vm._v(
+        "Now you have seen the report, is there anything that you want clarified?\n        "
+      ),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.reportFeedback.clarificationsNeeded,
+            expression: "assessment.data.reportFeedback.clarificationsNeeded"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "4", cols: "75" },
+        domProps: {
+          value: _vm.assessment.data.reportFeedback.clarificationsNeeded
+        },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data.reportFeedback,
+              "clarificationsNeeded",
+              $event.target.value
+            )
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Your report estimates how much you could earn from flexibility. Is this enough to interest you?"
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.reportFeedback.enoughEarnings,
+            expression: "assessment.data.reportFeedback.enoughEarnings"
+          }
+        ],
+        staticClass: "form-control",
+        on: {
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.$set(
+              _vm.assessment.data.reportFeedback,
+              "enoughEarnings",
+              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+            )
+          }
+        }
+      },
+      [
+        _c("option", { attrs: { value: "Yes, definitely" } }, [
+          _vm._v("Yes, definitely")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "Yes, but only just" } }, [
+          _vm._v("Yes, but only just")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "No, it’s too little" } }, [
+          _vm._v("No, it’s too little")
+        ]),
+        _vm._v(" "),
+        _c(
+          "option",
+          { attrs: { value: "Money doesn’t matter, I wouldn’t do it anyway" } },
+          [_vm._v("Money doesn’t matter, I wouldn’t do it anyway")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)"
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticStyle: { margin: "0 25px 50px" } }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+            expression: "assessment.data.questionnaire.preparedToPayUpfront.no"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+          )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+        },
+        on: {
+          change: function($event) {
+            var $$a = _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "no",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "no",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
+              _vm.$set(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "no",
+                $$c
+              )
+            }
+          }
+        }
+      }),
+      _vm._v(" No - I wouldn't pay anything upfront"),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value:
+              _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin,
+            expression:
+              "assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
+          )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesToJoin,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
+        },
+        on: {
+          change: function($event) {
+            var $$a =
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesToJoin,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesToJoin",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesToJoin",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
+              _vm.$set(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "yesToJoin",
+                $$c
+              )
+            }
+          }
+        }
+      }),
+      _vm._v(
+        " Yes - I would consider paying upfront to join, if it meant I got more back from the scheme"
+      ),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value:
+              _vm.assessment.data.questionnaire.preparedToPayUpfront
+                .yesUpgradeHeating,
+            expression:
+              "assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"
+          }
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(
+            _vm.assessment.data.questionnaire.preparedToPayUpfront
+              .yesUpgradeHeating
+          )
+            ? _vm._i(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesUpgradeHeating,
+                null
+              ) > -1
+            : _vm.assessment.data.questionnaire.preparedToPayUpfront
+                .yesUpgradeHeating
+        },
+        on: {
+          change: function($event) {
+            var $$a =
+                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                  .yesUpgradeHeating,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesUpgradeHeating",
+                    $$a.concat([$$v])
+                  )
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    "yesUpgradeHeating",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
+            } else {
+              _vm.$set(
+                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                "yesUpgradeHeating",
+                $$c
+              )
+            }
+          }
+        }
+      }),
+      _vm._v(
+        " Yes - I would consider upgrading to new smart heaters so I could join"
+      ),
+      _c("br")
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("How much might you be prepared to pay?\n        "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value:
+              _vm.assessment.data.reportFeedback.preparedToPayUpfrontHowMuch,
+            expression:
+              "assessment.data.reportFeedback.preparedToPayUpfrontHowMuch"
+          }
+        ],
+        staticStyle: { display: "block" },
+        attrs: { rows: "2", cols: "75" },
+        domProps: {
+          value: _vm.assessment.data.reportFeedback.preparedToPayUpfrontHowMuch
+        },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(
+              _vm.assessment.data.reportFeedback,
+              "preparedToPayUpfrontHowMuch",
+              $event.target.value
+            )
+          }
+        }
+      })
     ]),
     _vm._v(" "),
     _c("p", [
@@ -51638,6 +51903,60 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", [
+      _vm._v(
+        "How easy do you think it would be for you to explain flexibility to your neighbor?\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.assessment.data.reportFeedback.explainToNeighbor,
+              expression: "assessment.data.reportFeedback.explainToNeighbor"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data.reportFeedback,
+                "explainToNeighbor",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "Easy" } }, [_vm._v("Easy")]),
+          _vm._v(" "),
+          _c(
+            "option",
+            { attrs: { value: "It’s complicated, but I’d manag" } },
+            [_vm._v("It’s complicated, but I’d manage")]
+          ),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Difficult" } }, [
+            _vm._v("Difficult")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "I wouldn’t even try" } }, [
+            _vm._v("I wouldn’t even try")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
       _vm._v("Is there anything else you would like to tell us?\n        "),
       _c("textarea", {
         directives: [
@@ -51672,7 +51991,9 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("h2", [_vm._v("Self assessment")]),
+    _c("h2", [
+      _vm._v("Please also answer these questions if you are self assessing’")
+    ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
