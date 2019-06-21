@@ -5,6 +5,7 @@ Developed by Carbon Co-op with Community Energy Scotland and South Seeds
 - income calculation takes into account 30% is kept by the aggregator
 - max income takes into account secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilization (utilisedLoadFactor: = 0.2)
 - min income takes into account secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilization (utilisedLoadFactor: = 0.2)
+- income includes an estimation of extra 10 £/kW from other flexibility schemes
 
 
 ## License

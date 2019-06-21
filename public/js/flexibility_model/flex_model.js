@@ -53,6 +53,9 @@ class flexibilityModel {
         // Fraction deducted from household income and kept by the aggregator
         this.aggregatorFeeFactor = 0.3;
 
+        // Income from other flexixibility option
+        this.incomeFromOtherFlexibilityFactor = 10; // £/kW - raugh estimation
+
     }
 
     run(data) {
@@ -97,6 +100,7 @@ class flexibilityModel {
      *      - data.electricalTariffRateDifference     £/kWh (Optional)
      *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
      *      - data.aggregatorFeeFactor  Number (0-1)   (Optional)
+     *      - data.incomeFromOtherFlexibilityFactor £/kW (Optional)
      *      
      ****************************************************/
     ini(data) {
@@ -119,9 +123,12 @@ class flexibilityModel {
 
         if (data.dnoEstimatedAvailabilityRequired != undefined)
             this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
-        
+
         if (data.aggregatorFeeFactor != undefined)
             this.aggregatorFeeFactor = data.aggregatorFeeFactor;
+
+        if (data.incomeFromOtherFlexibilityFactor != undefined)
+            this.incomeFromOtherFlexibilityFactor = data.incomeFromOtherFlexibilityFactor;
     }
 
     /********************************************
@@ -260,7 +267,10 @@ class flexibilityModel {
      * @returns income generated in a day in £
      */
     incomeFromFlexibility(power, utilisedLoad, availability) {
-        return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRateDifference;
+        return power * availability * this.availabilityFee
+                + utilisedLoad * this.utilisationFee
+                - utilisedLoad * this.electricalTariffRateDifference
+                + power * this.incomeFromOtherFlexibilityFactor;
     }
 
     /************************************

@@ -154,13 +154,15 @@
                 },
                 dnoEstimatedAvailabilityRequired: {max: 600, min: 105}, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
                 utilisedLoadFactor: {max: 0.2, min: 0.2},                // hours utilized - max -> 125 - min -> 21
-                aggregatorFeeFactor: 0.3
+                aggregatorFeeFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 10 // £/kW
             };
         },
         mounted: function () {
             for (let scheme in this.schemes) {
                 this.assessment.data.fees = this.schemes[scheme];
                 this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
+                this.assessment.data.incomeFromOtherFlexibilityFactor = this.incomeFromOtherFlexibilityFactor;
                 let self =this;
                 ["min", "max"].forEach(function (level) {
                     self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];

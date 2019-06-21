@@ -63,6 +63,14 @@
                         <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFactor" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
+                <tr> 
+                <tr>
+                    <td>Income from other flexibility schemes factor (£/kW)</td>
+                    <td v-for="(scheme, index) in schemes">
+                        <span v-if="index <= 1">{{scheme.incomeFromOtherFlexibilityFactor.toFixed(2)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="100" step="0.01" v-model="scheme.incomeFromOtherFlexibilityFactor" v-on:change="updateReport" /></span>
+                    </td>
+                </tr>
                 <tr>
                     <td>Total income household (£/year)</td>
                     <td v-for="(scheme, index) in schemes">
@@ -120,7 +128,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3
+                        aggregatorFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 10
                     },
                     {
                         // Secure scheme Woodall Spa zone (WPD)
@@ -129,7 +138,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 600,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3
+                        aggregatorFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 10
                     },
                     {
                         name: "User defined",
@@ -137,7 +147,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3
+                        aggregatorFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 10
                     }
                 ]
             };
@@ -198,6 +209,7 @@
                             assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
                             assessment.data.dnoEstimatedAvailabilityRequired = scheme.dnoEstimatedAvailabilityRequired;
                             assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
+                            assessment.data.incomeFromOtherFlexibilityFactor = scheme.incomeFromOtherFlexibilityFactor;
                             myself.flexibilityModel.run(assessment.data);
                             scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
                             scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;

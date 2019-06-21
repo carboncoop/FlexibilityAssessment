@@ -10031,6 +10031,9 @@ var flexibilityModel = function () {
 
         // Fraction deducted from household income and kept by the aggregator
         this.aggregatorFeeFactor = 0.3;
+
+        // Income from other flexixibility option
+        this.incomeFromOtherFlexibilityFactor = 10; // £/kW - raugh estimation
     }
 
     _createClass(flexibilityModel, [{
@@ -10076,6 +10079,7 @@ var flexibilityModel = function () {
          *      - data.electricalTariffRateDifference     £/kWh (Optional)
          *      - data.dnoEstimatedAvailabilityRequired     hours/year (Optional)
          *      - data.aggregatorFeeFactor  Number (0-1)   (Optional)
+         *      - data.incomeFromOtherFlexibilityFactor £/kW (Optional)
          *      
          ****************************************************/
 
@@ -10097,6 +10101,8 @@ var flexibilityModel = function () {
             if (data.dnoEstimatedAvailabilityRequired != undefined) this.dnoEstimatedAvailabilityRequired = data.dnoEstimatedAvailabilityRequired;
 
             if (data.aggregatorFeeFactor != undefined) this.aggregatorFeeFactor = data.aggregatorFeeFactor;
+
+            if (data.incomeFromOtherFlexibilityFactor != undefined) this.incomeFromOtherFlexibilityFactor = data.incomeFromOtherFlexibilityFactor;
         }
 
         /********************************************
@@ -10236,7 +10242,7 @@ var flexibilityModel = function () {
     }, {
         key: "incomeFromFlexibility",
         value: function incomeFromFlexibility(power, utilisedLoad, availability) {
-            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRateDifference;
+            return power * availability * this.availabilityFee + utilisedLoad * this.utilisationFee - utilisedLoad * this.electricalTariffRateDifference + power * this.incomeFromOtherFlexibilityFactor;
         }
 
         /************************************
@@ -49339,7 +49345,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             dnoEstimatedAvailabilityRequired: { max: 600, min: 105 }, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
             utilisedLoadFactor: { max: 0.2, min: 0.2 }, // hours utilized - max -> 125 - min -> 21
-            aggregatorFeeFactor: 0.3
+            aggregatorFeeFactor: 0.3,
+            incomeFromOtherFlexibilityFactor: 10 // £/kW
         };
     },
     mounted: function mounted() {
@@ -49348,6 +49355,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _loop = function _loop(scheme) {
             _this.assessment.data.fees = _this.schemes[scheme];
             _this.assessment.data.aggregatorFeeFactor = _this.aggregatorFeeFactor;
+            _this.assessment.data.incomeFromOtherFlexibilityFactor = _this.incomeFromOtherFlexibilityFactor;
             var self = _this;
             ["min", "max"].forEach(function (level) {
                 self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
@@ -52583,6 +52591,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52605,7 +52621,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3
+                aggregatorFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 10
             }, {
                 // Secure scheme Woodall Spa zone (WPD)
                 name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
@@ -52613,14 +52630,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 600,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3
+                aggregatorFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 10
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3
+                aggregatorFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 10
             }]
         };
     },
@@ -52674,6 +52693,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
                         assessment.data.dnoEstimatedAvailabilityRequired = scheme.dnoEstimatedAvailabilityRequired;
                         assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
+                        assessment.data.incomeFromOtherFlexibilityFactor = scheme.incomeFromOtherFlexibilityFactor;
                         myself.flexibilityModel.run(assessment.data);
                         scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
                         scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
@@ -53270,6 +53290,75 @@ var render = function() {
                                   _vm.$set(
                                     scheme,
                                     "aggregatorFactor",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("tr"),
+              _c(
+                "tr",
+                [
+                  _c("td", [
+                    _vm._v(
+                      "Income from other flexibility schemes factor (£/kW)"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.schemes, function(scheme, index) {
+                    return _c("td", [
+                      index <= 1
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                scheme.incomeFromOtherFlexibilityFactor.toFixed(
+                                  2
+                                )
+                              )
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      index > 1
+                        ? _c("span", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    scheme.incomeFromOtherFlexibilityFactor,
+                                  expression:
+                                    "scheme.incomeFromOtherFlexibilityFactor"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                min: "0",
+                                max: "100",
+                                step: "0.01"
+                              },
+                              domProps: {
+                                value: scheme.incomeFromOtherFlexibilityFactor
+                              },
+                              on: {
+                                change: _vm.updateReport,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    scheme,
+                                    "incomeFromOtherFlexibilityFactor",
                                     $event.target.value
                                   )
                                 }
