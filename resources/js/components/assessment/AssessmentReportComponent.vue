@@ -17,13 +17,13 @@
                 <td>Storage heaters</td>
                 <td>{{(assessment.data.storageHeaters.number * assessment.data.storageHeaters.rating).toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.storageHeaters.toFixed(2)}}kW </td>
-                <td>{{incomePerAsset.secure.storageHeaters.toFixed(2)}}£/year</td>
+                <td>{{incomePerAsset.secure.storageHeaters.min.toFixed(2)}} to {{incomePerAsset.secure.storageHeaters.max.toFixed(2)}}£/year</td>
             </tr>
             <tr v-if='assessment.data.powerAvailable.immersionHeater > 0'>
                 <td>Immersion heater</td>
                 <td>{{assessment.data.immersionHeater.rating.toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.immersionHeater.toFixed(2)}}kW</td>
-                <td>{{incomePerAsset.secure.immersionHeater.toFixed(2)}}£/year</td>
+                <td>{{incomePerAsset.secure.immersionHeater.min.toFixed(2)}} to {{incomePerAsset.secure.immersionHeater.max.toFixed(2)}} £/year</td>
             </tr>
         </table>
 
@@ -34,7 +34,7 @@
 
         <h2>Potential income from flexibility</h2>
         <p>How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a r006Fugh estimate for you below. </p>
-        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure}} to income Y</span> per</b></p>
+        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure.min}} to income £{{incomeYear.secure.max}}</span> per year</b></p>
 
 
         <h2 class="new-page">FAQ</h2>
@@ -139,11 +139,21 @@
                 flexibilityModel: new flexibilityModel(),
                 schemes: {
                     secure: {availability: 0.125, utilisation: 0.175},
-                    dynamic: {availability: 0.005, utilisation: 0.3},
-                    restore: {availability: 0, utilisation: 0.6}
+                    //dynamic: {availability: 0.005, utilisation: 0.3},
+                    //restore: {availability: 0, utilisation: 0.6}
                 },
-                incomeYear: {secure: 0, dynamic: 0, restore: 0},
-                incomePerAsset: {secure: {storageHeaters: 0, immersionHeater: 0}, dynamic: {storageHeaters: 0, immersionHeater: 0}, restore: {storageHeaters: 0, immersionHeater: 0}},
+                incomeYear: {
+                    secure: {min: 0, max: 0},
+                    //dynamic: 0, 
+                    //restore: 0
+                },
+                incomePerAsset: {
+                    secure: {storageHeaters: {min: 0, max: 0}, immersionHeater: {min: 0, max: 0}},
+                    //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
+                    //restore: {storageHeaters: 0, immersionHeater: 0}
+                },
+                dnoEstimatedAvailabilityRequired: {max: 600, min: 105}, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
+                utilisedLoadFactor: {max: 0.2, min: 0.2},                // hours utilized - max -> 125 - min -> 21
                 aggregatorFeeFactor: 0.3
             };
         },
@@ -151,13 +161,16 @@
             for (let scheme in this.schemes) {
                 this.assessment.data.fees = this.schemes[scheme];
                 this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
-                let result = this.flexibilityModel.run(this.assessment.data);
-                this.incomeYear[scheme] = result.incomeYearTotalHousehold.toFixed(2);
-                console.log(result);
-                this.incomePerAsset[scheme].storageHeaters = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
-                this.incomePerAsset[scheme].immersionHeater = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+                let self =this;
+                ["min", "max"].forEach(function (level) {
+                    self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
+                    self.assessment.data.utilisedLoadFactor = self.utilisedLoadFactor[level];
+                    let result = self.flexibilityModel.run(self.assessment.data);
+                    self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
+                    self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
+                    self.incomePerAsset[scheme].immersionHeater[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+                });
             }
-            console.log(this.incomeYear);
         },
         methods: {
             print: function () {

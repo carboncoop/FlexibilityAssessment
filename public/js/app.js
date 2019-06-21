@@ -43358,6 +43358,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                 console.log("Income year " + JSON.stringify(dataForModel.incomeYearBySource));
                 console.log("Income year total = " + dataForModel.incomeYearTotal);
+                console.log("Income year household = " + dataForModel.incomeYearTotalHousehold);
+                console.log("Income year aggregator = " + dataForModel.incomeYearTotalAggregator);
                 if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                     this.assessment.data = dataForModel;
                 }
@@ -49321,26 +49323,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             assessment: JSON.parse(JSON.stringify(this.initialAssessment)),
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
             schemes: {
-                secure: { availability: 0.125, utilisation: 0.175 },
-                dynamic: { availability: 0.005, utilisation: 0.3 },
-                restore: { availability: 0, utilisation: 0.6 }
+                secure: { availability: 0.125, utilisation: 0.175 }
+                //dynamic: {availability: 0.005, utilisation: 0.3},
+                //restore: {availability: 0, utilisation: 0.6}
             },
-            incomeYear: { secure: 0, dynamic: 0, restore: 0 },
-            incomePerAsset: { secure: { storageHeaters: 0, immersionHeater: 0 }, dynamic: { storageHeaters: 0, immersionHeater: 0 }, restore: { storageHeaters: 0, immersionHeater: 0 } },
+            incomeYear: {
+                secure: { min: 0, max: 0 }
+                //dynamic: 0, 
+                //restore: 0
+            },
+            incomePerAsset: {
+                secure: { storageHeaters: { min: 0, max: 0 }, immersionHeater: { min: 0, max: 0 } }
+                //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
+                //restore: {storageHeaters: 0, immersionHeater: 0}
+            },
+            dnoEstimatedAvailabilityRequired: { max: 600, min: 105 }, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
+            utilisedLoadFactor: { max: 0.2, min: 0.2 }, // hours utilized - max -> 125 - min -> 21
             aggregatorFeeFactor: 0.3
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
+        var _loop = function _loop(scheme) {
+            _this.assessment.data.fees = _this.schemes[scheme];
+            _this.assessment.data.aggregatorFeeFactor = _this.aggregatorFeeFactor;
+            var self = _this;
+            ["min", "max"].forEach(function (level) {
+                self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
+                self.assessment.data.utilisedLoadFactor = self.utilisedLoadFactor[level];
+                var result = self.flexibilityModel.run(self.assessment.data);
+                self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
+                self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
+                self.incomePerAsset[scheme].immersionHeater[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+            });
+        };
+
         for (var scheme in this.schemes) {
-            this.assessment.data.fees = this.schemes[scheme];
-            this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
-            var result = this.flexibilityModel.run(this.assessment.data);
-            this.incomeYear[scheme] = result.incomeYearTotalHousehold.toFixed(2);
-            console.log(result);
-            this.incomePerAsset[scheme].storageHeaters = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
-            this.incomePerAsset[scheme].immersionHeater = (1 - this.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+            _loop(scheme);
         }
-        console.log(this.incomeYear);
     },
     methods: {
         print: function print() {
@@ -49445,7 +49466,13 @@ var render = function() {
               _vm._v(" "),
               _c("td", [
                 _vm._v(
-                  _vm._s(_vm.incomePerAsset.secure.storageHeaters.toFixed(2)) +
+                  _vm._s(
+                    _vm.incomePerAsset.secure.storageHeaters.min.toFixed(2)
+                  ) +
+                    " to " +
+                    _vm._s(
+                      _vm.incomePerAsset.secure.storageHeaters.max.toFixed(2)
+                    ) +
                     "£/year"
                 )
               ])
@@ -49476,8 +49503,14 @@ var render = function() {
               _vm._v(" "),
               _c("td", [
                 _vm._v(
-                  _vm._s(_vm.incomePerAsset.secure.immersionHeater.toFixed(2)) +
-                    "£/year"
+                  _vm._s(
+                    _vm.incomePerAsset.secure.immersionHeater.min.toFixed(2)
+                  ) +
+                    " to " +
+                    _vm._s(
+                      _vm.incomePerAsset.secure.immersionHeater.max.toFixed(2)
+                    ) +
+                    " £/year"
                 )
               ])
             ])
@@ -49520,9 +49553,14 @@ var render = function() {
         _c("b", [
           _vm._v("Estimated income: "),
           _c("span", { staticStyle: {} }, [
-            _vm._v("£" + _vm._s(_vm.incomeYear.secure) + " to income Y")
+            _vm._v(
+              "£" +
+                _vm._s(_vm.incomeYear.secure.min) +
+                " to income £" +
+                _vm._s(_vm.incomeYear.secure.max)
+            )
           ]),
-          _vm._v(" per")
+          _vm._v(" per year")
         ])
       ]
     ),

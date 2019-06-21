@@ -324,6 +324,8 @@
                     console.log("Flexible load utilised (kWh/year): " + JSON.stringify(dataForModel.loadUtilisedYear));
                     console.log("Income year " + JSON.stringify(dataForModel.incomeYearBySource));
                     console.log("Income year total = " + dataForModel.incomeYearTotal);
+                    console.log("Income year household = " + dataForModel.incomeYearTotalHousehold);
+                    console.log("Income year aggregator = " + dataForModel.incomeYearTotalAggregator);
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                         this.assessment.data = dataForModel;
                     }

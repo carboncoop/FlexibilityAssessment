@@ -1,6 +1,11 @@
 # Flexibility Assessment tool
 Developed by Carbon Co-op with Community Energy Scotland and South Seeds
 
+## Notes
+- income calculation takes into account 30% is kept by the aggregator
+- max income takes into account secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilization (utilisedLoadFactor: = 0.2)
+- min income takes into account secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilization (utilisedLoadFactor: = 0.2)
+
 
 ## License
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
