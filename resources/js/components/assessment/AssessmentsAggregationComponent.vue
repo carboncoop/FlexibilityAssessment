@@ -18,7 +18,9 @@
             <table class="table">
                 <tr>
                     <td></td>
-                    <td v-for="scheme in schemes">{{scheme.name}}</td>
+                    <td>Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span></td>
+                    <td>Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
+                    <td>User defined</td>
                 </tr>
                 <!-- We are using the option by default useDnoEstimatedHoursRequired = true, so scheduledAvailability is not taking into account when running the model
                 <tr>
@@ -29,36 +31,36 @@
                 <tr>
                     <td>Utilised factor  <span title="Fraction of available load offered to the DNO that is finally shifted"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.flexibilityAwardedFactors.utilisedLoad.toFixed(2)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.01" v-model="scheme.flexibilityAwardedFactors.utilisedLoad" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.flexibilityAwardedFactors.utilisedLoad.toFixed(2)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.01" v-model="scheme.flexibilityAwardedFactors.utilisedLoad" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
                     <td>Estimated Availibility Required <span title="Amount of hours per year that the DNO requires availability"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.dnoEstimatedAvailabilityRequired.toFixed(2)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" step="1" v-model="scheme.dnoEstimatedAvailabilityRequired" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.dnoEstimatedAvailabilityRequired.toFixed(2)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" step="1" v-model="scheme.dnoEstimatedAvailabilityRequired" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
                     <td>Availability fee (£/kW/h) <span title="Fee paid by the DNO for the amount of time and power that the household ensures will be available to be turned on/off"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.fees.availability.toFixed(3)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.availability" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.fees.availability.toFixed(3)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.availability" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
                     <td>Utilisation fee (£/kWh/year) <span title="Fee paid by the DNO for the amount of energy actually shifted by the household"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.fees.utilisation.toFixed(3)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.utilisation" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.fees.utilisation.toFixed(3)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.fees.utilisation" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
                     <td>Aggregator factor <span title="Fraction of total income kept by the aggregator"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 2">{{scheme.aggregatorFactor.toFixed(2)}}</span>
-                        <span v-if="index > 2"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFactor" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.aggregatorFactor.toFixed(2)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFactor" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
                 <tr>
@@ -112,34 +114,28 @@
                 numberOfAssessments: 0,
                 schemes: [
                     {
-                        name: "Secure",
+                        // Secure scheme Rugeley SGT zone (WPD)
+                        name: 'Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span>',
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
-                        dnoEstimatedAvailabilityRequired: 68,
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
+                        dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
                         aggregatorFactor: 0.3
                     },
                     {
-                        name: "Dynamic",
+                        // Secure scheme Woodall Spa zone (WPD)
+                        name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
-                        dnoEstimatedAvailabilityRequired: 30,
-                        fees: {availability: 0.005, utilisation: 0.3},
-                        aggregatorFactor: 0.3
-                    },
-                    {
-                        name: "Restore",
-                        powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
-                        dnoEstimatedAvailabilityRequired: 10,
-                        fees: {availability: 0, utilisation: 0.6},
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
+                        dnoEstimatedAvailabilityRequired: 600,
+                        fees: {availability: 0.125, utilisation: 0.175},
                         aggregatorFactor: 0.3
                     },
                     {
                         name: "User defined",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 1},
-                        dnoEstimatedAvailabilityRequired: 68,
+                        flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
+                        dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
                         aggregatorFactor: 0.3
                     }

@@ -52581,6 +52581,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52597,31 +52599,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
             numberOfAssessments: 0,
             schemes: [{
-                name: "Secure",
+                // Secure scheme Rugeley SGT zone (WPD)
+                name: 'Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span>',
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
-                dnoEstimatedAvailabilityRequired: 68,
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
+                dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
                 aggregatorFactor: 0.3
             }, {
-                name: "Dynamic",
+                // Secure scheme Woodall Spa zone (WPD)
+                name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
-                dnoEstimatedAvailabilityRequired: 30,
-                fees: { availability: 0.005, utilisation: 0.3 },
-                aggregatorFactor: 0.3
-            }, {
-                name: "Restore",
-                powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
-                dnoEstimatedAvailabilityRequired: 10,
-                fees: { availability: 0, utilisation: 0.6 },
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
+                dnoEstimatedAvailabilityRequired: 600,
+                fees: { availability: 0.125, utilisation: 0.175 },
                 aggregatorFactor: 0.3
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
-                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 1 },
-                dnoEstimatedAvailabilityRequired: 68,
+                flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
+                dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
                 aggregatorFactor: 0.3
             }]
@@ -52870,17 +52867,49 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("table", { staticClass: "table" }, [
-              _c(
-                "tr",
-                [
-                  _c("td"),
-                  _vm._v(" "),
-                  _vm._l(_vm.schemes, function(scheme) {
-                    return _c("td", [_vm._v(_vm._s(scheme.name))])
-                  })
-                ],
-                2
-              ),
+              _c("tr", [
+                _c("td"),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v("Secure min "),
+                  _c(
+                    "span",
+                    {
+                      attrs: {
+                        title:
+                          "Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "
+                      }
+                    },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "question-circle", size: "xs" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v("Secure max "),
+                  _c(
+                    "span",
+                    {
+                      attrs: {
+                        title:
+                          "Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"
+                      }
+                    },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "question-circle", size: "xs" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v("User defined")])
+              ]),
               _vm._v(" "),
               _c(
                 "tr",
@@ -52906,7 +52935,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
-                      index <= 2
+                      index <= 1
                         ? _c("span", [
                             _vm._v(
                               _vm._s(
@@ -52918,7 +52947,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      index > 2
+                      index > 1
                         ? _c("span", [
                             _c("input", {
                               directives: [
@@ -52989,7 +53018,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
-                      index <= 2
+                      index <= 1
                         ? _c("span", [
                             _vm._v(
                               _vm._s(
@@ -53001,7 +53030,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      index > 2
+                      index > 1
                         ? _c("span", [
                             _c("input", {
                               directives: [
@@ -53065,13 +53094,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
-                      index <= 2
+                      index <= 1
                         ? _c("span", [
                             _vm._v(_vm._s(scheme.fees.availability.toFixed(3)))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      index > 2
+                      index > 1
                         ? _c("span", [
                             _c("input", {
                               directives: [
@@ -53136,13 +53165,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
-                      index <= 2
+                      index <= 1
                         ? _c("span", [
                             _vm._v(_vm._s(scheme.fees.utilisation.toFixed(3)))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      index > 2
+                      index > 1
                         ? _c("span", [
                             _c("input", {
                               directives: [
@@ -53207,13 +53236,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.schemes, function(scheme, index) {
                     return _c("td", [
-                      index <= 2
+                      index <= 1
                         ? _c("span", [
                             _vm._v(_vm._s(scheme.aggregatorFactor.toFixed(2)))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      index > 2
+                      index > 1
                         ? _c("span", [
                             _c("input", {
                               directives: [
