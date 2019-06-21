@@ -196,7 +196,8 @@
                     <div v-if="assessment.data.tariff.type != 'Flat rate'" style="vertical-alignment: top">
                         <table class="table-no-style">
                             <tr><td>Name</td><td><input style="margin-left: 15px" class="form-control" type="text" v-model='assessment.data.tariff.name'></td></tr>
-                            <tr v-if="!assessment.data.tariff.unknown"><td>Difference between lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.rate'> £/kWh</td></tr>
+                            <tr v-if="!assessment.data.tariff.unknown"><td>Highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.lowRate'> £/kWh</td></tr>
+                            <tr v-if="!assessment.data.tariff.unknown"><td>Lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.highRate'> £/kWh</td></tr>
                             <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.tariff.unknown" />Unknown</p></td></tr> 
                         </table>
                     </div>
@@ -309,7 +310,8 @@
             return {
                 flexibilityModel: new flexibilityModel(),
                 defaultValues: {
-                    tariffRateDifference: 0.08, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                    tariffLowRate: 0.11, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                    tariffHighRate: 0.19,
                     storageHeatersRating: 2.7,
                     immersionHeaterRating: 2.5
                 }
@@ -331,9 +333,10 @@
                     if (dataForModel.tariff.type == "Flat rate")
                         dataForModel.tariff.rate = 0;
                     else if (dataForModel.tariff.unknown == true)
-                        dataForModel.tariff.rate = this.defaultValues.tariffRateDifference;
-                    if (dataForModel.immersionHeater.ratingUnknown)
-                        dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+                        dataForModel.tariff.rate = this.defaultValues.tariffHighRate - this.defaultValues.tariffLowRate;
+                    else
+                        dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
+                    dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
                     if (dataForModel.storageHeaters.ratingUnknown)
                         dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
                     console.log(dataForModel)
@@ -394,7 +397,7 @@
             }
 
             if (this.assessment.data.tariff == undefined) {
-                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0, unknown: false, name: ""});
+                Vue.set(this.assessment.data, 'tariff', {type: "Flat rate", rate: 0, unknown: false, name: "", highRate: 0, lowRate: 0});
             }
 
             if (this.assessment.data.energyUse == undefined) {

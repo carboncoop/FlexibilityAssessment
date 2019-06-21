@@ -43341,6 +43341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -43352,7 +43353,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_1__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
             defaultValues: {
-                tariffRateDifference: 0.08, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                tariffLowRate: 0.11, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
+                tariffHighRate: 0.19,
                 storageHeatersRating: 2.7,
                 immersionHeaterRating: 2.5
             }
@@ -43371,8 +43373,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deep: true,
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
-                if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = this.defaultValues.tariffRateDifference;
-                if (dataForModel.immersionHeater.ratingUnknown) dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+                if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = this.defaultValues.tariffHighRate - this.defaultValues.tariffLowRate;else dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
+                dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
                 if (dataForModel.storageHeaters.ratingUnknown) dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
                 console.log(dataForModel);
                 this.flexibilityModel.run(dataForModel);
@@ -43432,7 +43434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         if (this.assessment.data.tariff == undefined) {
-            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0, unknown: false, name: "" });
+            Vue.set(this.assessment.data, 'tariff', { type: "Flat rate", rate: 0, unknown: false, name: "", highRate: 0, lowRate: 0 });
         }
 
         if (this.assessment.data.energyUse == undefined) {
@@ -48363,17 +48365,15 @@ var render = function() {
                     _vm._v(" "),
                     !_vm.assessment.data.tariff.unknown
                       ? _c("tr", [
-                          _c("td", [
-                            _vm._v("Difference between lowest and highest rate")
-                          ]),
+                          _c("td", [_vm._v("Highest rate")]),
                           _c("td", [
                             _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.assessment.data.tariff.rate,
-                                  expression: "assessment.data.tariff.rate"
+                                  value: _vm.assessment.data.tariff.lowRate,
+                                  expression: "assessment.data.tariff.lowRate"
                                 }
                               ],
                               staticClass: "form-control",
@@ -48384,7 +48384,7 @@ var render = function() {
                                 step: "0.01"
                               },
                               domProps: {
-                                value: _vm.assessment.data.tariff.rate
+                                value: _vm.assessment.data.tariff.lowRate
                               },
                               on: {
                                 input: function($event) {
@@ -48393,7 +48393,48 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.assessment.data.tariff,
-                                    "rate",
+                                    "lowRate",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" £/kWh")
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.assessment.data.tariff.unknown
+                      ? _c("tr", [
+                          _c("td", [_vm._v("Lowest and highest rate")]),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.assessment.data.tariff.highRate,
+                                  expression: "assessment.data.tariff.highRate"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { "margin-left": "15px" },
+                              attrs: {
+                                type: "number",
+                                min: "0.01",
+                                step: "0.01"
+                              },
+                              domProps: {
+                                value: _vm.assessment.data.tariff.highRate
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.assessment.data.tariff,
+                                    "highRate",
                                     $event.target.value
                                   )
                                 }
