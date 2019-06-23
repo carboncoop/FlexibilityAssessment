@@ -79,6 +79,13 @@
             </li>
         </ol>
         </p>
+               
+        <p>Would you still want to participate in the scheme if there was a chance that your hot water or heating supply would be disrupted for a short period of time (up to 2 hours)?
+            <select class="form-control" v-model="assessment.data.questionnaire.wantToParticipateWithDisruption">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </p>
 
         <p>What other information would you want before you made a decision on whether to sign up for a flexibility agreement in the future, and what further questions do you have about how the energy system is changing and about flexibility? 
             <textarea style='display:block' rows='4' cols='75' v-model="assessment.data.questionnaire.otherInfoBeforeDecision" />
@@ -176,6 +183,9 @@
             }
             if (this.assessment.data.questionnaire.enoughInformationToDecideComments == undefined) {
                 Vue.set(this.assessment.data.questionnaire, 'enoughInformationToDecideComments', "");
+            }
+            if (this.assessment.data.questionnaire.wantToParticipateWithDisruption == undefined) {
+                Vue.set(this.assessment.data.questionnaire, 'wantToParticipateWithDisruption', "");
             }
 
         }

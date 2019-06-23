@@ -50592,6 +50592,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -50645,6 +50652,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_draggable___default.a);
         }
         if (this.assessment.data.questionnaire.enoughInformationToDecideComments == undefined) {
             Vue.set(this.assessment.data.questionnaire, 'enoughInformationToDecideComments', "");
+        }
+        if (this.assessment.data.questionnaire.wantToParticipateWithDisruption == undefined) {
+            Vue.set(this.assessment.data.questionnaire, 'wantToParticipateWithDisruption', "");
         }
     }
 });
@@ -51810,6 +51820,51 @@ var render = function() {
             [_c("div", [_vm._v(_vm._s(item))])]
           )
         })
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Would you still want to participate in the scheme if there was a chance that your hot water or heating supply would be disrupted for a short period of time (up to 2 hours)?\n        "
+      ),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value:
+                _vm.assessment.data.questionnaire
+                  .wantToParticipateWithDisruption,
+              expression:
+                "assessment.data.questionnaire.wantToParticipateWithDisruption"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.assessment.data.questionnaire,
+                "wantToParticipateWithDisruption",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "Yes" } }, [_vm._v("Yes")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "No" } }, [_vm._v("No")])
+        ]
       )
     ]),
     _vm._v(" "),
