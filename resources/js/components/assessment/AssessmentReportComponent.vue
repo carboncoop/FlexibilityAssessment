@@ -25,6 +25,12 @@
                 <td>{{assessment.data.powerAvailable.immersionHeater.toFixed(2)}}kW</td>
                 <td>{{incomePerAsset.secure.immersionHeater.min.toFixed(2)}} to {{incomePerAsset.secure.immersionHeater.max.toFixed(2)}} £/year</td>
             </tr>
+            <tr v-if='assessment.data.powerAvailable.wetHeatingSystem > 0'>
+                <td>Wet heating system</td>
+                <td>{{assessment.data.wetHeatingSystem.rating.toFixed(2)}}kW</td>
+                <td>{{assessment.data.powerAvailable.wetHeatingSystem.toFixed(2)}}kW</td>
+                <td>{{incomePerAsset.secure.wetHeatingSystem.min.toFixed(2)}} to {{incomePerAsset.secure.wetHeatingSystem.max.toFixed(2)}} £/year</td>
+            </tr>
         </table>
 
         <h2>What would I need to change?</h2>
@@ -148,7 +154,7 @@
                     //restore: 0
                 },
                 incomePerAsset: {
-                    secure: {storageHeaters: {min: 0, max: 0}, immersionHeater: {min: 0, max: 0}},
+                    secure: {storageHeaters: {min: 0, max: 0}, immersionHeater: {min: 0, max: 0}, wetHeatingSystem: {min: 0, max: 0}},
                     //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
                     //restore: {storageHeaters: 0, immersionHeater: 0}
                 },
@@ -171,6 +177,7 @@
                     self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
                     self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
                     self.incomePerAsset[scheme].immersionHeater[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+                    self.incomePerAsset[scheme].wetHeatingSystem[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.wetHeatingSystem;
                 });
             }
         },

@@ -71,6 +71,7 @@ class flexibilityModel {
         this.ini(data);
         this.storageHeatersFlexibility(data);
         this.immersionHeaterFlexibility(data);
+        this.wetHeatingSystemFlexibility(data);
 
         for (let source in data.incomeYearBySource) {
             data.incomeYearTotal += data.incomeYearBySource[source];
@@ -253,6 +254,57 @@ class flexibilityModel {
         data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
         data.incomeYearBySource.immersionHeater = incomeYear;
 
+        return data;
+    }
+
+    /********************************************
+     * wetHeatingSystemFlexibility 
+     * 
+     * Calculation is the same than for storageHeatersFlexibility()
+     * 
+     *  Inputs from user:
+     *      - data.household.EPC      Integer - defaults to 55 (lowest rate in band D)
+     *      - data.wetHeatingSystem.present   boolean or String (Yes/No)
+     *      - data.wetHeatingSystem.rating    integer kW
+     *      - data.wetHeatingSystem.chargingTime      integer hours/day - defaults to 7
+     *      - data.wetHeatingSystem.heatingOffSummer  boolean or String (Yes/No) - defaults to true
+     *      - data.useDnoEstimatedHoursRequired.use      boolean or String (Yes/No) - defaults to true
+     *      
+     *  Global outputs:
+     *      - data.powerAvailable.wetHeatingSystem         kW
+     *      - data.flexibilityHoursScheduled.wetHeatingSystem         hours
+     *      - data.loadUtilisedYear.wetHeatingSystem      kWh/year
+     *      - data.flexibilityIncomeYear.wetHeatingSystem     £
+     *      
+     *********************************************/
+
+    wetHeatingSystemFlexibility(data) {
+
+        // Because calculation is the same than for sotrage heaters we simply fake 
+        // the data object and pass it to storageHeatersFlexibility()
+        let storageHeatersFakeData = JSON.parse(JSON.stringify(data));
+        storageHeatersFakeData.storageHeaters.present = storageHeatersFakeData.wetHeatingSystem.present;
+        storageHeatersFakeData.storageHeaters.rating = storageHeatersFakeData.wetHeatingSystem.rating;
+        storageHeatersFakeData.storageHeaters.number = 1;
+        if (storageHeatersFakeData.wetHeatingSystem.chargingTime != undefined)
+            storageHeatersFakeData.storageHeaters.chargingTime = storageHeatersFakeData.wetHeatingSystem.chargingTime;
+        else {
+            storageHeatersFakeData.chargingTime = 7;
+            data.wetHeatingSystem.chargingTime = 7;
+        }
+        if (storageHeatersFakeData.wetHeatingSystem.heatingOffSummer != undefined)
+            storageHeatersFakeData.storageHeaters.heatingOffSummer = storageHeatersFakeData.wetHeatingSystem.heatingOffSummer;
+        else{
+            storageHeatersFakeData.storageHeaters.heatingOffSummer = true;
+            data.storageHeaters.heatingOffSummer = true;
+        }
+
+        // calculate income for the fake storage heaters
+        this.storageHeatersFlexibility(storageHeatersFakeData);
+        data.powerAvailable.wetHeatingSystem = storageHeatersFakeData.powerAvailable.storageHeaters;
+        data.flexibilityHoursScheduled.wetHeatingSystem = storageHeatersFakeData.flexibilityHoursScheduled.storageHeaters;
+        data.loadUtilisedYear.wetHeatingSystem = storageHeatersFakeData.loadUtilisedYear.storageHeaters;
+        data.incomeYearBySource.wetHeatingSystem = storageHeatersFakeData.incomeYearBySource.storageHeaters;
         return data;
     }
 

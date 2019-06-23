@@ -10051,6 +10051,7 @@ var flexibilityModel = function () {
             this.ini(data);
             this.storageHeatersFlexibility(data);
             this.immersionHeaterFlexibility(data);
+            this.wetHeatingSystemFlexibility(data);
 
             for (var source in data.incomeYearBySource) {
                 data.incomeYearTotal += data.incomeYearBySource[source];
@@ -10225,6 +10226,55 @@ var flexibilityModel = function () {
             data.loadUtilisedYear.immersionHeater = loadUtilisedYear;
             data.incomeYearBySource.immersionHeater = incomeYear;
 
+            return data;
+        }
+
+        /********************************************
+         * wetHeatingSystemFlexibility 
+         * 
+         * Calculation is the same than for storageHeatersFlexibility()
+         * 
+         *  Inputs from user:
+         *      - data.household.EPC      Integer - defaults to 55 (lowest rate in band D)
+         *      - data.wetHeatingSystem.present   boolean or String (Yes/No)
+         *      - data.wetHeatingSystem.rating    integer kW
+         *      - data.wetHeatingSystem.chargingTime      integer hours/day - defaults to 7
+         *      - data.wetHeatingSystem.heatingOffSummer  boolean or String (Yes/No) - defaults to true
+         *      - data.useDnoEstimatedHoursRequired.use      boolean or String (Yes/No) - defaults to true
+         *      
+         *  Global outputs:
+         *      - data.powerAvailable.wetHeatingSystem         kW
+         *      - data.flexibilityHoursScheduled.wetHeatingSystem         hours
+         *      - data.loadUtilisedYear.wetHeatingSystem      kWh/year
+         *      - data.flexibilityIncomeYear.wetHeatingSystem     £
+         *      
+         *********************************************/
+
+    }, {
+        key: "wetHeatingSystemFlexibility",
+        value: function wetHeatingSystemFlexibility(data) {
+
+            // Because calculation is the same than for sotrage heaters we simply fake 
+            // the data object and pass it to storageHeatersFlexibility()
+            var storageHeatersFakeData = JSON.parse(JSON.stringify(data));
+            storageHeatersFakeData.storageHeaters.present = storageHeatersFakeData.wetHeatingSystem.present;
+            storageHeatersFakeData.storageHeaters.rating = storageHeatersFakeData.wetHeatingSystem.rating;
+            storageHeatersFakeData.storageHeaters.number = 1;
+            if (storageHeatersFakeData.wetHeatingSystem.chargingTime != undefined) storageHeatersFakeData.storageHeaters.chargingTime = storageHeatersFakeData.wetHeatingSystem.chargingTime;else {
+                storageHeatersFakeData.chargingTime = 7;
+                data.wetHeatingSystem.chargingTime = 7;
+            }
+            if (storageHeatersFakeData.wetHeatingSystem.heatingOffSummer != undefined) storageHeatersFakeData.storageHeaters.heatingOffSummer = storageHeatersFakeData.wetHeatingSystem.heatingOffSummer;else {
+                storageHeatersFakeData.storageHeaters.heatingOffSummer = true;
+                data.storageHeaters.heatingOffSummer = true;
+            }
+
+            // calculate income for the fake storage heaters
+            this.storageHeatersFlexibility(storageHeatersFakeData);
+            data.powerAvailable.wetHeatingSystem = storageHeatersFakeData.powerAvailable.storageHeaters;
+            data.flexibilityHoursScheduled.wetHeatingSystem = storageHeatersFakeData.flexibilityHoursScheduled.storageHeaters;
+            data.loadUtilisedYear.wetHeatingSystem = storageHeatersFakeData.loadUtilisedYear.storageHeaters;
+            data.incomeYearBySource.wetHeatingSystem = storageHeatersFakeData.incomeYearBySource.storageHeaters;
             return data;
         }
 
@@ -43401,7 +43451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = this.defaultValues.tariffHighRate - this.defaultValues.tariffLowRate;else dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
 
-                if (dataForModel.immersionHeaterRating.ratingUnknown) dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+                if (dataForModel.immersionHeater.ratingUnknown) dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
 
                 if (dataForModel.storageHeaters.ratingUnknown) dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
 
@@ -49894,6 +49944,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49918,7 +49974,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //restore: 0
             },
             incomePerAsset: {
-                secure: { storageHeaters: { min: 0, max: 0 }, immersionHeater: { min: 0, max: 0 } }
+                secure: { storageHeaters: { min: 0, max: 0 }, immersionHeater: { min: 0, max: 0 }, wetHeatingSystem: { min: 0, max: 0 } }
                 //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
                 //restore: {storageHeaters: 0, immersionHeater: 0}
             },
@@ -49943,6 +49999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
                 self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
                 self.incomePerAsset[scheme].immersionHeater[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.immersionHeater;
+                self.incomePerAsset[scheme].wetHeatingSystem[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.wetHeatingSystem;
             });
         };
 
@@ -50096,6 +50153,43 @@ var render = function() {
                     " to " +
                     _vm._s(
                       _vm.incomePerAsset.secure.immersionHeater.max.toFixed(2)
+                    ) +
+                    " £/year"
+                )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.assessment.data.powerAvailable.wetHeatingSystem > 0
+          ? _c("tr", [
+              _c("td", [_vm._v("Wet heating system")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.wetHeatingSystem.rating.toFixed(2)
+                  ) + "kW"
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.assessment.data.powerAvailable.wetHeatingSystem.toFixed(
+                      2
+                    )
+                  ) + "kW"
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.incomePerAsset.secure.wetHeatingSystem.min.toFixed(2)
+                  ) +
+                    " to " +
+                    _vm._s(
+                      _vm.incomePerAsset.secure.wetHeatingSystem.max.toFixed(2)
                     ) +
                     " £/year"
                 )
