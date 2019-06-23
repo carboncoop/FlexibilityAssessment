@@ -363,7 +363,7 @@
                     else
                         dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
 
-                    if (dataForModel.immersionHeaterRating.ratingUnknown)
+                    if (dataForModel.immersionHeater.ratingUnknown)
                         dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
 
                     if (dataForModel.storageHeaters.ratingUnknown)
