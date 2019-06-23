@@ -120,6 +120,30 @@
             </tr>
 
             <tr>
+                <td>Do you have a wet electric heating system? </td>
+                <td>
+                    <input type="radio" name="wetHeatingSystem" value="Yes" v-model="assessment.data.wetHeatingSystem.present"  /> Yes <input type="radio" name="wetHeatingSystem" value="No" v-model="assessment.data.wetHeatingSystem.present" checked /> No
+                    <table class='heaters' v-if="assessment.data.wetHeatingSystem.present =='Yes'">
+                        <tr><td>Manufacturer</td><td><input type='text' class="form-control" v-model='assessment.data.wetHeatingSystem.manufacturer' /></td></tr>
+                        <tr><td>Model/make</td><td><input type='text' class="form-control" v-model='assessment.data.wetHeatingSystem.modelMake' /></td></tr>
+                        <tr v-if="!assessment.data.wetHeatingSystem.ratingUnknown"><td>Rating</td><td><input class="form-control" type="number" min="0.1" step="0.1" v-model="assessment.data.wetHeatingSystem.rating" style='display:inline-block' /> kW</td></tr>
+                        <tr><td><span v-if="assessment.data.wetHeatingSystem.ratingUnknown">Rating</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.wetHeatingSystem.ratingUnknown" />Unknown</p></td></tr> 
+
+                        <tr>
+                            <td>Controls</td>
+                            <td>
+                                <select class="form-control" v-model="assessment.data.wetHeatingSystem.controlType">
+                                    <option value="Input/output">Input/output</option>
+                                    <option value="Timer">Timer</option>
+                                    <option value="Advanced controls">Advanced controls</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
                 <td>Do you have other electric heaters</td>
                 <td>
                     <input type="radio" name="otherElectricHeaters" value="Yes" v-model="assessment.data.otherElectricHeaters.present" /> Yes <input type="radio" name="otherElectricHeaters" value="No" v-model="assessment.data.otherElectricHeaters.present" checked /> No
@@ -313,7 +337,8 @@
                     tariffLowRate: 0.11, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
                     tariffHighRate: 0.19,
                     storageHeatersRating: 2.7,
-                    immersionHeaterRating: 2.5
+                    immersionHeaterRating: 2.5,
+                    wetHeatingSystemRating: 9
                 }
             };
         },
@@ -330,16 +355,24 @@
                 deep: true,
                 handler: function () {
                     let dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
+
                     if (dataForModel.tariff.type == "Flat rate")
                         dataForModel.tariff.rate = 0;
                     else if (dataForModel.tariff.unknown == true)
                         dataForModel.tariff.rate = this.defaultValues.tariffHighRate - this.defaultValues.tariffLowRate;
                     else
                         dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
-                    dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+
+                    if (dataForModel.immersionHeaterRating.ratingUnknown)
+                        dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+
                     if (dataForModel.storageHeaters.ratingUnknown)
                         dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
+                    
+                    if (dataForModel.wetHeatingSystem.ratingUnknown)
+                        dataForModel.wetHeatingSystem.rating = this.defaultValues.wetHeatingSystemRating;
                     console.log(dataForModel)
+
                     this.flexibilityModel.run(dataForModel);
                     console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                     console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
@@ -348,6 +381,7 @@
                     console.log("Income year total = " + dataForModel.incomeYearTotal);
                     console.log("Income year household = " + dataForModel.incomeYearTotalHousehold);
                     console.log("Income year aggregator = " + dataForModel.incomeYearTotalAggregator);
+
                     if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                         this.assessment.data = dataForModel;
                     }
@@ -370,6 +404,11 @@
             if (this.assessment.data.storageHeaters == undefined) {
                 Vue.set(this.assessment.data, 'storageHeaters', {});
                 this.assessment.data.storageHeaters = {"present": 'No', number: 0, rating: 0, ratingUnknown: false};
+            }
+
+            if (this.assessment.data.wetHeatingSystem == undefined) {
+                Vue.set(this.assessment.data, 'wetHeatingSystem', {});
+                this.assessment.data.wetHeatingSystem = {"present": 'No', rating: 0, ratingUnknown: false};
             }
 
             if (this.assessment.data.otherElectricHeaters == undefined) {

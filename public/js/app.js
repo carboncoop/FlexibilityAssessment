@@ -43342,6 +43342,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43356,7 +43380,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 tariffLowRate: 0.11, // used Good Energy Economy 7 as reference https://www.goodenergy.co.uk/our-tariffs
                 tariffHighRate: 0.19,
                 storageHeatersRating: 2.7,
-                immersionHeaterRating: 2.5
+                immersionHeaterRating: 2.5,
+                wetHeatingSystemRating: 9
             }
         };
     },
@@ -43373,10 +43398,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deep: true,
             handler: function handler() {
                 var dataForModel = JSON.parse(JSON.stringify(this.assessment.data));
+
                 if (dataForModel.tariff.type == "Flat rate") dataForModel.tariff.rate = 0;else if (dataForModel.tariff.unknown == true) dataForModel.tariff.rate = this.defaultValues.tariffHighRate - this.defaultValues.tariffLowRate;else dataForModel.tariff.rate = dataForModel.tariff.highRate - dataForModel.tariff.lowRate;
-                dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+
+                if (dataForModel.immersionHeaterRating.ratingUnknown) dataForModel.immersionHeater.rating = this.defaultValues.immersionHeaterRating;
+
                 if (dataForModel.storageHeaters.ratingUnknown) dataForModel.storageHeaters.rating = this.defaultValues.storageHeatersRating;
+
+                if (dataForModel.wetHeatingSystem.ratingUnknown) dataForModel.wetHeatingSystem.rating = this.defaultValues.wetHeatingSystemRating;
                 console.log(dataForModel);
+
                 this.flexibilityModel.run(dataForModel);
                 console.log("\nFlexible power available (kW): " + JSON.stringify(dataForModel.powerAvailable));
                 console.log("Flexibility scheduled (hours/year): " + JSON.stringify(dataForModel.flexibilityHoursScheduled));
@@ -43385,6 +43416,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log("Income year total = " + dataForModel.incomeYearTotal);
                 console.log("Income year household = " + dataForModel.incomeYearTotalHousehold);
                 console.log("Income year aggregator = " + dataForModel.incomeYearTotalAggregator);
+
                 if (JSON.stringify(this.assessment.data) != JSON.stringify(dataForModel)) {
                     this.assessment.data = dataForModel;
                 }
@@ -43407,6 +43439,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (this.assessment.data.storageHeaters == undefined) {
             Vue.set(this.assessment.data, 'storageHeaters', {});
             this.assessment.data.storageHeaters = { "present": 'No', number: 0, rating: 0, ratingUnknown: false };
+        }
+
+        if (this.assessment.data.wetHeatingSystem == undefined) {
+            Vue.set(this.assessment.data, 'wetHeatingSystem', {});
+            this.assessment.data.wetHeatingSystem = { "present": 'No', rating: 0, ratingUnknown: false };
         }
 
         if (this.assessment.data.otherElectricHeaters == undefined) {
@@ -47375,6 +47412,305 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.assessment.data.storageHeaters,
+                              "controlType",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "Input/output" } }, [
+                          _vm._v("Input/output")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Timer" } }, [
+                          _vm._v("Timer")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Advanced controls" } },
+                          [_vm._v("Advanced controls")]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Do you have a wet electric heating system? ")]),
+        _vm._v(" "),
+        _c("td", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.assessment.data.wetHeatingSystem.present,
+                expression: "assessment.data.wetHeatingSystem.present"
+              }
+            ],
+            attrs: { type: "radio", name: "wetHeatingSystem", value: "Yes" },
+            domProps: {
+              checked: _vm._q(
+                _vm.assessment.data.wetHeatingSystem.present,
+                "Yes"
+              )
+            },
+            on: {
+              change: function($event) {
+                _vm.$set(_vm.assessment.data.wetHeatingSystem, "present", "Yes")
+              }
+            }
+          }),
+          _vm._v(" Yes "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.assessment.data.wetHeatingSystem.present,
+                expression: "assessment.data.wetHeatingSystem.present"
+              }
+            ],
+            attrs: {
+              type: "radio",
+              name: "wetHeatingSystem",
+              value: "No",
+              checked: ""
+            },
+            domProps: {
+              checked: _vm._q(
+                _vm.assessment.data.wetHeatingSystem.present,
+                "No"
+              )
+            },
+            on: {
+              change: function($event) {
+                _vm.$set(_vm.assessment.data.wetHeatingSystem, "present", "No")
+              }
+            }
+          }),
+          _vm._v(" No\n                "),
+          _vm.assessment.data.wetHeatingSystem.present == "Yes"
+            ? _c("table", { staticClass: "heaters" }, [
+                _c("tr", [
+                  _c("td", [_vm._v("Manufacturer")]),
+                  _c("td", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.assessment.data.wetHeatingSystem.manufacturer,
+                          expression:
+                            "assessment.data.wetHeatingSystem.manufacturer"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.assessment.data.wetHeatingSystem.manufacturer
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.assessment.data.wetHeatingSystem,
+                            "manufacturer",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Model/make")]),
+                  _c("td", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.assessment.data.wetHeatingSystem.modelMake,
+                          expression:
+                            "assessment.data.wetHeatingSystem.modelMake"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.assessment.data.wetHeatingSystem.modelMake
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.assessment.data.wetHeatingSystem,
+                            "modelMake",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                !_vm.assessment.data.wetHeatingSystem.ratingUnknown
+                  ? _c("tr", [
+                      _c("td", [_vm._v("Rating")]),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value:
+                                _vm.assessment.data.wetHeatingSystem.rating,
+                              expression:
+                                "assessment.data.wetHeatingSystem.rating"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          staticStyle: { display: "inline-block" },
+                          attrs: { type: "number", min: "0.1", step: "0.1" },
+                          domProps: {
+                            value: _vm.assessment.data.wetHeatingSystem.rating
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.assessment.data.wetHeatingSystem,
+                                "rating",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" kW")
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm.assessment.data.wetHeatingSystem.ratingUnknown
+                      ? _c("span", [_vm._v("Rating")])
+                      : _vm._e()
+                  ]),
+                  _c("td", [
+                    _c("p", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.assessment.data.wetHeatingSystem
+                                .ratingUnknown,
+                            expression:
+                              "assessment.data.wetHeatingSystem.ratingUnknown"
+                          }
+                        ],
+                        staticClass: "form-control unknown",
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.assessment.data.wetHeatingSystem.ratingUnknown
+                          )
+                            ? _vm._i(
+                                _vm.assessment.data.wetHeatingSystem
+                                  .ratingUnknown,
+                                null
+                              ) > -1
+                            : _vm.assessment.data.wetHeatingSystem.ratingUnknown
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a =
+                                _vm.assessment.data.wetHeatingSystem
+                                  .ratingUnknown,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.assessment.data.wetHeatingSystem,
+                                    "ratingUnknown",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.assessment.data.wetHeatingSystem,
+                                    "ratingUnknown",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.assessment.data.wetHeatingSystem,
+                                "ratingUnknown",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v("Unknown")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Controls")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.assessment.data.wetHeatingSystem.controlType,
+                            expression:
+                              "assessment.data.wetHeatingSystem.controlType"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.assessment.data.wetHeatingSystem,
                               "controlType",
                               $event.target.multiple
                                 ? $$selectedVal
