@@ -15,9 +15,9 @@
         </select>
 
         <p>Would you be prepared to pay any money upfront in order to join an aggregation system?  (tick as many as apply)</p>            
-        <p style="margin:0 25px 50px"><input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.no"> No - I wouldn't pay anything upfront</input><br />
-            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"> Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</input><br />
-            <input type="checkbox" v-model="assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"> Yes - I would consider upgrading to new smart heaters so I could join</input><br />
+        <p style="margin:0 25px 50px"><input type="checkbox" v-model="assessment.data.reportFeedback.preparedToPayUpfront.no"> No - I wouldn't pay anything upfront</input><br />
+            <input type="checkbox" v-model="assessment.data.reportFeedback.preparedToPayUpfront.yesToJoin"> Yes - I would consider paying upfront to join, if it meant I got more back from the scheme</input><br />
+            <input type="checkbox" v-model="assessment.data.reportFeedback.preparedToPayUpfront.yesUpgradeHeating"> Yes - I would consider upgrading to new smart heaters so I could join</input><br />
         </p>
         
          <p>How much might you be prepared to pay?

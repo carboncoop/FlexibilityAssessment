@@ -52319,24 +52319,25 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
-            expression: "assessment.data.questionnaire.preparedToPayUpfront.no"
+            value: _vm.assessment.data.reportFeedback.preparedToPayUpfront.no,
+            expression: "assessment.data.reportFeedback.preparedToPayUpfront.no"
           }
         ],
         attrs: { type: "checkbox" },
         domProps: {
           checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+            _vm.assessment.data.reportFeedback.preparedToPayUpfront.no
           )
             ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront.no,
                 null
               ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront.no
+            : _vm.assessment.data.reportFeedback.preparedToPayUpfront.no
         },
         on: {
           change: function($event) {
-            var $$a = _vm.assessment.data.questionnaire.preparedToPayUpfront.no,
+            var $$a =
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront.no,
               $$el = $event.target,
               $$c = $$el.checked ? true : false
             if (Array.isArray($$a)) {
@@ -52345,21 +52346,21 @@ var render = function() {
               if ($$el.checked) {
                 $$i < 0 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "no",
                     $$a.concat([$$v])
                   )
               } else {
                 $$i > -1 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "no",
                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                   )
               }
             } else {
               _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                 "no",
                 $$c
               )
@@ -52376,27 +52377,27 @@ var render = function() {
             name: "model",
             rawName: "v-model",
             value:
-              _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin,
+              _vm.assessment.data.reportFeedback.preparedToPayUpfront.yesToJoin,
             expression:
-              "assessment.data.questionnaire.preparedToPayUpfront.yesToJoin"
+              "assessment.data.reportFeedback.preparedToPayUpfront.yesToJoin"
           }
         ],
         attrs: { type: "checkbox" },
         domProps: {
           checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
+            _vm.assessment.data.reportFeedback.preparedToPayUpfront.yesToJoin
           )
             ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront
                   .yesToJoin,
                 null
               ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront.yesToJoin
+            : _vm.assessment.data.reportFeedback.preparedToPayUpfront.yesToJoin
         },
         on: {
           change: function($event) {
             var $$a =
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront
                   .yesToJoin,
               $$el = $event.target,
               $$c = $$el.checked ? true : false
@@ -52406,21 +52407,21 @@ var render = function() {
               if ($$el.checked) {
                 $$i < 0 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "yesToJoin",
                     $$a.concat([$$v])
                   )
               } else {
                 $$i > -1 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "yesToJoin",
                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                   )
               }
             } else {
               _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                 "yesToJoin",
                 $$c
               )
@@ -52439,30 +52440,30 @@ var render = function() {
             name: "model",
             rawName: "v-model",
             value:
-              _vm.assessment.data.questionnaire.preparedToPayUpfront
+              _vm.assessment.data.reportFeedback.preparedToPayUpfront
                 .yesUpgradeHeating,
             expression:
-              "assessment.data.questionnaire.preparedToPayUpfront.yesUpgradeHeating"
+              "assessment.data.reportFeedback.preparedToPayUpfront.yesUpgradeHeating"
           }
         ],
         attrs: { type: "checkbox" },
         domProps: {
           checked: Array.isArray(
-            _vm.assessment.data.questionnaire.preparedToPayUpfront
+            _vm.assessment.data.reportFeedback.preparedToPayUpfront
               .yesUpgradeHeating
           )
             ? _vm._i(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront
                   .yesUpgradeHeating,
                 null
               ) > -1
-            : _vm.assessment.data.questionnaire.preparedToPayUpfront
+            : _vm.assessment.data.reportFeedback.preparedToPayUpfront
                 .yesUpgradeHeating
         },
         on: {
           change: function($event) {
             var $$a =
-                _vm.assessment.data.questionnaire.preparedToPayUpfront
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront
                   .yesUpgradeHeating,
               $$el = $event.target,
               $$c = $$el.checked ? true : false
@@ -52472,21 +52473,21 @@ var render = function() {
               if ($$el.checked) {
                 $$i < 0 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "yesUpgradeHeating",
                     $$a.concat([$$v])
                   )
               } else {
                 $$i > -1 &&
                   _vm.$set(
-                    _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                    _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                     "yesUpgradeHeating",
                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                   )
               }
             } else {
               _vm.$set(
-                _vm.assessment.data.questionnaire.preparedToPayUpfront,
+                _vm.assessment.data.reportFeedback.preparedToPayUpfront,
                 "yesUpgradeHeating",
                 $$c
               )
