@@ -50312,7 +50312,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "The income is calculated as the fees from the DNO minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. "
+        "The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. "
       )
     ]),
     _vm._v(" "),

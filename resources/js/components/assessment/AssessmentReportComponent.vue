@@ -62,7 +62,7 @@
         <p>The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature.</p>
 
         <h3>How is the income from flexibility calculated?</h3>
-        <p>The income is calculated as the fees from the DNO minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. </p>
+        <p>The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. </p>
 
         <h3>How much time will I have to be flexible?</h3>
         <p>The model estimates that the DNOs will require between <span style="red">X and Y</span> hours of flexibility each year.</p>
