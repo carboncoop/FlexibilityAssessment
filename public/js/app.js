@@ -53368,8 +53368,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
                         assessment.data.incomeFromOtherFlexibilityFactor = scheme.incomeFromOtherFlexibilityFactor;
                         myself.flexibilityModel.run(assessment.data);
-                        scheme.powerAvailable += assessment.data.powerAvailable.storageHeaters + assessment.data.powerAvailable.immersionHeater;
-                        scheme.loadUtilisedYear += assessment.data.loadUtilisedYear.storageHeaters + assessment.data.loadUtilisedYear.immersionHeater;
+                        scheme.powerAvailable = 0;
+                        scheme.loadUtilisedYear = 0;
+                        for (var source in assessment.data.powerAvailable) {
+                            scheme.powerAvailable += assessment.data.powerAvailable[source];
+                            scheme.loadUtilisedYear += assessment.data.loadUtilisedYear[source];
+                        }
                         scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
                         scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
                     });
