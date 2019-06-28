@@ -214,14 +214,13 @@
                     <option value="E7">E7</option>    
                     <option value="E10/Comfort+">E10/Comfort+</option>    
                     <option value="Flat rate">Flat rate</option>     
-                    <option value="Smart" disabled>Smart</option>    
                 </select> 
                 <div style="margin: 5px 0">
                     <div v-if="assessment.data.tariff.type != 'Flat rate'" style="vertical-alignment: top">
                         <table class="table-no-style">
                             <tr><td>Name</td><td><input style="margin-left: 15px" class="form-control" type="text" v-model='assessment.data.tariff.name'></td></tr>
-                            <tr v-if="!assessment.data.tariff.unknown"><td>Highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.lowRate'> £/kWh</td></tr>
-                            <tr v-if="!assessment.data.tariff.unknown"><td>Lowest and highest rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.highRate'> £/kWh</td></tr>
+                            <tr v-if="!assessment.data.tariff.unknown"><td>Low rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.lowRate'> £/kWh</td></tr>
+                            <tr v-if="!assessment.data.tariff.unknown"><td>High rate</td><td><input style="margin-left: 15px" class="form-control" type='number' min='0.01' step="0.01" v-model='assessment.data.tariff.highRate'> £/kWh</td></tr>
                             <tr><td><span v-if="assessment.data.tariff.unknown">Difference between lowest and highest rate</span></td><td><p><input type="checkbox" class="form-control unknown" v-model="assessment.data.tariff.unknown" />Unknown</p></td></tr> 
                         </table>
                     </div>

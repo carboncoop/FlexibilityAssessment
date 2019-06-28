@@ -39,8 +39,8 @@
         <p>In order for the smart controller to work, it will need to know when you want heat in your house. This is still a trial project so we don’t know exactly how it would work yet. But you might need to change how you control your heating system, so that the smart controller can see your heating preferences and make sure you get heat when you need it. This could mean using a programmable thermostat, or setting your heating times using an app or webpage. </p>
 
         <h2>Potential income from flexibility</h2>
-        <p>How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a r006Fugh estimate for you below. </p>
-        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure.min}} to income £{{incomeYear.secure.max}}</span> per year</b></p>
+        <p>How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a rough estimate for you below. </p>
+        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure.min}} to £{{incomeYear.secure.max}}</span> per year</b></p>
 
 
         <h2 class="new-page">FAQ</h2>
