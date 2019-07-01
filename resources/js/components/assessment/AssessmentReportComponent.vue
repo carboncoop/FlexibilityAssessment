@@ -65,7 +65,7 @@
         <p>The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. </p>
 
         <h3>How much time will I have to be flexible?</h3>
-        <p>The model estimates that the DNOs will require between <span style="red">X and Y</span> hours of flexibility each year.</p>
+        <p>The model estimates that the DNOs will require between {{dnoEstimatedAvailabilityRequired.min * utilisedLoadFactor.min }} and {{dnoEstimatedAvailabilityRequired.max * utilisedLoadFactor.max }} hours of flexibility each year.</p>
 
         <h3>Will signing up for flexibility mean I can’t use my heaters when I want?</h3>
         <p>No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. </p>

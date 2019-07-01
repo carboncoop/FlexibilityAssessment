@@ -43415,7 +43415,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -48705,10 +48704,6 @@ var render = function() {
               _vm._v(" "),
               _c("option", { attrs: { value: "Flat rate" } }, [
                 _vm._v("Flat rate")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Smart", disabled: "" } }, [
-                _vm._v("Smart")
               ])
             ]
           ),
@@ -48751,7 +48746,7 @@ var render = function() {
                     _vm._v(" "),
                     !_vm.assessment.data.tariff.unknown
                       ? _c("tr", [
-                          _c("td", [_vm._v("Highest rate")]),
+                          _c("td", [_vm._v("Low rate")]),
                           _c("td", [
                             _c("input", {
                               directives: [
@@ -48792,7 +48787,7 @@ var render = function() {
                     _vm._v(" "),
                     !_vm.assessment.data.tariff.unknown
                       ? _c("tr", [
-                          _c("td", [_vm._v("Lowest and highest rate")]),
+                          _c("td", [_vm._v("High rate")]),
                           _c("td", [
                             _c("input", {
                               directives: [
@@ -50223,7 +50218,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a r006Fugh estimate for you below. "
+        "How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a rough estimate for you below. "
       )
     ]),
     _vm._v(" "),
@@ -50237,7 +50232,7 @@ var render = function() {
             _vm._v(
               "£" +
                 _vm._s(_vm.incomeYear.secure.min) +
-                " to income £" +
+                " to £" +
                 _vm._s(_vm.incomeYear.secure.max)
             )
           ]),
@@ -50318,7 +50313,21 @@ var render = function() {
     _vm._v(" "),
     _c("h3", [_vm._v("How much time will I have to be flexible?")]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("p", [
+      _vm._v(
+        "The model estimates that the DNOs will require between " +
+          _vm._s(
+            _vm.dnoEstimatedAvailabilityRequired.min *
+              _vm.utilisedLoadFactor.min
+          ) +
+          " and " +
+          _vm._s(
+            _vm.dnoEstimatedAvailabilityRequired.max *
+              _vm.utilisedLoadFactor.max
+          ) +
+          " hours of flexibility each year."
+      )
+    ]),
     _vm._v(" "),
     _c("h3", [
       _vm._v(
@@ -50362,16 +50371,6 @@ var staticRenderFns = [
       _c("td", [_vm._v("Rating")]),
       _c("td", [_vm._v("Flexible power available")]),
       _c("td", [_vm._v("Estimated earnings ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v("The model estimates that the DNOs will require between "),
-      _c("span", { staticStyle: {} }, [_vm._v("X and Y")]),
-      _vm._v(" hours of flexibility each year.")
     ])
   }
 ]
