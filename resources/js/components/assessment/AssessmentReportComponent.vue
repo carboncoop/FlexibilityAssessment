@@ -40,7 +40,7 @@
 
         <h2>Potential income from flexibility</h2>
         <p>How much you earn will depend on how many flexible devices you have in your home, and how often the grid ends up asking for flexibility. Based on past experience and earnings in other areas, we have provided a rough estimate for you below. </p>
-        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: <span style="red">£{{incomeYear.secure.min}} to £{{incomeYear.secure.max}}</span> per year</b></p>
+        <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: £{{incomeYear.secure.min}} to £{{incomeYear.secure.max}} per year</b></p>
 
 
         <h2 class="new-page">FAQ</h2>
@@ -159,9 +159,9 @@
                     //restore: {storageHeaters: 0, immersionHeater: 0}
                 },
                 dnoEstimatedAvailabilityRequired: {max: 600, min: 105}, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
-                utilisedLoadFactor: {max: 0.2, min: 0.2},                // hours utilized - max -> 125 - min -> 21
+                utilisedLoadFactor: {max: 0.2, min: 0.2}, // hours utilized - max -> 125 - min -> 21
                 aggregatorFeeFactor: 0.3,
-                incomeFromOtherFlexibilityFactor: 10 // £/kW
+                incomeFromOtherFlexibilityFactor: 5 // £/kW
             };
         },
         mounted: function () {
@@ -169,10 +169,11 @@
                 this.assessment.data.fees = this.schemes[scheme];
                 this.assessment.data.aggregatorFeeFactor = this.aggregatorFeeFactor;
                 this.assessment.data.incomeFromOtherFlexibilityFactor = this.incomeFromOtherFlexibilityFactor;
-                let self =this;
+                let self = this;
                 ["min", "max"].forEach(function (level) {
                     self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
-                    self.assessment.data.utilisedLoadFactor = self.utilisedLoadFactor[level];
+                    self.assessment.data.flexibilityAwardedFactors= {utilisedLoad: self.utilisedLoadFactor[level]};
+                    console.log(self.assessment.data);
                     let result = self.flexibilityModel.run(self.assessment.data);
                     self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
                     self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;

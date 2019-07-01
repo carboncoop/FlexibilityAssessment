@@ -49976,7 +49976,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             dnoEstimatedAvailabilityRequired: { max: 600, min: 105 }, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
             utilisedLoadFactor: { max: 0.2, min: 0.2 }, // hours utilized - max -> 125 - min -> 21
             aggregatorFeeFactor: 0.3,
-            incomeFromOtherFlexibilityFactor: 10 // £/kW
+            incomeFromOtherFlexibilityFactor: 5 // £/kW
         };
     },
     mounted: function mounted() {
@@ -49989,7 +49989,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = _this;
             ["min", "max"].forEach(function (level) {
                 self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
-                self.assessment.data.utilisedLoadFactor = self.utilisedLoadFactor[level];
+                self.assessment.data.flexibilityAwardedFactors = { utilisedLoad: self.utilisedLoadFactor[level] };
+                console.log(self.assessment.data);
                 var result = self.flexibilityModel.run(self.assessment.data);
                 self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);
                 self.incomePerAsset[scheme].storageHeaters[level] = (1 - self.aggregatorFeeFactor) * result.incomeYearBySource.storageHeaters;
@@ -50227,16 +50228,13 @@ var render = function() {
       { staticStyle: { "text-align": "center", "margin-bottom": "50px" } },
       [
         _c("b", [
-          _vm._v("Estimated income: "),
-          _c("span", { staticStyle: {} }, [
-            _vm._v(
-              "£" +
-                _vm._s(_vm.incomeYear.secure.min) +
-                " to £" +
-                _vm._s(_vm.incomeYear.secure.max)
-            )
-          ]),
-          _vm._v(" per year")
+          _vm._v(
+            "Estimated income: £" +
+              _vm._s(_vm.incomeYear.secure.min) +
+              " to £" +
+              _vm._s(_vm.incomeYear.secure.max) +
+              " per year"
+          )
         ])
       ]
     ),
@@ -53326,7 +53324,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53349,8 +53346,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3,
-                incomeFromOtherFlexibilityFactor: 10
+                aggregatorFeeFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 5
             }, {
                 // Secure scheme Woodall Spa zone (WPD)
                 name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
@@ -53358,16 +53355,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 600,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3,
-                incomeFromOtherFlexibilityFactor: 10
+                aggregatorFeeFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 5
             }, {
                 name: "User defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
                 fees: { availability: 0.125, utilisation: 0.175 },
-                aggregatorFactor: 0.3,
-                incomeFromOtherFlexibilityFactor: 10
+                aggregatorFeeFactor: 0.3,
+                incomeFromOtherFlexibilityFactor: 5
             }]
         };
     },
@@ -53432,6 +53429,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
                         scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
                     });
+                    console.log(assessment.data);
                 });
                 console.log(this.schemes);
             });
@@ -53990,7 +53988,9 @@ var render = function() {
                     return _c("td", [
                       index <= 1
                         ? _c("span", [
-                            _vm._v(_vm._s(scheme.aggregatorFactor.toFixed(2)))
+                            _vm._v(
+                              _vm._s(scheme.aggregatorFeeFactor.toFixed(2))
+                            )
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -54001,8 +54001,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: scheme.aggregatorFactor,
-                                  expression: "scheme.aggregatorFactor"
+                                  value: scheme.aggregatorFeeFactor,
+                                  expression: "scheme.aggregatorFeeFactor"
                                 }
                               ],
                               staticClass: "form-control",
@@ -54012,7 +54012,7 @@ var render = function() {
                                 max: "1",
                                 step: "0.001"
                               },
-                              domProps: { value: scheme.aggregatorFactor },
+                              domProps: { value: scheme.aggregatorFeeFactor },
                               on: {
                                 change: _vm.updateReport,
                                 input: function($event) {
@@ -54021,7 +54021,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     scheme,
-                                    "aggregatorFactor",
+                                    "aggregatorFeeFactor",
                                     $event.target.value
                                   )
                                 }
@@ -54035,7 +54035,6 @@ var render = function() {
                 2
               ),
               _vm._v(" "),
-              _c("tr"),
               _c(
                 "tr",
                 [
