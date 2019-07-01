@@ -59,11 +59,10 @@
                 <tr>
                     <td>Aggregator factor <span title="Fraction of total income kept by the aggregator"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td v-for="(scheme, index) in schemes">
-                        <span v-if="index <= 1">{{scheme.aggregatorFactor.toFixed(2)}}</span>
-                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFactor" v-on:change="updateReport" /></span>
+                        <span v-if="index <= 1">{{scheme.aggregatorFeeFactor.toFixed(2)}}</span>
+                        <span v-if="index > 1"><input class="form-control" type="number" min="0" max="1" step="0.001" v-model="scheme.aggregatorFeeFactor" v-on:change="updateReport" /></span>
                     </td>
                 </tr>
-                <tr> 
                 <tr>
                     <td>Income from other flexibility schemes factor (£/kW)</td>
                     <td v-for="(scheme, index) in schemes">
@@ -128,8 +127,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3,
-                        incomeFromOtherFlexibilityFactor: 10
+                        aggregatorFeeFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 5
                     },
                     {
                         // Secure scheme Woodall Spa zone (WPD)
@@ -138,8 +137,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 600,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3,
-                        incomeFromOtherFlexibilityFactor: 10
+                        aggregatorFeeFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 5
                     },
                     {
                         name: "User defined",
@@ -147,8 +146,8 @@
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
                         fees: {availability: 0.125, utilisation: 0.175},
-                        aggregatorFactor: 0.3,
-                        incomeFromOtherFlexibilityFactor: 10
+                        aggregatorFeeFactor: 0.3,
+                        incomeFromOtherFlexibilityFactor: 5
                     }
                 ]
             };
@@ -220,6 +219,7 @@
                             scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
                             scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
                         });
+                        console.log(assessment.data)
                     });
                     console.log(this.schemes);
                 });
