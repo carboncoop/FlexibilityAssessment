@@ -158,8 +158,8 @@
                     //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
                     //restore: {storageHeaters: 0, immersionHeater: 0}
                 },
-                dnoEstimatedAvailabilityRequired: {max: 600, min: 105}, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
-                utilisedLoadFactor: {max: 0.2, min: 0.2}, // hours utilized - max -> 125 - min -> 21
+                dnoEstimatedAvailabilityRequired: {max: 360, min: 105}, // hours availability - max -> secure scheme Bridgwater/Street zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
+                utilisedLoadFactor: {max: 0.2, min: 0.2}, // hours utilized - max -> 72 - min -> 21
                 aggregatorFeeFactor: 0.3,
                 incomeFromOtherFlexibilityFactor: 5 // £/kW
             };

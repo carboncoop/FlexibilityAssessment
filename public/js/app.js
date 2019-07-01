@@ -49973,8 +49973,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //dynamic: {storageHeaters: 0, immersionHeater: 0}, 
                 //restore: {storageHeaters: 0, immersionHeater: 0}
             },
-            dnoEstimatedAvailabilityRequired: { max: 600, min: 105 }, // hours availability - max -> secure scheme Woodall Spa zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
-            utilisedLoadFactor: { max: 0.2, min: 0.2 }, // hours utilized - max -> 125 - min -> 21
+            dnoEstimatedAvailabilityRequired: { max: 360, min: 105 }, // hours availability - max -> secure scheme Bridgwater/Street zone (WPD) - min -> secure scheme Rugeley SGT zone (WPD)
+            utilisedLoadFactor: { max: 0.2, min: 0.2 }, // hours utilized - max -> 72 - min -> 21
             aggregatorFeeFactor: 0.3,
             incomeFromOtherFlexibilityFactor: 5 // £/kW
         };
@@ -53353,7 +53353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
-                dnoEstimatedAvailabilityRequired: 600,
+                dnoEstimatedAvailabilityRequired: 360,
                 fees: { availability: 0.125, utilisation: 0.175 },
                 aggregatorFeeFactor: 0.3,
                 incomeFromOtherFlexibilityFactor: 5
@@ -53627,7 +53627,7 @@ var render = function() {
                     {
                       attrs: {
                         title:
-                          "Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "
+                          "Based on secure scheme Bridgwater/Street zone (WPD) -> 105 hours of availability and 21 of utilisation "
                       }
                     },
                     [

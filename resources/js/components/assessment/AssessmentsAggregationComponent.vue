@@ -18,7 +18,7 @@
             <table class="table">
                 <tr>
                     <td></td>
-                    <td>Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span></td>
+                    <td>Secure min <span title="Based on secure scheme Bridgwater/Street zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td>Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span></td>
                     <td>User defined</td>
                 </tr>
@@ -135,7 +135,7 @@
                         name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
-                        dnoEstimatedAvailabilityRequired: 600,
+                        dnoEstimatedAvailabilityRequired: 360,
                         fees: {availability: 0.125, utilisation: 0.175},
                         aggregatorFeeFactor: 0.3,
                         incomeFromOtherFlexibilityFactor: 5
