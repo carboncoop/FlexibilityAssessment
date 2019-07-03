@@ -49801,7 +49801,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    margin: 10px 5px;\n}\n.info-box-inline h3[data-v-0ad708b6]{\n    margin-top:0;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#potential-income[data-v-0ad708b6]{\n    width:75%;\n    margin:auto;\n    text-align: center;\n}\nh2[data-v-0ad708b6]{\n    margin-top:25px;\n}\nh3[data-v-0ad708b6]{\n    font-size:20px;\n    font-weight:bold;\n    margin-top: 15px\n}\n.info-box[data-v-0ad708b6]{\n    background:#fef2ef;;\n    border:1px solid;\n    float:right;\n    padding:15px;\n    font-size: 15px;\n    max-width:300px;\n    margin: 10px 15px;\n}\n.info-box-inline[data-v-0ad708b6]{\n    display:inline-block;\n    vertical-align:top;\n    background:#fef2ef;;\n    border:1px solid;\n    padding:15px;\n    font-size: 15px;\n    margin: 10px 5px;\n}\n.info-box-inline h3[data-v-0ad708b6]{\n    margin-top:0;\n}\n@media print {\n.no-print[data-v-0ad708b6]{\n        display:none;\n}\n#assessment[data-v-0ad708b6]{\n        margin-top:0px\n}\n.new-page[data-v-0ad708b6]{\n        page-break-before: always;\n        margin-top:50px;\n}\n#faq[data-v-0ad708b6]{\n        font-size:19px;\n}\n}\n", ""]);
 
 // exports
 
@@ -49813,6 +49813,13 @@ exports.push([module.i, "\n.red[data-v-0ad708b6]{\n    color:red;\n}\ntable#pote
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(42);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50239,124 +50246,126 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("h2", { staticClass: "new-page" }, [_vm._v("FAQ")]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("Who are the ‘grid companies’?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "When we say ‘grid company’, we mean the Distribution Network Operators, or DNOs. These are the companies that own the cables that carry the electricity from the grid to your house."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "DNOs are very interested in flexibility. They know when there is extra energy in the grid and also when there is not enough. They are the ones that will pay households for shifting energy consumption."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("How have we calculated your available flexibility?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Our calculations are based on the information we gathered on the devices you have in your home, based on the assumption that you would have a smart controller fitted to these devices after you signed up."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model assumes that some of the power used by these devices is ‘shifted’. This doesn’t mean that you use more or less electricity, but that you use it at a different time of the day to when you normally would."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "How much energy can be shifted depends on the electrical devices in your house. This model takes into account storage heaters and immersion heaters but also how efficient your house is and how many people live in the house."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [
-      _vm._v("How is the flexibility from an immersion heater calculated?")
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model assumes that 80% of the immersion heater power can be shifted. The remaining 20% cannot be shifted, allowing you to keep some control."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [
-      _vm._v("How is the flexibility from storage heaters calculated?")
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Your house’s Energy Performance Certificate (EPC) rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (normally night), to other times of day when flexibility is needed. The aim of using the EPC is to minimize the impact to your thermal comfort."
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("How is the income from flexibility calculated?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. "
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [_vm._v("How much time will I have to be flexible?")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "The model estimates that the DNOs will require between " +
-          _vm._s(
-            _vm.dnoEstimatedAvailabilityRequired.min *
-              _vm.utilisedLoadFactor.min
-          ) +
-          " and " +
-          _vm._s(
-            _vm.dnoEstimatedAvailabilityRequired.max *
-              _vm.utilisedLoadFactor.max
-          ) +
-          " hours of flexibility each year."
-      )
-    ]),
-    _vm._v(" "),
-    _c("h3", [
-      _vm._v(
-        "Will signing up for flexibility mean I can’t use my heaters when I want?"
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. "
-      )
-    ]),
-    _vm._v(" "),
-    _vm.reportUrl != ""
-      ? _c(
-          "p",
-          {
-            staticClass: "no-print",
-            staticStyle: { "font-size": "14px", "margin-top": "50px" }
-          },
-          [
-            _vm._v("Unique link to this report to share with household "),
-            _c("br"),
-            _vm._v(" "),
-            _c("a", {
-              attrs: { target: "blank", href: _vm.reportUrl },
-              domProps: { textContent: _vm._s(_vm.reportUrl) }
-            })
-          ]
+    _c("div", { attrs: { id: "faq" } }, [
+      _c("h2", { staticClass: "new-page" }, [_vm._v("FAQ")]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Who are the ‘grid companies’?")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "When we say ‘grid company’, we mean the Distribution Network Operators, or DNOs. These are the companies that own the cables that carry the electricity from the grid to your house."
         )
-      : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "DNOs are very interested in flexibility. They know when there is extra energy in the grid and also when there is not enough. They are the ones that will pay households for shifting energy consumption."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("How have we calculated your available flexibility?")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Our calculations are based on the information we gathered on the devices you have in your home, based on the assumption that you would have a smart controller fitted to these devices after you signed up."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "The model assumes that some of the power used by these devices is ‘shifted’. This doesn’t mean that you use more or less electricity, but that you use it at a different time of the day to when you normally would."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "How much energy can be shifted depends on the electrical devices in your house. This model takes into account storage heaters and immersion heaters but also how efficient your house is and how many people live in the house."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [
+        _vm._v("How is the flexibility from an immersion heater calculated?")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "The model assumes that 80% of the immersion heater power can be shifted. The remaining 20% cannot be shifted, allowing you to keep some control."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [
+        _vm._v("How is the flexibility from storage heaters calculated?")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Your house’s Energy Performance Certificate (EPC) rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (normally night), to other times of day when flexibility is needed. The aim of using the EPC is to minimize the impact to your thermal comfort."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("How is the income from flexibility calculated?")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. "
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("How much time will I have to be flexible?")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "The model estimates that the DNOs will require between " +
+            _vm._s(
+              _vm.dnoEstimatedAvailabilityRequired.min *
+                _vm.utilisedLoadFactor.min
+            ) +
+            " and " +
+            _vm._s(
+              _vm.dnoEstimatedAvailabilityRequired.max *
+                _vm.utilisedLoadFactor.max
+            ) +
+            " hours of flexibility each year."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", [
+        _vm._v(
+          "Will signing up for flexibility mean I can’t use my heaters when I want?"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. "
+        )
+      ]),
+      _vm._v(" "),
+      _vm.reportUrl != ""
+        ? _c(
+            "p",
+            {
+              staticClass: "no-print",
+              staticStyle: { "font-size": "14px", "margin-top": "50px" }
+            },
+            [
+              _vm._v("Unique link to this report to share with household "),
+              _c("br"),
+              _vm._v(" "),
+              _c("a", {
+                attrs: { target: "blank", href: _vm.reportUrl },
+                domProps: { textContent: _vm._s(_vm.reportUrl) }
+              })
+            ]
+          )
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = [

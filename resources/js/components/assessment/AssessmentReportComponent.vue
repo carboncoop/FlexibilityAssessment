@@ -43,36 +43,40 @@
         <p style="text-align: center; margin-bottom: 50px"><b>Estimated income: £{{incomeYear.secure.min}} to £{{incomeYear.secure.max}} per year</b></p>
 
 
-        <h2 class="new-page">FAQ</h2>
+        <div id="faq">
+            
+            <h2 class="new-page">FAQ</h2>
 
-        <h3>Who are the ‘grid companies’?</h3>
-        <p>When we say ‘grid company’, we mean the Distribution Network Operators, or DNOs. These are the companies that own the cables that carry the electricity from the grid to your house.</p>
-        <p>DNOs are very interested in flexibility. They know when there is extra energy in the grid and also when there is not enough. They are the ones that will pay households for shifting energy consumption.</p>
+            <h3>Who are the ‘grid companies’?</h3>
+            <p>When we say ‘grid company’, we mean the Distribution Network Operators, or DNOs. These are the companies that own the cables that carry the electricity from the grid to your house.</p>
+            <p>DNOs are very interested in flexibility. They know when there is extra energy in the grid and also when there is not enough. They are the ones that will pay households for shifting energy consumption.</p>
 
-        <h3>How have we calculated your available flexibility?</h3>
-        <p>Our calculations are based on the information we gathered on the devices you have in your home, based on the assumption that you would have a smart controller fitted to these devices after you signed up.</p>
-        <p>The model assumes that some of the power used by these devices is ‘shifted’. This doesn’t mean that you use more or less electricity, but that you use it at a different time of the day to when you normally would.</p>
-        <p>How much energy can be shifted depends on the electrical devices in your house. This model takes into account storage heaters and immersion heaters but also how efficient your house is and how many people live in the house.</p>
+            <h3>How have we calculated your available flexibility?</h3>
+            <p>Our calculations are based on the information we gathered on the devices you have in your home, based on the assumption that you would have a smart controller fitted to these devices after you signed up.</p>
+            <p>The model assumes that some of the power used by these devices is ‘shifted’. This doesn’t mean that you use more or less electricity, but that you use it at a different time of the day to when you normally would.</p>
+            <p>How much energy can be shifted depends on the electrical devices in your house. This model takes into account storage heaters and immersion heaters but also how efficient your house is and how many people live in the house.</p>
 
-        <h3>How is the flexibility from an immersion heater calculated?</h3>
-        <p>The model assumes that 80% of the immersion heater power can be shifted. The remaining 20% cannot be shifted, allowing you to keep some control.</p>
+            <h3>How is the flexibility from an immersion heater calculated?</h3>
+            <p>The model assumes that 80% of the immersion heater power can be shifted. The remaining 20% cannot be shifted, allowing you to keep some control.</p>
 
-        <h3>How is the flexibility from storage heaters calculated?</h3>
-        <p>Your house’s Energy Performance Certificate (EPC) rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (normally night), to other times of day when flexibility is needed. The aim of using the EPC is to minimize the impact to your thermal comfort.</p>
-        <p>The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature.</p>
+            <h3>How is the flexibility from storage heaters calculated?</h3>
+            <p>Your house’s Energy Performance Certificate (EPC) rating is used as the factor by which the amount of the charging time can be reduced during the normal charging period (normally night), to other times of day when flexibility is needed. The aim of using the EPC is to minimize the impact to your thermal comfort.</p>
+            <p>The model assumes that houses with higher EPCs have better insulation and higher thermal capacity. In these cases a bigger load can be shifted and the house will still be at an acceptable temperature.</p>
 
-        <h3>How is the income from flexibility calculated?</h3>
-        <p>The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. </p>
+            <h3>How is the income from flexibility calculated?</h3>
+            <p>The income is calculated as the payments from the DNO and others minus the extra cost of using the energy at a different time of the day (because flexibility will sometimes result in your heaters charging during ‘peak’ rather than ‘off peak’ tariff rates). An admin charge of 30% covers the costs of the Flexible Power Community in running your aggregation platform. </p>
 
-        <h3>How much time will I have to be flexible?</h3>
-        <p>The model estimates that the DNOs will require between {{dnoEstimatedAvailabilityRequired.min * utilisedLoadFactor.min }} and {{dnoEstimatedAvailabilityRequired.max * utilisedLoadFactor.max }} hours of flexibility each year.</p>
+            <h3>How much time will I have to be flexible?</h3>
+            <p>The model estimates that the DNOs will require between {{dnoEstimatedAvailabilityRequired.min * utilisedLoadFactor.min }} and {{dnoEstimatedAvailabilityRequired.max * utilisedLoadFactor.max }} hours of flexibility each year.</p>
 
-        <h3>Will signing up for flexibility mean I can’t use my heaters when I want?</h3>
-        <p>No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. </p>
+            <h3>Will signing up for flexibility mean I can’t use my heaters when I want?</h3>
+            <p>No. The smart controller is designed so that you can set your heating however you want, and it will make sure you get the heat you need. It will only respond to a grid flexibility request if it can do that without leaving you cold. </p>
 
-        <p class="no-print" style="font-size:14px; margin-top: 50px" v-if='reportUrl != ""'>Unique link to this report to share with household <br />
-            <a target='blank' v-bind:href='reportUrl' v-text="reportUrl"></a>
-        </p>
+            <p class="no-print" style="font-size:14px; margin-top: 50px" v-if='reportUrl != ""'>Unique link to this report to share with household <br />
+                <a target='blank' v-bind:href='reportUrl' v-text="reportUrl"></a>
+            </p>
+
+        </div>
     </div>
 </template>
 
@@ -127,6 +131,9 @@
             page-break-before: always;
             margin-top:50px;
         }
+        #faq{
+            font-size:19px;
+        }
     }
 </style>
 
@@ -172,7 +179,7 @@
                 let self = this;
                 ["min", "max"].forEach(function (level) {
                     self.assessment.data.dnoEstimatedAvailabilityRequired = self.dnoEstimatedAvailabilityRequired[level];
-                    self.assessment.data.flexibilityAwardedFactors= {utilisedLoad: self.utilisedLoadFactor[level]};
+                    self.assessment.data.flexibilityAwardedFactors = {utilisedLoad: self.utilisedLoadFactor[level]};
                     console.log(self.assessment.data);
                     let result = self.flexibilityModel.run(self.assessment.data);
                     self.incomeYear[scheme][level] = result.incomeYearTotalHousehold.toFixed(2);

@@ -70,7 +70,7 @@ h1,h2,h3,h4,h5,h6{
 
 @media print{
     #footer{
-        margin-top: 180px
+        margin-top: 0px
     }
     body, #page, #content.container{
         border: none;
