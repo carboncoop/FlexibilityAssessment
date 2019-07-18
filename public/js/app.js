@@ -50170,7 +50170,9 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.assessment.data.wetHeatingSystem.rating.toFixed(2)
+                    (1.0 * _vm.assessment.data.wetHeatingSystem.rating).toFixed(
+                      2
+                    )
                   ) + "kW"
                 )
               ]),

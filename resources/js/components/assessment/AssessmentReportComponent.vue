@@ -27,7 +27,7 @@
             </tr>
             <tr v-if='assessment.data.powerAvailable.wetHeatingSystem > 0'>
                 <td>Wet heating system</td>
-                <td>{{assessment.data.wetHeatingSystem.rating.toFixed(2)}}kW</td>
+                <td>{{(1.0 * assessment.data.wetHeatingSystem.rating).toFixed(2)}}kW</td>
                 <td>{{assessment.data.powerAvailable.wetHeatingSystem.toFixed(2)}}kW</td>
                 <td>{{incomePerAsset.secure.wetHeatingSystem.min.toFixed(2)}} to {{incomePerAsset.secure.wetHeatingSystem.max.toFixed(2)}} £/year</td>
             </tr>
