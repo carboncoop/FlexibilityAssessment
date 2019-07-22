@@ -10253,29 +10253,30 @@ var flexibilityModel = function () {
     }, {
         key: "wetHeatingSystemFlexibility",
         value: function wetHeatingSystemFlexibility(data) {
+            if (data.wetHeatingSystem != undefined && (data.wetHeatingSystem.present === true || data.wetHeatingSystem.present == "Yes")) {
+                // Because calculation is the same than for sotrage heaters we simply fake 
+                // the data object and pass it to storageHeatersFlexibility()
+                var storageHeatersFakeData = JSON.parse(JSON.stringify(data));
+                storageHeatersFakeData.storageHeaters.present = storageHeatersFakeData.wetHeatingSystem.present;
+                storageHeatersFakeData.storageHeaters.rating = storageHeatersFakeData.wetHeatingSystem.rating;
+                storageHeatersFakeData.storageHeaters.number = 1;
+                if (storageHeatersFakeData.wetHeatingSystem.chargingTime != undefined) storageHeatersFakeData.storageHeaters.chargingTime = storageHeatersFakeData.wetHeatingSystem.chargingTime;else {
+                    storageHeatersFakeData.chargingTime = 7;
+                    data.wetHeatingSystem.chargingTime = 7;
+                }
+                if (storageHeatersFakeData.wetHeatingSystem.heatingOffSummer != undefined) storageHeatersFakeData.storageHeaters.heatingOffSummer = storageHeatersFakeData.wetHeatingSystem.heatingOffSummer;else {
+                    storageHeatersFakeData.storageHeaters.heatingOffSummer = true;
+                    data.storageHeaters.heatingOffSummer = true;
+                }
 
-            // Because calculation is the same than for sotrage heaters we simply fake 
-            // the data object and pass it to storageHeatersFlexibility()
-            var storageHeatersFakeData = JSON.parse(JSON.stringify(data));
-            storageHeatersFakeData.storageHeaters.present = storageHeatersFakeData.wetHeatingSystem.present;
-            storageHeatersFakeData.storageHeaters.rating = storageHeatersFakeData.wetHeatingSystem.rating;
-            storageHeatersFakeData.storageHeaters.number = 1;
-            if (storageHeatersFakeData.wetHeatingSystem.chargingTime != undefined) storageHeatersFakeData.storageHeaters.chargingTime = storageHeatersFakeData.wetHeatingSystem.chargingTime;else {
-                storageHeatersFakeData.chargingTime = 7;
-                data.wetHeatingSystem.chargingTime = 7;
+                // calculate income for the fake storage heaters
+                this.storageHeatersFlexibility(storageHeatersFakeData);
+                data.powerAvailable.wetHeatingSystem = storageHeatersFakeData.powerAvailable.storageHeaters;
+                data.flexibilityHoursScheduled.wetHeatingSystem = storageHeatersFakeData.flexibilityHoursScheduled.storageHeaters;
+                data.loadUtilisedYear.wetHeatingSystem = storageHeatersFakeData.loadUtilisedYear.storageHeaters;
+                data.incomeYearBySource.wetHeatingSystem = storageHeatersFakeData.incomeYearBySource.storageHeaters;
+                return data;
             }
-            if (storageHeatersFakeData.wetHeatingSystem.heatingOffSummer != undefined) storageHeatersFakeData.storageHeaters.heatingOffSummer = storageHeatersFakeData.wetHeatingSystem.heatingOffSummer;else {
-                storageHeatersFakeData.storageHeaters.heatingOffSummer = true;
-                data.storageHeaters.heatingOffSummer = true;
-            }
-
-            // calculate income for the fake storage heaters
-            this.storageHeatersFlexibility(storageHeatersFakeData);
-            data.powerAvailable.wetHeatingSystem = storageHeatersFakeData.powerAvailable.storageHeaters;
-            data.flexibilityHoursScheduled.wetHeatingSystem = storageHeatersFakeData.flexibilityHoursScheduled.storageHeaters;
-            data.loadUtilisedYear.wetHeatingSystem = storageHeatersFakeData.loadUtilisedYear.storageHeaters;
-            data.incomeYearBySource.wetHeatingSystem = storageHeatersFakeData.incomeYearBySource.storageHeaters;
-            return data;
         }
 
         /******************************************
