@@ -50,3 +50,7 @@ Generate the application key `php artisan key:generate`
 Migrate database `php artisan migrate`
 
 Create passport keys `php artisan passport:install`
+
+To run the tool: `php artisan serve`
+
+To watch changes in the code and generate the javascript and css: `npm run watch`
