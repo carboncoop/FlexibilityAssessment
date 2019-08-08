@@ -210,8 +210,6 @@
                             assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
                             assessment.data.incomeFromOtherFlexibilityFactor = scheme.incomeFromOtherFlexibilityFactor;
                             myself.flexibilityModel.run(assessment.data);
-                            scheme.powerAvailable = 0;
-                            scheme.loadUtilisedYear = 0;
                             for (let source in assessment.data.powerAvailable) {
                                 scheme.powerAvailable += assessment.data.powerAvailable[source];
                                 scheme.loadUtilisedYear += assessment.data.loadUtilisedYear[source];

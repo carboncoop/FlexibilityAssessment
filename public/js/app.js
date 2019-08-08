@@ -53432,8 +53432,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         assessment.data.aggregatorFeeFactor = scheme.aggregatorFeeFactor;
                         assessment.data.incomeFromOtherFlexibilityFactor = scheme.incomeFromOtherFlexibilityFactor;
                         myself.flexibilityModel.run(assessment.data);
-                        scheme.powerAvailable = 0;
-                        scheme.loadUtilisedYear = 0;
                         for (var source in assessment.data.powerAvailable) {
                             scheme.powerAvailable += assessment.data.powerAvailable[source];
                             scheme.loadUtilisedYear += assessment.data.loadUtilisedYear[source];
