@@ -53230,6 +53230,8 @@ exports.push([module.i, "\n.filter[data-v-0063d52c]{\n    margin-top: 35px;\n   
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsonexport_dist__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsonexport_dist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jsonexport_dist__);
 //
 //
 //
@@ -53336,6 +53338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53351,9 +53354,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filter: "",
             flexibilityModel: new __WEBPACK_IMPORTED_MODULE_0__public_js_flexibility_model_flex_model_js__["a" /* flexibilityModel */](),
             numberOfAssessments: 0,
+            assessmentsForCSV: [],
             schemes: [{
                 // Secure scheme Rugeley SGT zone (WPD)
                 name: 'Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span>',
+                headerCSV: "Scheme min",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
@@ -53363,6 +53368,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, {
                 // Secure scheme Woodall Spa zone (WPD)
                 name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
+                headerCSV: "Scheme max",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 360,
@@ -53371,6 +53377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 incomeFromOtherFlexibilityFactor: 5
             }, {
                 name: "User defined",
+                headerCSV: "Scheme user defined",
                 powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                 flexibilityAwardedFactors: { scheduledAvailability: 1, utilisedLoad: 0.2 },
                 dnoEstimatedAvailabilityRequired: 105,
@@ -53409,11 +53416,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         updateReport: function updateReport() {
             this.$nextTick(function () {
-                var assessmentsForReport = [];
-                // The assessments for the reports are the ones that are shown in the table and also checked
-                for (var key in this.assessmentsForTable) {
-                    if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
-                }
+                var assessmentsForReport = this.getAssessmentsForReport();
                 // Ini report
                 this.numberOfAssessments = assessmentsForReport.length;
                 this.schemes.forEach(function (scheme) {
@@ -53425,6 +53428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //Generate report
                 var myself = this;
                 assessmentsForReport.forEach(function (assessment) {
+                    var assessmentCSV = JSON.parse(JSON.stringify(assessment));
                     myself.schemes.forEach(function (scheme) {
                         assessment.data.fees = scheme.fees;
                         assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
@@ -53438,11 +53442,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                         scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
                         scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
+                        assessmentCSV[scheme.headerCSV + " - Household income year"] = assessment.data.incomeYearTotalHousehold;
+                        assessmentCSV[scheme.headerCSV + " - Aggregator income year"] = assessment.data.incomeYearTotalAggregator;
                     });
-                    console.log(assessment.data);
+                    delete assessmentCSV.user;
+                    delete assessmentCSV.data.flexibilityHoursScheduled;
+                    delete assessmentCSV.data.incomeYearBySource;
+                    delete assessmentCSV.data.incomeYearTotal;
+                    delete assessmentCSV.data.incomeYearTotalHousehold;
+                    delete assessmentCSV.data.incomeYearTotalAggregator;
+                    delete assessmentCSV.data.loadUtilisedYear;
+                    if (assessmentCSV.data.questionnaire != undefined) {
+                        assessmentCSV.data.questionnaire.signupPriorities = assessmentCSV.data.questionnaire.signupPriorities.join(" - ");
+                        assessmentCSV.data.questionnaire.puttingMeOffRating = assessmentCSV.data.questionnaire.puttingMeOffRating.join(" - ");
+                    }
+
+                    myself.assessmentsForCSV.push(assessmentCSV);
                 });
                 console.log(this.schemes);
             });
+        },
+        downloadCSV: function downloadCSV() {
+            // Generate CSV        
+            var csv_file = "";
+            var today = new Date();
+            var filename = "flexibilityAssessmentReport - " + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ".csv";
+            __WEBPACK_IMPORTED_MODULE_1_jsonexport_dist__(this.assessmentsForCSV, function (err, csv) {
+                if (err) return console.log(err);
+                console.log(csv);
+                csv_file = csv;
+            });
+            // Download file
+            var blob = new Blob([csv_file], { type: 'text/csv;charset=utf-8;' });
+            console.log(blob);
+            if (navigator.msSaveBlob) {
+                // IE 10+
+                navigator.msSaveBlob(blob, filename);
+            } else {
+                var link = document.createElement("a");
+                if (link.download !== undefined) {
+                    // feature detection
+                    // Browsers that support HTML5 download attribute
+                    var url = URL.createObjectURL(blob);
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", filename);
+                    link.style.visibility = 'hidden';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            }
+        },
+        getAssessmentsForReport: function getAssessmentsForReport() {
+            var assessmentsForReport = [];
+            // The assessments for the reports are the ones that are shown in the table and also checked
+            for (var key in this.assessmentsForTable) {
+                if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true) assessmentsForReport.push(this.assessmentsForTable[key]);
+            }
+            return assessmentsForReport;
         }
     },
     created: function created() {
@@ -54148,7 +54205,13 @@ var render = function() {
                 ],
                 2
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn", on: { click: _vm.downloadCSV } },
+              [_vm._v("Download")]
+            )
           ])
         : _vm._e()
     ],
@@ -55505,6 +55568,747 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 287 */,
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.isFunction = function (fn) {
+    var getType = {};
+    return fn && getType.toString.call(fn) === '[object Function]';
+};
+
+module.exports.isArray = function (arr) {
+    return Array.isArray(arr);
+};
+
+module.exports.isObject = function (obj) {
+    return obj instanceof Object;
+};
+
+module.exports.isString = function (str) {
+    return typeof str === 'string';
+};
+
+module.exports.isNumber = function (num) {
+    return typeof num === 'number';
+};
+
+module.exports.isBoolean = function (bool) {
+    return typeof bool === 'boolean';
+};
+
+module.exports.isDate = function (date) {
+    return date instanceof Date;
+};
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+  
+
+  module.exports = "\n";
+  
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+
+/**
+ * Module dependencies.
+ */
+//const _ = require('underscore');
+
+var Parser = __webpack_require__(291);
+var Stream = __webpack_require__(295);
+var helper = __webpack_require__(288);
+
+/**
+ * Main function that converts json to csv
+ *
+ * @param {Object|Array} json
+ * @param {Object} [options]
+ * @param {Function} callback(err, csv) - Callback function
+ *      if error, returning error in call back.
+ *      if csv is created successfully, returning csv output to callback.
+ */
+module.exports = function (json, userOptions, callback) {
+  if (helper.isFunction(userOptions)) {
+    callback = userOptions;
+    userOptions = {};
+  }
+  userOptions = !callback ? json : userOptions;
+  var parser = new Parser(userOptions);
+  if (!callback || !helper.isFunction(callback)) return new Stream(parser);
+  parser.parse(json, callback);
+};
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+
+
+/**
+ * Module dependencies.
+ */
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var EOL = __webpack_require__(289);
+var joinRows = __webpack_require__(292);
+var Handler = __webpack_require__(293);
+var helper = __webpack_require__(288);
+
+var Parser = function () {
+  function Parser(options) {
+    _classCallCheck(this, Parser);
+
+    this._options = this._parseOptions(options) || {};
+    this._handler = new Handler(this._options);
+    this._headers = this._options.headers || [];
+    this._escape = __webpack_require__(294)(this._options.textDelimiter, this._options.rowDelimiter, this._options.forceTextDelimiter);
+  }
+
+  /**
+   * Generates a CSV file with optional headers based on the passed JSON,
+   * with can be an Object or Array.
+   *
+   * @param {Object|Array} json
+   * @param {Function} done(err,csv) - Callback function
+   *      if error, returning error in call back.
+   *      if csv is created successfully, returning csv output to callback.
+   */
+
+
+  _createClass(Parser, [{
+    key: 'parse',
+    value: function parse(json, done, stream) {
+      if (helper.isArray(json)) return done(null, this._parseArray(json, stream));else if (helper.isObject(json)) return done(null, this._parseObject(json));
+      return done(new Error('Unable to parse the JSON object, its not an Array or Object.'));
+    }
+  }, {
+    key: '_checkRows',
+    value: function _checkRows(rows) {
+      var lastRow = null;
+      var finalRows = [];
+      var fillGaps = function fillGaps(col, index) {
+        return col === '' || col === undefined ? lastRow[index] : col;
+      };
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = rows[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var row = _step.value;
+
+          var missing = this._headers.length - row.length;
+          if (missing > 0) row = row.concat(Array(missing).join(".").split("."));
+          if (lastRow && this._options.fillGaps) row = row.map(fillGaps);
+          finalRows.push(row.join(this._options.rowDelimiter));
+          lastRow = row;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return finalRows;
+    }
+  }, {
+    key: '_parseArray',
+    value: function _parseArray(json, stream) {
+      var self = this;
+      this._headers = this._headers || [];
+      var fileRows = [];
+      var outputFile = void 0;
+      var fillRows = void 0;
+
+      var getHeaderIndex = function getHeaderIndex(header) {
+        var index = self._headers.indexOf(header);
+        if (index === -1) {
+          self._headers.push(header);
+          index = self._headers.indexOf(header);
+        }
+        return index;
+      };
+
+      //Generate the csv output
+      fillRows = function fillRows(result) {
+        //Initialize the array with empty strings to handle 'unpopular' headers
+        var resultRows = [Array(self._headers.length).join(".").split(".")];
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = result[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var element = _step2.value;
+
+            var elementHeaderIndex = getHeaderIndex(element.item);
+            var placed = false;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+              for (var _iterator3 = resultRows[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var row = _step3.value;
+
+                if (!placed && row[elementHeaderIndex] === '' || row[elementHeaderIndex] === undefined) {
+                  row[elementHeaderIndex] = self._escape(element.value);
+                  placed = true;
+                  break;
+                }
+              }
+            } catch (err) {
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                  _iterator3.return();
+                }
+              } finally {
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
+                }
+              }
+            }
+
+            if (!placed) {
+              var newRow = Array(self._headers.length).join(".").split(".");
+              newRow[elementHeaderIndex] = self._escape(element.value);
+              resultRows.push(newRow);
+            }
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+
+        fileRows = fileRows.concat(self._checkRows(resultRows));
+      };
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
+
+      try {
+        for (var _iterator4 = json[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var item = _step4.value;
+
+          //Call checkType to list all items inside this object
+          //Items are returned as a object {item: 'Prop Value, Item Name', value: 'Prop Data Value'}
+          var itemResult = self._handler.check(item, self._options.mainPathItem, item, json);
+          fillRows(itemResult);
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4.return) {
+            _iterator4.return();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
+          }
+        }
+      }
+
+      if (!stream && self._options.includeHeaders) {
+        //Add the headers to the first line
+        fileRows.unshift(this.headers);
+      }
+
+      return joinRows(fileRows, self._options.endOfLine);
+    }
+  }, {
+    key: '_parseObject',
+    value: function _parseObject(json) {
+      var self = this;
+      var fileRows = [];
+      var parseResult = [];
+      var outputFile = void 0;
+      var fillRows = void 0;
+      var horizontalRows = [[], []];
+
+      fillRows = function fillRows(result) {
+        var value = result.value ? result.value.toString() : self._options.undefinedString;
+        value = self._escape(value);
+
+        //Type header;value
+        if (self._options.verticalOutput) {
+          var row = [result.item, value];
+          fileRows.push(row.join(self._options.rowDelimiter));
+        } else {
+          horizontalRows[0].push(result.item);
+          horizontalRows[1].push(value);
+        }
+      };
+      for (var prop in json) {
+        var prefix = "";
+        if (this._options.mainPathItem) prefix = this._options.mainPathItem + this._options.headerPathString;
+        parseResult = this._handler.check(json[prop], prefix + prop, prop, json);
+
+        parseResult.forEach(fillRows);
+      }
+      if (!this._options.verticalOutput) {
+        fileRows.push(horizontalRows[0].join(this._options.rowDelimiter));
+        fileRows.push(horizontalRows[1].join(this._options.rowDelimiter));
+      }
+      return joinRows(fileRows, this._options.endOfLine);
+    }
+
+    /**
+     * Replaces the default options with the custom user options
+     *
+     * @param {Options} userOptions
+     */
+
+  }, {
+    key: '_parseOptions',
+    value: function _parseOptions(userOptions) {
+      var defaultOptions = {
+        headers: [], //              Array
+        rename: [], //               Array
+        headerPathString: '.', //    String
+        rowDelimiter: ',', //        String
+        textDelimiter: '"', //       String
+        arrayPathString: ';', //     String
+        undefinedString: '', //      String
+        endOfLine: EOL || '\n', //   String
+        mainPathItem: null, //       String
+        booleanTrueString: null, //  String
+        booleanFalseString: null, // String
+        includeHeaders: true, //     Boolean
+        fillGaps: false, //          Boolean
+        verticalOutput: true, //     Boolean
+        forceTextDelimiter: false, //Boolean
+        //Handlers
+        handleString: undefined, //  Function
+        handleNumber: undefined, //  Function
+        handleBoolean: undefined, // Function
+        handleDate: undefined //    Function
+      };
+      return Object.assign({}, defaultOptions, userOptions);
+    }
+  }, {
+    key: 'headers',
+    get: function get() {
+      var _this = this;
+
+      var headers = this._headers;
+
+      if (this._options.rename && this._options.rename.length > 0) headers = headers.map(function (header) {
+        return _this._options.rename[_this._options.headers.indexOf(header)] || header;
+      });
+
+      if (this._options.forceTextDelimiter) {
+        headers = headers.map(function (header) {
+          return '' + _this._options.textDelimiter + header + _this._options.textDelimiter;
+        });
+      }
+
+      if (this._options.mapHeaders) headers = headers.map(this._options.mapHeaders);
+
+      return headers.join(this._options.rowDelimiter);
+    }
+  }]);
+
+  return Parser;
+}();
+
+module.exports = Parser;
+
+/***/ }),
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EOL = __webpack_require__(289);
+var helper = __webpack_require__(288);
+
+module.exports = function joinRows(rows, join) {
+  if (!rows || !helper.isArray(rows)) {
+    throw new TypeError('Invalid params "rows" for joinRows.' + ' Must be an array of string.');
+  }
+  //Merge all rows in a single output with the correct End of Line string
+  var r = rows.join(join || EOL || '\n');
+  return r;
+};
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* jshint node:true */
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var helper = __webpack_require__(288);
+
+var Handler = function () {
+  function Handler(options) {
+    _classCallCheck(this, Handler);
+
+    this._options = options;
+
+    //an object of {typeName:(value,index,parent)=>any}
+    this._options.typeHandlers = this._options.typeHandlers || {};
+
+    //deprecated options
+    this._options.handleString = this._options.handleString ? warnDepOp('handleString', this._options.handleString) : this._handleString;
+    this._options.handleNumber = this._options.handleNumber ? warnDepOp('handleNumber', this._options.handleNumber) : this._handleNumber;
+    this._options.handleBoolean = this._options.handleBoolean ? warnDepOp('handleBoolean', this._options.handleBoolean) : this._handleBoolean;
+    this._options.handleDate = this._options.handleDate ? warnDepOp('handleDate', this._options.handleDate) : this._handleDate;
+  }
+
+  /**
+   * Check if results needing mapping to alternate value
+   *
+   * @returns [{item, value}] result
+   */
+
+
+  _createClass(Handler, [{
+    key: '_setHeaders',
+    value: function _setHeaders(result, item) {
+      var self = this;
+      if (!item) return result;
+      return result.map(function (element) {
+        element.item = element.item ? item + self._options.headerPathString + element.item : item;
+        return element;
+      });
+    }
+  }, {
+    key: 'castValue',
+    value: function castValue(element, item, index, parent) {
+      //cast by matching constructor
+      var types = this._options.typeHandlers;
+      for (var type in types) {
+        if (isInstanceOfTypeName(element, type)) {
+          element = types[type].call(types, element, index, parent);
+          break; //first match we move on
+        }
+      }
+
+      return element;
+    }
+  }, {
+    key: 'checkComplex',
+    value: function checkComplex(element, item) {
+      //Check if element is a Date
+      if (helper.isDate(element)) {
+        return [{
+          item: item,
+          value: this._options.handleDate(element, item)
+        }];
+      }
+      //Check if element is an Array
+      else if (helper.isArray(element)) {
+          var resultArray = this._handleArray(element, item);
+          return this._setHeaders(resultArray, item);
+        }
+        //Check if element is a Object
+        else if (helper.isObject(element)) {
+            var resultObject = this._handleObject(element);
+            return this._setHeaders(resultObject, item);
+          }
+
+      return [{
+        item: item,
+        value: ''
+      }];
+    }
+
+    /**
+     * Check the element type of the element call the correct handle function
+     *
+     * @param element Element that will be checked
+     * @param item Used to make the headers/path breadcrumb
+     * @returns [{item, value}] result
+     */
+
+  }, {
+    key: 'check',
+    value: function check(element, item, index, parent) {
+      element = this.castValue(element, item, index, parent);
+
+      //try simple value by highier performance switch
+      switch (typeof element === 'undefined' ? 'undefined' : _typeof(element)) {
+        case 'string':
+          return [{
+            item: item,
+            value: this._options.handleString(element, item)
+          }];
+
+        case 'number':
+          return [{
+            item: item,
+            value: this._options.handleNumber(element, item)
+          }];
+
+        case 'boolean':
+          return [{
+            item: item,
+            value: this._options.handleBoolean.bind(this)(element, item)
+          }];
+      }
+
+      return this.checkComplex(element, item);
+    }
+
+    /**
+     * Handle all Objects
+     *
+     * @param {Object} obj
+     * @returns [{item, value}] result
+     */
+
+  }, {
+    key: '_handleObject',
+    value: function _handleObject(obj) {
+      var result = [];
+      //Look every object props
+      for (var prop in obj) {
+        var propData = obj[prop];
+        //Check the propData type
+        var resultCheckType = this.check(propData, prop, prop, obj);
+        //Append to results aka merge results aka array-append-array
+        result = result.concat(resultCheckType);
+      }
+      return result;
+    }
+
+    /**
+     * Handle all Arrays, merges arrays with primitive types in a single value
+     *
+     * @param {Array} array
+     * @returns [{item, value}] result
+     */
+
+  }, {
+    key: '_handleArray',
+    value: function _handleArray(array) {
+      var self = this;
+      var result = [];
+      var firstElementWithoutItem;
+      for (var aIndex = 0; aIndex < array.length; ++aIndex) {
+        var element = array[aIndex];
+        //Check the propData type
+        var resultCheckType = self.check(element, null, aIndex, array);
+        //Check for results without itens, merge all itens with the first occurrence
+        if (resultCheckType.length === 0) continue;
+        var firstResult = resultCheckType[0];
+        if (!firstResult.item && firstElementWithoutItem !== undefined) {
+          firstElementWithoutItem.value += self._options.arrayPathString + firstResult.value;
+          continue;
+        } else if (resultCheckType.length > 0 && !firstResult.item && firstElementWithoutItem === undefined) {
+          firstElementWithoutItem = firstResult;
+        }
+        //Append to results
+        result = result.concat(resultCheckType);
+      }
+      return result;
+    }
+    /**
+     * Handle all Boolean variables, can be replaced with options.handleBoolean
+     *
+     * @param {Boolean} boolean
+     * @returns {String} result
+     */
+
+  }, {
+    key: '_handleBoolean',
+    value: function _handleBoolean(boolean) {
+      var result;
+      //Check for booolean options
+      if (boolean) {
+        result = this._options.booleanTrueString || 'true';
+      } else {
+        result = this._options.booleanFalseString || 'false';
+      }
+      return result;
+    }
+    /**
+     * Handle all String variables, can be replaced with options.handleString
+     *
+     * @param {String} string
+     * @returns {String} string
+     */
+
+  }, {
+    key: '_handleString',
+    value: function _handleString(string) {
+      return string;
+    }
+    /**
+     * Handle all Number variables, can be replaced with options.handleNumber
+     *
+     * @param {Number} number
+     * @returns {Number} number
+     */
+
+  }, {
+    key: '_handleNumber',
+    value: function _handleNumber(number) {
+      return number;
+    }
+    /**
+     * Handle all Date variables, can be replaced with options.handleDate
+     *
+     * @param {Date} number
+     * @returns {string} result
+     */
+
+  }, {
+    key: '_handleDate',
+    value: function _handleDate(date) {
+      return date.toLocaleDateString();
+    }
+  }]);
+
+  return Handler;
+}();
+
+module.exports = Handler;
+
+function warnDepOp(optionName, backOut) {
+  console.warn("[jsonexport]: option " + optionName + " has been deprecated. Use option.typeHandlers");
+  return backOut;
+}
+
+var globalScope = typeof window === "undefined" ? global : window;
+function isInstanceOfTypeName(element, typeName) {
+  if (element instanceof globalScope[typeName]) {
+    return true; //Buffer and complex objects
+  }
+
+  //literals in javascript cannot be checked by instance of
+  switch (typeof element === 'undefined' ? 'undefined' : _typeof(element)) {
+    case 'string':
+      return typeName === "String";
+    case 'boolean':
+      return typeName === "Boolean";
+    case 'number':
+      return typeName === "Number";
+  }
+
+  return false;
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)))
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+
+
+// Escape the textDelimiters contained in the field
+/*(https://tools.ietf.org/html/rfc4180)
+   7.  If double-quotes are used to enclose fields, then a double-quote
+   appearing inside a field must be escaped by preceding it with
+   another double quote.
+   For example: "aaa","b""bb","ccc"
+*/
+
+module.exports = function escapedDelimiters(textDelimiter, rowDelimiter, forceTextDelimiter) {
+  var endOfLine = '\n';
+
+  if (typeof textDelimiter !== 'string') {
+    throw new TypeError('Invalid param "textDelimiter", must be a string.');
+  }
+
+  if (typeof rowDelimiter !== 'string') {
+    throw new TypeError('Invalid param "rowDelimiter", must be a string.');
+  }
+
+  var textDelimiterRegex = new RegExp("\\" + textDelimiter, 'g');
+  var escapedDelimiter = textDelimiter + textDelimiter;
+
+  var enclosingCondition = textDelimiter === '"' ? function (value) {
+    return value.indexOf(rowDelimiter) >= 0 || value.indexOf(endOfLine) >= 0 || value.indexOf('"') >= 0;
+  } : function (value) {
+    return value.indexOf(rowDelimiter) >= 0 || value.indexOf(endOfLine) >= 0;
+  };
+
+  return function (value) {
+    if (forceTextDelimiter) value = "" + value;
+
+    if (!value.replace) return value;
+    // Escape the textDelimiters contained in the field
+    value = value.replace(textDelimiterRegex, escapedDelimiter);
+
+    // Escape the whole field if it contains a rowDelimiter or a linebreak or double quote
+    if (forceTextDelimiter || enclosingCondition(value)) {
+      value = textDelimiter + value + textDelimiter;
+    }
+
+    return value;
+  };
+};
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+  
+
+  var Stream = function (_Transform) {
+    throw new Error("jsonexport called without third argument as a callback and is required")
+  }
+
+  module.exports = Stream;
+  
 
 /***/ })
 /******/ ]);

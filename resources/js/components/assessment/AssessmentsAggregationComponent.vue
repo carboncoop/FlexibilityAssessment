@@ -83,8 +83,8 @@
                     </td>
                 </tr>
             </table>
+            <button class="btn" v-on:click="downloadCSV">Download</button>
         </div>
-
     </div>
 </template>
 
@@ -106,6 +106,7 @@
 
 <script>
     import {flexibilityModel} from '../../../../public/js/flexibility_model/flex_model.js';
+    import * as jsonexport from "jsonexport/dist";
     export default {
         props: {
             'assessments': Array
@@ -119,10 +120,12 @@
                 filter: "",
                 flexibilityModel: new flexibilityModel(),
                 numberOfAssessments: 0,
+                assessmentsForCSV: [],
                 schemes: [
                     {
                         // Secure scheme Rugeley SGT zone (WPD)
                         name: 'Secure min <span title="Based on secure scheme Rugeley SGT zone (WPD) -> 105 hours of availability and 21 of utilisation "><font-awesome-icon icon="question-circle" size="xs" /></span>',
+                        headerCSV: "Scheme min",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
@@ -133,6 +136,7 @@
                     {
                         // Secure scheme Woodall Spa zone (WPD)
                         name: 'Secure max <span title="Based on secure scheme Woodall Spa zone (WPD) -> 600 hours of availability and 125 of utilisation"><font-awesome-icon icon="question-circle" size="xs" /></span>',
+                        headerCSV: "Scheme max",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 360,
@@ -142,6 +146,7 @@
                     },
                     {
                         name: "User defined",
+                        headerCSV: "Scheme user defined",
                         powerAvailable: 0, loadUtilisedYear: 0, incomeYearTotal: 0,
                         flexibilityAwardedFactors: {scheduledAvailability: 1, utilisedLoad: 0.2},
                         dnoEstimatedAvailabilityRequired: 105,
@@ -186,12 +191,7 @@
             },
             updateReport: function () {
                 this.$nextTick(function () {
-                    let assessmentsForReport = [];
-                    // The assessments for the reports are the ones that are shown in the table and also checked
-                    for (let key in this.assessmentsForTable) {
-                        if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true)
-                            assessmentsForReport.push(this.assessmentsForTable[key]);
-                    }
+                    let assessmentsForReport = this.getAssessmentsForReport();
                     // Ini report
                     this.numberOfAssessments = assessmentsForReport.length;
                     this.schemes.forEach(function (scheme) {
@@ -203,6 +203,7 @@
                     //Generate report
                     let myself = this;
                     assessmentsForReport.forEach(function (assessment) {
+                        let assessmentCSV = JSON.parse(JSON.stringify(assessment));
                         myself.schemes.forEach(function (scheme) {
                             assessment.data.fees = scheme.fees;
                             assessment.data.flexibilityAwardedFactors = scheme.flexibilityAwardedFactors;
@@ -216,11 +217,69 @@
                             }
                             scheme.incomeYearTotalHousehold += assessment.data.incomeYearTotalHousehold;
                             scheme.incomeYearTotalAggregator += assessment.data.incomeYearTotalAggregator;
+                            assessmentCSV[scheme.headerCSV + " - Household income year" ] = assessment.data.incomeYearTotalHousehold;
+                            assessmentCSV[scheme.headerCSV + " - Aggregator income year" ] = assessment.data.incomeYearTotalAggregator;
                         });
-                        console.log(assessment.data)
+                        delete assessmentCSV.user;
+                        delete assessmentCSV.data.flexibilityHoursScheduled;
+                        delete assessmentCSV.data.incomeYearBySource;
+                        delete assessmentCSV.data.incomeYearTotal;
+                        delete assessmentCSV.data.incomeYearTotalHousehold;
+                        delete assessmentCSV.data.incomeYearTotalAggregator;
+                        delete assessmentCSV.data.loadUtilisedYear;
+                        if (assessmentCSV.data.questionnaire != undefined){
+                            assessmentCSV.data.questionnaire.signupPriorities = assessmentCSV.data.questionnaire.signupPriorities.join(" - ");                        
+                            assessmentCSV.data.questionnaire.puttingMeOffRating = assessmentCSV.data.questionnaire.puttingMeOffRating.join(" - ");
+                        }
+
+
+
+                        myself.assessmentsForCSV.push(assessmentCSV);
                     });
                     console.log(this.schemes);
                 });
+            },
+            downloadCSV: function () {
+                // Generate CSV        
+                let csv_file = "";
+                let today = new Date();
+                let filename = "flexibilityAssessmentReport - " + today.getFullYear()
+                        + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours()
+                        + ":" + today.getMinutes() + ":" + today.getSeconds() + ".csv";
+                jsonexport(this.assessmentsForCSV, function (err, csv) {
+                    if (err)
+                        return console.log(err);
+                    console.log(csv);
+                    csv_file = csv;
+                });
+                // Download file
+                var blob = new Blob([csv_file], {type: 'text/csv;charset=utf-8;'});
+                console.log(blob);
+                if (navigator.msSaveBlob) { // IE 10+
+                    navigator.msSaveBlob(blob, filename);
+                }
+                else {
+                    var link = document.createElement("a");
+                    if (link.download !== undefined) { // feature detection
+                        // Browsers that support HTML5 download attribute
+                        var url = URL.createObjectURL(blob);
+                        link.setAttribute("href", url);
+                        link.setAttribute("download", filename);
+                        link.style.visibility = 'hidden';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }
+            },
+            getAssessmentsForReport: function () {
+                let assessmentsForReport = [];
+                // The assessments for the reports are the ones that are shown in the table and also checked
+                for (let key in this.assessmentsForTable) {
+                    if (this.assessmentsChecked[this.assessmentsForTable[key].id] === true)
+                        assessmentsForReport.push(this.assessmentsForTable[key]);
+                }
+                return assessmentsForReport;
             }
         },
         created: function () {
